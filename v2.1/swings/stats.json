@@ -1,0 +1,615 @@
+{
+  "assets": {
+    "copper": {
+      "bars": {
+        "daily": 1403,
+        "hourly": 1064
+      },
+      "by_bar": {
+        "daily": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 459,
+              "2": 62,
+              "3": 10,
+              "4": 5,
+              "5": 2
+            },
+            "legs": 538,
+            "max": 5,
+            "max_hours": 168.0,
+            "mean": 1.1952,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 1,
+            "p90": 2,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 64,
+          "down": 270,
+          "legs": 538,
+          "legs_per_20_sessions": 7.669,
+          "median_abs_move_pct": 2.9707,
+          "median_duration_hours": 72.0,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2021": 118,
+            "2022": 133,
+            "2023": 75,
+            "2024": 76,
+            "2025": 75,
+            "2026": 61
+          },
+          "sessions": 1403,
+          "up": 268
+        },
+        "hourly": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 5,
+              "1": 11,
+              "2": 4,
+              "3": 2
+            },
+            "legs": 22,
+            "max": 3,
+            "max_hours": 120.0,
+            "mean": 1.1364,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 0,
+            "p90": 2,
+            "same_session": 5,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 1,
+          "down": 12,
+          "legs": 22,
+          "legs_per_20_sessions": 5.946,
+          "median_abs_move_pct": 2.6764,
+          "median_duration_hours": 67.5,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2026": 22
+          },
+          "sessions": 74,
+          "up": 10
+        },
+        "mixed": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 2,
+              "1": 5
+            },
+            "legs": 7,
+            "max": 1,
+            "max_hours": 24.0,
+            "mean": 0.7143,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 0,
+            "p90": 1,
+            "same_session": 2,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 3,
+          "down": 2,
+          "legs": 7,
+          "median_abs_move_pct": 2.3494,
+          "median_duration_hours": 82.0,
+          "median_sessions_spanned": 2.0,
+          "per_year": {
+            "2026": 7
+          },
+          "up": 5
+        }
+      },
+      "confirmation_lag_sessions": {
+        "histogram": {
+          "0": 7,
+          "1": 475,
+          "2": 66,
+          "3": 12,
+          "4": 5,
+          "5": 2
+        },
+        "legs": 567,
+        "max": 5,
+        "max_hours": 168.0,
+        "mean": 1.1869,
+        "median": 1.0,
+        "median_hours": 24.0,
+        "min": 0,
+        "p90": 2,
+        "same_session": 7,
+        "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+      },
+      "contract_changed": 68,
+      "down": 284,
+      "legs": 567,
+      "legs_per_20_sessions": 7.678,
+      "median_abs_move_pct": 2.9471,
+      "median_duration_hours": 72.0,
+      "median_sessions_spanned": 3.0,
+      "per_year": {
+        "2021": 118,
+        "2022": 133,
+        "2023": 75,
+        "2024": 76,
+        "2025": 75,
+        "2026": 90
+      },
+      "sessions": 1477,
+      "sessions_designated": 1477,
+      "threshold_pct": 1.5,
+      "up": 283
+    },
+    "crude": {
+      "bars": {
+        "daily": 1400,
+        "hourly": 1109
+      },
+      "by_bar": {
+        "daily": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 457,
+              "2": 73,
+              "3": 13,
+              "4": 1,
+              "5": 7
+            },
+            "legs": 551,
+            "max": 5,
+            "max_hours": 192.0,
+            "mean": 1.2359,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 1,
+            "p90": 2,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 65,
+          "down": 275,
+          "legs": 551,
+          "legs_per_20_sessions": 7.871,
+          "median_abs_move_pct": 5.5822,
+          "median_duration_hours": 56.0,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2021": 83,
+            "2022": 137,
+            "2023": 96,
+            "2024": 72,
+            "2025": 79,
+            "2026": 84
+          },
+          "sessions": 1400,
+          "up": 276
+        },
+        "hourly": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 30,
+              "1": 27
+            },
+            "legs": 57,
+            "max": 1,
+            "max_hours": 96.0,
+            "mean": 0.4737,
+            "median": 0.0,
+            "median_hours": 0.0,
+            "min": 0,
+            "p90": 1,
+            "same_session": 30,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 2,
+          "down": 28,
+          "legs": 57,
+          "legs_per_20_sessions": 14.805,
+          "median_abs_move_pct": 5.3606,
+          "median_duration_hours": 21.0,
+          "median_sessions_spanned": 2.0,
+          "per_year": {
+            "2026": 57
+          },
+          "sessions": 77,
+          "up": 29
+        },
+        "mixed": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 2,
+              "1": 5,
+              "2": 1
+            },
+            "legs": 8,
+            "max": 2,
+            "max_hours": 96.0,
+            "mean": 0.875,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 0,
+            "p90": 2,
+            "same_session": 2,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 2,
+          "down": 5,
+          "legs": 8,
+          "median_abs_move_pct": 5.5211,
+          "median_duration_hours": 42.0,
+          "median_sessions_spanned": 2.5,
+          "per_year": {
+            "2026": 8
+          },
+          "up": 3
+        }
+      },
+      "confirmation_lag_sessions": {
+        "histogram": {
+          "0": 32,
+          "1": 489,
+          "2": 74,
+          "3": 13,
+          "4": 1,
+          "5": 7
+        },
+        "legs": 616,
+        "max": 5,
+        "max_hours": 192.0,
+        "mean": 1.1607,
+        "median": 1.0,
+        "median_hours": 24.0,
+        "min": 0,
+        "p90": 2,
+        "same_session": 32,
+        "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+      },
+      "contract_changed": 69,
+      "down": 308,
+      "legs": 616,
+      "legs_per_20_sessions": 8.341,
+      "median_abs_move_pct": 5.5808,
+      "median_duration_hours": 48.0,
+      "median_sessions_spanned": 3.0,
+      "per_year": {
+        "2021": 83,
+        "2022": 137,
+        "2023": 96,
+        "2024": 72,
+        "2025": 79,
+        "2026": 149
+      },
+      "sessions": 1477,
+      "sessions_designated": 1477,
+      "threshold_pct": 3.0,
+      "up": 308
+    },
+    "gold": {
+      "bars": {
+        "daily": 1395,
+        "hourly": 1174
+      },
+      "by_bar": {
+        "daily": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 215,
+              "2": 73,
+              "3": 25,
+              "4": 17,
+              "5": 8,
+              "6": 4,
+              "7": 2,
+              "8": 2
+            },
+            "legs": 346,
+            "max": 8,
+            "max_hours": 312.0,
+            "mean": 1.7283,
+            "median": 1.0,
+            "median_hours": 48.0,
+            "min": 1,
+            "p90": 3,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 32,
+          "down": 174,
+          "legs": 346,
+          "legs_per_20_sessions": 4.961,
+          "median_abs_move_pct": 2.9032,
+          "median_duration_hours": 96.0,
+          "median_sessions_spanned": 4.0,
+          "per_year": {
+            "2021": 44,
+            "2022": 49,
+            "2023": 47,
+            "2024": 49,
+            "2025": 88,
+            "2026": 69
+          },
+          "sessions": 1395,
+          "up": 172
+        },
+        "hourly": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 11,
+              "1": 15,
+              "2": 7,
+              "3": 1
+            },
+            "legs": 34,
+            "max": 3,
+            "max_hours": 144.0,
+            "mean": 0.9412,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 0,
+            "p90": 2,
+            "same_session": 11,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 1,
+          "down": 18,
+          "legs": 34,
+          "legs_per_20_sessions": 8.293,
+          "median_abs_move_pct": 2.5047,
+          "median_duration_hours": 47.5,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2026": 34
+          },
+          "sessions": 82,
+          "up": 16
+        },
+        "mixed": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 4,
+              "2": 2
+            },
+            "legs": 6,
+            "max": 2,
+            "max_hours": 96.0,
+            "mean": 1.3333,
+            "median": 1.0,
+            "median_hours": 48.0,
+            "min": 1,
+            "p90": 2,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 1,
+          "down": 1,
+          "legs": 6,
+          "median_abs_move_pct": 3.0499,
+          "median_duration_hours": 78.0,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2026": 6
+          },
+          "up": 5
+        }
+      },
+      "confirmation_lag_sessions": {
+        "histogram": {
+          "0": 11,
+          "1": 234,
+          "2": 82,
+          "3": 26,
+          "4": 17,
+          "5": 8,
+          "6": 4,
+          "7": 2,
+          "8": 2
+        },
+        "legs": 386,
+        "max": 8,
+        "max_hours": 312.0,
+        "mean": 1.6528,
+        "median": 1.0,
+        "median_hours": 24.0,
+        "min": 0,
+        "p90": 3,
+        "same_session": 11,
+        "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+      },
+      "contract_changed": 34,
+      "down": 193,
+      "legs": 386,
+      "legs_per_20_sessions": 5.227,
+      "median_abs_move_pct": 2.8014,
+      "median_duration_hours": 92.0,
+      "median_sessions_spanned": 3.0,
+      "per_year": {
+        "2021": 44,
+        "2022": 49,
+        "2023": 47,
+        "2024": 49,
+        "2025": 88,
+        "2026": 109
+      },
+      "sessions": 1477,
+      "sessions_designated": 1477,
+      "threshold_pct": 1.5,
+      "up": 193
+    },
+    "silver": {
+      "bars": {
+        "daily": 1399,
+        "hourly": 1134
+      },
+      "by_bar": {
+        "daily": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 433,
+              "2": 75,
+              "3": 15,
+              "4": 5
+            },
+            "legs": 528,
+            "max": 4,
+            "max_hours": 168.0,
+            "mean": 1.2273,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 1,
+            "p90": 2,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 27,
+          "down": 265,
+          "legs": 528,
+          "legs_per_20_sessions": 7.548,
+          "median_abs_move_pct": 4.1106,
+          "median_duration_hours": 72.0,
+          "median_sessions_spanned": 3.0,
+          "per_year": {
+            "2021": 74,
+            "2022": 97,
+            "2023": 75,
+            "2024": 83,
+            "2025": 106,
+            "2026": 93
+          },
+          "sessions": 1399,
+          "up": 263
+        },
+        "hourly": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "0": 18,
+              "1": 24,
+              "2": 6
+            },
+            "legs": 48,
+            "max": 2,
+            "max_hours": 120.0,
+            "mean": 0.75,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 0,
+            "p90": 2,
+            "same_session": 18,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 0,
+          "down": 25,
+          "legs": 48,
+          "legs_per_20_sessions": 12.308,
+          "median_abs_move_pct": 3.4826,
+          "median_duration_hours": 36.0,
+          "median_sessions_spanned": 2.0,
+          "per_year": {
+            "2026": 48
+          },
+          "sessions": 78,
+          "up": 23
+        },
+        "mixed": {
+          "confirmation_lag_sessions": {
+            "histogram": {
+              "1": 5
+            },
+            "legs": 5,
+            "max": 1,
+            "max_hours": 24.0,
+            "mean": 1.0,
+            "median": 1.0,
+            "median_hours": 24.0,
+            "min": 1,
+            "p90": 1,
+            "same_session": 0,
+            "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+          },
+          "contract_changed": 2,
+          "down": 1,
+          "legs": 5,
+          "median_abs_move_pct": 4.5503,
+          "median_duration_hours": 110.0,
+          "median_sessions_spanned": 4.0,
+          "per_year": {
+            "2026": 5
+          },
+          "up": 4
+        }
+      },
+      "confirmation_lag_sessions": {
+        "histogram": {
+          "0": 18,
+          "1": 462,
+          "2": 81,
+          "3": 15,
+          "4": 5
+        },
+        "legs": 581,
+        "max": 4,
+        "max_hours": 168.0,
+        "mean": 1.1859,
+        "median": 1.0,
+        "median_hours": 24.0,
+        "min": 0,
+        "p90": 2,
+        "same_session": 18,
+        "unit": "MCX trading sessions from the extreme's session to the confirming bar's session"
+      },
+      "contract_changed": 29,
+      "down": 291,
+      "legs": 581,
+      "legs_per_20_sessions": 7.867,
+      "median_abs_move_pct": 4.0524,
+      "median_duration_hours": 72.0,
+      "median_sessions_spanned": 3.0,
+      "per_year": {
+        "2021": 74,
+        "2022": 97,
+        "2023": 75,
+        "2024": 83,
+        "2025": 106,
+        "2026": 146
+      },
+      "sessions": 1477,
+      "sessions_designated": 1477,
+      "threshold_pct": 2.0,
+      "up": 290
+    }
+  },
+  "build": {
+    "built_utc": "2026-10-23T21:58:12.038843+00:00",
+    "command": "python -m swing_dataset.swings build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "range": {
+    "first_session": "2021-02-01",
+    "last_session": "2026-10-23",
+    "quote_last_available_utc": "2026-10-23T17:59:59+00:00",
+    "quote_rows": {
+      "no_session_window": 106469,
+      "outside_session_window": 194550,
+      "rows": 1532825
+    }
+  },
+  "rule": {
+    "bar_clock": "Asia/Kolkata hour of the quote's available_utc",
+    "designation_horizon": 5,
+    "hourly_start": "2026-06-22",
+    "thresholds_pct": {
+      "copper": 1.5,
+      "crude": 3.0,
+      "gold": 1.5,
+      "silver": 2.0
+    }
+  },
+  "totals": {
+    "legs": 2150,
+    "sessions": 5908
+  }
+}

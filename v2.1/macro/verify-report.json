@@ -1,0 +1,2400 @@
+{
+  "alfred": {
+    "available_rule_counts": {
+      "first_vintage_next_day_00utc": 18175,
+      "next_day_00utc": 104526,
+      "vintage_precedes_observation": 39
+    },
+    "checks": {
+      "next_day_rows_with_realtime_start_before_period_end": 0,
+      "payems_aug2026_first_realtime_start_is_2026-09-04": true,
+      "published_rows_with_available_utc_not_after_period_end": 0,
+      "unvintaged_rows_have_null_available_utc": true
+    },
+    "date_range": {
+      "observation_date": {
+        "column": "observation_date",
+        "max": "2026-10-23",
+        "min": "2009-01-01"
+      },
+      "realtime_start": {
+        "column": "realtime_start",
+        "max": "2026-10-23",
+        "min": "2005-06-28"
+      }
+    },
+    "per_series": {
+      "BAA10Y": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2014-01-27",
+          "2026-10-23"
+        ],
+        "rows": 4462,
+        "rules": {
+          "first_vintage_next_day_00utc": 1267,
+          "next_day_00utc": 3195
+        }
+      },
+      "BAMLC0A0CM": {
+        "observation_date": [
+          "2023-10-24",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2023-10-24",
+          "2026-10-22"
+        ],
+        "rows": 785,
+        "rules": {
+          "next_day_00utc": 785
+        }
+      },
+      "BAMLH0A0HYM2": {
+        "observation_date": [
+          "2023-10-24",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2023-10-24",
+          "2026-10-22"
+        ],
+        "rows": 786,
+        "rules": {
+          "next_day_00utc": 786
+        }
+      },
+      "CES0500000003": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2011-03-04",
+          "2026-10-02"
+        ],
+        "rows": 1317,
+        "rules": {
+          "first_vintage_next_day_00utc": 26,
+          "next_day_00utc": 1291
+        }
+      },
+      "CPIAUCSL": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-20",
+          "2026-10-14"
+        ],
+        "rows": 1113,
+        "rules": {
+          "next_day_00utc": 1113
+        }
+      },
+      "CPILFESL": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-20",
+          "2026-10-14"
+        ],
+        "rows": 1105,
+        "rules": {
+          "next_day_00utc": 1105
+        }
+      },
+      "DCOILBRENTEU": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-20"
+        ],
+        "realtime_start": [
+          "2011-04-06",
+          "2026-10-21"
+        ],
+        "rows": 4561,
+        "rules": {
+          "first_vintage_next_day_00utc": 569,
+          "next_day_00utc": 3991,
+          "vintage_precedes_observation": 1
+        }
+      },
+      "DCOILWTICO": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-20"
+        ],
+        "realtime_start": [
+          "2011-04-06",
+          "2026-10-21"
+        ],
+        "rows": 4536,
+        "rules": {
+          "first_vintage_next_day_00utc": 569,
+          "next_day_00utc": 3966,
+          "vintage_precedes_observation": 1
+        }
+      },
+      "DEXCHUS": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-16"
+        ],
+        "realtime_start": [
+          "2005-06-28",
+          "2026-10-19"
+        ],
+        "rows": 4457,
+        "rules": {
+          "first_vintage_next_day_00utc": 1305,
+          "next_day_00utc": 3152
+        }
+      },
+      "DEXINUS": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-16"
+        ],
+        "realtime_start": [
+          "2014-03-18",
+          "2026-10-19"
+        ],
+        "rows": 4453,
+        "rules": {
+          "first_vintage_next_day_00utc": 1304,
+          "next_day_00utc": 3149
+        }
+      },
+      "DFEDTARL": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-10-23"
+        ],
+        "realtime_start": [
+          "2009-01-02",
+          "2026-10-23"
+        ],
+        "rows": 6505,
+        "rules": {
+          "next_day_00utc": 6505
+        }
+      },
+      "DFEDTARU": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-10-23"
+        ],
+        "realtime_start": [
+          "2009-01-02",
+          "2026-10-23"
+        ],
+        "rows": 6505,
+        "rules": {
+          "first_vintage_next_day_00utc": 1918,
+          "next_day_00utc": 4587
+        }
+      },
+      "DFII10": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2009-01-06",
+          "2026-10-23"
+        ],
+        "rows": 4454,
+        "rules": {
+          "next_day_00utc": 4454
+        }
+      },
+      "DFII5": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2009-01-06",
+          "2026-10-23"
+        ],
+        "rows": 4456,
+        "rules": {
+          "next_day_00utc": 4456
+        }
+      },
+      "DGS10": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2009-01-06",
+          "2026-10-23"
+        ],
+        "rows": 4457,
+        "rules": {
+          "next_day_00utc": 4457
+        }
+      },
+      "DGS2": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2009-01-06",
+          "2026-10-23"
+        ],
+        "rows": 4454,
+        "rules": {
+          "next_day_00utc": 4454
+        }
+      },
+      "DTWEXBGS": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-10-16"
+        ],
+        "realtime_start": [
+          "2019-02-04",
+          "2026-10-19"
+        ],
+        "rows": 19543,
+        "rules": {
+          "first_vintage_next_day_00utc": 2632,
+          "next_day_00utc": 16911
+        }
+      },
+      "EFFR": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2016-03-01",
+          "2026-10-23"
+        ],
+        "rows": 4475,
+        "rules": {
+          "first_vintage_next_day_00utc": 1799,
+          "next_day_00utc": 2676
+        }
+      },
+      "FEDFUNDS": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-02",
+          "2026-10-01"
+        ],
+        "rows": 215,
+        "rules": {
+          "next_day_00utc": 215
+        }
+      },
+      "GVZCLS": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2011-06-06",
+          "2026-10-22"
+        ],
+        "rows": 4485,
+        "rules": {
+          "first_vintage_next_day_00utc": 1331,
+          "next_day_00utc": 3152,
+          "vintage_precedes_observation": 2
+        }
+      },
+      "ICSA": {
+        "observation_date": [
+          "2009-01-03",
+          "2026-10-17"
+        ],
+        "realtime_start": [
+          "2009-05-28",
+          "2026-10-22"
+        ],
+        "rows": 5191,
+        "rules": {
+          "first_vintage_next_day_00utc": 21,
+          "next_day_00utc": 5170
+        }
+      },
+      "INDPRO": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-18",
+          "2026-10-16"
+        ],
+        "rows": 2805,
+        "rules": {
+          "next_day_00utc": 2805
+        }
+      },
+      "JTSJOL": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-08-01"
+        ],
+        "realtime_start": [
+          "2010-08-11",
+          "2026-09-29"
+        ],
+        "rows": 1518,
+        "rules": {
+          "first_vintage_next_day_00utc": 18,
+          "next_day_00utc": 1500
+        }
+      },
+      "OVXCLS": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2011-06-06",
+          "2026-10-22"
+        ],
+        "rows": 4485,
+        "rules": {
+          "first_vintage_next_day_00utc": 1331,
+          "next_day_00utc": 3152,
+          "vintage_precedes_observation": 2
+        }
+      },
+      "PAYEMS": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-06",
+          "2026-10-02"
+        ],
+        "rows": 2095,
+        "rules": {
+          "next_day_00utc": 2095
+        }
+      },
+      "PPIFIS": {
+        "observation_date": [
+          "2009-11-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2014-02-19",
+          "2026-10-15"
+        ],
+        "rows": 807,
+        "rules": {
+          "first_vintage_next_day_00utc": 51,
+          "next_day_00utc": 756
+        }
+      },
+      "SOFR": {
+        "observation_date": [
+          "2018-04-03",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2019-03-29",
+          "2026-10-23"
+        ],
+        "rows": 2137,
+        "rules": {
+          "first_vintage_next_day_00utc": 247,
+          "next_day_00utc": 1890
+        }
+      },
+      "T10Y2Y": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-23"
+        ],
+        "realtime_start": [
+          "2014-01-27",
+          "2026-10-23"
+        ],
+        "rows": 4458,
+        "rules": {
+          "first_vintage_next_day_00utc": 1267,
+          "next_day_00utc": 3191
+        }
+      },
+      "T10YIE": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-23"
+        ],
+        "realtime_start": [
+          "2014-01-27",
+          "2026-10-23"
+        ],
+        "rows": 4457,
+        "rules": {
+          "first_vintage_next_day_00utc": 1267,
+          "next_day_00utc": 3190
+        }
+      },
+      "UNRATE": {
+        "observation_date": [
+          "2009-01-01",
+          "2026-09-01"
+        ],
+        "realtime_start": [
+          "2009-02-06",
+          "2026-10-02"
+        ],
+        "rows": 390,
+        "rules": {
+          "next_day_00utc": 390
+        }
+      },
+      "VIXCLS": {
+        "observation_date": [
+          "2009-01-02",
+          "2026-10-22"
+        ],
+        "realtime_start": [
+          "2010-11-22",
+          "2026-10-22"
+        ],
+        "rows": 4521,
+        "rules": {
+          "first_vintage_next_day_00utc": 476,
+          "next_day_00utc": 4013,
+          "vintage_precedes_observation": 32
+        }
+      },
+      "VXSLVCLS": {
+        "observation_date": [
+          "2011-03-16",
+          "2022-02-11"
+        ],
+        "realtime_start": [
+          "2011-06-06",
+          "2022-02-11"
+        ],
+        "rows": 2752,
+        "rules": {
+          "first_vintage_next_day_00utc": 777,
+          "next_day_00utc": 1974,
+          "vintage_precedes_observation": 1
+        }
+      }
+    },
+    "rows": 122740,
+    "series": 32,
+    "vintage_proof": {
+      "CPIAUCSL_2026-07-01": [
+        {
+          "available_utc": "2026-08-13 00:00:00+00:00",
+          "realtime_end": "9999-12-31",
+          "realtime_start": "2026-08-12",
+          "value": "332.813"
+        }
+      ],
+      "CPIAUCSL_2026-08-01": [
+        {
+          "available_utc": "2026-09-12 00:00:00+00:00",
+          "realtime_end": "9999-12-31",
+          "realtime_start": "2026-09-11",
+          "value": "334.131"
+        }
+      ],
+      "PAYEMS_2026-07-01": [
+        {
+          "available_utc": "2026-08-08 00:00:00+00:00",
+          "realtime_end": "2026-09-03",
+          "realtime_start": "2026-08-07",
+          "value": "158858.0"
+        },
+        {
+          "available_utc": "2026-09-05 00:00:00+00:00",
+          "realtime_end": "2026-10-01",
+          "realtime_start": "2026-09-04",
+          "value": "158913.0"
+        },
+        {
+          "available_utc": "2026-10-03 00:00:00+00:00",
+          "realtime_end": "9999-12-31",
+          "realtime_start": "2026-10-02",
+          "value": "158882.0"
+        }
+      ],
+      "PAYEMS_2026-08-01": [
+        {
+          "available_utc": "2026-09-05 00:00:00+00:00",
+          "realtime_end": "2026-10-01",
+          "realtime_start": "2026-09-04",
+          "value": "159075.0"
+        },
+        {
+          "available_utc": "2026-10-03 00:00:00+00:00",
+          "realtime_end": "9999-12-31",
+          "realtime_start": "2026-10-02",
+          "value": "159015.0"
+        }
+      ]
+    }
+  },
+  "cot": {
+    "cot": {
+      "checks": {
+        "all_releases_friday_or_flagged_delay": true,
+        "all_report_dates_tuesday_or_explained_by_holiday": true,
+        "no_wednesday_or_thursday_releases": true,
+        "release_time_is_1530_et": true
+      },
+      "columns": 207,
+      "non_friday_release_days_et": [
+        "2010-11-15",
+        "2010-11-29",
+        "2010-12-27",
+        "2011-01-03",
+        "2011-11-14",
+        "2011-11-28",
+        "2012-07-09",
+        "2012-11-26",
+        "2013-07-08",
+        "2013-12-02",
+        "2013-12-30",
+        "2014-01-06",
+        "2014-07-07",
+        "2014-12-01",
+        "2014-12-29",
+        "2015-01-05",
+        "2015-07-06",
+        "2015-11-30",
+        "2015-12-28",
+        "2016-01-04",
+        "2016-11-14",
+        "2016-11-28",
+        "2017-11-13",
+        "2017-11-27",
+        "2018-07-09",
+        "2018-11-26",
+        "2019-02-05",
+        "2019-02-12",
+        "2019-02-19",
+        "2019-02-26",
+        "2019-03-05",
+        "2019-07-08",
+        "2019-12-02",
+        "2019-12-30",
+        "2020-01-06",
+        "2020-07-06",
+        "2020-11-16",
+        "2020-11-30",
+        "2020-12-28",
+        "2021-01-04",
+        "2021-11-15",
+        "2021-11-29",
+        "2021-12-27",
+        "2022-01-03",
+        "2022-11-14",
+        "2022-11-28",
+        "2023-11-13",
+        "2023-11-27",
+        "2024-06-24",
+        "2024-07-08",
+        "2024-12-02",
+        "2024-12-30",
+        "2025-01-06",
+        "2025-06-23",
+        "2025-07-07",
+        "2025-12-01",
+        "2025-12-29",
+        "2026-01-05",
+        "2026-06-22",
+        "2026-07-06"
+      ],
+      "non_tuesday_report_dates": {
+        "2012-12-24": "Tuesday 2012-12-25 is Christmas Day",
+        "2012-12-31": "Tuesday 2013-01-01 is New Year's Day",
+        "2017-07-03": "Tuesday 2017-07-04 is Independence Day",
+        "2018-12-24": "Tuesday 2018-12-25 is Christmas Day",
+        "2018-12-31": "Tuesday 2019-01-01 is New Year's Day",
+        "2020-12-21": "announcement: e additional federal holiday on December 24 th , we published data dated Monday December 21, 2020 on Monday December 28, 2020. May 29, 2020: Due to timing differences that may arise on rare occasions ",
+        "2023-07-03": "Tuesday 2023-07-04 is Independence Day",
+        "2025-11-10": "Tuesday 2025-11-11 is Veterans Day"
+      },
+      "release_source_counts": {
+        "cftc_press_release:7864-19": 40,
+        "cftc_schedule:live:release-schedule-live-20261023T215047328625Z.html": 172,
+        "cftc_schedule:wayback:release-schedule-wayback-2010-20261023T215047540436Z.html": 204,
+        "cftc_schedule:wayback:release-schedule-wayback-2011-20261023T215051540619Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2012-20261023T215055540649Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2013-20261023T215059540819Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2014-20261023T215103540887Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2015-20261023T215107541028Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2016-20261023T215111541197Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2017-20261023T215115541352Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2018-20261023T215119541518Z.html": 204,
+        "cftc_schedule:wayback:release-schedule-wayback-2019-20261023T215127847043Z.html": 172,
+        "cftc_schedule:wayback:release-schedule-wayback-2020-20261023T215131847107Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2021-20261023T215135847172Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2022-20261023T215139847354Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2023-20261023T215143847505Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2024-20261023T215147847648Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2025-20261023T215151847720Z.html": 208
+      },
+      "release_weekdays_et": {
+        "Friday": 3268,
+        "Monday": 220,
+        "Tuesday": 20
+      },
+      "report_date_range": [
+        "2010-01-05",
+        "2026-10-20"
+      ],
+      "report_weekdays": {
+        "Monday": 32,
+        "Tuesday": 3476
+      },
+      "rows": 3508,
+      "rows_per_year_per_market": {
+        "2010": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2011": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2012": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2013": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2014": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2015": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2016": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2017": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2018": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2019": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2020": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2021": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2022": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2023": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2024": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2025": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2026": {
+          "copper": 42,
+          "crude": 42,
+          "gold": 42,
+          "silver": 42
+        }
+      },
+      "rows_with_loaded_utc": 884,
+      "scheduled_vs_loaded_day_mismatches": [
+        {
+          "asset": "gold",
+          "loaded_et": "2022-08-17T12:26:11.456000-04:00",
+          "report_date": "2022-08-09",
+          "scheduled_release_et": "2022-08-12T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2022-08-24T15:54:05.767000-04:00",
+          "report_date": "2022-08-16",
+          "scheduled_release_et": "2022-08-19T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-02-24T15:30:04.227000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-03T15:30:04.419000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-08T15:30:04.381000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-10T15:30:04.579000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-14T15:30:04.929000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-16T15:30:04.372000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-21T15:30:07.501000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-01-13T15:30:55.198000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-19T15:30:44.810000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-21T15:30:46.268000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-25T15:30:47.134000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-02T15:30:47.081000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-05T15:30:45.760000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-09T15:30:46.720000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-10T15:30:48.730000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-12T15:30:48.699000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-15T15:30:46.682000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-17T15:30:47.908000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-19T15:30:47.375000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-23T15:30:45.717000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-31T15:30:46.929000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2022-08-17T12:26:11.456000-04:00",
+          "report_date": "2022-08-09",
+          "scheduled_release_et": "2022-08-12T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2022-08-24T15:54:05.767000-04:00",
+          "report_date": "2022-08-16",
+          "scheduled_release_et": "2022-08-19T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-02-24T15:30:04.227000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-03T15:30:04.419000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-08T15:30:04.381000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-10T15:30:04.579000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-14T15:30:04.929000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-16T15:30:04.372000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-21T15:30:07.501000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-01-13T15:30:55.198000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-19T15:30:44.810000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-21T15:30:46.268000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-25T15:30:47.134000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-02T15:30:47.081000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-05T15:30:45.760000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-09T15:30:46.720000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-10T15:30:48.730000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-12T15:30:48.699000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-15T15:30:46.682000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-17T15:30:47.908000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-19T15:30:47.375000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-23T15:30:45.717000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-31T15:30:46.929000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2022-08-17T12:26:11.456000-04:00",
+          "report_date": "2022-08-09",
+          "scheduled_release_et": "2022-08-12T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2022-08-24T15:54:05.767000-04:00",
+          "report_date": "2022-08-16",
+          "scheduled_release_et": "2022-08-19T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-02-24T15:30:04.227000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-03T15:30:04.419000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-08T15:30:04.381000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-10T15:30:04.579000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-14T15:30:04.929000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-16T15:30:04.372000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-21T15:30:07.501000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-01-13T15:30:55.198000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-19T15:30:44.810000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-21T15:30:46.268000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-25T15:30:47.134000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-02T15:30:47.081000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-05T15:30:45.760000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-09T15:30:46.720000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-10T15:30:48.730000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-12T15:30:48.699000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-15T15:30:46.682000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-17T15:30:47.908000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-19T15:30:47.375000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-23T15:30:45.717000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-31T15:30:46.929000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2022-08-17T12:26:11.456000-04:00",
+          "report_date": "2022-08-09",
+          "scheduled_release_et": "2022-08-12T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2022-08-24T15:54:05.767000-04:00",
+          "report_date": "2022-08-16",
+          "scheduled_release_et": "2022-08-19T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-02-24T15:30:04.227000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-03T15:30:04.419000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-08T15:30:04.381000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-10T15:30:04.579000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-14T15:30:04.929000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-16T15:30:04.372000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-21T15:30:07.501000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-01-13T15:30:55.198000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-19T15:30:44.810000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-21T15:30:46.268000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-25T15:30:47.134000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-02T15:30:47.081000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-05T15:30:45.760000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-09T15:30:46.720000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-10T15:30:48.730000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-12T15:30:48.699000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-15T15:30:46.682000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-17T15:30:47.908000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-19T15:30:47.375000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-23T15:30:45.717000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-31T15:30:46.929000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        }
+      ]
+    },
+    "cot_legacy": {
+      "checks": {
+        "all_releases_friday_or_flagged_delay": true,
+        "all_report_dates_tuesday_or_explained_by_holiday": true,
+        "no_wednesday_or_thursday_releases": true,
+        "release_time_is_1530_et": true
+      },
+      "columns": 146,
+      "non_friday_release_days_et": [
+        "2010-11-15",
+        "2010-11-29",
+        "2010-12-27",
+        "2011-01-03",
+        "2011-11-14",
+        "2011-11-28",
+        "2012-07-09",
+        "2012-11-26",
+        "2013-07-08",
+        "2013-12-02",
+        "2013-12-30",
+        "2014-01-06",
+        "2014-07-07",
+        "2014-12-01",
+        "2014-12-29",
+        "2015-01-05",
+        "2015-07-06",
+        "2015-11-30",
+        "2015-12-28",
+        "2016-01-04",
+        "2016-11-14",
+        "2016-11-28",
+        "2017-11-13",
+        "2017-11-27",
+        "2018-07-09",
+        "2018-11-26",
+        "2019-02-05",
+        "2019-02-12",
+        "2019-02-19",
+        "2019-02-26",
+        "2019-03-05",
+        "2019-07-08",
+        "2019-12-02",
+        "2019-12-30",
+        "2020-01-06",
+        "2020-07-06",
+        "2020-11-16",
+        "2020-11-30",
+        "2020-12-28",
+        "2021-01-04",
+        "2021-11-15",
+        "2021-11-29",
+        "2021-12-27",
+        "2022-01-03",
+        "2022-11-14",
+        "2022-11-28",
+        "2023-11-13",
+        "2023-11-27",
+        "2024-06-24",
+        "2024-07-08",
+        "2024-12-02",
+        "2024-12-30",
+        "2025-01-06",
+        "2025-06-23",
+        "2025-07-07",
+        "2025-12-01",
+        "2025-12-29",
+        "2026-01-05",
+        "2026-06-22",
+        "2026-07-06"
+      ],
+      "non_tuesday_report_dates": {
+        "2012-12-24": "Tuesday 2012-12-25 is Christmas Day",
+        "2012-12-31": "Tuesday 2013-01-01 is New Year's Day",
+        "2017-07-03": "Tuesday 2017-07-04 is Independence Day",
+        "2018-12-24": "Tuesday 2018-12-25 is Christmas Day",
+        "2018-12-31": "Tuesday 2019-01-01 is New Year's Day",
+        "2020-12-21": "announcement: e additional federal holiday on December 24 th , we published data dated Monday December 21, 2020 on Monday December 28, 2020. May 29, 2020: Due to timing differences that may arise on rare occasions ",
+        "2023-07-03": "Tuesday 2023-07-04 is Independence Day",
+        "2025-11-10": "Tuesday 2025-11-11 is Veterans Day"
+      },
+      "release_source_counts": {
+        "cftc_press_release:7864-19": 40,
+        "cftc_schedule:live:release-schedule-live-20261023T215047328625Z.html": 172,
+        "cftc_schedule:wayback:release-schedule-wayback-2010-20261023T215047540436Z.html": 204,
+        "cftc_schedule:wayback:release-schedule-wayback-2011-20261023T215051540619Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2012-20261023T215055540649Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2013-20261023T215059540819Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2014-20261023T215103540887Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2015-20261023T215107541028Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2016-20261023T215111541197Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2017-20261023T215115541352Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2018-20261023T215119541518Z.html": 204,
+        "cftc_schedule:wayback:release-schedule-wayback-2019-20261023T215127847043Z.html": 172,
+        "cftc_schedule:wayback:release-schedule-wayback-2020-20261023T215131847107Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2021-20261023T215135847172Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2022-20261023T215139847354Z.html": 212,
+        "cftc_schedule:wayback:release-schedule-wayback-2023-20261023T215143847505Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2024-20261023T215147847648Z.html": 208,
+        "cftc_schedule:wayback:release-schedule-wayback-2025-20261023T215151847720Z.html": 208
+      },
+      "release_weekdays_et": {
+        "Friday": 3268,
+        "Monday": 220,
+        "Tuesday": 20
+      },
+      "report_date_range": [
+        "2010-01-05",
+        "2026-10-20"
+      ],
+      "report_weekdays": {
+        "Monday": 32,
+        "Tuesday": 3476
+      },
+      "rows": 3508,
+      "rows_per_year_per_market": {
+        "2010": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2011": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2012": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2013": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2014": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2015": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2016": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2017": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2018": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2019": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2020": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2021": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2022": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2023": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2024": {
+          "copper": 53,
+          "crude": 53,
+          "gold": 53,
+          "silver": 53
+        },
+        "2025": {
+          "copper": 52,
+          "crude": 52,
+          "gold": 52,
+          "silver": 52
+        },
+        "2026": {
+          "copper": 42,
+          "crude": 42,
+          "gold": 42,
+          "silver": 42
+        }
+      },
+      "rows_with_loaded_utc": 860,
+      "scheduled_vs_loaded_day_mismatches": [
+        {
+          "asset": "gold",
+          "loaded_et": "2023-02-24T15:30:04.154000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-03T15:30:04.674000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-08T15:30:04.362000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-10T15:30:04.091000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-14T15:30:04.942000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-16T15:30:04.434000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2023-03-21T15:30:06.674000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-01-13T15:30:58.603000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-19T15:30:44.507000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-21T15:30:46.559000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-11-25T15:30:46.726000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-02T15:30:46.275000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-05T15:30:45.621000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-09T15:30:46.439000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-10T15:30:48.244000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-12T15:30:48.435000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-15T15:30:46.396000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-17T15:30:47.654000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-19T15:30:48.440000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-23T15:30:45.500000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "gold",
+          "loaded_et": "2025-12-31T15:30:46.627000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-02-24T15:30:04.154000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-03T15:30:04.674000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-08T15:30:04.362000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-10T15:30:04.091000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-14T15:30:04.942000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-16T15:30:04.434000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2023-03-21T15:30:06.674000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-01-13T15:30:58.603000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-19T15:30:44.507000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-21T15:30:46.559000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-11-25T15:30:46.726000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-02T15:30:46.275000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-05T15:30:45.621000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-09T15:30:46.439000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-10T15:30:48.244000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-12T15:30:48.435000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-15T15:30:46.396000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-17T15:30:47.654000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-19T15:30:48.440000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-23T15:30:45.500000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "silver",
+          "loaded_et": "2025-12-31T15:30:46.627000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-02-24T15:30:04.154000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-03T15:30:04.674000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-08T15:30:04.362000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-10T15:30:04.091000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-14T15:30:04.942000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-16T15:30:04.434000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2023-03-21T15:30:06.674000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-01-13T15:30:58.603000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-19T15:30:44.507000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-21T15:30:46.559000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-11-25T15:30:46.726000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-02T15:30:46.275000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-05T15:30:45.621000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-09T15:30:46.439000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-10T15:30:48.244000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-12T15:30:48.435000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-15T15:30:46.396000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-17T15:30:47.654000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-19T15:30:48.440000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-23T15:30:45.500000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "copper",
+          "loaded_et": "2025-12-31T15:30:46.627000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-02-24T15:30:04.154000-05:00",
+          "report_date": "2023-01-31",
+          "scheduled_release_et": "2023-02-03T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-03T15:30:04.674000-05:00",
+          "report_date": "2023-02-07",
+          "scheduled_release_et": "2023-02-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-08T15:30:04.362000-05:00",
+          "report_date": "2023-02-14",
+          "scheduled_release_et": "2023-02-17T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-10T15:30:04.091000-05:00",
+          "report_date": "2023-02-21",
+          "scheduled_release_et": "2023-02-24T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-14T15:30:04.942000-04:00",
+          "report_date": "2023-02-28",
+          "scheduled_release_et": "2023-03-03T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-16T15:30:04.434000-04:00",
+          "report_date": "2023-03-07",
+          "scheduled_release_et": "2023-03-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2023-03-21T15:30:06.674000-04:00",
+          "report_date": "2023-03-14",
+          "scheduled_release_et": "2023-03-17T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-01-13T15:30:58.603000-05:00",
+          "report_date": "2025-01-07",
+          "scheduled_release_et": "2025-01-10T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-19T15:30:44.507000-05:00",
+          "report_date": "2025-09-30",
+          "scheduled_release_et": "2025-10-03T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-21T15:30:46.559000-05:00",
+          "report_date": "2025-10-07",
+          "scheduled_release_et": "2025-10-10T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-11-25T15:30:46.726000-05:00",
+          "report_date": "2025-10-14",
+          "scheduled_release_et": "2025-10-17T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-02T15:30:46.275000-05:00",
+          "report_date": "2025-10-21",
+          "scheduled_release_et": "2025-10-24T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-05T15:30:45.621000-05:00",
+          "report_date": "2025-10-28",
+          "scheduled_release_et": "2025-10-31T15:30:00-04:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-09T15:30:46.439000-05:00",
+          "report_date": "2025-11-04",
+          "scheduled_release_et": "2025-11-07T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-10T15:30:48.244000-05:00",
+          "report_date": "2025-11-10",
+          "scheduled_release_et": "2025-11-14T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-12T15:30:48.435000-05:00",
+          "report_date": "2025-11-18",
+          "scheduled_release_et": "2025-11-21T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-15T15:30:46.396000-05:00",
+          "report_date": "2025-11-25",
+          "scheduled_release_et": "2025-12-01T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-17T15:30:47.654000-05:00",
+          "report_date": "2025-12-02",
+          "scheduled_release_et": "2025-12-05T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-19T15:30:48.440000-05:00",
+          "report_date": "2025-12-09",
+          "scheduled_release_et": "2025-12-12T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-23T15:30:45.500000-05:00",
+          "report_date": "2025-12-16",
+          "scheduled_release_et": "2025-12-19T15:30:00-05:00"
+        },
+        {
+          "asset": "crude",
+          "loaded_et": "2025-12-31T15:30:46.627000-05:00",
+          "report_date": "2025-12-23",
+          "scheduled_release_et": "2025-12-29T15:30:00-05:00"
+        }
+      ]
+    }
+  },
+  "fx": {
+    "checks": {
+      "every_gap_has_a_note": true
+    },
+    "date_range": [
+      "2021-01-01",
+      "2026-10-16"
+    ],
+    "dexinus_missing_days": 59,
+    "diff_over_threshold_days": 750,
+    "diff_over_threshold_sample": [
+      {
+        "date": "2021-01-04",
+        "dexinus": 73.08,
+        "diff": -0.0685,
+        "fbil": 73.0115
+      },
+      {
+        "date": "2021-01-07",
+        "dexinus": 73.43,
+        "diff": -0.297,
+        "fbil": 73.133
+      },
+      {
+        "date": "2021-01-12",
+        "dexinus": 73.26,
+        "diff": 0.1125,
+        "fbil": 73.3725
+      },
+      {
+        "date": "2021-01-13",
+        "dexinus": 73.07,
+        "diff": 0.0846,
+        "fbil": 73.1546
+      },
+      {
+        "date": "2021-01-15",
+        "dexinus": 73.08,
+        "diff": -0.0557,
+        "fbil": 73.0243
+      },
+      {
+        "date": "2021-01-22",
+        "dexinus": 72.98,
+        "diff": 0.058,
+        "fbil": 73.038
+      },
+      {
+        "date": "2021-01-25",
+        "dexinus": 73.01,
+        "diff": -0.0803,
+        "fbil": 72.9297
+      },
+      {
+        "date": "2021-01-27",
+        "dexinus": 73.05,
+        "diff": -0.2324,
+        "fbil": 72.8176
+      },
+      {
+        "date": "2021-01-28",
+        "dexinus": 72.91,
+        "diff": 0.1574,
+        "fbil": 73.0674
+      },
+      {
+        "date": "2021-01-29",
+        "dexinus": 72.84,
+        "diff": 0.1119,
+        "fbil": 72.9519
+      }
+    ],
+    "gaps_explained": 110,
+    "gaps_total": 111,
+    "gaps_unexplained": [
+      {
+        "date": "2024-01-22",
+        "explained": false,
+        "note": "unexplained",
+        "weekday": "Monday"
+      }
+    ],
+    "published_ist_times": {
+      "13:00": 431,
+      "13:30": 969
+    },
+    "rows": 1400
+  },
+  "hl": {
+    "hl_candles_1d": {
+      "gaps": [],
+      "monthly_counts": {
+        "xyz:CL": {
+          "2026-01": 26,
+          "2026-02": 28,
+          "2026-03": 31,
+          "2026-04": 30,
+          "2026-05": 31,
+          "2026-06": 30,
+          "2026-07": 31,
+          "2026-08": 31,
+          "2026-09": 30,
+          "2026-10": 22
+        },
+        "xyz:COPPER": {
+          "2026-01": 18,
+          "2026-02": 28,
+          "2026-03": 31,
+          "2026-04": 30,
+          "2026-05": 31,
+          "2026-06": 30,
+          "2026-07": 31,
+          "2026-08": 31,
+          "2026-09": 30,
+          "2026-10": 22
+        },
+        "xyz:GOLD": {
+          "2025-12": 10,
+          "2026-01": 31,
+          "2026-02": 28,
+          "2026-03": 31,
+          "2026-04": 30,
+          "2026-05": 31,
+          "2026-06": 30,
+          "2026-07": 31,
+          "2026-08": 31,
+          "2026-09": 30,
+          "2026-10": 22
+        },
+        "xyz:SILVER": {
+          "2025-12": 6,
+          "2026-01": 31,
+          "2026-02": 28,
+          "2026-03": 31,
+          "2026-04": 30,
+          "2026-05": 31,
+          "2026-06": 30,
+          "2026-07": 31,
+          "2026-08": 31,
+          "2026-09": 30,
+          "2026-10": 22
+        }
+      },
+      "per_instrument": {
+        "xyz:CL": {
+          "range": [
+            "2026-01-06T00:00:00+00:00",
+            "2026-10-22T00:00:00+00:00"
+          ],
+          "rows": 290
+        },
+        "xyz:COPPER": {
+          "range": [
+            "2026-01-14T00:00:00+00:00",
+            "2026-10-22T00:00:00+00:00"
+          ],
+          "rows": 282
+        },
+        "xyz:GOLD": {
+          "range": [
+            "2025-12-22T00:00:00+00:00",
+            "2026-10-22T00:00:00+00:00"
+          ],
+          "rows": 305
+        },
+        "xyz:SILVER": {
+          "range": [
+            "2025-12-26T00:00:00+00:00",
+            "2026-10-22T00:00:00+00:00"
+          ],
+          "rows": 301
+        }
+      },
+      "rows": 1178
+    },
+    "hl_candles_1h": {
+      "gaps": [],
+      "monthly_counts": {
+        "xyz:CL": {
+          "2026-02": 238,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 549
+        },
+        "xyz:COPPER": {
+          "2026-02": 238,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 549
+        },
+        "xyz:GOLD": {
+          "2026-02": 239,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 549
+        },
+        "xyz:SILVER": {
+          "2026-02": 238,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 549
+        }
+      },
+      "per_instrument": {
+        "xyz:CL": {
+          "range": [
+            "2026-02-19T02:00:00+00:00",
+            "2026-10-23T20:00:00+00:00"
+          ],
+          "rows": 5923
+        },
+        "xyz:COPPER": {
+          "range": [
+            "2026-02-19T02:00:00+00:00",
+            "2026-10-23T20:00:00+00:00"
+          ],
+          "rows": 5923
+        },
+        "xyz:GOLD": {
+          "range": [
+            "2026-02-19T01:00:00+00:00",
+            "2026-10-23T20:00:00+00:00"
+          ],
+          "rows": 5924
+        },
+        "xyz:SILVER": {
+          "range": [
+            "2026-02-19T02:00:00+00:00",
+            "2026-10-23T20:00:00+00:00"
+          ],
+          "rows": 5923
+        }
+      },
+      "rows": 23693
+    },
+    "hl_funding": {
+      "gaps": [],
+      "monthly_counts": {
+        "xyz:CL": {
+          "2026-01": 609,
+          "2026-02": 672,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 550
+        },
+        "xyz:COPPER": {
+          "2026-01": 415,
+          "2026-02": 672,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 550
+        },
+        "xyz:GOLD": {
+          "2025-12": 225,
+          "2026-01": 744,
+          "2026-02": 672,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 550
+        },
+        "xyz:SILVER": {
+          "2025-12": 143,
+          "2026-01": 744,
+          "2026-02": 672,
+          "2026-03": 744,
+          "2026-04": 720,
+          "2026-05": 744,
+          "2026-06": 720,
+          "2026-07": 744,
+          "2026-08": 744,
+          "2026-09": 720,
+          "2026-10": 550
+        }
+      },
+      "per_instrument": {
+        "xyz:CL": {
+          "range": [
+            "2026-01-06T15:00:00.076000+00:00",
+            "2026-10-23T21:00:00.075000+00:00"
+          ],
+          "rows": 6967
+        },
+        "xyz:COPPER": {
+          "range": [
+            "2026-01-14T17:00:00.085000+00:00",
+            "2026-10-23T21:00:00.075000+00:00"
+          ],
+          "rows": 6773
+        },
+        "xyz:GOLD": {
+          "range": [
+            "2025-12-22T15:00:00.012000+00:00",
+            "2026-10-23T21:00:00.075000+00:00"
+          ],
+          "rows": 7327
+        },
+        "xyz:SILVER": {
+          "range": [
+            "2025-12-26T01:00:00.008000+00:00",
+            "2026-10-23T21:00:00.075000+00:00"
+          ],
+          "rows": 7245
+        }
+      },
+      "rows": 28312
+    }
+  }
+}

@@ -1,0 +1,1006 @@
+{
+  "build": {
+    "command": "swing_dataset/macro/__main__.py build --only alfred --only cot --force",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7",
+    "python": "3.13.15"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 3508
+    },
+    "rule": "Every row is published. available_utc = loaded_utc (Socrata :created_at, the row's API load instant, 15:30 ET on the actual publication day) when the row was loaded one report at a time, else release_utc (15:30 ET on the scheduled release day from the captured CFTC schedule pages or press release 7864-19); available_source says which. release_caveat marks report weeks whose scheduled day is documented as wrong or uncertain (2013 and 2018-19 lapses in appropriations, Juneteenth 2021, 2023 ION incident, 2025-01-09 day of mourning, 2025 lapse)."
+  },
+  "columns": [
+    {
+      "meaning": "dataset asset key (gold/silver/copper/crude)",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC report date (positions as of close; Tuesday, or Monday when Tuesday is a holiday)",
+      "name": "report_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "scheduled release instant: 15:30 US/Eastern on the CFTC release day, see release_source",
+      "name": "release_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "cftc_schedule:<capture> when a captured schedule page covers the week, else rule:*",
+      "name": "release_source",
+      "type": "string"
+    },
+    {
+      "meaning": "documented disruption affecting the scheduled day (shutdowns, ION incident, day of mourning); null otherwise",
+      "name": "release_caveat",
+      "type": "string"
+    },
+    {
+      "meaning": "Socrata :created_at for per-week loads (the row's actual API load instant); null for bulk-loaded history",
+      "name": "loaded_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "best availability evidence: loaded_utc when present, else release_utc",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "socrata_created_at, or the release_source used",
+      "name": "available_source",
+      "type": "string"
+    },
+    {
+      "meaning": "published",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "Socrata :id",
+      "name": "socrata_row_id",
+      "type": "string"
+    },
+    {
+      "meaning": "Socrata :created_at, raw",
+      "name": "socrata_created_at_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "Socrata :updated_at, raw",
+      "name": "socrata_updated_at_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "Socrata :version, raw",
+      "name": "socrata_version",
+      "type": "string"
+    },
+    {
+      "meaning": "ID (text)",
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "meaning": "Market_and_Exchange_Names (text)",
+      "name": "market_and_exchange_names",
+      "type": "string"
+    },
+    {
+      "meaning": "Report_Date_as_YYYY_MM_DD (calendar_date)",
+      "name": "report_date_as_yyyy_mm_dd",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "YYYY Report Week WW (text)",
+      "name": "yyyy_report_week_ww",
+      "type": "string"
+    },
+    {
+      "meaning": "CONTRACT_MARKET_NAME (text)",
+      "name": "contract_market_name",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC_Contract_Market_Code (text)",
+      "name": "cftc_contract_market_code",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC_Market_Code (text)",
+      "name": "cftc_market_code",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC_Region_Code (text)",
+      "name": "cftc_region_code",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC_Commodity_Code (text)",
+      "name": "cftc_commodity_code",
+      "type": "string"
+    },
+    {
+      "meaning": "Commodity Name (text)",
+      "name": "commodity_name",
+      "type": "string"
+    },
+    {
+      "meaning": "Open_Interest_All (number)",
+      "name": "open_interest_all",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Long_All (number)",
+      "name": "noncomm_positions_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Short_All (number)",
+      "name": "noncomm_positions_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Postions_Spread_All (number)",
+      "name": "noncomm_postions_spread_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Long_All (number)",
+      "name": "comm_positions_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Short_All (number)",
+      "name": "comm_positions_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Long_All (number)",
+      "name": "tot_rept_positions_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Short_All (number)",
+      "name": "tot_rept_positions_short",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Long_All (number)",
+      "name": "nonrept_positions_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Short_All (number)",
+      "name": "nonrept_positions_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Open_Interest_Old (number)",
+      "name": "open_interest_old",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Long_Old (number)",
+      "name": "noncomm_positions_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Short_Old (number)",
+      "name": "noncomm_positions_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Spread_Old (number)",
+      "name": "noncomm_positions_spread",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Long_Old (number)",
+      "name": "comm_positions_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Short_Old (number)",
+      "name": "comm_positions_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Long_Old (number)",
+      "name": "tot_rept_positions_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Short_Old (number)",
+      "name": "tot_rept_positions_short_1",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Long_Old (number)",
+      "name": "nonrept_positions_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Short_Old (number)",
+      "name": "nonrept_positions_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Open_Interest_Other (number)",
+      "name": "open_interest_other",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Long_Other (number)",
+      "name": "noncomm_positions_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Short_Other (number)",
+      "name": "noncomm_positions_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "NonComm_Positions_Spread_Other (number)",
+      "name": "noncomm_positions_spread_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Long_Other (number)",
+      "name": "comm_positions_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Comm_Positions_Short_Other (number)",
+      "name": "comm_positions_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Long_Other (number)",
+      "name": "tot_rept_positions_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Tot_Rept_Positions_Short_Other (number)",
+      "name": "tot_rept_positions_short_2",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Long_Other (number)",
+      "name": "nonrept_positions_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "NonRept_Positions_Short_Other (number)",
+      "name": "nonrept_positions_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_Open_Interest_All (number)",
+      "name": "change_in_open_interest_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_NonComm_Long_All (number)",
+      "name": "change_in_noncomm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_NonComm_Short_All (number)",
+      "name": "change_in_noncomm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_NonComm_Spead_All (number)",
+      "name": "change_in_noncomm_spead_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_Comm_Long_All (number)",
+      "name": "change_in_comm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_Comm_Short_All (number)",
+      "name": "change_in_comm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_Tot_Rept_Long_All (number)",
+      "name": "change_in_tot_rept_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_Tot_Rept_Short_All (number)",
+      "name": "change_in_tot_rept_short",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_NonRept_Long_All (number)",
+      "name": "change_in_nonrept_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Change_in_NonRept_Short_All (number)",
+      "name": "change_in_nonrept_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_Open_Interest_All (number)",
+      "name": "pct_of_open_interest_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Long_All (number)",
+      "name": "pct_of_oi_noncomm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Short_All (number)",
+      "name": "pct_of_oi_noncomm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Spread_All (number)",
+      "name": "pct_of_oi_noncomm_spread",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Long_All (number)",
+      "name": "pct_of_oi_comm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Short_All (number)",
+      "name": "pct_of_oi_comm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Long_All (number)",
+      "name": "pct_of_oi_tot_rept_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Short_All (number)",
+      "name": "pct_of_oi_tot_rept_short",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Long_All (number)",
+      "name": "pct_of_oi_nonrept_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Short_All (number)",
+      "name": "pct_of_oi_nonrept_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_Open_Interest_Old (number)",
+      "name": "pct_of_open_interest_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Long_Old (number)",
+      "name": "pct_of_oi_noncomm_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Short_Old (number)",
+      "name": "pct_of_oi_noncomm_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Spread_Old (number)",
+      "name": "pct_of_oi_noncomm_spread_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Long_Old (number)",
+      "name": "pct_of_oi_comm_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Short_Old (number)",
+      "name": "pct_of_oi_comm_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Long_Old (number)",
+      "name": "pct_of_oi_tot_rept_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Short_Old (number)",
+      "name": "pct_of_oi_tot_rept_short_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Long_Old (number)",
+      "name": "pct_of_oi_nonrept_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Short_Old (number)",
+      "name": "pct_of_oi_nonrept_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_Open_Interest_Other (number)",
+      "name": "pct_of_open_interest_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Long_Other (number)",
+      "name": "pct_of_oi_noncomm_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Short_Other (number)",
+      "name": "pct_of_oi_noncomm_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonComm_Spread_Other (number)",
+      "name": "pct_of_oi_noncomm_spread_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Long_Other (number)",
+      "name": "pct_of_oi_comm_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Comm_Short_Other (number)",
+      "name": "pct_of_oi_comm_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Long_Other (number)",
+      "name": "pct_of_oi_tot_rept_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_Tot_Rept_Short_Other (number)",
+      "name": "pct_of_oi_tot_rept_short_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Long_Other (number)",
+      "name": "pct_of_oi_nonrept_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Pct_of_OI_NonRept_Short_Other (number)",
+      "name": "pct_of_oi_nonrept_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_All (number)",
+      "name": "traders_tot_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Long_All (number)",
+      "name": "traders_noncomm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Short_All (number)",
+      "name": "traders_noncomm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Spread_All (number)",
+      "name": "traders_noncomm_spread_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Long_All (number)",
+      "name": "traders_comm_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Short_All (number)",
+      "name": "traders_comm_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Long_All (number)",
+      "name": "traders_tot_rept_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Short_All (number)",
+      "name": "traders_tot_rept_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Old (number)",
+      "name": "traders_tot_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Long_Old (number)",
+      "name": "traders_noncomm_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Short_Old (number)",
+      "name": "traders_noncomm_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Spead_Old (number)",
+      "name": "traders_noncomm_spead_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Long_Old (number)",
+      "name": "traders_comm_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Short_Old (number)",
+      "name": "traders_comm_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Long_Old (number)",
+      "name": "traders_tot_rept_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Short_Old (number)",
+      "name": "traders_tot_rept_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Other (number)",
+      "name": "traders_tot_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Long_Other (number)",
+      "name": "traders_noncomm_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Short_Other (number)",
+      "name": "traders_noncomm_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_NonComm_Spread_Other (number)",
+      "name": "traders_noncomm_spread_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Long_Other (number)",
+      "name": "traders_comm_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Comm_Short_Other (number)",
+      "name": "traders_comm_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Long_Other (number)",
+      "name": "traders_tot_rept_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Traders_Tot_Rept_Short_Other (number)",
+      "name": "traders_tot_rept_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Long_All (number)",
+      "name": "conc_gross_le_4_tdr_long",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Short_All (number)",
+      "name": "conc_gross_le_4_tdr_short",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Long_All (number)",
+      "name": "conc_gross_le_8_tdr_long",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Short_All (number)",
+      "name": "conc_gross_le_8_tdr_short",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Long_All (number)",
+      "name": "conc_net_le_4_tdr_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Short_All (number)",
+      "name": "conc_net_le_4_tdr_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Long_All (number)",
+      "name": "conc_net_le_8_tdr_long_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Short_All (number)",
+      "name": "conc_net_le_8_tdr_short_all",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Long_Old (number)",
+      "name": "conc_gross_le_4_tdr_long_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Short_Old (number)",
+      "name": "conc_gross_le_4_tdr_short_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Long_Old (number)",
+      "name": "conc_gross_le_8_tdr_long_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Short_Old (number)",
+      "name": "conc_gross_le_8_tdr_short_1",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Long_Old (number)",
+      "name": "conc_net_le_4_tdr_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Short_Old (number)",
+      "name": "conc_net_le_4_tdr_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Long_Old (number)",
+      "name": "conc_net_le_8_tdr_long_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Short_Old (number)",
+      "name": "conc_net_le_8_tdr_short_old",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Long_Other (number)",
+      "name": "conc_gross_le_4_tdr_long_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_4_TDR_Short_Other (number)",
+      "name": "conc_gross_le_4_tdr_short_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Long_Other (number)",
+      "name": "conc_gross_le_8_tdr_long_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Gross_LE_8_TDR_Short_Other (number)",
+      "name": "conc_gross_le_8_tdr_short_2",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Long_Other (number)",
+      "name": "conc_net_le_4_tdr_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_4_TDR_Short_Other (number)",
+      "name": "conc_net_le_4_tdr_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Long_Other (number)",
+      "name": "conc_net_le_8_tdr_long_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Conc_Net_LE_8_TDR_Short_Other (number)",
+      "name": "conc_net_le_8_tdr_short_other",
+      "type": "double"
+    },
+    {
+      "meaning": "Contract_Units (text)",
+      "name": "contract_units",
+      "type": "string"
+    },
+    {
+      "meaning": "COMMODITY_NAME (text)",
+      "name": "commodity",
+      "type": "string"
+    },
+    {
+      "meaning": "COMMODITY_SUBGROUP_NAME (text)",
+      "name": "commodity_subgroup_name",
+      "type": "string"
+    },
+    {
+      "meaning": "COMMODITY_GROUP_NAME (text)",
+      "name": "commodity_group_name",
+      "type": "string"
+    },
+    {
+      "meaning": "FutOnly_or_Combined (text)",
+      "name": "futonly_or_combined",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "report_date": {
+      "column": "report_date",
+      "max": "2026-10-20",
+      "min": "2010-01-05"
+    }
+  },
+  "name": "cot_legacy",
+  "notes": [
+    "Socrata dataset 6dca-aqww (Legacy - Futures Only), all provider columns, market codes {'gold': '088691', 'silver': '084691', 'copper': '085692', 'crude': '067651'}, report dates from 2010-01-01.",
+    "release_utc = 15:30 US/Eastern on the scheduled release day, converted to UTC. The day comes from the captured CFTC release-schedule pages (release_source = cftc_schedule:...) and otherwise from the rule 'Friday after the Tuesday report date; a federal holiday on Wednesday-Friday of that week moves the release to the following Monday' (release_source = rule:...). The captured schedules are tentative: publication was suspended during the 2013, 2018-19 and 2025 lapses in appropriations and delayed in Feb-Mar 2023 (ION cyber incident); see the captured Historical Special Announcements page.",
+    "loaded_utc = Socrata :created_at for rows loaded one report at a time (15:30 ET on the actual publication day, matching the CFTC's 2025 catch-up table); null for rows that came in with a bulk load (days with >= 50 rows for one market: ['2022-09-13']). Where loaded_utc exists it is the better clock.",
+    "available_utc is the best availability evidence per row: loaded_utc where the row was loaded one report at a time, else release_utc. release_caveat marks report weeks whose scheduled day is known to be wrong or uncertain (2013 and 2018-19 lapses, 2023 ION incident, 2025-01-09 day of mourning, 2025 lapse); for 2018-19 release_utc follows the Tuesday/Friday catch-up rule stated in CFTC press release 7864-19 (captured).",
+    "TFF (gpe5-46if) skipped: zero rows for all four market codes (captures in parts/cot/tff_evidence.json).",
+    "Numbers are float64 as Socrata serves them as strings; provider field names are kept verbatim."
+  ],
+  "rows": 3508,
+  "schedule_source_by_year": {
+    "2010": "cftc_schedule:wayback:release-schedule-wayback-2010-20261023T215047540436Z.html",
+    "2011": "cftc_schedule:wayback:release-schedule-wayback-2011-20261023T215051540619Z.html",
+    "2012": "cftc_schedule:wayback:release-schedule-wayback-2012-20261023T215055540649Z.html",
+    "2013": "cftc_schedule:wayback:release-schedule-wayback-2013-20261023T215059540819Z.html",
+    "2014": "cftc_schedule:wayback:release-schedule-wayback-2014-20261023T215103540887Z.html",
+    "2015": "cftc_schedule:wayback:release-schedule-wayback-2015-20261023T215107541028Z.html",
+    "2016": "cftc_schedule:wayback:release-schedule-wayback-2016-20261023T215111541197Z.html",
+    "2017": "cftc_schedule:wayback:release-schedule-wayback-2017-20261023T215115541352Z.html",
+    "2018": "cftc_schedule:wayback:release-schedule-wayback-2018-20261023T215119541518Z.html",
+    "2019": "cftc_schedule:wayback:release-schedule-wayback-2019-20261023T215127847043Z.html",
+    "2020": "cftc_schedule:wayback:release-schedule-wayback-2020-20261023T215131847107Z.html",
+    "2021": "cftc_schedule:wayback:release-schedule-wayback-2021-20261023T215135847172Z.html",
+    "2022": "cftc_schedule:wayback:release-schedule-wayback-2022-20261023T215139847354Z.html",
+    "2023": "cftc_schedule:wayback:release-schedule-wayback-2023-20261023T215143847505Z.html",
+    "2024": "cftc_schedule:wayback:release-schedule-wayback-2024-20261023T215147847648Z.html",
+    "2025": "cftc_schedule:wayback:release-schedule-wayback-2025-20261023T215151847720Z.html",
+    "2026": "cftc_schedule:live:release-schedule-live-20261023T215047328625Z.html"
+  },
+  "sources": [
+    {
+      "bytes": 227045,
+      "fetched_at_utc": "2026-10-23T21:52:06.780901+00:00",
+      "path": "build:macro/raw/cot/views-6dca-aqww-20261023T215206780901Z.json",
+      "sha256": "86db4976bec2dee544acc5db5b07a2d750752accbaf2fd2179e4a3c01d386b8d",
+      "url": "https://publicreporting.cftc.gov/api/views/6dca-aqww.json"
+    },
+    {
+      "bytes": 4212063,
+      "fetched_at_utc": "2026-10-23T21:52:07.780963+00:00",
+      "path": "build:macro/raw/cot/rows-6dca-aqww-088691-20261023T215207780963Z.json",
+      "sha256": "4ee5b88613184c34851aaf4eb976865486f029c2210bac6ad2e16281dc0f170f",
+      "url": "https://publicreporting.cftc.gov/resource/6dca-aqww.json?%24select=%3A%2A%2C%2A&cftc_contract_market_code=088691&%24where=report_date_as_yyyy_mm_dd+%3E%3D+%272010-01-01T00%3A00%3A00%27&%24order=report_date_as_yyyy_mm_dd&%24limit=50000"
+    },
+    {
+      "bytes": 4210567,
+      "fetched_at_utc": "2026-10-23T21:52:09.797436+00:00",
+      "path": "build:macro/raw/cot/rows-6dca-aqww-084691-20261023T215209797436Z.json",
+      "sha256": "8a4fb80cb9ba43d6caca6c5bdd89fbef8ee86e61c5b0842bbf2090ea84a8114f",
+      "url": "https://publicreporting.cftc.gov/resource/6dca-aqww.json?%24select=%3A%2A%2C%2A&cftc_contract_market_code=084691&%24where=report_date_as_yyyy_mm_dd+%3E%3D+%272010-01-01T00%3A00%3A00%27&%24order=report_date_as_yyyy_mm_dd&%24limit=50000"
+    },
+    {
+      "bytes": 4216855,
+      "fetched_at_utc": "2026-10-23T21:52:12.722736+00:00",
+      "path": "build:macro/raw/cot/rows-6dca-aqww-085692-20261023T215212722736Z.json",
+      "sha256": "3c8fc4f2ff3a6ec838335c2eff624f841ff09e892406ddf6565e0bb83abec6d8",
+      "url": "https://publicreporting.cftc.gov/resource/6dca-aqww.json?%24select=%3A%2A%2C%2A&cftc_contract_market_code=085692&%24where=report_date_as_yyyy_mm_dd+%3E%3D+%272010-01-01T00%3A00%3A00%27&%24order=report_date_as_yyyy_mm_dd&%24limit=50000"
+    },
+    {
+      "bytes": 4265017,
+      "fetched_at_utc": "2026-10-23T21:52:13.722795+00:00",
+      "path": "build:macro/raw/cot/rows-6dca-aqww-067651-20261023T215213722795Z.json",
+      "sha256": "1354442dae244ce84588172a5b00cc03e65707bbc46ac0ffb86e2f54f8691ae4",
+      "url": "https://publicreporting.cftc.gov/resource/6dca-aqww.json?%24select=%3A%2A%2C%2A&cftc_contract_market_code=067651&%24where=report_date_as_yyyy_mm_dd+%3E%3D+%272010-01-01T00%3A00%3A00%27&%24order=report_date_as_yyyy_mm_dd&%24limit=50000"
+    },
+    {
+      "bytes": 48210,
+      "fetched_at_utc": "2026-10-23T21:50:47.328625+00:00",
+      "path": "build:macro/raw/cot/release-schedule-live-20261023T215047328625Z.html",
+      "sha256": "e6c4714ef41fb13611121a36155b7b328d84d2a48a6e8a7ba4a1367169d7bf3d",
+      "url": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 55946,
+      "fetched_at_utc": "2026-10-23T21:50:47.540436+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2010-20261023T215047540436Z.html",
+      "sha256": "7c62855d23803fe3f1f80a313641b20380f36c2e4806f2490b73728bdafa7423",
+      "url": "https://web.archive.org/web/20100611122334id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 58660,
+      "fetched_at_utc": "2026-10-23T21:50:51.540619+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2011-20261023T215051540619Z.html",
+      "sha256": "d19a94a4dc53d47f46c2d1fdc4faad599864000db13da67c0bded940a7c2cbb7",
+      "url": "https://web.archive.org/web/20110612044711id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 59032,
+      "fetched_at_utc": "2026-10-23T21:50:55.540649+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2012-20261023T215055540649Z.html",
+      "sha256": "f6a367830b13799489eea0308616f67848be582af29376c5ed69558455c32ef7",
+      "url": "https://web.archive.org/web/20120616135127id_/http://cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 59517,
+      "fetched_at_utc": "2026-10-23T21:50:59.540819+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2013-20261023T215059540819Z.html",
+      "sha256": "f66f8bd75936796e80ff7ad7a7b4e2c7771fbbdffbae3ee934db5cc2f0145e86",
+      "url": "https://web.archive.org/web/20130602130350id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 60616,
+      "fetched_at_utc": "2026-10-23T21:51:03.540887+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2014-20261023T215103540887Z.html",
+      "sha256": "4ea0a50182181e4933b837a65d75006cb0492f87ec334d970e6fd57b9e1e56db",
+      "url": "https://web.archive.org/web/20140623185342id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 58767,
+      "fetched_at_utc": "2026-10-23T21:51:07.541028+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2015-20261023T215107541028Z.html",
+      "sha256": "264ae9f483d292a438d7bfa1c7bbf8802a28c8c4cf8df8a6daf5bc62fc906510",
+      "url": "https://web.archive.org/web/20150611145711id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 58122,
+      "fetched_at_utc": "2026-10-23T21:51:11.541197+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2016-20261023T215111541197Z.html",
+      "sha256": "52ac78e47f105c622925340f1cbff8aeb6525c2324664846b2d5432850b651fc",
+      "url": "https://web.archive.org/web/20160607183722id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 41995,
+      "fetched_at_utc": "2026-10-23T21:51:15.541352+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2017-20261023T215115541352Z.html",
+      "sha256": "46d346581a4bf660483f02ff1f8a764aba00657cc452fdd4795df7a84cb501ce",
+      "url": "https://web.archive.org/web/20170606210353id_/http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 39690,
+      "fetched_at_utc": "2026-10-23T21:51:19.541518+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2018-20261023T215119541518Z.html",
+      "sha256": "d6695203ec3d1e2786bb68b869436d050ff37ca6556d8c7c295e1831aa6002fd",
+      "url": "https://web.archive.org/web/20180413215252id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 45701,
+      "fetched_at_utc": "2026-10-23T21:51:27.847043+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2019-20261023T215127847043Z.html",
+      "sha256": "63a0590dcadfe85103932e1659cca3f7cb686b0b2a94f8c01b379d6316546d43",
+      "url": "https://web.archive.org/web/20190716181526id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 47819,
+      "fetched_at_utc": "2026-10-23T21:51:31.847107+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2020-20261023T215131847107Z.html",
+      "sha256": "1a0f9efb47e863784539da0734fc8ecae09a415c4cf9887f6108ab99553adf36",
+      "url": "https://web.archive.org/web/20200727103806id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 49882,
+      "fetched_at_utc": "2026-10-23T21:51:35.847172+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2021-20261023T215135847172Z.html",
+      "sha256": "7dab839932e2875489b41c6a00defdf26a3cd8b892f6527327bf4f680b5d63a0",
+      "url": "https://web.archive.org/web/20210618045840id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 52096,
+      "fetched_at_utc": "2026-10-23T21:51:39.847354+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2022-20261023T215139847354Z.html",
+      "sha256": "d6771d3d83e1abe6cd64f54eb6d3559c94d064749e58ba766f9f7beb15d225d1",
+      "url": "https://web.archive.org/web/20220523044238id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 82459,
+      "fetched_at_utc": "2026-10-23T21:51:43.847505+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2023-20261023T215143847505Z.html",
+      "sha256": "7b2061fa6922abb575e7727a926ae78785beeb38eb7f4b4f2c78dda8d60f6bcd",
+      "url": "https://web.archive.org/web/20230307165653id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 49155,
+      "fetched_at_utc": "2026-10-23T21:51:47.847648+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2024-20261023T215147847648Z.html",
+      "sha256": "b07184860960dcad26fbb533da279fabbd2160fa38c53f8f40aee55230c109c5",
+      "url": "https://web.archive.org/web/20240625211027id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 53818,
+      "fetched_at_utc": "2026-10-23T21:51:51.847720+00:00",
+      "path": "build:macro/raw/cot/release-schedule-wayback-2025-20261023T215151847720Z.html",
+      "sha256": "e085ab4fd7e7e0eaa68b5a21d1f625ad47a71b62a9c2a4a7901afea98a24c3fa",
+      "url": "https://web.archive.org/web/20250617193340id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 125294,
+      "fetched_at_utc": "2026-10-23T21:51:53.270875+00:00",
+      "path": "build:macro/raw/cot/historical-special-announcements-20261023T215153270875Z.html",
+      "sha256": "24fec11dbddedbe04ce5bfe90a1221c919523ebc5fe0008480e23797e516e69c",
+      "url": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm"
+    },
+    {
+      "bytes": 36920,
+      "fetched_at_utc": "2026-10-23T21:51:54.270977+00:00",
+      "path": "build:macro/raw/cot/press-release-7864-19-20261023T215154270977Z.html",
+      "sha256": "b5992651a4ef69779f7855f78d7905cd76e1965a439083c82c0ca77d444df791",
+      "url": "https://www.cftc.gov/PressRoom/PressReleases/7864-19"
+    },
+    {
+      "bytes": 12,
+      "fetched_at_utc": "2026-10-23T21:51:54.292017+00:00",
+      "path": "build:macro/raw/cot/tff-count-088691-20261023T215154292017Z.json",
+      "sha256": "3ab8834fb12e1fe27faa7685163dc93eb4e7a4da93d163848b19c1e372004fa7",
+      "url": "https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24select=count%28%2A%29+as+n&cftc_contract_market_code=088691"
+    },
+    {
+      "bytes": 12,
+      "fetched_at_utc": "2026-10-23T21:51:56.213856+00:00",
+      "path": "build:macro/raw/cot/tff-count-084691-20261023T215156213856Z.json",
+      "sha256": "3ab8834fb12e1fe27faa7685163dc93eb4e7a4da93d163848b19c1e372004fa7",
+      "url": "https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24select=count%28%2A%29+as+n&cftc_contract_market_code=084691"
+    },
+    {
+      "bytes": 12,
+      "fetched_at_utc": "2026-10-23T21:51:57.214022+00:00",
+      "path": "build:macro/raw/cot/tff-count-085692-20261023T215157214022Z.json",
+      "sha256": "3ab8834fb12e1fe27faa7685163dc93eb4e7a4da93d163848b19c1e372004fa7",
+      "url": "https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24select=count%28%2A%29+as+n&cftc_contract_market_code=085692"
+    },
+    {
+      "bytes": 12,
+      "fetched_at_utc": "2026-10-23T21:51:58.214184+00:00",
+      "path": "build:macro/raw/cot/tff-count-067651-20261023T215158214184Z.json",
+      "sha256": "3ab8834fb12e1fe27faa7685163dc93eb4e7a4da93d163848b19c1e372004fa7",
+      "url": "https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24select=count%28%2A%29+as+n&cftc_contract_market_code=067651"
+    }
+  ],
+  "tff_counts": [
+    [
+      {
+        "n": "0"
+      }
+    ],
+    [
+      {
+        "n": "0"
+      }
+    ],
+    [
+      {
+        "n": "0"
+      }
+    ],
+    [
+      {
+        "n": "0"
+      }
+    ]
+  ]
+}

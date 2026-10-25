@@ -1,0 +1,1843 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:05.098384+00:00",
+    "command": "python -m swing_dataset.pack build --stage quotes --source ice_brent",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 1721960,
+      "published": 2569
+    },
+    "rule": "TE rows (adapter te:*, status live): ts = datetime.now(UTC) when the shared TE cache was read (<= 10 s after the fetch), so exact and conservative. yfinance fallback rows: ts is the 1m bar time: published, available_utc = bar time."
+  },
+  "columns": [
+    {
+      "meaning": "feed observation clock for the row (raw ts unless a capture clock exists in the payload; see rule)",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "availability lower bound: = fetched_utc for exact rows, source-stated instant for published rows, null for unvintaged",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact | published | unvintaged (see README.md, Clock quality)",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "ice_brent",
+      "name": "venue",
+      "type": "string"
+    },
+    {
+      "meaning": "feed source tag (te:BRN, te:CO1:COM, yf-1m:BZ=F, yahoo:BZ=F)",
+      "name": "source_tag",
+      "type": "string"
+    },
+    {
+      "meaning": "live (TE) | delayed (yfinance fallback)",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "meaning": "price, USD per bbl",
+      "name": "price",
+      "type": "double"
+    },
+    {
+      "meaning": "raw adapterSource / raw source",
+      "name": "adapter_source",
+      "type": "string"
+    },
+    {
+      "meaning": "raw sourceEventTs when present",
+      "name": "source_event_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "UTC day the feed appended the row (raw file name); availability is never later than the end of this day",
+      "name": "raw_file_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "residual raw keys with no typed column (JSON object) or null",
+      "name": "extra_json",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:39:49.759960+00:00",
+    "start": "2026-06-22T11:30:20.332854+00:00"
+  },
+  "dated_contract_duplicates_dropped": 0,
+  "dedup_rule": "exact duplicates share (ts, sha256 of scrubbed raw + asset/venue/price/currency/status/source); the first occurrence is kept",
+  "duplicates_dropped": 10,
+  "emitted_rows": 1724529,
+  "name": "brent_quotes",
+  "notes": [
+    "Native unit: USD per bbl."
+  ],
+  "origins": {},
+  "per_file": [
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5294,
+      "path": "feed-capture:ice_brent/crude/2026-06-22.csv",
+      "raw_rows": 5294,
+      "reading_rows": 5294
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16175,
+      "path": "feed-capture:ice_brent/crude/2026-06-23.csv",
+      "raw_rows": 16175,
+      "reading_rows": 16175
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16131,
+      "path": "feed-capture:ice_brent/crude/2026-06-24.csv",
+      "raw_rows": 16131,
+      "reading_rows": 16131
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16180,
+      "path": "feed-capture:ice_brent/crude/2026-06-25.csv",
+      "raw_rows": 16180,
+      "reading_rows": 16180
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16175,
+      "path": "feed-capture:ice_brent/crude/2026-06-26.csv",
+      "raw_rows": 16175,
+      "reading_rows": 16175
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16056,
+      "path": "feed-capture:ice_brent/crude/2026-06-27.csv",
+      "raw_rows": 16056,
+      "reading_rows": 16056
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15937,
+      "path": "feed-capture:ice_brent/crude/2026-06-28.csv",
+      "raw_rows": 15937,
+      "reading_rows": 15937
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15946,
+      "path": "feed-capture:ice_brent/crude/2026-06-29.csv",
+      "raw_rows": 15946,
+      "reading_rows": 15946
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16037,
+      "path": "feed-capture:ice_brent/crude/2026-06-30.csv",
+      "raw_rows": 16037,
+      "reading_rows": 16037
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15203,
+      "path": "feed-capture:ice_brent/crude/2026-07-01.csv",
+      "raw_rows": 15203,
+      "reading_rows": 15203
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14866,
+      "path": "feed-capture:ice_brent/crude/2026-07-02.csv",
+      "raw_rows": 14866,
+      "reading_rows": 14866
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14843,
+      "path": "feed-capture:ice_brent/crude/2026-07-03.csv",
+      "raw_rows": 14843,
+      "reading_rows": 14843
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14960,
+      "path": "feed-capture:ice_brent/crude/2026-07-04.csv",
+      "raw_rows": 14960,
+      "reading_rows": 14960
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14931,
+      "path": "feed-capture:ice_brent/crude/2026-07-05.csv",
+      "raw_rows": 14931,
+      "reading_rows": 14931
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14868,
+      "path": "feed-capture:ice_brent/crude/2026-07-06.csv",
+      "raw_rows": 14868,
+      "reading_rows": 14868
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14554,
+      "path": "feed-capture:ice_brent/crude/2026-07-07.csv",
+      "raw_rows": 14554,
+      "reading_rows": 14554
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14763,
+      "path": "feed-capture:ice_brent/crude/2026-07-08.csv",
+      "raw_rows": 14763,
+      "reading_rows": 14763
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14566,
+      "path": "feed-capture:ice_brent/crude/2026-07-09.csv",
+      "raw_rows": 14566,
+      "reading_rows": 14566
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14837,
+      "path": "feed-capture:ice_brent/crude/2026-07-10.csv",
+      "raw_rows": 14837,
+      "reading_rows": 14837
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15049,
+      "path": "feed-capture:ice_brent/crude/2026-07-11.csv",
+      "raw_rows": 15049,
+      "reading_rows": 15049
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15051,
+      "path": "feed-capture:ice_brent/crude/2026-07-12.csv",
+      "raw_rows": 15051,
+      "reading_rows": 15051
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14824,
+      "path": "feed-capture:ice_brent/crude/2026-07-13.csv",
+      "raw_rows": 14824,
+      "reading_rows": 14824
+    },
+    {
+      "asset": "crude",
+      "duplicates": 8,
+      "emitted_rows": 14533,
+      "path": "feed-capture:ice_brent/crude/2026-07-14.csv",
+      "raw_rows": 14541,
+      "reading_rows": 14533
+    },
+    {
+      "asset": "crude",
+      "duplicates": 2,
+      "emitted_rows": 14518,
+      "path": "feed-capture:ice_brent/crude/2026-07-15.csv",
+      "raw_rows": 14520,
+      "reading_rows": 14518
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14286,
+      "path": "feed-capture:ice_brent/crude/2026-07-16.csv",
+      "raw_rows": 14286,
+      "reading_rows": 14286
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14492,
+      "path": "feed-capture:ice_brent/crude/2026-07-17.csv",
+      "raw_rows": 14492,
+      "reading_rows": 14492
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13643,
+      "path": "feed-capture:ice_brent/crude/2026-07-18.csv",
+      "raw_rows": 13643,
+      "reading_rows": 13643
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12582,
+      "path": "feed-capture:ice_brent/crude/2026-07-19.csv",
+      "raw_rows": 12582,
+      "reading_rows": 12582
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14344,
+      "path": "feed-capture:ice_brent/crude/2026-07-20.csv",
+      "raw_rows": 14344,
+      "reading_rows": 14344
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14145,
+      "path": "feed-capture:ice_brent/crude/2026-07-21.csv",
+      "raw_rows": 14145,
+      "reading_rows": 14145
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13947,
+      "path": "feed-capture:ice_brent/crude/2026-07-22.csv",
+      "raw_rows": 13947,
+      "reading_rows": 13947
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14053,
+      "path": "feed-capture:ice_brent/crude/2026-07-23.csv",
+      "raw_rows": 14053,
+      "reading_rows": 14053
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14095,
+      "path": "feed-capture:ice_brent/crude/2026-07-24.csv",
+      "raw_rows": 14095,
+      "reading_rows": 14095
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13953,
+      "path": "feed-capture:ice_brent/crude/2026-07-25.csv",
+      "raw_rows": 13953,
+      "reading_rows": 13953
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10911,
+      "path": "feed-capture:ice_brent/crude/2026-07-26.csv",
+      "raw_rows": 10911,
+      "reading_rows": 10911
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13394,
+      "path": "feed-capture:ice_brent/crude/2026-07-27.csv",
+      "raw_rows": 13394,
+      "reading_rows": 13394
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12055,
+      "path": "feed-capture:ice_brent/crude/2026-07-28.csv",
+      "raw_rows": 12055,
+      "reading_rows": 12055
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12914,
+      "path": "feed-capture:ice_brent/crude/2026-07-29.csv",
+      "raw_rows": 12914,
+      "reading_rows": 12914
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13891,
+      "path": "feed-capture:ice_brent/crude/2026-07-30.csv",
+      "raw_rows": 13891,
+      "reading_rows": 13891
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13206,
+      "path": "feed-capture:ice_brent/crude/2026-07-31.csv",
+      "raw_rows": 13206,
+      "reading_rows": 13206
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12966,
+      "path": "feed-capture:ice_brent/crude/2026-08-01.csv",
+      "raw_rows": 12966,
+      "reading_rows": 12966
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14196,
+      "path": "feed-capture:ice_brent/crude/2026-08-02.csv",
+      "raw_rows": 14196,
+      "reading_rows": 14196
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13269,
+      "path": "feed-capture:ice_brent/crude/2026-08-03.csv",
+      "raw_rows": 13269,
+      "reading_rows": 13269
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12403,
+      "path": "feed-capture:ice_brent/crude/2026-08-04.csv",
+      "raw_rows": 12403,
+      "reading_rows": 12403
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12570,
+      "path": "feed-capture:ice_brent/crude/2026-08-05.csv",
+      "raw_rows": 12570,
+      "reading_rows": 12570
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 11974,
+      "path": "feed-capture:ice_brent/crude/2026-08-06.csv",
+      "raw_rows": 11974,
+      "reading_rows": 11974
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13892,
+      "path": "feed-capture:ice_brent/crude/2026-08-07.csv",
+      "raw_rows": 13892,
+      "reading_rows": 13892
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13989,
+      "path": "feed-capture:ice_brent/crude/2026-08-08.csv",
+      "raw_rows": 13989,
+      "reading_rows": 13989
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9214,
+      "path": "feed-capture:ice_brent/crude/2026-08-09.csv",
+      "raw_rows": 9214,
+      "reading_rows": 9214
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9861,
+      "path": "feed-capture:ice_brent/crude/2026-08-10.csv",
+      "raw_rows": 9861,
+      "reading_rows": 9861
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12869,
+      "path": "feed-capture:ice_brent/crude/2026-08-11.csv",
+      "raw_rows": 12869,
+      "reading_rows": 12869
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13619,
+      "path": "feed-capture:ice_brent/crude/2026-08-12.csv",
+      "raw_rows": 13619,
+      "reading_rows": 13619
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13397,
+      "path": "feed-capture:ice_brent/crude/2026-08-13.csv",
+      "raw_rows": 13397,
+      "reading_rows": 13397
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13931,
+      "path": "feed-capture:ice_brent/crude/2026-08-14.csv",
+      "raw_rows": 13931,
+      "reading_rows": 13931
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14410,
+      "path": "feed-capture:ice_brent/crude/2026-08-15.csv",
+      "raw_rows": 14410,
+      "reading_rows": 14410
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14369,
+      "path": "feed-capture:ice_brent/crude/2026-08-16.csv",
+      "raw_rows": 14369,
+      "reading_rows": 14369
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13842,
+      "path": "feed-capture:ice_brent/crude/2026-08-17.csv",
+      "raw_rows": 13842,
+      "reading_rows": 13842
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13532,
+      "path": "feed-capture:ice_brent/crude/2026-08-18.csv",
+      "raw_rows": 13532,
+      "reading_rows": 13532
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13346,
+      "path": "feed-capture:ice_brent/crude/2026-08-19.csv",
+      "raw_rows": 13346,
+      "reading_rows": 13346
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13478,
+      "path": "feed-capture:ice_brent/crude/2026-08-20.csv",
+      "raw_rows": 13478,
+      "reading_rows": 13478
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13404,
+      "path": "feed-capture:ice_brent/crude/2026-08-21.csv",
+      "raw_rows": 13404,
+      "reading_rows": 13404
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14492,
+      "path": "feed-capture:ice_brent/crude/2026-08-22.csv",
+      "raw_rows": 14492,
+      "reading_rows": 14492
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14438,
+      "path": "feed-capture:ice_brent/crude/2026-08-23.csv",
+      "raw_rows": 14438,
+      "reading_rows": 14438
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13596,
+      "path": "feed-capture:ice_brent/crude/2026-08-24.csv",
+      "raw_rows": 13596,
+      "reading_rows": 13596
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13926,
+      "path": "feed-capture:ice_brent/crude/2026-08-25.csv",
+      "raw_rows": 13926,
+      "reading_rows": 13926
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13817,
+      "path": "feed-capture:ice_brent/crude/2026-08-26.csv",
+      "raw_rows": 13817,
+      "reading_rows": 13817
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13857,
+      "path": "feed-capture:ice_brent/crude/2026-08-27.csv",
+      "raw_rows": 13857,
+      "reading_rows": 13857
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14222,
+      "path": "feed-capture:ice_brent/crude/2026-08-28.csv",
+      "raw_rows": 14222,
+      "reading_rows": 14222
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14099,
+      "path": "feed-capture:ice_brent/crude/2026-08-29.csv",
+      "raw_rows": 14099,
+      "reading_rows": 14099
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13748,
+      "path": "feed-capture:ice_brent/crude/2026-08-30.csv",
+      "raw_rows": 13748,
+      "reading_rows": 13748
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13573,
+      "path": "feed-capture:ice_brent/crude/2026-08-31.csv",
+      "raw_rows": 13573,
+      "reading_rows": 13573
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13151,
+      "path": "feed-capture:ice_brent/crude/2026-09-01.csv",
+      "raw_rows": 13151,
+      "reading_rows": 13151
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12572,
+      "path": "feed-capture:ice_brent/crude/2026-09-02.csv",
+      "raw_rows": 12572,
+      "reading_rows": 12572
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10228,
+      "path": "feed-capture:ice_brent/crude/2026-09-03.csv",
+      "raw_rows": 10228,
+      "reading_rows": 10228
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12786,
+      "path": "feed-capture:ice_brent/crude/2026-09-04.csv",
+      "raw_rows": 12786,
+      "reading_rows": 12786
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13540,
+      "path": "feed-capture:ice_brent/crude/2026-09-05.csv",
+      "raw_rows": 13540,
+      "reading_rows": 13540
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12780,
+      "path": "feed-capture:ice_brent/crude/2026-09-06.csv",
+      "raw_rows": 12780,
+      "reading_rows": 12780
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 11930,
+      "path": "feed-capture:ice_brent/crude/2026-09-07.csv",
+      "raw_rows": 11930,
+      "reading_rows": 11930
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8369,
+      "path": "feed-capture:ice_brent/crude/2026-09-08.csv",
+      "raw_rows": 8369,
+      "reading_rows": 8369
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7384,
+      "path": "feed-capture:ice_brent/crude/2026-09-09.csv",
+      "raw_rows": 7384,
+      "reading_rows": 7384
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14484,
+      "path": "feed-capture:ice_brent/crude/2026-09-10.csv",
+      "raw_rows": 14484,
+      "reading_rows": 14484
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14452,
+      "path": "feed-capture:ice_brent/crude/2026-09-11.csv",
+      "raw_rows": 14452,
+      "reading_rows": 14452
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14699,
+      "path": "feed-capture:ice_brent/crude/2026-09-12.csv",
+      "raw_rows": 14699,
+      "reading_rows": 14699
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14675,
+      "path": "feed-capture:ice_brent/crude/2026-09-13.csv",
+      "raw_rows": 14675,
+      "reading_rows": 14675
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14259,
+      "path": "feed-capture:ice_brent/crude/2026-09-14.csv",
+      "raw_rows": 14259,
+      "reading_rows": 14259
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14182,
+      "path": "feed-capture:ice_brent/crude/2026-09-15.csv",
+      "raw_rows": 14182,
+      "reading_rows": 14182
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14413,
+      "path": "feed-capture:ice_brent/crude/2026-09-16.csv",
+      "raw_rows": 14413,
+      "reading_rows": 14413
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13684,
+      "path": "feed-capture:ice_brent/crude/2026-09-17.csv",
+      "raw_rows": 13684,
+      "reading_rows": 13684
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13077,
+      "path": "feed-capture:ice_brent/crude/2026-09-18.csv",
+      "raw_rows": 13077,
+      "reading_rows": 13077
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14317,
+      "path": "feed-capture:ice_brent/crude/2026-09-19.csv",
+      "raw_rows": 14317,
+      "reading_rows": 14317
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14193,
+      "path": "feed-capture:ice_brent/crude/2026-09-20.csv",
+      "raw_rows": 14193,
+      "reading_rows": 14193
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13069,
+      "path": "feed-capture:ice_brent/crude/2026-09-21.csv",
+      "raw_rows": 13069,
+      "reading_rows": 13069
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13154,
+      "path": "feed-capture:ice_brent/crude/2026-09-22.csv",
+      "raw_rows": 13154,
+      "reading_rows": 13154
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13446,
+      "path": "feed-capture:ice_brent/crude/2026-09-23.csv",
+      "raw_rows": 13446,
+      "reading_rows": 13446
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13695,
+      "path": "feed-capture:ice_brent/crude/2026-09-24.csv",
+      "raw_rows": 13695,
+      "reading_rows": 13695
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13533,
+      "path": "feed-capture:ice_brent/crude/2026-09-25.csv",
+      "raw_rows": 13533,
+      "reading_rows": 13533
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13928,
+      "path": "feed-capture:ice_brent/crude/2026-09-26.csv",
+      "raw_rows": 13928,
+      "reading_rows": 13928
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14471,
+      "path": "feed-capture:ice_brent/crude/2026-09-27.csv",
+      "raw_rows": 14471,
+      "reading_rows": 14471
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13342,
+      "path": "feed-capture:ice_brent/crude/2026-09-28.csv",
+      "raw_rows": 13342,
+      "reading_rows": 13342
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12943,
+      "path": "feed-capture:ice_brent/crude/2026-09-29.csv",
+      "raw_rows": 12943,
+      "reading_rows": 12943
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 11950,
+      "path": "feed-capture:ice_brent/crude/2026-09-30.csv",
+      "raw_rows": 11950,
+      "reading_rows": 11950
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12210,
+      "path": "feed-capture:ice_brent/crude/2026-10-01.csv",
+      "raw_rows": 12210,
+      "reading_rows": 12210
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13817,
+      "path": "feed-capture:ice_brent/crude/2026-10-02.csv",
+      "raw_rows": 13817,
+      "reading_rows": 13817
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15455,
+      "path": "feed-capture:ice_brent/crude/2026-10-03.csv",
+      "raw_rows": 15455,
+      "reading_rows": 15455
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15584,
+      "path": "feed-capture:ice_brent/crude/2026-10-04.csv",
+      "raw_rows": 15584,
+      "reading_rows": 15584
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15375,
+      "path": "feed-capture:ice_brent/crude/2026-10-05.csv",
+      "raw_rows": 15375,
+      "reading_rows": 15375
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15334,
+      "path": "feed-capture:ice_brent/crude/2026-10-06.csv",
+      "raw_rows": 15334,
+      "reading_rows": 15334
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15303,
+      "path": "feed-capture:ice_brent/crude/2026-10-07.csv",
+      "raw_rows": 15303,
+      "reading_rows": 15303
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15258,
+      "path": "feed-capture:ice_brent/crude/2026-10-08.csv",
+      "raw_rows": 15258,
+      "reading_rows": 15258
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15268,
+      "path": "feed-capture:ice_brent/crude/2026-10-09.csv",
+      "raw_rows": 15268,
+      "reading_rows": 15268
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15313,
+      "path": "feed-capture:ice_brent/crude/2026-10-10.csv",
+      "raw_rows": 15313,
+      "reading_rows": 15313
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15449,
+      "path": "feed-capture:ice_brent/crude/2026-10-11.csv",
+      "raw_rows": 15449,
+      "reading_rows": 15449
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15349,
+      "path": "feed-capture:ice_brent/crude/2026-10-12.csv",
+      "raw_rows": 15349,
+      "reading_rows": 15349
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15260,
+      "path": "feed-capture:ice_brent/crude/2026-10-13.csv",
+      "raw_rows": 15260,
+      "reading_rows": 15260
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14936,
+      "path": "feed-capture:ice_brent/crude/2026-10-14.csv",
+      "raw_rows": 14936,
+      "reading_rows": 14936
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15097,
+      "path": "feed-capture:ice_brent/crude/2026-10-15.csv",
+      "raw_rows": 15097,
+      "reading_rows": 15097
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15080,
+      "path": "feed-capture:ice_brent/crude/2026-10-16.csv",
+      "raw_rows": 15080,
+      "reading_rows": 15080
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15293,
+      "path": "feed-capture:ice_brent/crude/2026-10-17.csv",
+      "raw_rows": 15293,
+      "reading_rows": 15293
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15352,
+      "path": "feed-capture:ice_brent/crude/2026-10-18.csv",
+      "raw_rows": 15352,
+      "reading_rows": 15352
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15256,
+      "path": "feed-capture:ice_brent/crude/2026-10-19.csv",
+      "raw_rows": 15256,
+      "reading_rows": 15256
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15265,
+      "path": "feed-capture:ice_brent/crude/2026-10-20.csv",
+      "raw_rows": 15265,
+      "reading_rows": 15265
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15220,
+      "path": "feed-capture:ice_brent/crude/2026-10-21.csv",
+      "raw_rows": 15220,
+      "reading_rows": 15220
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 15102,
+      "path": "feed-capture:ice_brent/crude/2026-10-22.csv",
+      "raw_rows": 15102,
+      "reading_rows": 15102
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13740,
+      "path": "feed-capture:ice_brent/crude/2026-10-23.csv",
+      "raw_rows": 13740,
+      "reading_rows": 13740
+    }
+  ],
+  "raw_rows": 1724539,
+  "reading_rows": 1724529,
+  "rows": 1724529,
+  "sources": [
+    {
+      "bytes": 612634,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "7c0230fbbeb3af81cc8b0556b9a40ab282238380846bab8c5c6681942c1937c2",
+      "url": "feed-capture:ice_brent/crude/2026-06-22.csv"
+    },
+    {
+      "bytes": 1872539,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2550adb748f94b2f841581925e3a16ff45245c6a9ff0dc86a47284bcad7ddd11",
+      "url": "feed-capture:ice_brent/crude/2026-06-23.csv"
+    },
+    {
+      "bytes": 1867700,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "8b106e2c64c4a19d4de207eb7f25f0e806132aaa638c2a42d3eed877f34eefe3",
+      "url": "feed-capture:ice_brent/crude/2026-06-24.csv"
+    },
+    {
+      "bytes": 1873585,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9452031bb51078b2a7934db655d6a291d8c718ae57bcfb8992e3eef984bcbc52",
+      "url": "feed-capture:ice_brent/crude/2026-06-25.csv"
+    },
+    {
+      "bytes": 1870605,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "d6edb7b0653aec4d4c193ca3e77515655711099c6b92eac5e3e8861e86591265",
+      "url": "feed-capture:ice_brent/crude/2026-06-26.csv"
+    },
+    {
+      "bytes": 1831039,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "f79bac5d56983185f4a08f227eec6c6c81bcf25693435a303cc4faf2f10271fa",
+      "url": "feed-capture:ice_brent/crude/2026-06-27.csv"
+    },
+    {
+      "bytes": 1820155,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "1f6d395da3b4c15f1f4ca5c54706e72a3dedc4dfd031d447723a9087f56af061",
+      "url": "feed-capture:ice_brent/crude/2026-06-28.csv"
+    },
+    {
+      "bytes": 1847931,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "0badd39459320f425fe951b0a469365413a83c954b037b3d5e2f7723b0dd8a74",
+      "url": "feed-capture:ice_brent/crude/2026-06-29.csv"
+    },
+    {
+      "bytes": 1851398,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "fd749a4b09a51ae8d90125b1cdd066b04afff1cfeac2f4bbc1d73a3a8a1b987e",
+      "url": "feed-capture:ice_brent/crude/2026-06-30.csv"
+    },
+    {
+      "bytes": 1791853,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "afd7109de269ad132974231b627d9d62932064ecbd34696a4c57d565af59a4e6",
+      "url": "feed-capture:ice_brent/crude/2026-07-01.csv"
+    },
+    {
+      "bytes": 1752354,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "bdbe4187522abecb88fc1168347a761218977c327073c1f1b2a13f0c86ce1f18",
+      "url": "feed-capture:ice_brent/crude/2026-07-02.csv"
+    },
+    {
+      "bytes": 1751193,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "f2e933d864b57a96ba836e03ac68cef3e781eafdb9adc5d0d174717465e56dba",
+      "url": "feed-capture:ice_brent/crude/2026-07-03.csv"
+    },
+    {
+      "bytes": 1768584,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a43238479babdad19b66e1fa48f76790052dc2b142abb02edbb92052a680e4b2",
+      "url": "feed-capture:ice_brent/crude/2026-07-04.csv"
+    },
+    {
+      "bytes": 1762148,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "c6027bc5c485074a528a905c1c1d1e0ee9f66820a9e950a6434aea841d24b646",
+      "url": "feed-capture:ice_brent/crude/2026-07-05.csv"
+    },
+    {
+      "bytes": 1752328,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "df229b06516ec4a75b4c22e5fee63be42d78e9b632f032625869d57c37ee3837",
+      "url": "feed-capture:ice_brent/crude/2026-07-06.csv"
+    },
+    {
+      "bytes": 1715031,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "3896d80d7e737b085aa9ba3323b009e5934eea72822ceea8bab3f4de080200c3",
+      "url": "feed-capture:ice_brent/crude/2026-07-07.csv"
+    },
+    {
+      "bytes": 1739771,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b371bb1d7ba9931b62af8446d2684a92ed73dd49054ffb0cbeb9ea19f2456daf",
+      "url": "feed-capture:ice_brent/crude/2026-07-08.csv"
+    },
+    {
+      "bytes": 1717022,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "fe34a7ec8ce0f1937ff7693aee3636fdbeb41cfc2a9039721fd97a01c2a2785f",
+      "url": "feed-capture:ice_brent/crude/2026-07-09.csv"
+    },
+    {
+      "bytes": 1748421,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b97d06afb2a04f9bbf9084f957fae8ad921d40c52809dd12c38017bea976316a",
+      "url": "feed-capture:ice_brent/crude/2026-07-10.csv"
+    },
+    {
+      "bytes": 1777611,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2eb728af8359ba73613ee294ab4c85b0e75ec26e62d89ec0f13ae26333cd89e0",
+      "url": "feed-capture:ice_brent/crude/2026-07-11.csv"
+    },
+    {
+      "bytes": 1776127,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "c02bbd2ed4b8bd9f3405048c41971d4a0365b89c461002b45e16e82ee23c9b67",
+      "url": "feed-capture:ice_brent/crude/2026-07-12.csv"
+    },
+    {
+      "bytes": 1747055,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a47114e871d7fb574171f1e238833148765fb06203b71bba2f7e113d947fdc04",
+      "url": "feed-capture:ice_brent/crude/2026-07-13.csv"
+    },
+    {
+      "bytes": 2031712,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "e11e423dea40dc8264477e0531df67757548b2621b5b376ebf4901f4e82504b4",
+      "url": "feed-capture:ice_brent/crude/2026-07-14.csv"
+    },
+    {
+      "bytes": 2668799,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "78901cce4eb93185a39021bbe5bdfb090cf2cda2134f51eb87143557f302dbfb",
+      "url": "feed-capture:ice_brent/crude/2026-07-15.csv"
+    },
+    {
+      "bytes": 2625856,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "e7679481fa7ddf4f55ced3b2ad4f6b453cb57a7baef83e46cf84bf53deaf250e",
+      "url": "feed-capture:ice_brent/crude/2026-07-16.csv"
+    },
+    {
+      "bytes": 2663923,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "7452c1993aff9412e23ddbb9e6ad90a923eb0b3505a6eab2104d7e648b63f8d2",
+      "url": "feed-capture:ice_brent/crude/2026-07-17.csv"
+    },
+    {
+      "bytes": 2510361,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "bf55c720e3d5f27c53be5898e20357e4fba326c43da79d715c1325483240432c",
+      "url": "feed-capture:ice_brent/crude/2026-07-18.csv"
+    },
+    {
+      "bytes": 2314873,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "93ec8e96616cd81a74790c22304245ab1b0fc869f6807375e8f81cc10bfccbff",
+      "url": "feed-capture:ice_brent/crude/2026-07-19.csv"
+    },
+    {
+      "bytes": 2635482,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "075b582bb620474de84ea7fb5b9803aad94cf8937d903058689ca5e1cf29d29b",
+      "url": "feed-capture:ice_brent/crude/2026-07-20.csv"
+    },
+    {
+      "bytes": 2600091,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "de0517b3fe034d67814851453d04ec4ac34ea0a1e6c742791511b53964810e75",
+      "url": "feed-capture:ice_brent/crude/2026-07-21.csv"
+    },
+    {
+      "bytes": 2563494,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "d658db4d7973fd06bedf4695a388c9b93a4fbc100a0329ca8534dde1545f63d5",
+      "url": "feed-capture:ice_brent/crude/2026-07-22.csv"
+    },
+    {
+      "bytes": 2594431,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "40a504c4b0526d99ce2f2f92583dc59a333b6079caa7ded765d5ecfb9f42218b",
+      "url": "feed-capture:ice_brent/crude/2026-07-23.csv"
+    },
+    {
+      "bytes": 2597263,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "369bad1bc7d9de32f59f769350eff1f6d0b993131ce108dfa73e9cf41fc9bf32",
+      "url": "feed-capture:ice_brent/crude/2026-07-24.csv"
+    },
+    {
+      "bytes": 2567401,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "7e02755bd0163dff02c3485c41536026a5afe950faa13edf5c1cfec80cf105fe",
+      "url": "feed-capture:ice_brent/crude/2026-07-25.csv"
+    },
+    {
+      "bytes": 2007555,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "d2c648576b387adce867fd76f4db33779854900453fef3881fdec62ac3980700",
+      "url": "feed-capture:ice_brent/crude/2026-07-26.csv"
+    },
+    {
+      "bytes": 2461876,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "34ac88b8b4261a7147c54d0e61305d02abe798c6eaf5463479de75a5c8d7f1b5",
+      "url": "feed-capture:ice_brent/crude/2026-07-27.csv"
+    },
+    {
+      "bytes": 2216002,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "63a480e2f6cd90ebc3ec77c6580d63a50de0acf85f4ef624ff0f52f11fc1a3c8",
+      "url": "feed-capture:ice_brent/crude/2026-07-28.csv"
+    },
+    {
+      "bytes": 2373340,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "4a8d3145684192a68612ac3ba330dddf094a5c81854c146b3a7a92d9a0bd472e",
+      "url": "feed-capture:ice_brent/crude/2026-07-29.csv"
+    },
+    {
+      "bytes": 2553502,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b5ebb9f0df511ff30b226690537fb8c4153a739d09c027b60a5ee9a74974be29",
+      "url": "feed-capture:ice_brent/crude/2026-07-30.csv"
+    },
+    {
+      "bytes": 2427089,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "eb67c39d56850b5b979332a2ca82662053761258ad48213cb1a6581fc5c6683b",
+      "url": "feed-capture:ice_brent/crude/2026-07-31.csv"
+    },
+    {
+      "bytes": 2385793,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "88fc4480dfaa011e2f09bc648631f3eda0f8b41d52f1213d342cdfeedee6b4df",
+      "url": "feed-capture:ice_brent/crude/2026-08-01.csv"
+    },
+    {
+      "bytes": 2611713,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b888099ebd5475111a2e5d499e454291dcdd4def3b6fae7089928944be635d2d",
+      "url": "feed-capture:ice_brent/crude/2026-08-02.csv"
+    },
+    {
+      "bytes": 2438607,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "3f33195ba8bc35d8892c73d4f259bd686362f579bbbbeef6b28e19f19dd69048",
+      "url": "feed-capture:ice_brent/crude/2026-08-03.csv"
+    },
+    {
+      "bytes": 2279480,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2042bbb720c489ebdf97560c32f29b57a49f11c5c613ec25b7f21d6397fa7612",
+      "url": "feed-capture:ice_brent/crude/2026-08-04.csv"
+    },
+    {
+      "bytes": 2310206,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "e2c23eff4483839e1c114afc5025372e33ccb7c3a65fc015efeb822616a5ff95",
+      "url": "feed-capture:ice_brent/crude/2026-08-05.csv"
+    },
+    {
+      "bytes": 2200588,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "63d4134a780e9bc5b20701e195385856db16a97cfd02b5838fab51165e9b4e83",
+      "url": "feed-capture:ice_brent/crude/2026-08-06.csv"
+    },
+    {
+      "bytes": 2553418,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "03595abe1e932e4d6dff2ee22ddb08b4c0a20199fb86eb1173af8055ffb704b8",
+      "url": "feed-capture:ice_brent/crude/2026-08-07.csv"
+    },
+    {
+      "bytes": 2574036,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "18473bfea0ac8bc5695ad158ed54f002f3d56e881b964c7cf0c7468fd34bfdd2",
+      "url": "feed-capture:ice_brent/crude/2026-08-08.csv"
+    },
+    {
+      "bytes": 1695425,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2eadf4b93fa2307ac0d12ef086969a730ca49e04fc287e256af91dcbc8456d7e",
+      "url": "feed-capture:ice_brent/crude/2026-08-09.csv"
+    },
+    {
+      "bytes": 1812154,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "6cb505b6a31cc2bc7b092b22a879014b135b08196dd84c5978ca2386e6564b9b",
+      "url": "feed-capture:ice_brent/crude/2026-08-10.csv"
+    },
+    {
+      "bytes": 2365491,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b2d07fda0d07d5ad8f94c2de54a676a67d46cab0e1dabc00352a42d81474d9b8",
+      "url": "feed-capture:ice_brent/crude/2026-08-11.csv"
+    },
+    {
+      "bytes": 2503511,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "6f9ef3a5f4269db37800b7e8a6d1be82687dcd17f2423c63a8c018956808e60b",
+      "url": "feed-capture:ice_brent/crude/2026-08-12.csv"
+    },
+    {
+      "bytes": 2462430,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "e7da4ad6052a149536735620ea6bbf1731898fa5b71ace45450a466af0856571",
+      "url": "feed-capture:ice_brent/crude/2026-08-13.csv"
+    },
+    {
+      "bytes": 2560698,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "ac3f0f30d3cbb3904ab9bff9fc63b3bb23477b1b6fef219a2a5c01b3bbb7d3d8",
+      "url": "feed-capture:ice_brent/crude/2026-08-14.csv"
+    },
+    {
+      "bytes": 2651502,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "777b940814b211433901f6da3ea1c7fbbc311488c23375594ed5f1a09459a559",
+      "url": "feed-capture:ice_brent/crude/2026-08-15.csv"
+    },
+    {
+      "bytes": 2643835,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a1313d81e01ee97d48597bb8db0debc23404dd43e8e05d2a536e9f0f58d14098",
+      "url": "feed-capture:ice_brent/crude/2026-08-16.csv"
+    },
+    {
+      "bytes": 2544262,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "148e7cbcb83bc18c161725b2832d6380a02357a92098e1e7f3c6047ef4f8beb7",
+      "url": "feed-capture:ice_brent/crude/2026-08-17.csv"
+    },
+    {
+      "bytes": 2487345,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "7b32fed21ed4438704d486341794c25c688213c49955ac599fdc06a1962cdaa6",
+      "url": "feed-capture:ice_brent/crude/2026-08-18.csv"
+    },
+    {
+      "bytes": 2452795,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9d64fb86b596a63346914d756795d1c5b779b59e2f1d563a7c8d2078a188d119",
+      "url": "feed-capture:ice_brent/crude/2026-08-19.csv"
+    },
+    {
+      "bytes": 2476909,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b2d415928058daa1d9c03c59d8d04f1bda55a7d73804781fc09348ba0c01e296",
+      "url": "feed-capture:ice_brent/crude/2026-08-20.csv"
+    },
+    {
+      "bytes": 2463945,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "00de88d441f84700b11db3d70c931b978deb9308cc54bb19f9a1d774cd2bd9fc",
+      "url": "feed-capture:ice_brent/crude/2026-08-21.csv"
+    },
+    {
+      "bytes": 2666577,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9b7ca89f6fd9e103f2e08edc29856804c3b46cf4fb1a6f6bdb996f2e3c55213f",
+      "url": "feed-capture:ice_brent/crude/2026-08-22.csv"
+    },
+    {
+      "bytes": 2656327,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "75293b05c94d60bacbd809dc87b99bde03accfa368e96542f85edad0acfe69a9",
+      "url": "feed-capture:ice_brent/crude/2026-08-23.csv"
+    },
+    {
+      "bytes": 2498830,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "8a59f0ea8df95c4e8267239d732f7201b6ff02cc1bd765a5318d809ce611253c",
+      "url": "feed-capture:ice_brent/crude/2026-08-24.csv"
+    },
+    {
+      "bytes": 2559293,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "cfd0cb69bcc61a3b69da69c38635afebd9bc72e3d297ea07189ded9a0ff8c404",
+      "url": "feed-capture:ice_brent/crude/2026-08-25.csv"
+    },
+    {
+      "bytes": 2539640,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "83c9b98d4d792daa19a846ce39a370e2679e2ec0acd7eb150a7dc82db5351d21",
+      "url": "feed-capture:ice_brent/crude/2026-08-26.csv"
+    },
+    {
+      "bytes": 2546910,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a7f35db3edc972ebf7aca5ecbdf1e3118fa3c4326c0cc111dd48d8ac7121de58",
+      "url": "feed-capture:ice_brent/crude/2026-08-27.csv"
+    },
+    {
+      "bytes": 2613124,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "64b501d67814ae8ec95d11cebe639e83c5d17aab5f77c2be073a2e7c5c83ea3e",
+      "url": "feed-capture:ice_brent/crude/2026-08-28.csv"
+    },
+    {
+      "bytes": 2594265,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "4b175d64f1aa35e711fbc4c264a35303d2706bf268a675d841fbea7d500c892a",
+      "url": "feed-capture:ice_brent/crude/2026-08-29.csv"
+    },
+    {
+      "bytes": 2529572,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "00d19d6b71fb082f57101d1a56051f55c72e0dfe6f6fcc0be33b4ba22c7ef7e9",
+      "url": "feed-capture:ice_brent/crude/2026-08-30.csv"
+    },
+    {
+      "bytes": 2494928,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "f03df99418b1519e227796c23408f5ffd07348e934b9f777d0531bc2d1967478",
+      "url": "feed-capture:ice_brent/crude/2026-08-31.csv"
+    },
+    {
+      "bytes": 2417322,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "828e5df96ef1a1a07164c4df8d59bba42a0448cc6791da90850728631df53c81",
+      "url": "feed-capture:ice_brent/crude/2026-09-01.csv"
+    },
+    {
+      "bytes": 2310720,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "38f6aaeebd4834b8b52a8d3239137a7987620c6881e4b325ee43ed6a6d92d199",
+      "url": "feed-capture:ice_brent/crude/2026-09-02.csv"
+    },
+    {
+      "bytes": 1879772,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "69031b5cfec621de06261fa8a6adad08787d884ae2925bd70bb1e3cb773d936d",
+      "url": "feed-capture:ice_brent/crude/2026-09-03.csv"
+    },
+    {
+      "bytes": 2349624,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "13963ee4676ea9ee8fe9d7a4a012d61e15afa045e7f39f987ad066ee2dc40e50",
+      "url": "feed-capture:ice_brent/crude/2026-09-04.csv"
+    },
+    {
+      "bytes": 2491409,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "03185b14ed2b6c6e4845149ea2096145d9300120638fb7cf6c0f61185566a0c4",
+      "url": "feed-capture:ice_brent/crude/2026-09-05.csv"
+    },
+    {
+      "bytes": 2351363,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "fa63bda76263407264b865798e6095623e76484fc4e8e25c98fc24cc499a78f4",
+      "url": "feed-capture:ice_brent/crude/2026-09-06.csv"
+    },
+    {
+      "bytes": 2192501,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "4d1b3049578ffc02f8dbef228e3003de5e60da8b734a789f9c042ac549bb5ced",
+      "url": "feed-capture:ice_brent/crude/2026-09-07.csv"
+    },
+    {
+      "bytes": 1538970,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "47ca9eb4b801ea5d007e6c327028754ea096f7b3c6f61f142216dc1a70a05119",
+      "url": "feed-capture:ice_brent/crude/2026-09-08.csv"
+    },
+    {
+      "bytes": 1368825,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "6c97392428056053f3e7ba2374b173add265f53b3c9b505f1b85dcc1bb2db479",
+      "url": "feed-capture:ice_brent/crude/2026-09-09.csv"
+    },
+    {
+      "bytes": 2690886,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "173843a65aa473963f946a49e4707292dab2d0055a24f34459f6a0687753f06b",
+      "url": "feed-capture:ice_brent/crude/2026-09-10.csv"
+    },
+    {
+      "bytes": 2682746,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "12ca332e9464abb4825a5a290ad8e5a838a26964f91a7a25150eac7bc01c36a9",
+      "url": "feed-capture:ice_brent/crude/2026-09-11.csv"
+    },
+    {
+      "bytes": 2704665,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "78a5c3aa405046ca3b06607c261daac3b9badd79015f982688a381ea4ad1075c",
+      "url": "feed-capture:ice_brent/crude/2026-09-12.csv"
+    },
+    {
+      "bytes": 2702783,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "139ad4c29aea4b7a2073a7df4fb0fbc2f8a8951f166fa456b20d60ae9e2d9a03",
+      "url": "feed-capture:ice_brent/crude/2026-09-13.csv"
+    },
+    {
+      "bytes": 2648834,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2cc9eb92f923a9081e8e96aab3c6acab268d9d070858a81940264e323eeccb1b",
+      "url": "feed-capture:ice_brent/crude/2026-09-14.csv"
+    },
+    {
+      "bytes": 2634969,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "0ca8155117b17355418215212d94262f64b2ae0047cb4517451776dbc30a0a14",
+      "url": "feed-capture:ice_brent/crude/2026-09-15.csv"
+    },
+    {
+      "bytes": 2678272,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9e650f8c16818a9f13b8b1719c03f79867ced15617248b5ceb8187d7bb7e6464",
+      "url": "feed-capture:ice_brent/crude/2026-09-16.csv"
+    },
+    {
+      "bytes": 2542250,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2435dcc9e7f72ce7b3aa7503fb1b18596fd417fa0ce1cfd4c58806d4201fc4f7",
+      "url": "feed-capture:ice_brent/crude/2026-09-17.csv"
+    },
+    {
+      "bytes": 2429892,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "d697356ea9dee68d6bdfd25a6e4b4ede779e30638b339e7c36fc6dc3d666fe4f",
+      "url": "feed-capture:ice_brent/crude/2026-09-18.csv"
+    },
+    {
+      "bytes": 2663011,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "939f9402728e45e1732096a1111860971bf8edcf793d0f82b8c2ac31d4d7a7e2",
+      "url": "feed-capture:ice_brent/crude/2026-09-19.csv"
+    },
+    {
+      "bytes": 2639659,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b7c3ddc71fee92d7c81cfa8d54e83035f1e75ee1e851295bcc1395a12cd26307",
+      "url": "feed-capture:ice_brent/crude/2026-09-20.csv"
+    },
+    {
+      "bytes": 2424449,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "426474e585f7eff9538374dbcf48564a16d37beede0416ba61c7a9e22b9fdcc6",
+      "url": "feed-capture:ice_brent/crude/2026-09-21.csv"
+    },
+    {
+      "bytes": 2428844,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "c10bf1a751f1987133f639f7ce75be91c33a41909fdd71c6721f8d8967f42bb3",
+      "url": "feed-capture:ice_brent/crude/2026-09-22.csv"
+    },
+    {
+      "bytes": 2484334,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "3882b597703c47d95d46edd075807ebb7540bbb0875d82b7727dbca236b0405a",
+      "url": "feed-capture:ice_brent/crude/2026-09-23.csv"
+    },
+    {
+      "bytes": 2544716,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "ed57961088fec454ec9ed17193a2c96885c3c7592470c57643a534ab91faa1a3",
+      "url": "feed-capture:ice_brent/crude/2026-09-24.csv"
+    },
+    {
+      "bytes": 2514485,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "d1ad16d927b939fb3b09d77b97c158b64de8eade45f4728eec39255b38ceba53",
+      "url": "feed-capture:ice_brent/crude/2026-09-25.csv"
+    },
+    {
+      "bytes": 2590657,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2b20dfd2b9605930a39e7832eca5dc6297e2b9d3d0834d1779ea2c121d40fc57",
+      "url": "feed-capture:ice_brent/crude/2026-09-26.csv"
+    },
+    {
+      "bytes": 2691286,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "ad35d3073e644a69ec1391d6a903471233efbbf0101bc2510f5465f11a9ff029",
+      "url": "feed-capture:ice_brent/crude/2026-09-27.csv"
+    },
+    {
+      "bytes": 2478769,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "08d75263f5a9e5264e81ea9d889ef0c689c9de124547b8186c0e77496b7edd29",
+      "url": "feed-capture:ice_brent/crude/2026-09-28.csv"
+    },
+    {
+      "bytes": 2405160,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "af2cbc93744923005e25544e121ea6cfc8bf332466303d704e76cfeed5b1bbd8",
+      "url": "feed-capture:ice_brent/crude/2026-09-29.csv"
+    },
+    {
+      "bytes": 2196212,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "05c600cb1733fdd57e4676bae4bd437c4fbdfe9cc8a76ee178ad5175c3a1d381",
+      "url": "feed-capture:ice_brent/crude/2026-09-30.csv"
+    },
+    {
+      "bytes": 2258525,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "3be7a2f9322af518cc1533ef2a189f4e8d076ecc8ec407ef920812570787222e",
+      "url": "feed-capture:ice_brent/crude/2026-10-01.csv"
+    },
+    {
+      "bytes": 2561153,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "4b0afdc1fd93f2c79d7976ca6f1cc61ec6c1b42c76d0cb087e282cfe761ee291",
+      "url": "feed-capture:ice_brent/crude/2026-10-02.csv"
+    },
+    {
+      "bytes": 2874679,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "78e3395e03be1bd6d72c753be451eadd72f3de82325f4b13f8d173051e742c67",
+      "url": "feed-capture:ice_brent/crude/2026-10-03.csv"
+    },
+    {
+      "bytes": 2898458,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "f93cb73b67ff595f552680501fff31e210f042fab10b758e7bb110fbf1331453",
+      "url": "feed-capture:ice_brent/crude/2026-10-04.csv"
+    },
+    {
+      "bytes": 2855264,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b7865d8bec4080ce2ddd94356e351fe6ea7439835c9b58ae7374d9a486d96587",
+      "url": "feed-capture:ice_brent/crude/2026-10-05.csv"
+    },
+    {
+      "bytes": 2836828,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "3c5e18d159cc70f6a504cd1ede004eb76bc9b23664c6672427aa594aa376a64c",
+      "url": "feed-capture:ice_brent/crude/2026-10-06.csv"
+    },
+    {
+      "bytes": 2841845,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "0a1d5736c374a84409f2304f88c3db7640db4e6c0b46bc7ed5eb2cb51994549b",
+      "url": "feed-capture:ice_brent/crude/2026-10-07.csv"
+    },
+    {
+      "bytes": 2834820,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9af27fc7f00617018ce4d15c235ba5f19eeefd9cdeb9c667118c3df4adc41894",
+      "url": "feed-capture:ice_brent/crude/2026-10-08.csv"
+    },
+    {
+      "bytes": 2837021,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "8c28ced02700df86ba7903962398635024eb22b194301d4f7ac0d7a9aaf6f437",
+      "url": "feed-capture:ice_brent/crude/2026-10-09.csv"
+    },
+    {
+      "bytes": 2848267,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "19444a2699825b3a97e9e53b90923ca6794651d90e022b429dca965615b58831",
+      "url": "feed-capture:ice_brent/crude/2026-10-10.csv"
+    },
+    {
+      "bytes": 2873115,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a169b9eb47a2b787cc3688bc8d39378f2a2d1ad054c6c2bb46810d1dc0e5efae",
+      "url": "feed-capture:ice_brent/crude/2026-10-11.csv"
+    },
+    {
+      "bytes": 2852034,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "7c1bcb8cbc6d95e045a72ba30708dbbd23329e34ebc41c5048a480ce7e5c571d",
+      "url": "feed-capture:ice_brent/crude/2026-10-12.csv"
+    },
+    {
+      "bytes": 2834463,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9e357ac4acb6590ad30b9fc3fc6cabc72b9bb3d34505c811671d75714f059e64",
+      "url": "feed-capture:ice_brent/crude/2026-10-13.csv"
+    },
+    {
+      "bytes": 2774739,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "2ef44ee74c50a3d0033fa7cc980d7a22bde677e0743cc51607318841a9959f80",
+      "url": "feed-capture:ice_brent/crude/2026-10-14.csv"
+    },
+    {
+      "bytes": 2805264,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "a6b7c96ff47a90297554c8ed9bb7384ba83d82a10274bcf3bd210e47e31363ed",
+      "url": "feed-capture:ice_brent/crude/2026-10-15.csv"
+    },
+    {
+      "bytes": 2802407,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "062d4b7d95930fc97f15663d074ac7cfbf8e29730c1f5d8a3a23a05c96d0102e",
+      "url": "feed-capture:ice_brent/crude/2026-10-16.csv"
+    },
+    {
+      "bytes": 2844560,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9498eeeea8205af395608efc9f411a633633aee824fc2aa2082e76e73f5bc7c3",
+      "url": "feed-capture:ice_brent/crude/2026-10-17.csv"
+    },
+    {
+      "bytes": 2839642,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "49c51847aebd16e7278232f5134b94c3aa3e6d07ce88cdde20e9778a448d7eeb",
+      "url": "feed-capture:ice_brent/crude/2026-10-18.csv"
+    },
+    {
+      "bytes": 2834944,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "9b4710a30b48b36edee33e91fa72c7e8bf428d1dca10102e7a616c39e04f5ae7",
+      "url": "feed-capture:ice_brent/crude/2026-10-19.csv"
+    },
+    {
+      "bytes": 2836067,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "b63cff6bfad0bd5b4539e0d86ee615bd1d5a86e628550339f1d575e4dbed2579",
+      "url": "feed-capture:ice_brent/crude/2026-10-20.csv"
+    },
+    {
+      "bytes": 2827312,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "38f207c67f910e6db8508ed08d7f658d802ca0ac45619bf9684f70ba44227695",
+      "url": "feed-capture:ice_brent/crude/2026-10-21.csv"
+    },
+    {
+      "bytes": 2806617,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "5d3fb5e07485caabba881d9cb996825874cd05a46206e064a9d2a24c3facd930",
+      "url": "feed-capture:ice_brent/crude/2026-10-22.csv"
+    },
+    {
+      "bytes": 2552288,
+      "fetched_at_utc": "2026-10-23T21:39:53Z",
+      "sha256": "746e3926ba069db1a577f49552adeb46d2ef872612c7be6ead3e29070070c366",
+      "url": "feed-capture:ice_brent/crude/2026-10-23.csv"
+    }
+  ],
+  "status_rows": {
+    "delayed": 2569,
+    "live": 1721960
+  }
+}

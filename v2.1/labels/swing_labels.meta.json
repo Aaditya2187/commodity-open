@@ -1,0 +1,255 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:58:02.172242+00:00",
+    "command": "python -m swing_dataset.labels build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "class_balance": {
+    "10": {
+      "0.75": {
+        "both": 2,
+        "down_swing": 2093,
+        "no_swing": 1203,
+        "shares": {
+          "both": 0.0003414717432132491,
+          "down_swing": 0.3573501792726652,
+          "no_swing": 0.20539525354276933,
+          "up_swing": 0.4369130954413522
+        },
+        "ungradable": 0,
+        "up_swing": 2559
+      },
+      "1.0": {
+        "both": 0,
+        "down_swing": 1566,
+        "no_swing": 2306,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.26737237493597404,
+          "no_swing": 0.39371691992487623,
+          "up_swing": 0.3389107051391497
+        },
+        "ungradable": 0,
+        "up_swing": 1985
+      },
+      "1.25": {
+        "both": 0,
+        "down_swing": 1161,
+        "no_swing": 3194,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.19822434693529112,
+          "no_swing": 0.5453303739115588,
+          "up_swing": 0.2564452791531501
+        },
+        "ungradable": 0,
+        "up_swing": 1502
+      }
+    },
+    "20": {
+      "0.75": {
+        "both": 0,
+        "down_swing": 2003,
+        "no_swing": 1140,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.34433556816228295,
+          "no_swing": 0.19597730789066528,
+          "up_swing": 0.45968712394705175
+        },
+        "ungradable": 0,
+        "up_swing": 2674
+      },
+      "1.0": {
+        "both": 0,
+        "down_swing": 1542,
+        "no_swing": 2133,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.26508509541000513,
+          "no_swing": 0.3666838576585869,
+          "up_swing": 0.36823104693140796
+        },
+        "ungradable": 0,
+        "up_swing": 2142
+      },
+      "1.25": {
+        "both": 0,
+        "down_swing": 1193,
+        "no_swing": 2944,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.20508853360838922,
+          "no_swing": 0.506102802131683,
+          "up_swing": 0.2888086642599278
+        },
+        "ungradable": 0,
+        "up_swing": 1680
+      }
+    },
+    "5": {
+      "0.75": {
+        "both": 25,
+        "down_swing": 2117,
+        "no_swing": 1267,
+        "shares": {
+          "both": 0.004253871022630594,
+          "down_swing": 0.3602177981963587,
+          "no_swing": 0.2155861834269185,
+          "up_swing": 0.41994214735409224
+        },
+        "ungradable": 0,
+        "up_swing": 2468
+      },
+      "1.0": {
+        "both": 5,
+        "down_swing": 1593,
+        "no_swing": 2398,
+        "shares": {
+          "both": 0.0008507742045261188,
+          "down_swing": 0.27105666156202146,
+          "no_swing": 0.40803130849072655,
+          "up_swing": 0.32006125574272587
+        },
+        "ungradable": 0,
+        "up_swing": 1881
+      },
+      "1.25": {
+        "both": 2,
+        "down_swing": 1190,
+        "no_swing": 3325,
+        "shares": {
+          "both": 0.0003403096818104475,
+          "down_swing": 0.20248426067721625,
+          "no_swing": 0.565764846009869,
+          "up_swing": 0.2314105836311043
+        },
+        "ungradable": 0,
+        "up_swing": 1360
+      }
+    }
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 52653
+    },
+    "rule": "Every input row is a Bhav Copy row whose availability is the session close instant from mcx_sessions (class published: the exchange publishes after the close and we did not capture live). Each output row carries the close instant of the latest session it depends on."
+  },
+  "columns": [
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "08:30 Asia/Kolkata on the cutoff's MCX trading day, in UTC",
+      "name": "cutoff_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "sessions in the horizon: 5 | 10 | 20",
+      "name": "horizon",
+      "type": "int64"
+    },
+    {
+      "meaning": "barrier multiplier: 0.75 | 1.0 | 1.25 (the scored task uses 1.0)",
+      "name": "k_multiplier",
+      "type": "double"
+    },
+    {
+      "meaning": "b = k_multiplier * sigma_c * sqrt(h), in log wealth",
+      "name": "barrier",
+      "type": "double"
+    },
+    {
+      "meaning": "up_swing | down_swing | no_swing | both; null when ungradable",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "meaning": "k of the session that touched the deciding barrier; null for no_swing and ungradable",
+      "name": "hit_session",
+      "type": "int64"
+    },
+    {
+      "meaning": "session date of hit_session",
+      "name": "hit_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "close instant of the deciding session (barrier session, or session h for no_swing)",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "published",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "missing_settlement | missing_incoming_settlement; null when graded",
+      "name": "ungradable_reason",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "available_utc",
+    "cutoff_end": "2026-10-23",
+    "cutoff_start": "2021-02-01",
+    "end": "2026-10-23T18:00:00+00:00",
+    "start": "2021-02-05T18:25:00+00:00"
+  },
+  "name": "swing_labels",
+  "notes": [
+    "one row per (asset, cutoff_utc, horizon, k_multiplier) for eligible designations whose session h has a Bhav Copy; cutoffs whose horizon runs past the last Bhav Copy have no row, even when a barrier was already touched",
+    "both = both barriers breached in the same session before either alone; stored, excluded from scoring",
+    "available_utc is the close instant of the deciding session and is always after cutoff_utc",
+    "cutoffs: 08:30 Asia/Kolkata on every MCX trading session per mcx_sessions from 2021-02-01 to 2026-10-23 (the last Bhav Copy); horizons [5, 10, 20] sessions, k = 1 is the cutoff's own session",
+    "designation: highest volume_lots summed over the two completed sessions before the cutoff among contracts listed on those sessions, excluding contracts whose staggered tender period has begun by the cutoff session and contracts whose expiry session is at or before session h; ties by earlier expiry then contract id; the winner must have traded (volume > 0)",
+    "expiry session: for compulsory-delivery products (gold, silver, copper) the last full open non-holiday session at or before the printed expiry (Bhav Copy rows of GOLD05OCT22FUT, COPPER31MAR25FUT and COPPER31MAR26FUT end there); for cash-settled crude the last trading session at or before it (three crude contracts expired on evening-only holiday sessions). The rule reproduces the last Bhav Copy row of all 199 finished contracts",
+    "tender period: the last N trading sessions including the expiry session, N per mcx_contract_specs.json (gold 5 through the June 2026 expiry then 3; silver 5 through July 2026 then 3; copper 5 through December 2024 then 3; crude none). Every non-closed mcx_sessions date counts as a trading session",
+    "roll plan: when the designated contract's last eligible session is before session h, the chain moves on the next session to the highest-volume contract (same two-session volumes) not in delivery on that transition session and not expiring within the horizon, the rolling contract excluded; applied recursively",
+    "sigma_c: sample standard deviation (ddof 1) of the 20 most recent daily log settlement returns of the historical chain before the cutoff, where session s uses the contract designated at cutoff s for the same horizon and log(settle_s / settle_(s-1)) on that contract; a session whose designation differs from the previous session's, or has none, is skipped and the window extends backwards",
+    "wealth chain: W_0 = 1 at P_ref; W_k^q = W_(k-1)^close * D_k^q / D_(k-1)^close for q in open, high, low, close (close = settlement); on a transition to B the denominator is B_(k-1)^close. A missing settlement stops the chain and makes labels from that session on ungradable",
+    "no synthetic rows: a session where the chain contract printed no trade keeps its settlement-based w_close and has null open/high/low",
+    "build identity: {'commit': '103e51076f54ba35f5f80527095f90432cf2fdc7', 'command': 'python -m swing_dataset.labels build', 'built_utc': '2026-10-23T21:58:02.172242+00:00'}"
+  ],
+  "rows": 52653,
+  "sources": [
+    {
+      "bytes": 4120141,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "build/mcx/mcx_daily.parquet"
+    },
+    {
+      "bytes": 17048,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "url": "build/mcx/mcx_sessions.parquet"
+    },
+    {
+      "bytes": 71397,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "04cc5ed58d55dce874fd5a744b0efc51598ce5098aafcf68c57453ae2f8f8007",
+      "url": "build/mcx/mcx_contract_specs.json"
+    }
+  ]
+}

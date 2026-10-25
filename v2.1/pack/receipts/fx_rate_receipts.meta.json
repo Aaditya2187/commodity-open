@@ -1,0 +1,90 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:42.985032+00:00",
+    "command": "python -m swing_dataset.pack build --stage receipts",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 1872796
+    },
+    "rule": "fetched_ts is the feed's own capture clock: exact."
+  },
+  "columns": [
+    {
+      "meaning": "feed.fx_rate_receipts_v1.receipt_id",
+      "name": "receipt_id",
+      "type": "string"
+    },
+    {
+      "meaning": "USDINR | USDCNY | ...",
+      "name": "pair",
+      "type": "string"
+    },
+    {
+      "meaning": "rate as received",
+      "name": "rate",
+      "type": "double"
+    },
+    {
+      "meaning": "te:USDINR:CUR, te-ws:..., etc.",
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "meaning": "event_ts",
+      "name": "event_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "recorded_ts",
+      "name": "recorded_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "fetched_ts: the feed's fetch clock",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "available_ts as recorded by the feed",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "feed clock_status label",
+      "name": "clock_status",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:40:35.796104+00:00",
+    "start": "2026-07-22T03:55:25.247581+00:00"
+  },
+  "name": "fx_rate_receipts",
+  "notes": [
+    "These are the live USD/INR and USD/CNY rates the feed applied to MCX and SHFE/INE conversions."
+  ],
+  "rows": 1872796,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 113818284,
+      "fetched_at_utc": "2026-10-23T21:40:49Z",
+      "sha256": "15bb370e2c77155a70d6ae3e0a8d408b7206c1c16d1cea064b5bea7a218c5afe",
+      "url": "feed-db:fx_rate_receipts"
+    }
+  ]
+}

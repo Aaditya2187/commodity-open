@@ -1,0 +1,1685 @@
+{
+  "available_rule_counts": {
+    "first_vintage_next_day_00utc": 18175,
+    "next_day_00utc": 104526,
+    "vintage_precedes_observation": 39
+  },
+  "build": {
+    "command": "swing_dataset/macro/__main__.py build --only alfred --only cot --force",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7",
+    "python": "3.13.15"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 122743,
+      "unvintaged": 39
+    },
+    "rule": "Per-row clock_quality. published rows: available_utc is realtime_start + 1 day 00:00 UTC (available_rule next_day_00utc), or the series' first ALFRED vintage + 1 day for pre-tracking history (first_vintage_next_day_00utc; a lower bound, not a publication instant). unvintaged rows (available_rule vintage_precedes_observation): FRED's vintage date precedes the observation period, no credible availability instant, available_utc null."
+  },
+  "columns": [
+    {
+      "meaning": "FRED/ALFRED series id",
+      "name": "series_id",
+      "type": "string"
+    },
+    {
+      "meaning": "observation period start as dated by FRED (monthly = first of month)",
+      "name": "observation_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "last civil day of the observation period (daily/weekly: the date itself)",
+      "name": "period_end_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "value as published during [realtime_start, realtime_end]; native units",
+      "name": "value",
+      "type": "double"
+    },
+    {
+      "meaning": "first ALFRED vintage date on which this value was current",
+      "name": "realtime_start",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "last vintage date on which this value was current; 9999-12-31 = still current",
+      "name": "realtime_end",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "earliest instant the vintage record proves the value available; null when unvintaged",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "next_day_00utc | first_vintage_next_day_00utc | vintage_precedes_observation; see notes",
+      "name": "available_rule",
+      "type": "string"
+    },
+    {
+      "meaning": "published, or unvintaged when FRED's vintage date precedes the observation period",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "FRED units_short at the latest series record",
+      "name": "units",
+      "type": "string"
+    },
+    {
+      "meaning": "FRED frequency_short (D, W, M, ...)",
+      "name": "frequency",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "observation_date": {
+      "column": "observation_date",
+      "max": "2026-10-23",
+      "min": "2009-01-01"
+    },
+    "realtime_start": {
+      "column": "realtime_start",
+      "max": "2026-10-23",
+      "min": "2005-06-28"
+    }
+  },
+  "name": "alfred_vintages",
+  "notes": [
+    "Method: FRED series/observations with output_type=1 (observations by real-time period) over the full real-time range 1776-07-04..9999-12-31, split into windows of at most 1500 vintage dates (API limit 2000) at series/vintagedates boundaries; periods clipped at a window edge are merged with their continuation (same date, same value, adjacent days). Verified live 2026-09-15 that FRED clips periods at the requested window and never emits adjacent equal-valued periods in an unwindowed response.",
+    "observation_start=2009-01-01 (one year before the 2010 target so 2010 year-over-year rates are computable); every vintage since the first ALFRED vintage is included.",
+    "Rows whose FRED value is '.' (no observation, e.g. market holidays for daily series) are dropped; per-series counts are in series_stats.",
+    "available_utc: FRED states no release time-of-day for any of these series (series notes checked live 2026-09-15). Rule next_day_00utc: realtime_start + 1 day at 00:00 UTC, the conservative end of the vintage's civil day (ALFRED vintage dates are US civil dates; these publishers release during US business hours). Rule first_vintage_next_day_00utc: observations whose period ended before the series' first ALFRED vintage are reported by FRED with realtime_start at that first vintage (DEXCHUS: at the series' 2005-06-28 FRED inception), which proves the value current then but says nothing about first publication; available_utc = first vintage + 1 day, a safe lower bound. Rule vintage_precedes_observation: FRED's realtime_start lies before the observation period end although the series was tracked (e.g. VIXCLS values dated a US holiday carried in the prior business day's vintage; DCOILWTICO/DCOILBRENTEU 2012-12-27 in the 2012-12-26 vintage); FRED's own as-of query confirms this and no credible availability time exists, so clock_quality = unvintaged and available_utc = null. FRED fields are never altered.",
+    "Vintage semantics proof: PAYEMS observation 2026-08-01 first appears with realtime_start 2026-09-04 (the BLS Employment Situation release for August 2026); the proof-PAYEMS-asof-* captures show the observation absent as of 2026-09-03 and present as of 2026-09-04.",
+    "All 32 requested series exist in ALFRED; none skipped."
+  ],
+  "rows": 122782,
+  "series_stats": [
+    {
+      "first_vintage": "2019-02-04",
+      "last_updated": "2026-10-19 15:17:07-05",
+      "rows": 19543,
+      "rows_dropped_no_value": 213,
+      "rows_merged": 19756,
+      "rows_raw": 19756,
+      "series_id": "DTWEXBGS",
+      "title": "Nominal Broad U.S. Dollar Index",
+      "vintage_count": 403,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2005-10-12",
+      "last_updated": "2026-10-23 15:16:32-05",
+      "rows": 4454,
+      "rows_dropped_no_value": 193,
+      "rows_merged": 4647,
+      "rows_raw": 11873,
+      "series_id": "DFII10",
+      "title": "Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed",
+      "vintage_count": 5118,
+      "windows": [
+        [
+          "1776-07-04",
+          "2012-02-16"
+        ],
+        [
+          "2012-02-17",
+          "2018-04-09"
+        ],
+        [
+          "2018-04-10",
+          "2024-04-25"
+        ],
+        [
+          "2024-04-26",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2005-10-12",
+      "last_updated": "2026-10-23 15:16:33-05",
+      "rows": 4456,
+      "rows_dropped_no_value": 193,
+      "rows_merged": 4649,
+      "rows_raw": 11877,
+      "series_id": "DFII5",
+      "title": "Market Yield on U.S. Treasury Securities at 5-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed",
+      "vintage_count": 5117,
+      "windows": [
+        [
+          "1776-07-04",
+          "2012-02-16"
+        ],
+        [
+          "2012-02-17",
+          "2018-04-10"
+        ],
+        [
+          "2018-04-11",
+          "2024-04-28"
+        ],
+        [
+          "2024-04-29",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2005-06-28",
+      "last_updated": "2026-10-23 15:16:51-05",
+      "rows": 4457,
+      "rows_dropped_no_value": 193,
+      "rows_merged": 4650,
+      "rows_raw": 11816,
+      "series_id": "DGS10",
+      "title": "Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis",
+      "vintage_count": 5136,
+      "windows": [
+        [
+          "1776-07-04",
+          "2012-01-18"
+        ],
+        [
+          "2012-01-19",
+          "2018-03-13"
+        ],
+        [
+          "2018-03-14",
+          "2024-04-01"
+        ],
+        [
+          "2024-04-02",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2005-06-28",
+      "last_updated": "2026-10-23 15:16:45-05",
+      "rows": 4454,
+      "rows_dropped_no_value": 194,
+      "rows_merged": 4648,
+      "rows_raw": 11812,
+      "series_id": "DGS2",
+      "title": "Market Yield on U.S. Treasury Securities at 2-Year Constant Maturity, Quoted on an Investment Basis",
+      "vintage_count": 5137,
+      "windows": [
+        [
+          "1776-07-04",
+          "2012-01-18"
+        ],
+        [
+          "2012-01-19",
+          "2018-03-12"
+        ],
+        [
+          "2018-03-13",
+          "2024-03-28"
+        ],
+        [
+          "2024-03-29",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-01-27",
+      "last_updated": "2026-10-23 16:03:36-05",
+      "rows": 4458,
+      "rows_dropped_no_value": 193,
+      "rows_merged": 4651,
+      "rows_raw": 12062,
+      "series_id": "T10Y2Y",
+      "title": "10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity",
+      "vintage_count": 3148,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-03-09"
+        ],
+        [
+          "2020-03-10",
+          "2026-03-24"
+        ],
+        [
+          "2026-03-25",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-01-27",
+      "last_updated": "2026-10-23 16:03:34-05",
+      "rows": 4457,
+      "rows_dropped_no_value": 192,
+      "rows_merged": 4649,
+      "rows_raw": 12052,
+      "series_id": "T10YIE",
+      "title": "10-Year Breakeven Inflation Rate",
+      "vintage_count": 3152,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-03-02"
+        ],
+        [
+          "2020-03-03",
+          "2026-03-18"
+        ],
+        [
+          "2026-03-19",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2023-10-24",
+      "last_updated": "2026-10-23 08:34:01-05",
+      "rows": 786,
+      "rows_dropped_no_value": 8,
+      "rows_merged": 794,
+      "rows_raw": 794,
+      "series_id": "BAMLH0A0HYM2",
+      "title": "ICE BofA US High Yield Index Option-Adjusted Spread",
+      "vintage_count": 786,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2023-10-24",
+      "last_updated": "2026-10-23 08:32:20-05",
+      "rows": 785,
+      "rows_dropped_no_value": 10,
+      "rows_merged": 795,
+      "rows_raw": 795,
+      "series_id": "BAMLC0A0CM",
+      "title": "ICE BofA US Corporate Index Option-Adjusted Spread",
+      "vintage_count": 784,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-01-27",
+      "last_updated": "2026-10-23 16:03:32-05",
+      "rows": 4462,
+      "rows_dropped_no_value": 198,
+      "rows_merged": 4660,
+      "rows_raw": 7706,
+      "series_id": "BAA10Y",
+      "title": "Moody's Seasoned Baa Corporate Bond Yield Relative to Yield on 10-Year Treasury Constant Maturity",
+      "vintage_count": 2988,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-09-07"
+        ],
+        [
+          "2020-09-08",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2011-04-06",
+      "last_updated": "2026-10-21 12:18:25-05",
+      "rows": 4536,
+      "rows_dropped_no_value": 260,
+      "rows_merged": 4796,
+      "rows_raw": 4796,
+      "series_id": "DCOILWTICO",
+      "title": "Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma",
+      "vintage_count": 803,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2011-04-06",
+      "last_updated": "2026-10-21 12:18:26-05",
+      "rows": 4561,
+      "rows_dropped_no_value": 155,
+      "rows_merged": 4716,
+      "rows_raw": 4716,
+      "series_id": "DCOILBRENTEU",
+      "title": "Crude Oil Prices: Brent - Europe",
+      "vintage_count": 805,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-03-18",
+      "last_updated": "2026-10-19 15:16:39-05",
+      "rows": 4453,
+      "rows_dropped_no_value": 195,
+      "rows_merged": 4648,
+      "rows_raw": 4648,
+      "series_id": "DEXINUS",
+      "title": "Indian Rupees to U.S. Dollar Spot Exchange Rate",
+      "vintage_count": 658,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-03-18",
+      "last_updated": "2026-10-19 15:16:35-05",
+      "rows": 4457,
+      "rows_dropped_no_value": 194,
+      "rows_merged": 4651,
+      "rows_raw": 4651,
+      "series_id": "DEXCHUS",
+      "title": "Chinese Yuan Renminbi to U.S. Dollar Spot Exchange Rate",
+      "vintage_count": 657,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2010-11-22",
+      "last_updated": "2026-10-23 08:38:37-05",
+      "rows": 4521,
+      "rows_dropped_no_value": 136,
+      "rows_merged": 4657,
+      "rows_raw": 10377,
+      "series_id": "VIXCLS",
+      "title": "CBOE Volatility Index: VIX",
+      "vintage_count": 3958,
+      "windows": [
+        [
+          "1776-07-04",
+          "2016-12-20"
+        ],
+        [
+          "2016-12-21",
+          "2022-12-18"
+        ],
+        [
+          "2022-12-19",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-04-17",
+      "last_updated": "2026-10-23 08:39:42-05",
+      "rows": 4485,
+      "rows_dropped_no_value": 168,
+      "rows_merged": 4653,
+      "rows_raw": 12106,
+      "series_id": "GVZCLS",
+      "title": "CBOE Gold ETF Volatility Index",
+      "vintage_count": 3129,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-04-13"
+        ],
+        [
+          "2020-04-14",
+          "2026-04-15"
+        ],
+        [
+          "2026-04-16",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-04-17",
+      "last_updated": "2026-10-23 08:39:29-05",
+      "rows": 4485,
+      "rows_dropped_no_value": 168,
+      "rows_merged": 4653,
+      "rows_raw": 12106,
+      "series_id": "OVXCLS",
+      "title": "CBOE Crude Oil ETF Volatility Index",
+      "vintage_count": 3129,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-04-13"
+        ],
+        [
+          "2020-04-14",
+          "2026-04-15"
+        ],
+        [
+          "2026-04-16",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-04-17",
+      "last_updated": "2022-02-14 08:36:12-06",
+      "rows": 2752,
+      "rows_dropped_no_value": 101,
+      "rows_merged": 2853,
+      "rows_raw": 5220,
+      "series_id": "VXSLVCLS",
+      "title": "CBOE Silver ETF Volatility Index (DISCONTINUED)",
+      "vintage_count": 1962,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-04-12"
+        ],
+        [
+          "2020-04-13",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1955-05-06",
+      "last_updated": "2026-10-02 08:24:33-05",
+      "rows": 2095,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 2095,
+      "rows_raw": 2095,
+      "series_id": "PAYEMS",
+      "title": "All Employees, Total Nonfarm",
+      "vintage_count": 860,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1960-03-15",
+      "last_updated": "2026-10-02 08:24:37-05",
+      "rows": 390,
+      "rows_dropped_no_value": 1,
+      "rows_merged": 391,
+      "rows_raw": 391,
+      "series_id": "UNRATE",
+      "title": "Unemployment Rate",
+      "vintage_count": 800,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2011-03-04",
+      "last_updated": "2026-10-02 08:26:56-05",
+      "rows": 1317,
+      "rows_dropped_no_value": 2,
+      "rows_merged": 1319,
+      "rows_raw": 1319,
+      "series_id": "CES0500000003",
+      "title": "Average Hourly Earnings of All Employees, Total Private",
+      "vintage_count": 187,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1972-07-21",
+      "last_updated": "2026-10-14 08:08:29-05",
+      "rows": 1113,
+      "rows_dropped_no_value": 1,
+      "rows_merged": 1114,
+      "rows_raw": 1114,
+      "series_id": "CPIAUCSL",
+      "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+      "vintage_count": 670,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1996-12-12",
+      "last_updated": "2026-10-14 08:08:29-05",
+      "rows": 1105,
+      "rows_dropped_no_value": 1,
+      "rows_merged": 1106,
+      "rows_raw": 1106,
+      "series_id": "CPILFESL",
+      "title": "Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average",
+      "vintage_count": 377,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-02-19",
+      "last_updated": "2026-10-15 09:20:42-05",
+      "rows": 807,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 807,
+      "rows_raw": 807,
+      "series_id": "PPIFIS",
+      "title": "Producer Price Index by Commodity: Final Demand",
+      "vintage_count": 158,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2010-08-11",
+      "last_updated": "2026-09-29 09:11:45-05",
+      "rows": 1518,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 1518,
+      "rows_raw": 1518,
+      "series_id": "JTSJOL",
+      "title": "Job Openings: Total Nonfarm",
+      "vintage_count": 194,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2009-05-28",
+      "last_updated": "2026-10-22 07:34:23-05",
+      "rows": 5191,
+      "rows_dropped_no_value": 2,
+      "rows_merged": 5193,
+      "rows_raw": 5193,
+      "series_id": "ICSA",
+      "title": "Initial Claims",
+      "vintage_count": 903,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1927-01-26",
+      "last_updated": "2026-10-16 08:20:19-05",
+      "rows": 2805,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 2805,
+      "rows_raw": 2805,
+      "series_id": "INDPRO",
+      "title": "Industrial Production: Total Index",
+      "vintage_count": 1224,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "1996-12-03",
+      "last_updated": "2026-10-01 15:16:52-05",
+      "rows": 215,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 215,
+      "rows_raw": 215,
+      "series_id": "FEDFUNDS",
+      "title": "Federal Funds Effective Rate",
+      "vintage_count": 365,
+      "windows": [
+        [
+          "1776-07-04",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2014-04-03",
+      "last_updated": "2026-10-23 07:01:20-05",
+      "rows": 6505,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 6505,
+      "rows_raw": 16284,
+      "series_id": "DFEDTARU",
+      "title": "Federal Funds Target Range - Upper Limit",
+      "vintage_count": 3818,
+      "windows": [
+        [
+          "1776-07-04",
+          "2020-03-18"
+        ],
+        [
+          "2020-03-19",
+          "2024-07-25"
+        ],
+        [
+          "2024-07-26",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2008-12-17",
+      "last_updated": "2026-10-23 07:01:20-05",
+      "rows": 6505,
+      "rows_dropped_no_value": 0,
+      "rows_merged": 6505,
+      "rows_raw": 18868,
+      "series_id": "DFEDTARL",
+      "title": "Federal Funds Target Range - Lower Limit",
+      "vintage_count": 5145,
+      "windows": [
+        [
+          "1776-07-04",
+          "2014-12-02"
+        ],
+        [
+          "2014-12-03",
+          "2020-11-23"
+        ],
+        [
+          "2020-11-24",
+          "2025-01-14"
+        ],
+        [
+          "2025-01-15",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2016-03-01",
+      "last_updated": "2026-10-23 08:02:30-05",
+      "rows": 4475,
+      "rows_dropped_no_value": 172,
+      "rows_merged": 4647,
+      "rows_raw": 8072,
+      "series_id": "EFFR",
+      "title": "Effective Federal Funds Rate",
+      "vintage_count": 2673,
+      "windows": [
+        [
+          "1776-07-04",
+          "2022-02-17"
+        ],
+        [
+          "2022-02-18",
+          "9999-12-31"
+        ]
+      ]
+    },
+    {
+      "first_vintage": "2019-03-29",
+      "last_updated": "2026-10-23 07:02:33-05",
+      "rows": 2137,
+      "rows_dropped_no_value": 96,
+      "rows_merged": 2233,
+      "rows_raw": 4058,
+      "series_id": "SOFR",
+      "title": "Secured Overnight Financing Rate",
+      "vintage_count": 1890,
+      "windows": [
+        [
+          "1776-07-04",
+          "2025-04-01"
+        ],
+        [
+          "2025-04-02",
+          "9999-12-31"
+        ]
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "bytes": 724,
+      "fetched_at_utc": "2026-10-23T21:48:51.642338+00:00",
+      "path": "build:macro/raw/alfred/series-DTWEXBGS-20261023T214851642338Z.json",
+      "sha256": "96c566ae51d3ae2ed86d26db10b54c8250923d73659a5e6f7092c06b4e19c0c1",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DTWEXBGS"
+    },
+    {
+      "bytes": 5398,
+      "fetched_at_utc": "2026-10-23T21:48:52.932188+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DTWEXBGS-20261023T214852932188Z.json",
+      "sha256": "4a53db3ea26fbd2a07631eb8226cff8cc05d22c6659f01cbdc37ab6a30c3772a",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DTWEXBGS&limit=10000"
+    },
+    {
+      "bytes": 1947724,
+      "fetched_at_utc": "2026-10-23T21:48:53.532339+00:00",
+      "path": "build:macro/raw/alfred/obs-DTWEXBGS-1776-07-04-9999-12-31-o0-20261023T214853532339Z.json",
+      "sha256": "ab560da168fee022659061343a5046259b6fbc9c24a464f6dbdfa0ca812ec77f",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DTWEXBGS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1098,
+      "fetched_at_utc": "2026-10-23T21:48:54.132395+00:00",
+      "path": "build:macro/raw/alfred/series-DFII10-20261023T214854132395Z.json",
+      "sha256": "960f429c4bdf1474d795328302d0d55746df509b6ef2675f0ab54e80aa83208f",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DFII10"
+    },
+    {
+      "bytes": 66694,
+      "fetched_at_utc": "2026-10-23T21:48:54.732455+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DFII10-20261023T214854732455Z.json",
+      "sha256": "758bcfa1322266ba19e0ba00f266b1418e242061f1d9b5a48adad59123703130",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DFII10&limit=10000"
+    },
+    {
+      "bytes": 77562,
+      "fetched_at_utc": "2026-10-23T21:48:55.332515+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII10-1776-07-04-2012-02-16-o0-20261023T214855332515Z.json",
+      "sha256": "0a3c1f8d456adf5d2611be8a83e4894f4876f952bc5ab0af289eda051f62d3d9",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII10&realtime_start=1776-07-04&realtime_end=2012-02-16&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 229984,
+      "fetched_at_utc": "2026-10-23T21:48:56.315013+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII10-2012-02-17-2018-04-09-o0-20261023T214856315013Z.json",
+      "sha256": "2b4f02b062be62a3f25c407e4f0e80d21104e2fb4db63dbf8f8e5321dc1b9d80",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII10&realtime_start=2012-02-17&realtime_end=2018-04-09&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 380350,
+      "fetched_at_utc": "2026-10-23T21:48:56.915080+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII10-2018-04-10-2024-04-25-o0-20261023T214856915080Z.json",
+      "sha256": "edd3b25b3339892104d1b27a258b5db05718fbc2fc97d5ae0a222dedc0279e9f",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII10&realtime_start=2018-04-10&realtime_end=2024-04-25&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 441949,
+      "fetched_at_utc": "2026-10-23T21:48:57.614114+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII10-2024-04-26-9999-12-31-o0-20261023T214857614114Z.json",
+      "sha256": "209a091593072661dcb54f4066187326399910c985ed873d8a5d80c00430816c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII10&realtime_start=2024-04-26&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1096,
+      "fetched_at_utc": "2026-10-23T21:48:58.214197+00:00",
+      "path": "build:macro/raw/alfred/series-DFII5-20261023T214858214197Z.json",
+      "sha256": "ac1e4bd767d7a12408c0483d491b8161324d3ab320cfef2031cd0c576c4ac69e",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DFII5"
+    },
+    {
+      "bytes": 66681,
+      "fetched_at_utc": "2026-10-23T21:48:58.814252+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DFII5-20261023T214858814252Z.json",
+      "sha256": "e0d76a0f0fab03104d0ca177a34f4155b4604a65d8ba567fbbaba19e2d30ae34",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DFII5&limit=10000"
+    },
+    {
+      "bytes": 77889,
+      "fetched_at_utc": "2026-10-23T21:48:59.414451+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII5-1776-07-04-2012-02-16-o0-20261023T214859414451Z.json",
+      "sha256": "5e73dc29571c1a04eba85604c78e96c2e1c7c5b78cb33db612b354efb3a787b7",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII5&realtime_start=1776-07-04&realtime_end=2012-02-16&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 230843,
+      "fetched_at_utc": "2026-10-23T21:49:02.164089+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII5-2012-02-17-2018-04-10-o0-20261023T214902164089Z.json",
+      "sha256": "9154c85b0924c3668ffcf2d3c0ad55e7ba1e2ba3da84b732bf5162efca53a15c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII5&realtime_start=2012-02-17&realtime_end=2018-04-10&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 381351,
+      "fetched_at_utc": "2026-10-23T21:49:02.764276+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII5-2018-04-11-2024-04-28-o0-20261023T214902764276Z.json",
+      "sha256": "4ae94b1d03fb8d8e1204194863a67b1f064bec911f1ce015b9350095c66b63cc",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII5&realtime_start=2018-04-11&realtime_end=2024-04-28&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 442770,
+      "fetched_at_utc": "2026-10-23T21:49:03.364450+00:00",
+      "path": "build:macro/raw/alfred/obs-DFII5-2024-04-29-9999-12-31-o0-20261023T214903364450Z.json",
+      "sha256": "d0925041b4aed22e188385a7dbf3817de099490a543c9a16efb94215d82d3993",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFII5&realtime_start=2024-04-29&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1054,
+      "fetched_at_utc": "2026-10-23T21:49:03.964513+00:00",
+      "path": "build:macro/raw/alfred/series-DGS10-20261023T214903964513Z.json",
+      "sha256": "f7368de33652143d64fa486006345d33780bbbe5fca31d6294668ac1c8e40a19",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DGS10"
+    },
+    {
+      "bytes": 66928,
+      "fetched_at_utc": "2026-10-23T21:49:04.564601+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DGS10-20261023T214904564601Z.json",
+      "sha256": "471674a149405d38db47b23e2db8aed2e1a9da48785760a62ea913e918d377d1",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DGS10&limit=10000"
+    },
+    {
+      "bytes": 75420,
+      "fetched_at_utc": "2026-10-23T21:49:05.164779+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS10-1776-07-04-2012-01-18-o0-20261023T214905164779Z.json",
+      "sha256": "eeb5dac4f98925ff7387b3cd4159ec156dc91abff240e756fd70b6f05ecb3b1c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS10&realtime_start=1776-07-04&realtime_end=2012-01-18&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 227888,
+      "fetched_at_utc": "2026-10-23T21:49:05.764838+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS10-2012-01-19-2018-03-13-o0-20261023T214905764838Z.json",
+      "sha256": "57188ae8acf5cae64468257bb951a6d141d5f3d5e6c7876a23b43e49b398fc51",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS10&realtime_start=2012-01-19&realtime_end=2018-03-13&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 377785,
+      "fetched_at_utc": "2026-10-23T21:49:06.365036+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS10-2018-03-14-2024-04-01-o0-20261023T214906365036Z.json",
+      "sha256": "61f7d1bed7731a04b07a4f3ede76a99c9c079fe5477afd7a6a2093e2823bf2e6",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS10&realtime_start=2018-03-14&realtime_end=2024-04-01&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 441002,
+      "fetched_at_utc": "2026-10-23T21:49:06.965215+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS10-2024-04-02-9999-12-31-o0-20261023T214906965215Z.json",
+      "sha256": "599feeac2200878f3b22deb9e8e7881acdf2c4238cfbc251258a4e5e720afdeb",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS10&realtime_start=2024-04-02&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1076,
+      "fetched_at_utc": "2026-10-23T21:49:07.565363+00:00",
+      "path": "build:macro/raw/alfred/series-DGS2-20261023T214907565363Z.json",
+      "sha256": "3e689fcaa727c5d563bc9a218b88ecff040b777b0d384b2cb8dd5f883001319e",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DGS2"
+    },
+    {
+      "bytes": 66941,
+      "fetched_at_utc": "2026-10-23T21:49:08.165469+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DGS2-20261023T214908165469Z.json",
+      "sha256": "07fac2849b9c5f446229b6d51d9719c2396b81fff84fe143bd1fae95c2dfe6ab",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DGS2&limit=10000"
+    },
+    {
+      "bytes": 75420,
+      "fetched_at_utc": "2026-10-23T21:49:08.765629+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS2-1776-07-04-2012-01-18-o0-20261023T214908765629Z.json",
+      "sha256": "9938fcb80e2779a40cd254db0c3b43c4e3572a125a86de49afec1bd33872641d",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS2&realtime_start=1776-07-04&realtime_end=2012-01-18&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 227790,
+      "fetched_at_utc": "2026-10-23T21:49:09.365690+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS2-2012-01-19-2018-03-12-o0-20261023T214909365690Z.json",
+      "sha256": "0104aabdad4550dc1119fbe06a377f411a9801f7c21d8f22c740cd53b86d2c3c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS2&realtime_start=2012-01-19&realtime_end=2018-03-12&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 377503,
+      "fetched_at_utc": "2026-10-23T21:49:09.965752+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS2-2018-03-13-2024-03-28-o0-20261023T214909965752Z.json",
+      "sha256": "fa648cceb89599525e19e255306adad953258045ffcc06e038dc2da0271ddc6d",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS2&realtime_start=2018-03-13&realtime_end=2024-03-28&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 441013,
+      "fetched_at_utc": "2026-10-23T21:49:10.565812+00:00",
+      "path": "build:macro/raw/alfred/obs-DGS2-2024-03-29-9999-12-31-o0-20261023T214910565812Z.json",
+      "sha256": "d7e87815515b3833f28953d146b572e5261a26b4369976478cc60c6c637180ca",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DGS2&realtime_start=2024-03-29&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1125,
+      "fetched_at_utc": "2026-10-23T21:49:11.165976+00:00",
+      "path": "build:macro/raw/alfred/series-T10Y2Y-20261023T214911165976Z.json",
+      "sha256": "bcfcb8eda91077d54dcf07945e61550d9b014720119b88373bac3c675372e23a",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=T10Y2Y"
+    },
+    {
+      "bytes": 41084,
+      "fetched_at_utc": "2026-10-23T21:49:11.766134+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-T10Y2Y-20261023T214911766134Z.json",
+      "sha256": "05609f8520ddf4ece1b7066dfb095fc808c3c13343dc9022df1aae87f520744b",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=T10Y2Y&limit=10000"
+    },
+    {
+      "bytes": 277168,
+      "fetched_at_utc": "2026-10-23T21:49:12.366282+00:00",
+      "path": "build:macro/raw/alfred/obs-T10Y2Y-1776-07-04-2020-03-09-o0-20261023T214912366282Z.json",
+      "sha256": "da20d3145960a2ef5321b0474958f3d6fa227ffffe235536e476d5d1e1bd8f5e",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10Y2Y&realtime_start=1776-07-04&realtime_end=2020-03-09&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 427206,
+      "fetched_at_utc": "2026-10-23T21:49:12.966404+00:00",
+      "path": "build:macro/raw/alfred/obs-T10Y2Y-2020-03-10-2026-03-24-o0-20261023T214912966404Z.json",
+      "sha256": "eca547d70345da51f81c2a5da6893a546a93b4a1d927365f057307628e892c8a",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10Y2Y&realtime_start=2020-03-10&realtime_end=2026-03-24&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 441516,
+      "fetched_at_utc": "2026-10-23T21:49:13.566613+00:00",
+      "path": "build:macro/raw/alfred/obs-T10Y2Y-2026-03-25-9999-12-31-o0-20261023T214913566613Z.json",
+      "sha256": "acb789ccab2ddb45f6e7eaa8749c968a96f4400188d81fd0139f2be740b22d3f",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10Y2Y&realtime_start=2026-03-25&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1178,
+      "fetched_at_utc": "2026-10-23T21:49:14.232949+00:00",
+      "path": "build:macro/raw/alfred/series-T10YIE-20261023T214914232949Z.json",
+      "sha256": "1f7c7642531b5d5879671a569693d8aa17b80e7d1aeb29757443763859e155d0",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=T10YIE"
+    },
+    {
+      "bytes": 41136,
+      "fetched_at_utc": "2026-10-23T21:49:14.833010+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-T10YIE-20261023T214914833010Z.json",
+      "sha256": "03b77958b15c7da4abd211e935545f79bf24d5394fbefdd13a49fc25d24e58de",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=T10YIE&limit=10000"
+    },
+    {
+      "bytes": 276590,
+      "fetched_at_utc": "2026-10-23T21:49:15.767425+00:00",
+      "path": "build:macro/raw/alfred/obs-T10YIE-1776-07-04-2020-03-02-o0-20261023T214915767425Z.json",
+      "sha256": "f321ce2e92ef6cae2872cfb0208c9a32adf85126f9efe4b433df350fae75c12c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10YIE&realtime_start=1776-07-04&realtime_end=2020-03-02&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 426264,
+      "fetched_at_utc": "2026-10-23T21:49:16.367584+00:00",
+      "path": "build:macro/raw/alfred/obs-T10YIE-2020-03-03-2026-03-18-o0-20261023T214916367584Z.json",
+      "sha256": "fac33128409c12a0dce0dace4fccbe3fa0c6e8e18b6a7bc1b20af556cd13c6b0",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10YIE&realtime_start=2020-03-03&realtime_end=2026-03-18&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 440964,
+      "fetched_at_utc": "2026-10-23T21:49:16.967722+00:00",
+      "path": "build:macro/raw/alfred/obs-T10YIE-2026-03-19-9999-12-31-o0-20261023T214916967722Z.json",
+      "sha256": "b927ff90d4dcfdef7ac8ad70ecc8c02a8b92be64d33208176160af2669d0f659",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=T10YIE&realtime_start=2026-03-19&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 7038,
+      "fetched_at_utc": "2026-10-23T21:49:17.567890+00:00",
+      "path": "build:macro/raw/alfred/series-BAMLH0A0HYM2-20261023T214917567890Z.json",
+      "sha256": "9884de013d755758f43a8b6204900bdc26800889208c4c277c2c9d57d8e0fe89",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=BAMLH0A0HYM2"
+    },
+    {
+      "bytes": 10377,
+      "fetched_at_utc": "2026-10-23T21:49:18.168039+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-BAMLH0A0HYM2-20261023T214918168039Z.json",
+      "sha256": "eb2ef0e1b349b153e3dc8dc93fca710862f54744695e6e6b62bd82089a25fb09",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=BAMLH0A0HYM2&limit=10000"
+    },
+    {
+      "bytes": 75670,
+      "fetched_at_utc": "2026-10-23T21:49:18.768188+00:00",
+      "path": "build:macro/raw/alfred/obs-BAMLH0A0HYM2-1776-07-04-9999-12-31-o0-20261023T214918768188Z.json",
+      "sha256": "688ba8e738aba6189815b4c18ba7ce2ec6b5e2f22a7a45b123b2ac4913b8fa64",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=BAMLH0A0HYM2&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 7178,
+      "fetched_at_utc": "2026-10-23T21:49:19.368272+00:00",
+      "path": "build:macro/raw/alfred/series-BAMLC0A0CM-20261023T214919368272Z.json",
+      "sha256": "c43a52dccdf79d76a173f9d5a516f097a968d555d9c4ba3fedb6869780b69f93",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=BAMLC0A0CM"
+    },
+    {
+      "bytes": 10351,
+      "fetched_at_utc": "2026-10-23T21:49:19.968422+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-BAMLC0A0CM-20261023T214919968422Z.json",
+      "sha256": "addb0a39afd649a64d75dd5a8fcc7ac6e5f11527164bbe29476d9e2437ce474a",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=BAMLC0A0CM&limit=10000"
+    },
+    {
+      "bytes": 75762,
+      "fetched_at_utc": "2026-10-23T21:49:20.568470+00:00",
+      "path": "build:macro/raw/alfred/obs-BAMLC0A0CM-1776-07-04-9999-12-31-o0-20261023T214920568470Z.json",
+      "sha256": "b5cdd0c2d8b6a11f7edfe3f5ea64d6eae39bd08eec9bc48cf31dee386dd32334",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=BAMLC0A0CM&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1746,
+      "fetched_at_utc": "2026-10-23T21:49:21.168622+00:00",
+      "path": "build:macro/raw/alfred/series-BAA10Y-20261023T214921168622Z.json",
+      "sha256": "83175ebc75775a0887da35104e6c3b867c92904357637132d737d2b18905d245",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=BAA10Y"
+    },
+    {
+      "bytes": 39004,
+      "fetched_at_utc": "2026-10-23T21:49:21.768782+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-BAA10Y-20261023T214921768782Z.json",
+      "sha256": "37248c73e14f6c7eae9f4eb21a25bef85913f3aa3aaaecc7d228005f5a55e55a",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=BAA10Y&limit=10000"
+    },
+    {
+      "bytes": 290056,
+      "fetched_at_utc": "2026-10-23T21:49:22.368861+00:00",
+      "path": "build:macro/raw/alfred/obs-BAA10Y-1776-07-04-2020-09-07-o0-20261023T214922368861Z.json",
+      "sha256": "658027cd8d884a244ea29e30468fd96da6734f9bd0763262737b1726f66fe078",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=BAA10Y&realtime_start=1776-07-04&realtime_end=2020-09-07&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 441332,
+      "fetched_at_utc": "2026-10-23T21:49:22.968934+00:00",
+      "path": "build:macro/raw/alfred/obs-BAA10Y-2020-09-08-9999-12-31-o0-20261023T214922968934Z.json",
+      "sha256": "4b0baaa7085a782e9777371e88fa2f33d8de486cca29572fb687b127450a0b94",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=BAA10Y&realtime_start=2020-09-08&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 654,
+      "fetched_at_utc": "2026-10-23T21:49:23.569602+00:00",
+      "path": "build:macro/raw/alfred/series-DCOILWTICO-20261023T214923569602Z.json",
+      "sha256": "cb687f7f41dcce973bf334c9f929917643aaba0ed83498f3b34cd9c0d5734a07",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DCOILWTICO"
+    },
+    {
+      "bytes": 10598,
+      "fetched_at_utc": "2026-10-23T21:49:24.169755+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DCOILWTICO-20261023T214924169755Z.json",
+      "sha256": "65b933080034620c836ab9d6234af90f06e8dff0824313e5b87a8a60246350f4",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DCOILWTICO&limit=10000"
+    },
+    {
+      "bytes": 459887,
+      "fetched_at_utc": "2026-10-23T21:49:24.769915+00:00",
+      "path": "build:macro/raw/alfred/obs-DCOILWTICO-1776-07-04-9999-12-31-o0-20261023T214924769915Z.json",
+      "sha256": "a6d26ae32c5eb8ff7277842f6a114d07f9ca39399d7bf047b1355930400a3b36",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DCOILWTICO&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 621,
+      "fetched_at_utc": "2026-10-23T21:49:25.786907+00:00",
+      "path": "build:macro/raw/alfred/series-DCOILBRENTEU-20261023T214925786907Z.json",
+      "sha256": "dba4286fa7e4e8a0dfa4331fb60a35b26c44fc068c4707b253199c0c10684eb7",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DCOILBRENTEU"
+    },
+    {
+      "bytes": 10624,
+      "fetched_at_utc": "2026-10-23T21:49:26.386972+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DCOILBRENTEU-20261023T214926386972Z.json",
+      "sha256": "e579dadbe2a757b811094c9cafab8ac6ca814c8110ee6525e1cdaf83af32a0b1",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DCOILBRENTEU&limit=10000"
+    },
+    {
+      "bytes": 453225,
+      "fetched_at_utc": "2026-10-23T21:49:26.987168+00:00",
+      "path": "build:macro/raw/alfred/obs-DCOILBRENTEU-1776-07-04-9999-12-31-o0-20261023T214926987168Z.json",
+      "sha256": "e40aadaf1433b0e93dce3a669bd81c136641cacff97bff169b771ba6c47ea385",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DCOILBRENTEU&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 761,
+      "fetched_at_utc": "2026-10-23T21:49:27.587330+00:00",
+      "path": "build:macro/raw/alfred/series-DEXINUS-20261023T214927587330Z.json",
+      "sha256": "aba1c6a83fc6e02bf6cb9bc1ca4abbb419cb9b7a3cc97c9ec501fc105596372a",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DEXINUS"
+    },
+    {
+      "bytes": 8713,
+      "fetched_at_utc": "2026-10-23T21:49:28.187413+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DEXINUS-20261023T214928187413Z.json",
+      "sha256": "a6d96f170f7fb0d7e1066ee42a021f4b7eba57ba14c824cec1f4f4027d8e514a",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DEXINUS&limit=10000"
+    },
+    {
+      "bytes": 450101,
+      "fetched_at_utc": "2026-10-23T21:49:28.787610+00:00",
+      "path": "build:macro/raw/alfred/obs-DEXINUS-1776-07-04-9999-12-31-o0-20261023T214928787610Z.json",
+      "sha256": "566f8bb639f315622ae6e33ff754d84ccf8218bce7579ac1cf7581c9f344e82a",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DEXINUS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 785,
+      "fetched_at_utc": "2026-10-23T21:49:29.387789+00:00",
+      "path": "build:macro/raw/alfred/series-DEXCHUS-20261023T214929387789Z.json",
+      "sha256": "eccacaa3139020d6c4ba1347c6955cdb80439af251f73b52ca9d8bdb3fc24bfd",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DEXCHUS"
+    },
+    {
+      "bytes": 8700,
+      "fetched_at_utc": "2026-10-23T21:49:30.353920+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DEXCHUS-20261023T214930353920Z.json",
+      "sha256": "de2782a84eb34e15ec81cdcdc477e61f5a3505f0537ebd17e4b5e714e6989d17",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DEXCHUS&limit=10000"
+    },
+    {
+      "bytes": 449951,
+      "fetched_at_utc": "2026-10-23T21:49:30.954101+00:00",
+      "path": "build:macro/raw/alfred/obs-DEXCHUS-1776-07-04-9999-12-31-o0-20261023T214930954101Z.json",
+      "sha256": "f1b6892e1b16a928839a0cd130964f589698e89f4320ae6bdf9c55cfae5b2200",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DEXCHUS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 657,
+      "fetched_at_utc": "2026-10-23T21:49:31.607833+00:00",
+      "path": "build:macro/raw/alfred/series-VIXCLS-20261023T214931607833Z.json",
+      "sha256": "8226fb6263ec3640ac5cb67af98237b884dab15d865e54b54cc1359e15db385d",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=VIXCLS"
+    },
+    {
+      "bytes": 51614,
+      "fetched_at_utc": "2026-10-23T21:49:32.207997+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-VIXCLS-20261023T214932207997Z.json",
+      "sha256": "9de3ed58fa4140c1f5a766ec11c070d6fc5517425beecd27ceec81c9e531cd7e",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=VIXCLS&limit=10000"
+    },
+    {
+      "bytes": 199477,
+      "fetched_at_utc": "2026-10-23T21:49:33.807989+00:00",
+      "path": "build:macro/raw/alfred/obs-VIXCLS-1776-07-04-2016-12-20-o0-20261023T214933807989Z.json",
+      "sha256": "c08c311dc18ce8676b9d20e8bd7af9c2fd3288807a7823929150a3a5767795cd",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=VIXCLS&realtime_start=1776-07-04&realtime_end=2016-12-20&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 349800,
+      "fetched_at_utc": "2026-10-23T21:49:41.971976+00:00",
+      "path": "build:macro/raw/alfred/obs-VIXCLS-2016-12-21-2022-12-18-o0-20261023T214941971976Z.json",
+      "sha256": "8ea4960923cb53edf35ad9b6c89ad603dc94cb0647d37383cc697f1eb327ab5c",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=VIXCLS&realtime_start=2016-12-21&realtime_end=2022-12-18&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 445929,
+      "fetched_at_utc": "2026-10-23T21:49:51.463483+00:00",
+      "path": "build:macro/raw/alfred/obs-VIXCLS-2022-12-19-9999-12-31-o0-20261023T214951463483Z.json",
+      "sha256": "fc69e5846b6148dcb7610f230aa6b5207f52547d29c56a0d5220a65b6e865e55",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=VIXCLS&realtime_start=2022-12-19&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 726,
+      "fetched_at_utc": "2026-10-23T21:49:52.467282+00:00",
+      "path": "build:macro/raw/alfred/series-GVZCLS-20261023T214952467282Z.json",
+      "sha256": "1db603279b8f0c6b1cacad48d72e5d01978deebd6beb716eba07f2dc374ae00f",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=GVZCLS"
+    },
+    {
+      "bytes": 40837,
+      "fetched_at_utc": "2026-10-23T21:49:53.067467+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-GVZCLS-20261023T214953067467Z.json",
+      "sha256": "bd946909d2d906475370b6e6fd33be6246190cf5e0026662bc1d21d778830fd4",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=GVZCLS&limit=10000"
+    },
+    {
+      "bytes": 282471,
+      "fetched_at_utc": "2026-10-23T21:49:53.667636+00:00",
+      "path": "build:macro/raw/alfred/obs-GVZCLS-1776-07-04-2020-04-13-o0-20261023T214953667636Z.json",
+      "sha256": "4f7c3cef0b7630dc8a44d9ce26208bc91bc9f6c25238e6a2264049d5595037b1",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=GVZCLS&realtime_start=1776-07-04&realtime_end=2020-04-13&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 432806,
+      "fetched_at_utc": "2026-10-23T21:49:54.267806+00:00",
+      "path": "build:macro/raw/alfred/obs-GVZCLS-2020-04-14-2026-04-15-o0-20261023T214954267806Z.json",
+      "sha256": "cda21019945c802d702d186b99a3f43eef645e486f5d2e9858c9bb04c8ee637f",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=GVZCLS&realtime_start=2020-04-14&realtime_end=2026-04-15&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 445365,
+      "fetched_at_utc": "2026-10-23T21:49:54.867994+00:00",
+      "path": "build:macro/raw/alfred/obs-GVZCLS-2026-04-16-9999-12-31-o0-20261023T214954867994Z.json",
+      "sha256": "1b2d859c5218f6bbb51173cad40607a2a64e7cd6c7eea95b4feca4a8d33ae26b",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=GVZCLS&realtime_start=2026-04-16&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 731,
+      "fetched_at_utc": "2026-10-23T21:49:55.478945+00:00",
+      "path": "build:macro/raw/alfred/series-OVXCLS-20261023T214955478945Z.json",
+      "sha256": "1f564e551932eeeddfbccef0918ea55dfc07aeac141229a84bdf89cba5b50e55",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=OVXCLS"
+    },
+    {
+      "bytes": 40837,
+      "fetched_at_utc": "2026-10-23T21:49:56.079014+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-OVXCLS-20261023T214956079014Z.json",
+      "sha256": "bd946909d2d906475370b6e6fd33be6246190cf5e0026662bc1d21d778830fd4",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=OVXCLS&limit=10000"
+    },
+    {
+      "bytes": 282535,
+      "fetched_at_utc": "2026-10-23T21:49:56.679080+00:00",
+      "path": "build:macro/raw/alfred/obs-OVXCLS-1776-07-04-2020-04-13-o0-20261023T214956679080Z.json",
+      "sha256": "559616824fdf732abd2e80a86a993363aca140e7760f714cac281cf5b6eb2cc0",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=OVXCLS&realtime_start=1776-07-04&realtime_end=2020-04-13&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 432874,
+      "fetched_at_utc": "2026-10-23T21:49:57.279232+00:00",
+      "path": "build:macro/raw/alfred/obs-OVXCLS-2020-04-14-2026-04-15-o0-20261023T214957279232Z.json",
+      "sha256": "b3569c81f65eaa101aadfbc3f90a0fe36a0c85072b75f8d273467128455b5f81",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=OVXCLS&realtime_start=2020-04-14&realtime_end=2026-04-15&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 445432,
+      "fetched_at_utc": "2026-10-23T21:49:57.879382+00:00",
+      "path": "build:macro/raw/alfred/obs-OVXCLS-2026-04-16-9999-12-31-o0-20261023T214957879382Z.json",
+      "sha256": "03299e0353c987bba49148ddefe38c5116497bb52c8de3eee5f08491669b4814",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=OVXCLS&realtime_start=2026-04-16&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 745,
+      "fetched_at_utc": "2026-10-23T21:49:58.479542+00:00",
+      "path": "build:macro/raw/alfred/series-VXSLVCLS-20261023T214958479542Z.json",
+      "sha256": "5c7bb7d6436ab817807f38025b07cf0e77e2e2d267447e4d14d8196d33de30fa",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=VXSLVCLS"
+    },
+    {
+      "bytes": 25666,
+      "fetched_at_utc": "2026-10-23T21:49:59.079749+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-VXSLVCLS-20261023T214959079749Z.json",
+      "sha256": "156fc5cc317b2615e338964363f5778a74b4fed534ab452bd746aa826a8035ad",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=VXSLVCLS&limit=10000"
+    },
+    {
+      "bytes": 227280,
+      "fetched_at_utc": "2026-10-23T21:49:59.679904+00:00",
+      "path": "build:macro/raw/alfred/obs-VXSLVCLS-1776-07-04-2020-04-12-o0-20261023T214959679904Z.json",
+      "sha256": "d255801a1feaec910dfc99f9c37228edb0bc1a0770ffce337be9dafad4f652ab",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=VXSLVCLS&realtime_start=1776-07-04&realtime_end=2020-04-12&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 273437,
+      "fetched_at_utc": "2026-10-23T21:50:00.280070+00:00",
+      "path": "build:macro/raw/alfred/obs-VXSLVCLS-2020-04-13-9999-12-31-o0-20261023T215000280070Z.json",
+      "sha256": "329de21658886f0cfec549683c8001a89760649980c29a62ce5308721eb579e1",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=VXSLVCLS&realtime_start=2020-04-13&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 2179,
+      "fetched_at_utc": "2026-10-23T21:50:01.143946+00:00",
+      "path": "build:macro/raw/alfred/series-PAYEMS-20261023T215001143946Z.json",
+      "sha256": "8b6f41b8aaa52416af112703cd5ca15040a7022f90b165895a40264faeb18d4e",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=PAYEMS"
+    },
+    {
+      "bytes": 11339,
+      "fetched_at_utc": "2026-10-23T21:50:01.744114+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-PAYEMS-20261023T215001744114Z.json",
+      "sha256": "6e3596cee8d13ce581009b84f980ad727c8a77aa4b381f03804b36371f6d85c6",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=PAYEMS&limit=10000"
+    },
+    {
+      "bytes": 203492,
+      "fetched_at_utc": "2026-10-23T21:50:02.344280+00:00",
+      "path": "build:macro/raw/alfred/obs-PAYEMS-1776-07-04-9999-12-31-o0-20261023T215002344280Z.json",
+      "sha256": "e7bdb7ee70d71ab1753d5b74bd54a2cb39859294084673c46f8197c5b11a10ac",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=PAYEMS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1036,
+      "fetched_at_utc": "2026-10-23T21:50:02.944447+00:00",
+      "path": "build:macro/raw/alfred/series-UNRATE-20261023T215002944447Z.json",
+      "sha256": "6ca12751e375dd31f11d9eecadec7991dc38aa717f44d1d698fd1f5101d0523e",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=UNRATE"
+    },
+    {
+      "bytes": 10559,
+      "fetched_at_utc": "2026-10-23T21:50:03.617057+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-UNRATE-20261023T215003617057Z.json",
+      "sha256": "74f2852f79fd0a4af723e566b3f92cc260883172be0d2f9b6d0b611172c44c47",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=UNRATE&limit=10000"
+    },
+    {
+      "bytes": 37045,
+      "fetched_at_utc": "2026-10-23T21:50:04.718610+00:00",
+      "path": "build:macro/raw/alfred/obs-UNRATE-1776-07-04-9999-12-31-o0-20261023T215004718610Z.json",
+      "sha256": "f55be0d7bdb9f2e396eec987d6e4c3416c45ec2e5647209cdaf11491f4bd867e",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=UNRATE&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 2391,
+      "fetched_at_utc": "2026-10-23T21:50:05.996736+00:00",
+      "path": "build:macro/raw/alfred/series-CES0500000003-20261023T215005996736Z.json",
+      "sha256": "52b93ac04efb69171eeb638456cffd0946d2524628b77a0ab2d305a94c4088b0",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=CES0500000003"
+    },
+    {
+      "bytes": 2590,
+      "fetched_at_utc": "2026-10-23T21:50:06.596927+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-CES0500000003-20261023T215006596927Z.json",
+      "sha256": "bb313859a40908f1c24d386271ea28edae53d12cce2de69e9c67df0483ffc907",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=CES0500000003&limit=10000"
+    },
+    {
+      "bytes": 126893,
+      "fetched_at_utc": "2026-10-23T21:50:08.041879+00:00",
+      "path": "build:macro/raw/alfred/obs-CES0500000003-1776-07-04-9999-12-31-o0-20261023T215008041879Z.json",
+      "sha256": "38905de708009807a751bd47c86eb721db4d9bd76c120f9112a633b001cab18f",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=CES0500000003&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 3158,
+      "fetched_at_utc": "2026-10-23T21:50:08.642042+00:00",
+      "path": "build:macro/raw/alfred/series-CPIAUCSL-20261023T215008642042Z.json",
+      "sha256": "d2975b544cad765201d9f04be2d7ff8113e92bfdb09dbe0fb8754e7f45ce7198",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=CPIAUCSL"
+    },
+    {
+      "bytes": 8869,
+      "fetched_at_utc": "2026-10-23T21:50:09.548915+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-CPIAUCSL-20261023T215009548915Z.json",
+      "sha256": "90b50754c74d09045384415ce8bec621b179e6a35b48efe4304f043c1f5ec012",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=CPIAUCSL&limit=10000"
+    },
+    {
+      "bytes": 109443,
+      "fetched_at_utc": "2026-10-23T21:50:10.149078+00:00",
+      "path": "build:macro/raw/alfred/obs-CPIAUCSL-1776-07-04-9999-12-31-o0-20261023T215010149078Z.json",
+      "sha256": "b15fa03ad353bc2c25a4ea90cc12503d83809c4c05b492419aa88fc0637c7779",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=CPIAUCSL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1127,
+      "fetched_at_utc": "2026-10-23T21:50:10.749231+00:00",
+      "path": "build:macro/raw/alfred/series-CPILFESL-20261023T215010749231Z.json",
+      "sha256": "19a9b6795543cf09002fedbf666729e65b79d8d81da7cb6931461c140b97a9a9",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=CPILFESL"
+    },
+    {
+      "bytes": 5060,
+      "fetched_at_utc": "2026-10-23T21:50:11.349387+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-CPILFESL-20261023T215011349387Z.json",
+      "sha256": "e9f07fdb05f3645abd11502003c6aabd4ee1db3433e50c1514d1587031dfeefd",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=CPILFESL&limit=10000"
+    },
+    {
+      "bytes": 108659,
+      "fetched_at_utc": "2026-10-23T21:50:11.949559+00:00",
+      "path": "build:macro/raw/alfred/obs-CPILFESL-1776-07-04-9999-12-31-o0-20261023T215011949559Z.json",
+      "sha256": "f68b3c71350c9d5b08f0e7b40e0fdc9b8618c89a7d54ec5da3753b54b0e34790",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=CPILFESL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 508,
+      "fetched_at_utc": "2026-10-23T21:50:12.626801+00:00",
+      "path": "build:macro/raw/alfred/series-PPIFIS-20261023T215012626801Z.json",
+      "sha256": "077160ee354c5063ae9dc284c3b5ae355f0084ba9f8c4dba88b35e5bd4952813",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=PPIFIS"
+    },
+    {
+      "bytes": 2213,
+      "fetched_at_utc": "2026-10-23T21:50:13.302982+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-PPIFIS-20261023T215013302982Z.json",
+      "sha256": "2233a524a1d1a262c3fe561760c792e434ff3f42669250873cea2a55f58c0590",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=PPIFIS&limit=10000"
+    },
+    {
+      "bytes": 78609,
+      "fetched_at_utc": "2026-10-23T21:50:13.903120+00:00",
+      "path": "build:macro/raw/alfred/obs-PPIFIS-1776-07-04-9999-12-31-o0-20261023T215013903120Z.json",
+      "sha256": "2c34b69e38e3b2ce2f2b11edd6d5241a4498a356d5eabaa11804e0a01a77ee03",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=PPIFIS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1579,
+      "fetched_at_utc": "2026-10-23T21:50:14.656278+00:00",
+      "path": "build:macro/raw/alfred/series-JTSJOL-20261023T215014656278Z.json",
+      "sha256": "09c346eac1fbe838a8edfeda3b4ec524cfc7891085ccc44dd994b66dcca85824",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=JTSJOL"
+    },
+    {
+      "bytes": 2681,
+      "fetched_at_utc": "2026-10-23T21:50:15.256448+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-JTSJOL-20261023T215015256448Z.json",
+      "sha256": "2b00ca6ca0e97680f3db154bb09725e23c1ef6194c5afb49338f80024c06410e",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=JTSJOL&limit=10000"
+    },
+    {
+      "bytes": 144611,
+      "fetched_at_utc": "2026-10-23T21:50:15.856529+00:00",
+      "path": "build:macro/raw/alfred/obs-JTSJOL-1776-07-04-9999-12-31-o0-20261023T215015856529Z.json",
+      "sha256": "aa3ce2ad16b0081d991c96e0b16608ed333b07535194176604db5d0d2f641bd7",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=JTSJOL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 670,
+      "fetched_at_utc": "2026-10-23T21:50:16.456588+00:00",
+      "path": "build:macro/raw/alfred/series-ICSA-20261023T215016456588Z.json",
+      "sha256": "4cc315b494fd4de31fb95873c862a224789441d1701bcd346628e1c939a1c14e",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=ICSA"
+    },
+    {
+      "bytes": 11898,
+      "fetched_at_utc": "2026-10-23T21:50:17.056634+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-ICSA-20261023T215017056634Z.json",
+      "sha256": "5b942d99bb0487a26fb91106bce4e39aecbe06fe509810a33e9ed94ad85a5ded",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=ICSA&limit=10000"
+    },
+    {
+      "bytes": 504075,
+      "fetched_at_utc": "2026-10-23T21:50:17.656795+00:00",
+      "path": "build:macro/raw/alfred/obs-ICSA-1776-07-04-9999-12-31-o0-20261023T215017656795Z.json",
+      "sha256": "dd2e775ce732aa25c8668f0cec68cab1e074eac17b7b511f609275f23a8dbb05",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=ICSA&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 744,
+      "fetched_at_utc": "2026-10-23T21:50:18.256950+00:00",
+      "path": "build:macro/raw/alfred/series-INDPRO-20261023T215018256950Z.json",
+      "sha256": "4d8bc2030bdd0272c64776b7bb6249722099812c65a39f3787d5873579722eea",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=INDPRO"
+    },
+    {
+      "bytes": 16072,
+      "fetched_at_utc": "2026-10-23T21:50:18.857111+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-INDPRO-20261023T215018857111Z.json",
+      "sha256": "0f0a7dc32c3a16392845e8e4616383ba92c86fbb2eb11277c548882a769ae8cb",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=INDPRO&limit=10000"
+    },
+    {
+      "bytes": 276684,
+      "fetched_at_utc": "2026-10-23T21:50:19.457272+00:00",
+      "path": "build:macro/raw/alfred/obs-INDPRO-1776-07-04-9999-12-31-o0-20261023T215019457272Z.json",
+      "sha256": "bb5b8d1d45f6843ed902b46496639d5e2f163892aa234ba9d3180019dfb85df3",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=INDPRO&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 4435,
+      "fetched_at_utc": "2026-10-23T21:50:20.057348+00:00",
+      "path": "build:macro/raw/alfred/series-FEDFUNDS-20261023T215020057348Z.json",
+      "sha256": "ef32c580af565bf03eda26660d27c3939367e572091d3d6221af5f21a76f4043",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=FEDFUNDS"
+    },
+    {
+      "bytes": 4904,
+      "fetched_at_utc": "2026-10-23T21:50:21.002810+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-FEDFUNDS-20261023T215021002810Z.json",
+      "sha256": "337522807845f53c590213e16837f6e670ee9ed4cc16d2bda0446f7867b41d34",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=FEDFUNDS&limit=10000"
+    },
+    {
+      "bytes": 20701,
+      "fetched_at_utc": "2026-10-23T21:50:21.653093+00:00",
+      "path": "build:macro/raw/alfred/obs-FEDFUNDS-1776-07-04-9999-12-31-o0-20261023T215021653093Z.json",
+      "sha256": "7984c27a3ec34b2d4400b9c28244425a29b88ca0d429547f3712802931f9d4c9",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=FEDFUNDS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 678,
+      "fetched_at_utc": "2026-10-23T21:50:22.253249+00:00",
+      "path": "build:macro/raw/alfred/series-DFEDTARU-20261023T215022253249Z.json",
+      "sha256": "5c233917b34ecb8eec16ad684661579a86112201198401fa40848a4d695f99f5",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DFEDTARU"
+    },
+    {
+      "bytes": 49794,
+      "fetched_at_utc": "2026-10-23T21:50:23.176898+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DFEDTARU-20261023T215023176898Z.json",
+      "sha256": "a9cd3c567b5b722ea80c8cadb29ad542da4d2d0983d1b1c3c2b4ae3fbeacfe5c",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DFEDTARU&limit=10000"
+    },
+    {
+      "bytes": 389207,
+      "fetched_at_utc": "2026-10-23T21:50:23.777085+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARU-1776-07-04-2020-03-18-o0-20261023T215023777085Z.json",
+      "sha256": "d6795752674cbd08d3044e7a50b8601b7884a1c847941f1af1c71fd53254795d",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARU&realtime_start=1776-07-04&realtime_end=2020-03-18&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 540352,
+      "fetched_at_utc": "2026-10-23T21:50:24.381006+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARU-2020-03-19-2024-07-25-o0-20261023T215024381006Z.json",
+      "sha256": "cbc1b9c7d6a91b0d6122f6f9621263fb302f75d1cf059b9df1325d37eff5bd1d",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARU&realtime_start=2020-03-19&realtime_end=2024-07-25&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 618099,
+      "fetched_at_utc": "2026-10-23T21:50:25.126786+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARU-2024-07-26-9999-12-31-o0-20261023T215025126786Z.json",
+      "sha256": "087b1152261cb45eabb65befefdb6f6d7e9d1a9ad83476de0b593c127e95e0b7",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARU&realtime_start=2024-07-26&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 678,
+      "fetched_at_utc": "2026-10-23T21:50:25.727023+00:00",
+      "path": "build:macro/raw/alfred/series-DFEDTARL-20261023T215025727023Z.json",
+      "sha256": "c5e8ef1f02f120d4d940d7f2d8270bb103d9b9f2aeb5c8231226831842843d88",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=DFEDTARL"
+    },
+    {
+      "bytes": 67045,
+      "fetched_at_utc": "2026-10-23T21:50:26.776620+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-DFEDTARL-20261023T215026776620Z.json",
+      "sha256": "a8455cd32246847ac71eb3adaf936be94ff5d27a7824a93c35d5eaabe452fae0",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=DFEDTARL&limit=10000"
+    },
+    {
+      "bytes": 205569,
+      "fetched_at_utc": "2026-10-23T21:50:27.466673+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARL-1776-07-04-2014-12-02-o0-20261023T215027466673Z.json",
+      "sha256": "0df5ec8df8b67ac6b452c8f856652223e79e155585e3cdc1d11fc91989697ccc",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARL&realtime_start=1776-07-04&realtime_end=2014-12-02&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 412911,
+      "fetched_at_utc": "2026-10-23T21:50:28.066872+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARL-2014-12-03-2020-11-23-o0-20261023T215028066872Z.json",
+      "sha256": "8f850757e4ed46d59c3ecaae027cdc548c472ae3d855081a656834a6a3d5db64",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARL&realtime_start=2014-12-03&realtime_end=2020-11-23&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 556741,
+      "fetched_at_utc": "2026-10-23T21:50:32.811674+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARL-2020-11-24-2025-01-14-o0-20261023T215032811674Z.json",
+      "sha256": "303b92d6179546ecaa812261d3ebeb403f05d4218310510ed6f5c9f22cc6db0b",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARL&realtime_start=2020-11-24&realtime_end=2025-01-14&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 617918,
+      "fetched_at_utc": "2026-10-23T21:50:39.252141+00:00",
+      "path": "build:macro/raw/alfred/obs-DFEDTARL-2025-01-15-9999-12-31-o0-20261023T215039252141Z.json",
+      "sha256": "76cc76c8e85eb8a54c29bb46aeb3a2bbfc7c2f9257eb8452469a7d78f043dfc5",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=DFEDTARL&realtime_start=2025-01-15&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 1166,
+      "fetched_at_utc": "2026-10-23T21:50:39.852312+00:00",
+      "path": "build:macro/raw/alfred/series-EFFR-20261023T215039852312Z.json",
+      "sha256": "0b1fa405ac1d0bc58071932fbf6b72f62b38625c484a0263527fc84c16538ed7",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=EFFR"
+    },
+    {
+      "bytes": 34909,
+      "fetched_at_utc": "2026-10-23T21:50:40.559650+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-EFFR-20261023T215040559650Z.json",
+      "sha256": "b18ddffc081d25383020c391834158ec9865c85c5ac629af155c9d6a7197a352",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=EFFR&limit=10000"
+    },
+    {
+      "bytes": 325110,
+      "fetched_at_utc": "2026-10-23T21:50:41.159745+00:00",
+      "path": "build:macro/raw/alfred/obs-EFFR-1776-07-04-2022-02-17-o0-20261023T215041159745Z.json",
+      "sha256": "a0428e800c6064f01b10e639e1c26d51dfdc1260a7d5951733008c3a7426dd27",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=EFFR&realtime_start=1776-07-04&realtime_end=2022-02-17&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 440861,
+      "fetched_at_utc": "2026-10-23T21:50:41.759802+00:00",
+      "path": "build:macro/raw/alfred/obs-EFFR-2022-02-18-9999-12-31-o0-20261023T215041759802Z.json",
+      "sha256": "1ce4248b4610526594beaf4da2e2b8b399e63d5cb07130c44720d8abbcd73a05",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=EFFR&realtime_start=2022-02-18&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 466,
+      "fetched_at_utc": "2026-10-23T21:50:42.359916+00:00",
+      "path": "build:macro/raw/alfred/series-SOFR-20261023T215042359916Z.json",
+      "sha256": "534e7d9d4d589cb156ebded5a97d6c9deca183ab57bce9eae417b63e43780179",
+      "url": "https://api.stlouisfed.org/fred/series?api_key=REDACTED&file_type=json&series_id=SOFR"
+    },
+    {
+      "bytes": 24730,
+      "fetched_at_utc": "2026-10-23T21:50:42.960084+00:00",
+      "path": "build:macro/raw/alfred/vintagedates-SOFR-20261023T215042960084Z.json",
+      "sha256": "0b0883dfbc2ddc8bb34e8a51fdfde2ac601fd85788f651eeebb90c706b434870",
+      "url": "https://api.stlouisfed.org/fred/series/vintagedates?api_key=REDACTED&file_type=json&series_id=SOFR&limit=10000"
+    },
+    {
+      "bytes": 173178,
+      "fetched_at_utc": "2026-10-23T21:50:43.560247+00:00",
+      "path": "build:macro/raw/alfred/obs-SOFR-1776-07-04-2025-04-01-o0-20261023T215043560247Z.json",
+      "sha256": "a96bb532be1d491ee7d1901e033cb8d3e616eef87bb39825225396820e5019cb",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=SOFR&realtime_start=1776-07-04&realtime_end=2025-04-01&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 211849,
+      "fetched_at_utc": "2026-10-23T21:50:44.160405+00:00",
+      "path": "build:macro/raw/alfred/obs-SOFR-2025-04-02-9999-12-31-o0-20261023T215044160405Z.json",
+      "sha256": "91a1913413d80295b312f521d60253a083d79e6142a1610a33bd14ce20ba3f8e",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=SOFR&realtime_start=2025-04-02&realtime_end=9999-12-31&output_type=1&observation_start=2009-01-01&limit=100000&offset=0&sort_order=asc"
+    },
+    {
+      "bytes": 565,
+      "fetched_at_utc": "2026-10-23T21:50:44.760566+00:00",
+      "path": "build:macro/raw/alfred/proof-PAYEMS-asof-2026-09-03-20261023T215044760566Z.json",
+      "sha256": "4b5522ac67b4f861de994c4526acc3db7022faa478dc3b4c1f14f32c333ba4d5",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=PAYEMS&realtime_start=2026-09-03&realtime_end=2026-09-03&observation_start=2026-05-01"
+    },
+    {
+      "bytes": 662,
+      "fetched_at_utc": "2026-10-23T21:50:45.930914+00:00",
+      "path": "build:macro/raw/alfred/proof-PAYEMS-asof-2026-09-04-20261023T215045930914Z.json",
+      "sha256": "de1d9b9162bdab5186c5c1fbec237de4cb5e786e4b5f36be75d3257fbed2f322",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=PAYEMS&realtime_start=2026-09-04&realtime_end=2026-09-04&observation_start=2026-05-01"
+    },
+    {
+      "bytes": 762,
+      "fetched_at_utc": "2026-10-23T21:50:46.531074+00:00",
+      "path": "build:macro/raw/alfred/proof-PAYEMS-initial-release-20261023T215046531074Z.json",
+      "sha256": "2e8268bc3229d836fe567d5df217b51ee484539d0deb3c5d2f8e09843cd946f9",
+      "url": "https://api.stlouisfed.org/fred/series/observations?api_key=REDACTED&file_type=json&series_id=PAYEMS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=4&observation_start=2026-05-01"
+    }
+  ]
+}

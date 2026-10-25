@@ -1,0 +1,4587 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:07.269140+00:00",
+    "command": "python -m swing_dataset.pack build --stage quotes --source comex_futures",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 57944,
+      "published": 22881
+    },
+    "rule": "Rows with contractEvidence.observedActiveContract.observedAt (from 2026-07-23): exact, fetched_utc = observedAt. Earlier rows: published, available_utc = regularMarketTime (Yahoo's delayed feed shows a trade roughly 10-15 minutes after it prints, so true availability is later than this bound)."
+  },
+  "columns": [
+    {
+      "meaning": "feed observation clock for the row (raw ts unless a capture clock exists in the payload; see rule)",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "availability lower bound: = fetched_utc for exact rows, source-stated instant for published rows, null for unvintaged",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact | published | unvintaged (see README.md, Clock quality)",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "comex | nymex",
+      "name": "venue",
+      "type": "string"
+    },
+    {
+      "meaning": "Yahoo continuous ticker (GC=F, SI=F, HG=F, CL=F)",
+      "name": "symbol",
+      "type": "string"
+    },
+    {
+      "meaning": "delayed",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "meaning": "regularMarketPrice, USD (gold/silver per oz, copper per lb, crude per bbl)",
+      "name": "price",
+      "type": "double"
+    },
+    {
+      "meaning": "Yahoo regularMarketTime = raw ts (provider event time of a delayed feed)",
+      "name": "regular_market_time_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "Yahoo shortName",
+      "name": "short_name",
+      "type": "string"
+    },
+    {
+      "meaning": "Yahoo exchange label",
+      "name": "exchange",
+      "type": "string"
+    },
+    {
+      "meaning": "Yahoo instrumentType",
+      "name": "instrument_type",
+      "type": "string"
+    },
+    {
+      "meaning": "Yahoo previousClose",
+      "name": "previous_close",
+      "type": "double"
+    },
+    {
+      "meaning": "Yahoo regularMarketVolume",
+      "name": "regular_market_volume",
+      "type": "double"
+    },
+    {
+      "meaning": "observedActiveContract.symbol (dated contract, e.g. GCZ26.CMX)",
+      "name": "active_contract_symbol",
+      "type": "string"
+    },
+    {
+      "meaning": "observedActiveContract.contractId",
+      "name": "active_contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "observedActiveContract.contractMonth",
+      "name": "active_contract_month",
+      "type": "string"
+    },
+    {
+      "meaning": "continuousAlias.advertisedContractMonth",
+      "name": "advertised_contract_month",
+      "type": "string"
+    },
+    {
+      "meaning": "observedActiveContract.providerMarketTime",
+      "name": "provider_market_time_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "observedActiveContract.observedAt: the feed's capture clock (from 2026-07-23)",
+      "name": "observed_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "observedActiveContract.verification",
+      "name": "verification",
+      "type": "string"
+    },
+    {
+      "meaning": "UTC day the feed appended the row (raw file name); availability is never later than the end of this day",
+      "name": "raw_file_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "residual raw keys with no typed column (JSON object) or null",
+      "name": "extra_json",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:10:11.622086+00:00",
+    "start": "2026-07-10T07:47:35+00:00"
+  },
+  "dated_contract_duplicates_dropped": 0,
+  "dedup_rule": "exact duplicates share (ts, sha256 of scrubbed raw + asset/venue/price/currency/status/source); the first occurrence is kept",
+  "duplicates_dropped": 5994,
+  "emitted_rows": 80825,
+  "name": "comex_delayed_quotes",
+  "notes": [
+    "Native unit: USD (gold/silver per troy oz, copper per lb, crude per bbl).",
+    "Delayed source by construction.",
+    "extra_json keys seen: adapterSource (10), price (10), sourceEventTs (10), ticker (10), wsQuote (1)"
+  ],
+  "origins": {},
+  "per_file": [
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/copper/2026-07-15.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9,
+      "path": "feed-capture:comex_futures/copper/2026-07-16.csv",
+      "raw_rows": 9,
+      "reading_rows": 9
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/copper/2026-07-21.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/copper/2026-07-27.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:comex_futures/copper/2026-07-28.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/copper/2026-07-29.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/copper/2026-07-30.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/copper/2026-07-31.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:comex_futures/copper/2026-08-03.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/copper/2026-08-04.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7,
+      "path": "feed-capture:comex_futures/copper/2026-08-05.csv",
+      "raw_rows": 7,
+      "reading_rows": 7
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8,
+      "path": "feed-capture:comex_futures/copper/2026-08-06.csv",
+      "raw_rows": 8,
+      "reading_rows": 8
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/copper/2026-08-11.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/copper/2026-08-12.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/copper/2026-08-13.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9,
+      "path": "feed-capture:comex_futures/copper/2026-08-14.csv",
+      "raw_rows": 9,
+      "reading_rows": 9
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/copper/2026-08-18.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/copper/2026-08-20.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 55,
+      "path": "feed-capture:comex_futures/copper/2026-08-21.csv",
+      "raw_rows": 55,
+      "reading_rows": 55
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:comex_futures/copper/2026-08-23.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 55,
+      "path": "feed-capture:comex_futures/copper/2026-08-24.csv",
+      "raw_rows": 55,
+      "reading_rows": 55
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 59,
+      "path": "feed-capture:comex_futures/copper/2026-08-25.csv",
+      "raw_rows": 59,
+      "reading_rows": 59
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 61,
+      "path": "feed-capture:comex_futures/copper/2026-08-26.csv",
+      "raw_rows": 61,
+      "reading_rows": 61
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 853,
+      "path": "feed-capture:comex_futures/copper/2026-08-27.csv",
+      "raw_rows": 853,
+      "reading_rows": 853
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 30,
+      "path": "feed-capture:comex_futures/copper/2026-08-28.csv",
+      "raw_rows": 30,
+      "reading_rows": 30
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/copper/2026-08-30.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 68,
+      "path": "feed-capture:comex_futures/copper/2026-08-31.csv",
+      "raw_rows": 68,
+      "reading_rows": 68
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 98,
+      "path": "feed-capture:comex_futures/copper/2026-09-01.csv",
+      "raw_rows": 98,
+      "reading_rows": 98
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 97,
+      "path": "feed-capture:comex_futures/copper/2026-09-02.csv",
+      "raw_rows": 97,
+      "reading_rows": 97
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 248,
+      "path": "feed-capture:comex_futures/copper/2026-09-03.csv",
+      "raw_rows": 248,
+      "reading_rows": 248
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 134,
+      "path": "feed-capture:comex_futures/copper/2026-09-04.csv",
+      "raw_rows": 134,
+      "reading_rows": 134
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:comex_futures/copper/2026-09-06.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 106,
+      "path": "feed-capture:comex_futures/copper/2026-09-07.csv",
+      "raw_rows": 106,
+      "reading_rows": 106
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 585,
+      "path": "feed-capture:comex_futures/copper/2026-09-08.csv",
+      "raw_rows": 585,
+      "reading_rows": 585
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 260,
+      "path": "feed-capture:comex_futures/copper/2026-09-09.csv",
+      "raw_rows": 260,
+      "reading_rows": 260
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 24,
+      "path": "feed-capture:comex_futures/copper/2026-09-10.csv",
+      "raw_rows": 24,
+      "reading_rows": 24
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 24,
+      "path": "feed-capture:comex_futures/copper/2026-09-11.csv",
+      "raw_rows": 24,
+      "reading_rows": 24
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/copper/2026-09-13.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 26,
+      "path": "feed-capture:comex_futures/copper/2026-09-14.csv",
+      "raw_rows": 26,
+      "reading_rows": 26
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 34,
+      "path": "feed-capture:comex_futures/copper/2026-09-15.csv",
+      "raw_rows": 34,
+      "reading_rows": 34
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 31,
+      "path": "feed-capture:comex_futures/copper/2026-09-16.csv",
+      "raw_rows": 31,
+      "reading_rows": 31
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 37,
+      "path": "feed-capture:comex_futures/copper/2026-09-17.csv",
+      "raw_rows": 37,
+      "reading_rows": 37
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 94,
+      "path": "feed-capture:comex_futures/copper/2026-09-18.csv",
+      "raw_rows": 94,
+      "reading_rows": 94
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8,
+      "path": "feed-capture:comex_futures/copper/2026-09-20.csv",
+      "raw_rows": 8,
+      "reading_rows": 8
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 197,
+      "path": "feed-capture:comex_futures/copper/2026-09-21.csv",
+      "raw_rows": 197,
+      "reading_rows": 197
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 153,
+      "path": "feed-capture:comex_futures/copper/2026-09-22.csv",
+      "raw_rows": 153,
+      "reading_rows": 153
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 76,
+      "path": "feed-capture:comex_futures/copper/2026-09-23.csv",
+      "raw_rows": 76,
+      "reading_rows": 76
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 114,
+      "path": "feed-capture:comex_futures/copper/2026-09-24.csv",
+      "raw_rows": 114,
+      "reading_rows": 114
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 135,
+      "path": "feed-capture:comex_futures/copper/2026-09-25.csv",
+      "raw_rows": 135,
+      "reading_rows": 135
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:comex_futures/copper/2026-09-27.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 195,
+      "path": "feed-capture:comex_futures/copper/2026-09-28.csv",
+      "raw_rows": 195,
+      "reading_rows": 195
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 220,
+      "path": "feed-capture:comex_futures/copper/2026-09-29.csv",
+      "raw_rows": 220,
+      "reading_rows": 220
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 217,
+      "path": "feed-capture:comex_futures/copper/2026-09-30.csv",
+      "raw_rows": 217,
+      "reading_rows": 217
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 43,
+      "path": "feed-capture:comex_futures/copper/2026-10-01.csv",
+      "raw_rows": 43,
+      "reading_rows": 43
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 471,
+      "path": "feed-capture:comex_futures/copper/2026-10-02.csv",
+      "raw_rows": 471,
+      "reading_rows": 471
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/copper/2026-10-04.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 30,
+      "path": "feed-capture:comex_futures/copper/2026-10-05.csv",
+      "raw_rows": 30,
+      "reading_rows": 30
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 27,
+      "path": "feed-capture:comex_futures/copper/2026-10-06.csv",
+      "raw_rows": 27,
+      "reading_rows": 27
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 26,
+      "path": "feed-capture:comex_futures/copper/2026-10-07.csv",
+      "raw_rows": 26,
+      "reading_rows": 26
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 22,
+      "path": "feed-capture:comex_futures/copper/2026-10-08.csv",
+      "raw_rows": 22,
+      "reading_rows": 22
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 38,
+      "path": "feed-capture:comex_futures/copper/2026-10-09.csv",
+      "raw_rows": 38,
+      "reading_rows": 38
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 72,
+      "path": "feed-capture:comex_futures/copper/2026-10-11.csv",
+      "raw_rows": 72,
+      "reading_rows": 72
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1190,
+      "path": "feed-capture:comex_futures/copper/2026-10-12.csv",
+      "raw_rows": 1190,
+      "reading_rows": 1190
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1179,
+      "path": "feed-capture:comex_futures/copper/2026-10-13.csv",
+      "raw_rows": 1179,
+      "reading_rows": 1179
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1158,
+      "path": "feed-capture:comex_futures/copper/2026-10-14.csv",
+      "raw_rows": 1158,
+      "reading_rows": 1158
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 26,
+      "path": "feed-capture:comex_futures/copper/2026-10-15.csv",
+      "raw_rows": 26,
+      "reading_rows": 26
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/copper/2026-10-16.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/copper/2026-10-18.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 31,
+      "path": "feed-capture:comex_futures/copper/2026-10-19.csv",
+      "raw_rows": 31,
+      "reading_rows": 31
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 34,
+      "path": "feed-capture:comex_futures/copper/2026-10-20.csv",
+      "raw_rows": 34,
+      "reading_rows": 34
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 15,
+      "path": "feed-capture:comex_futures/copper/2026-10-21.csv",
+      "raw_rows": 15,
+      "reading_rows": 15
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 19,
+      "path": "feed-capture:comex_futures/copper/2026-10-22.csv",
+      "raw_rows": 19,
+      "reading_rows": 19
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 15,
+      "path": "feed-capture:comex_futures/copper/2026-10-23.csv",
+      "raw_rows": 15,
+      "reading_rows": 15
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/crude/2026-07-15.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/crude/2026-07-16.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-07-21.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/crude/2026-07-27.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/crude/2026-07-28.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:comex_futures/crude/2026-07-29.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-07-31.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:comex_futures/crude/2026-08-03.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7,
+      "path": "feed-capture:comex_futures/crude/2026-08-04.csv",
+      "raw_rows": 7,
+      "reading_rows": 7
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9,
+      "path": "feed-capture:comex_futures/crude/2026-08-05.csv",
+      "raw_rows": 9,
+      "reading_rows": 9
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/crude/2026-08-06.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:comex_futures/crude/2026-08-11.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:comex_futures/crude/2026-08-12.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:comex_futures/crude/2026-08-13.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7,
+      "path": "feed-capture:comex_futures/crude/2026-08-14.csv",
+      "raw_rows": 7,
+      "reading_rows": 7
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 18,
+      "path": "feed-capture:comex_futures/crude/2026-08-20.csv",
+      "raw_rows": 18,
+      "reading_rows": 18
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 48,
+      "path": "feed-capture:comex_futures/crude/2026-08-21.csv",
+      "raw_rows": 48,
+      "reading_rows": 48
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-08-23.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 64,
+      "path": "feed-capture:comex_futures/crude/2026-08-24.csv",
+      "raw_rows": 64,
+      "reading_rows": 64
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 46,
+      "path": "feed-capture:comex_futures/crude/2026-08-25.csv",
+      "raw_rows": 46,
+      "reading_rows": 46
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 63,
+      "path": "feed-capture:comex_futures/crude/2026-08-26.csv",
+      "raw_rows": 63,
+      "reading_rows": 63
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 114,
+      "path": "feed-capture:comex_futures/crude/2026-08-27.csv",
+      "raw_rows": 114,
+      "reading_rows": 114
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 39,
+      "path": "feed-capture:comex_futures/crude/2026-08-28.csv",
+      "raw_rows": 39,
+      "reading_rows": 39
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16,
+      "path": "feed-capture:comex_futures/crude/2026-08-30.csv",
+      "raw_rows": 16,
+      "reading_rows": 16
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 54,
+      "path": "feed-capture:comex_futures/crude/2026-08-31.csv",
+      "raw_rows": 54,
+      "reading_rows": 54
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 90,
+      "path": "feed-capture:comex_futures/crude/2026-09-01.csv",
+      "raw_rows": 90,
+      "reading_rows": 90
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 102,
+      "path": "feed-capture:comex_futures/crude/2026-09-02.csv",
+      "raw_rows": 102,
+      "reading_rows": 102
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 240,
+      "path": "feed-capture:comex_futures/crude/2026-09-03.csv",
+      "raw_rows": 240,
+      "reading_rows": 240
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 116,
+      "path": "feed-capture:comex_futures/crude/2026-09-04.csv",
+      "raw_rows": 116,
+      "reading_rows": 116
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-09-06.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 131,
+      "path": "feed-capture:comex_futures/crude/2026-09-07.csv",
+      "raw_rows": 131,
+      "reading_rows": 131
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 554,
+      "path": "feed-capture:comex_futures/crude/2026-09-08.csv",
+      "raw_rows": 554,
+      "reading_rows": 554
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 235,
+      "path": "feed-capture:comex_futures/crude/2026-09-09.csv",
+      "raw_rows": 235,
+      "reading_rows": 235
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 18,
+      "path": "feed-capture:comex_futures/crude/2026-09-10.csv",
+      "raw_rows": 18,
+      "reading_rows": 18
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 16,
+      "path": "feed-capture:comex_futures/crude/2026-09-11.csv",
+      "raw_rows": 16,
+      "reading_rows": 16
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-09-13.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 19,
+      "path": "feed-capture:comex_futures/crude/2026-09-14.csv",
+      "raw_rows": 19,
+      "reading_rows": 19
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 20,
+      "path": "feed-capture:comex_futures/crude/2026-09-15.csv",
+      "raw_rows": 20,
+      "reading_rows": 20
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 28,
+      "path": "feed-capture:comex_futures/crude/2026-09-16.csv",
+      "raw_rows": 28,
+      "reading_rows": 28
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 30,
+      "path": "feed-capture:comex_futures/crude/2026-09-17.csv",
+      "raw_rows": 30,
+      "reading_rows": 30
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 59,
+      "path": "feed-capture:comex_futures/crude/2026-09-18.csv",
+      "raw_rows": 59,
+      "reading_rows": 59
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/crude/2026-09-20.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 191,
+      "path": "feed-capture:comex_futures/crude/2026-09-21.csv",
+      "raw_rows": 191,
+      "reading_rows": 191
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 144,
+      "path": "feed-capture:comex_futures/crude/2026-09-22.csv",
+      "raw_rows": 144,
+      "reading_rows": 144
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 70,
+      "path": "feed-capture:comex_futures/crude/2026-09-23.csv",
+      "raw_rows": 70,
+      "reading_rows": 70
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 101,
+      "path": "feed-capture:comex_futures/crude/2026-09-24.csv",
+      "raw_rows": 101,
+      "reading_rows": 101
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 112,
+      "path": "feed-capture:comex_futures/crude/2026-09-25.csv",
+      "raw_rows": 112,
+      "reading_rows": 112
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 182,
+      "path": "feed-capture:comex_futures/crude/2026-09-28.csv",
+      "raw_rows": 182,
+      "reading_rows": 182
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 185,
+      "path": "feed-capture:comex_futures/crude/2026-09-29.csv",
+      "raw_rows": 185,
+      "reading_rows": 185
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 205,
+      "path": "feed-capture:comex_futures/crude/2026-09-30.csv",
+      "raw_rows": 205,
+      "reading_rows": 205
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 37,
+      "path": "feed-capture:comex_futures/crude/2026-10-01.csv",
+      "raw_rows": 37,
+      "reading_rows": 37
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 430,
+      "path": "feed-capture:comex_futures/crude/2026-10-02.csv",
+      "raw_rows": 430,
+      "reading_rows": 430
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-10-03.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/crude/2026-10-04.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 24,
+      "path": "feed-capture:comex_futures/crude/2026-10-05.csv",
+      "raw_rows": 24,
+      "reading_rows": 24
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 18,
+      "path": "feed-capture:comex_futures/crude/2026-10-06.csv",
+      "raw_rows": 18,
+      "reading_rows": 18
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 24,
+      "path": "feed-capture:comex_futures/crude/2026-10-07.csv",
+      "raw_rows": 24,
+      "reading_rows": 24
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 28,
+      "path": "feed-capture:comex_futures/crude/2026-10-08.csv",
+      "raw_rows": 28,
+      "reading_rows": 28
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/crude/2026-10-09.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 99,
+      "path": "feed-capture:comex_futures/crude/2026-10-11.csv",
+      "raw_rows": 99,
+      "reading_rows": 99
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1240,
+      "path": "feed-capture:comex_futures/crude/2026-10-12.csv",
+      "raw_rows": 1240,
+      "reading_rows": 1240
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1252,
+      "path": "feed-capture:comex_futures/crude/2026-10-13.csv",
+      "raw_rows": 1252,
+      "reading_rows": 1252
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 1132,
+      "path": "feed-capture:comex_futures/crude/2026-10-14.csv",
+      "raw_rows": 1132,
+      "reading_rows": 1132
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/crude/2026-10-15.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/crude/2026-10-16.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8,
+      "path": "feed-capture:comex_futures/crude/2026-10-18.csv",
+      "raw_rows": 8,
+      "reading_rows": 8
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 22,
+      "path": "feed-capture:comex_futures/crude/2026-10-19.csv",
+      "raw_rows": 22,
+      "reading_rows": 22
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 22,
+      "path": "feed-capture:comex_futures/crude/2026-10-20.csv",
+      "raw_rows": 22,
+      "reading_rows": 22
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 14,
+      "path": "feed-capture:comex_futures/crude/2026-10-21.csv",
+      "raw_rows": 14,
+      "reading_rows": 14
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 21,
+      "path": "feed-capture:comex_futures/crude/2026-10-22.csv",
+      "raw_rows": 21,
+      "reading_rows": 21
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/crude/2026-10-23.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 168,
+      "emitted_rows": 791,
+      "path": "feed-capture:comex_futures/gold/2026-07-10.csv",
+      "raw_rows": 959,
+      "reading_rows": 791
+    },
+    {
+      "asset": "gold",
+      "duplicates": 1416,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/gold/2026-07-11.csv",
+      "raw_rows": 1417,
+      "reading_rows": 1
+    },
+    {
+      "asset": "gold",
+      "duplicates": 1288,
+      "emitted_rows": 110,
+      "path": "feed-capture:comex_futures/gold/2026-07-12.csv",
+      "raw_rows": 1398,
+      "reading_rows": 110
+    },
+    {
+      "asset": "gold",
+      "duplicates": 68,
+      "emitted_rows": 1355,
+      "path": "feed-capture:comex_futures/gold/2026-07-13.csv",
+      "raw_rows": 1423,
+      "reading_rows": 1355
+    },
+    {
+      "asset": "gold",
+      "duplicates": 3,
+      "emitted_rows": 1353,
+      "path": "feed-capture:comex_futures/gold/2026-07-14.csv",
+      "raw_rows": 1356,
+      "reading_rows": 1353
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1343,
+      "path": "feed-capture:comex_futures/gold/2026-07-15.csv",
+      "raw_rows": 1343,
+      "reading_rows": 1343
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1336,
+      "path": "feed-capture:comex_futures/gold/2026-07-16.csv",
+      "raw_rows": 1336,
+      "reading_rows": 1336
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1254,
+      "path": "feed-capture:comex_futures/gold/2026-07-17.csv",
+      "raw_rows": 1254,
+      "reading_rows": 1254
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 108,
+      "path": "feed-capture:comex_futures/gold/2026-07-19.csv",
+      "raw_rows": 108,
+      "reading_rows": 108
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1336,
+      "path": "feed-capture:comex_futures/gold/2026-07-20.csv",
+      "raw_rows": 1336,
+      "reading_rows": 1336
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1334,
+      "path": "feed-capture:comex_futures/gold/2026-07-21.csv",
+      "raw_rows": 1334,
+      "reading_rows": 1334
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1339,
+      "path": "feed-capture:comex_futures/gold/2026-07-22.csv",
+      "raw_rows": 1339,
+      "reading_rows": 1339
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1333,
+      "path": "feed-capture:comex_futures/gold/2026-07-23.csv",
+      "raw_rows": 1333,
+      "reading_rows": 1333
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1242,
+      "path": "feed-capture:comex_futures/gold/2026-07-24.csv",
+      "raw_rows": 1242,
+      "reading_rows": 1242
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 70,
+      "path": "feed-capture:comex_futures/gold/2026-07-26.csv",
+      "raw_rows": 70,
+      "reading_rows": 70
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1287,
+      "path": "feed-capture:comex_futures/gold/2026-07-27.csv",
+      "raw_rows": 1287,
+      "reading_rows": 1287
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 778,
+      "path": "feed-capture:comex_futures/gold/2026-07-28.csv",
+      "raw_rows": 778,
+      "reading_rows": 778
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 538,
+      "path": "feed-capture:comex_futures/gold/2026-07-29.csv",
+      "raw_rows": 538,
+      "reading_rows": 538
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 826,
+      "path": "feed-capture:comex_futures/gold/2026-07-30.csv",
+      "raw_rows": 826,
+      "reading_rows": 826
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1139,
+      "path": "feed-capture:comex_futures/gold/2026-07-31.csv",
+      "raw_rows": 1139,
+      "reading_rows": 1139
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 83,
+      "path": "feed-capture:comex_futures/gold/2026-08-02.csv",
+      "raw_rows": 83,
+      "reading_rows": 83
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1241,
+      "path": "feed-capture:comex_futures/gold/2026-08-03.csv",
+      "raw_rows": 1241,
+      "reading_rows": 1241
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1102,
+      "path": "feed-capture:comex_futures/gold/2026-08-04.csv",
+      "raw_rows": 1102,
+      "reading_rows": 1102
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 203,
+      "path": "feed-capture:comex_futures/gold/2026-08-05.csv",
+      "raw_rows": 203,
+      "reading_rows": 203
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 36,
+      "path": "feed-capture:comex_futures/gold/2026-08-06.csv",
+      "raw_rows": 36,
+      "reading_rows": 36
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 478,
+      "path": "feed-capture:comex_futures/gold/2026-08-07.csv",
+      "raw_rows": 478,
+      "reading_rows": 478
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 115,
+      "path": "feed-capture:comex_futures/gold/2026-08-10.csv",
+      "raw_rows": 115,
+      "reading_rows": 115
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 297,
+      "path": "feed-capture:comex_futures/gold/2026-08-11.csv",
+      "raw_rows": 297,
+      "reading_rows": 297
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 755,
+      "path": "feed-capture:comex_futures/gold/2026-08-12.csv",
+      "raw_rows": 755,
+      "reading_rows": 755
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 129,
+      "path": "feed-capture:comex_futures/gold/2026-08-13.csv",
+      "raw_rows": 129,
+      "reading_rows": 129
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 101,
+      "path": "feed-capture:comex_futures/gold/2026-08-14.csv",
+      "raw_rows": 101,
+      "reading_rows": 101
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 98,
+      "path": "feed-capture:comex_futures/gold/2026-08-16.csv",
+      "raw_rows": 98,
+      "reading_rows": 98
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1185,
+      "path": "feed-capture:comex_futures/gold/2026-08-17.csv",
+      "raw_rows": 1185,
+      "reading_rows": 1185
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 73,
+      "path": "feed-capture:comex_futures/gold/2026-08-18.csv",
+      "raw_rows": 73,
+      "reading_rows": 73
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 776,
+      "path": "feed-capture:comex_futures/gold/2026-08-19.csv",
+      "raw_rows": 776,
+      "reading_rows": 776
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1160,
+      "path": "feed-capture:comex_futures/gold/2026-08-20.csv",
+      "raw_rows": 1160,
+      "reading_rows": 1160
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 51,
+      "path": "feed-capture:comex_futures/gold/2026-08-21.csv",
+      "raw_rows": 51,
+      "reading_rows": 51
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 44,
+      "path": "feed-capture:comex_futures/gold/2026-08-24.csv",
+      "raw_rows": 44,
+      "reading_rows": 44
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 42,
+      "path": "feed-capture:comex_futures/gold/2026-08-25.csv",
+      "raw_rows": 42,
+      "reading_rows": 42
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 44,
+      "path": "feed-capture:comex_futures/gold/2026-08-26.csv",
+      "raw_rows": 44,
+      "reading_rows": 44
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 106,
+      "path": "feed-capture:comex_futures/gold/2026-08-27.csv",
+      "raw_rows": 106,
+      "reading_rows": 106
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 25,
+      "path": "feed-capture:comex_futures/gold/2026-08-28.csv",
+      "raw_rows": 25,
+      "reading_rows": 25
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/gold/2026-08-30.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 43,
+      "path": "feed-capture:comex_futures/gold/2026-08-31.csv",
+      "raw_rows": 43,
+      "reading_rows": 43
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 79,
+      "path": "feed-capture:comex_futures/gold/2026-09-01.csv",
+      "raw_rows": 79,
+      "reading_rows": 79
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 91,
+      "path": "feed-capture:comex_futures/gold/2026-09-02.csv",
+      "raw_rows": 91,
+      "reading_rows": 91
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 249,
+      "path": "feed-capture:comex_futures/gold/2026-09-03.csv",
+      "raw_rows": 249,
+      "reading_rows": 249
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 122,
+      "path": "feed-capture:comex_futures/gold/2026-09-04.csv",
+      "raw_rows": 122,
+      "reading_rows": 122
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 109,
+      "path": "feed-capture:comex_futures/gold/2026-09-07.csv",
+      "raw_rows": 109,
+      "reading_rows": 109
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 564,
+      "path": "feed-capture:comex_futures/gold/2026-09-08.csv",
+      "raw_rows": 564,
+      "reading_rows": 564
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 236,
+      "path": "feed-capture:comex_futures/gold/2026-09-09.csv",
+      "raw_rows": 236,
+      "reading_rows": 236
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 16,
+      "path": "feed-capture:comex_futures/gold/2026-09-10.csv",
+      "raw_rows": 16,
+      "reading_rows": 16
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 17,
+      "path": "feed-capture:comex_futures/gold/2026-09-11.csv",
+      "raw_rows": 17,
+      "reading_rows": 17
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/gold/2026-09-14.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/gold/2026-09-15.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 15,
+      "path": "feed-capture:comex_futures/gold/2026-09-16.csv",
+      "raw_rows": 15,
+      "reading_rows": 15
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 18,
+      "path": "feed-capture:comex_futures/gold/2026-09-17.csv",
+      "raw_rows": 18,
+      "reading_rows": 18
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 68,
+      "path": "feed-capture:comex_futures/gold/2026-09-18.csv",
+      "raw_rows": 68,
+      "reading_rows": 68
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/gold/2026-09-20.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 182,
+      "path": "feed-capture:comex_futures/gold/2026-09-21.csv",
+      "raw_rows": 182,
+      "reading_rows": 182
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 142,
+      "path": "feed-capture:comex_futures/gold/2026-09-22.csv",
+      "raw_rows": 142,
+      "reading_rows": 142
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 65,
+      "path": "feed-capture:comex_futures/gold/2026-09-23.csv",
+      "raw_rows": 65,
+      "reading_rows": 65
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 105,
+      "path": "feed-capture:comex_futures/gold/2026-09-24.csv",
+      "raw_rows": 105,
+      "reading_rows": 105
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 135,
+      "path": "feed-capture:comex_futures/gold/2026-09-25.csv",
+      "raw_rows": 135,
+      "reading_rows": 135
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 185,
+      "path": "feed-capture:comex_futures/gold/2026-09-28.csv",
+      "raw_rows": 185,
+      "reading_rows": 185
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 211,
+      "path": "feed-capture:comex_futures/gold/2026-09-29.csv",
+      "raw_rows": 211,
+      "reading_rows": 211
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 198,
+      "path": "feed-capture:comex_futures/gold/2026-09-30.csv",
+      "raw_rows": 198,
+      "reading_rows": 198
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 33,
+      "path": "feed-capture:comex_futures/gold/2026-10-01.csv",
+      "raw_rows": 33,
+      "reading_rows": 33
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 463,
+      "path": "feed-capture:comex_futures/gold/2026-10-02.csv",
+      "raw_rows": 463,
+      "reading_rows": 463
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-05.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9,
+      "path": "feed-capture:comex_futures/gold/2026-10-06.csv",
+      "raw_rows": 9,
+      "reading_rows": 9
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-07.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/gold/2026-10-08.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-09.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 90,
+      "path": "feed-capture:comex_futures/gold/2026-10-11.csv",
+      "raw_rows": 90,
+      "reading_rows": 90
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1285,
+      "path": "feed-capture:comex_futures/gold/2026-10-12.csv",
+      "raw_rows": 1285,
+      "reading_rows": 1285
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1291,
+      "path": "feed-capture:comex_futures/gold/2026-10-13.csv",
+      "raw_rows": 1291,
+      "reading_rows": 1291
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 1154,
+      "path": "feed-capture:comex_futures/gold/2026-10-14.csv",
+      "raw_rows": 1154,
+      "reading_rows": 1154
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8,
+      "path": "feed-capture:comex_futures/gold/2026-10-15.csv",
+      "raw_rows": 8,
+      "reading_rows": 8
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-16.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/gold/2026-10-19.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9,
+      "path": "feed-capture:comex_futures/gold/2026-10-20.csv",
+      "raw_rows": 9,
+      "reading_rows": 9
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/gold/2026-10-21.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-22.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/gold/2026-10-23.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "silver",
+      "duplicates": 184,
+      "emitted_rows": 775,
+      "path": "feed-capture:comex_futures/silver/2026-07-10.csv",
+      "raw_rows": 959,
+      "reading_rows": 775
+    },
+    {
+      "asset": "silver",
+      "duplicates": 1415,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/silver/2026-07-11.csv",
+      "raw_rows": 1416,
+      "reading_rows": 1
+    },
+    {
+      "asset": "silver",
+      "duplicates": 1309,
+      "emitted_rows": 100,
+      "path": "feed-capture:comex_futures/silver/2026-07-12.csv",
+      "raw_rows": 1409,
+      "reading_rows": 100
+    },
+    {
+      "asset": "silver",
+      "duplicates": 115,
+      "emitted_rows": 1308,
+      "path": "feed-capture:comex_futures/silver/2026-07-13.csv",
+      "raw_rows": 1423,
+      "reading_rows": 1308
+    },
+    {
+      "asset": "silver",
+      "duplicates": 28,
+      "emitted_rows": 1275,
+      "path": "feed-capture:comex_futures/silver/2026-07-14.csv",
+      "raw_rows": 1303,
+      "reading_rows": 1275
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1259,
+      "path": "feed-capture:comex_futures/silver/2026-07-15.csv",
+      "raw_rows": 1259,
+      "reading_rows": 1259
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1268,
+      "path": "feed-capture:comex_futures/silver/2026-07-16.csv",
+      "raw_rows": 1268,
+      "reading_rows": 1268
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1223,
+      "path": "feed-capture:comex_futures/silver/2026-07-17.csv",
+      "raw_rows": 1223,
+      "reading_rows": 1223
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 90,
+      "path": "feed-capture:comex_futures/silver/2026-07-19.csv",
+      "raw_rows": 90,
+      "reading_rows": 90
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1289,
+      "path": "feed-capture:comex_futures/silver/2026-07-20.csv",
+      "raw_rows": 1289,
+      "reading_rows": 1289
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1273,
+      "path": "feed-capture:comex_futures/silver/2026-07-21.csv",
+      "raw_rows": 1273,
+      "reading_rows": 1273
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1277,
+      "path": "feed-capture:comex_futures/silver/2026-07-22.csv",
+      "raw_rows": 1277,
+      "reading_rows": 1277
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1237,
+      "path": "feed-capture:comex_futures/silver/2026-07-23.csv",
+      "raw_rows": 1237,
+      "reading_rows": 1237
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1180,
+      "path": "feed-capture:comex_futures/silver/2026-07-24.csv",
+      "raw_rows": 1180,
+      "reading_rows": 1180
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 68,
+      "path": "feed-capture:comex_futures/silver/2026-07-26.csv",
+      "raw_rows": 68,
+      "reading_rows": 68
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1195,
+      "path": "feed-capture:comex_futures/silver/2026-07-27.csv",
+      "raw_rows": 1195,
+      "reading_rows": 1195
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 762,
+      "path": "feed-capture:comex_futures/silver/2026-07-28.csv",
+      "raw_rows": 762,
+      "reading_rows": 762
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 180,
+      "path": "feed-capture:comex_futures/silver/2026-07-29.csv",
+      "raw_rows": 180,
+      "reading_rows": 180
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 247,
+      "path": "feed-capture:comex_futures/silver/2026-07-30.csv",
+      "raw_rows": 247,
+      "reading_rows": 247
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 380,
+      "path": "feed-capture:comex_futures/silver/2026-07-31.csv",
+      "raw_rows": 380,
+      "reading_rows": 380
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 19,
+      "path": "feed-capture:comex_futures/silver/2026-08-02.csv",
+      "raw_rows": 19,
+      "reading_rows": 19
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 65,
+      "path": "feed-capture:comex_futures/silver/2026-08-03.csv",
+      "raw_rows": 65,
+      "reading_rows": 65
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 533,
+      "path": "feed-capture:comex_futures/silver/2026-08-04.csv",
+      "raw_rows": 533,
+      "reading_rows": 533
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 184,
+      "path": "feed-capture:comex_futures/silver/2026-08-05.csv",
+      "raw_rows": 184,
+      "reading_rows": 184
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 34,
+      "path": "feed-capture:comex_futures/silver/2026-08-06.csv",
+      "raw_rows": 34,
+      "reading_rows": 34
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 451,
+      "path": "feed-capture:comex_futures/silver/2026-08-07.csv",
+      "raw_rows": 451,
+      "reading_rows": 451
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 97,
+      "path": "feed-capture:comex_futures/silver/2026-08-10.csv",
+      "raw_rows": 97,
+      "reading_rows": 97
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 281,
+      "path": "feed-capture:comex_futures/silver/2026-08-11.csv",
+      "raw_rows": 281,
+      "reading_rows": 281
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 694,
+      "path": "feed-capture:comex_futures/silver/2026-08-12.csv",
+      "raw_rows": 694,
+      "reading_rows": 694
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 116,
+      "path": "feed-capture:comex_futures/silver/2026-08-13.csv",
+      "raw_rows": 116,
+      "reading_rows": 116
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 95,
+      "path": "feed-capture:comex_futures/silver/2026-08-14.csv",
+      "raw_rows": 95,
+      "reading_rows": 95
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 98,
+      "path": "feed-capture:comex_futures/silver/2026-08-16.csv",
+      "raw_rows": 98,
+      "reading_rows": 98
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1114,
+      "path": "feed-capture:comex_futures/silver/2026-08-17.csv",
+      "raw_rows": 1114,
+      "reading_rows": 1114
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 68,
+      "path": "feed-capture:comex_futures/silver/2026-08-18.csv",
+      "raw_rows": 68,
+      "reading_rows": 68
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 741,
+      "path": "feed-capture:comex_futures/silver/2026-08-19.csv",
+      "raw_rows": 741,
+      "reading_rows": 741
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1094,
+      "path": "feed-capture:comex_futures/silver/2026-08-20.csv",
+      "raw_rows": 1094,
+      "reading_rows": 1094
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 46,
+      "path": "feed-capture:comex_futures/silver/2026-08-21.csv",
+      "raw_rows": 46,
+      "reading_rows": 46
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 43,
+      "path": "feed-capture:comex_futures/silver/2026-08-24.csv",
+      "raw_rows": 43,
+      "reading_rows": 43
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 36,
+      "path": "feed-capture:comex_futures/silver/2026-08-25.csv",
+      "raw_rows": 36,
+      "reading_rows": 36
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 44,
+      "path": "feed-capture:comex_futures/silver/2026-08-26.csv",
+      "raw_rows": 44,
+      "reading_rows": 44
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 626,
+      "path": "feed-capture:comex_futures/silver/2026-08-27.csv",
+      "raw_rows": 626,
+      "reading_rows": 626
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 23,
+      "path": "feed-capture:comex_futures/silver/2026-08-28.csv",
+      "raw_rows": 23,
+      "reading_rows": 23
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/silver/2026-08-30.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 46,
+      "path": "feed-capture:comex_futures/silver/2026-08-31.csv",
+      "raw_rows": 46,
+      "reading_rows": 46
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 81,
+      "path": "feed-capture:comex_futures/silver/2026-09-01.csv",
+      "raw_rows": 81,
+      "reading_rows": 81
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 87,
+      "path": "feed-capture:comex_futures/silver/2026-09-02.csv",
+      "raw_rows": 87,
+      "reading_rows": 87
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 224,
+      "path": "feed-capture:comex_futures/silver/2026-09-03.csv",
+      "raw_rows": 224,
+      "reading_rows": 224
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 109,
+      "path": "feed-capture:comex_futures/silver/2026-09-04.csv",
+      "raw_rows": 109,
+      "reading_rows": 109
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/silver/2026-09-06.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 91,
+      "path": "feed-capture:comex_futures/silver/2026-09-07.csv",
+      "raw_rows": 91,
+      "reading_rows": 91
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 533,
+      "path": "feed-capture:comex_futures/silver/2026-09-08.csv",
+      "raw_rows": 533,
+      "reading_rows": 533
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 234,
+      "path": "feed-capture:comex_futures/silver/2026-09-09.csv",
+      "raw_rows": 234,
+      "reading_rows": 234
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 15,
+      "path": "feed-capture:comex_futures/silver/2026-09-10.csv",
+      "raw_rows": 15,
+      "reading_rows": 15
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 14,
+      "path": "feed-capture:comex_futures/silver/2026-09-11.csv",
+      "raw_rows": 14,
+      "reading_rows": 14
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/silver/2026-09-14.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-09-15.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-09-16.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 19,
+      "path": "feed-capture:comex_futures/silver/2026-09-17.csv",
+      "raw_rows": 19,
+      "reading_rows": 19
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 62,
+      "path": "feed-capture:comex_futures/silver/2026-09-18.csv",
+      "raw_rows": 62,
+      "reading_rows": 62
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:comex_futures/silver/2026-09-20.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 174,
+      "path": "feed-capture:comex_futures/silver/2026-09-21.csv",
+      "raw_rows": 174,
+      "reading_rows": 174
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 136,
+      "path": "feed-capture:comex_futures/silver/2026-09-22.csv",
+      "raw_rows": 136,
+      "reading_rows": 136
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 70,
+      "path": "feed-capture:comex_futures/silver/2026-09-23.csv",
+      "raw_rows": 70,
+      "reading_rows": 70
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 102,
+      "path": "feed-capture:comex_futures/silver/2026-09-24.csv",
+      "raw_rows": 102,
+      "reading_rows": 102
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 118,
+      "path": "feed-capture:comex_futures/silver/2026-09-25.csv",
+      "raw_rows": 118,
+      "reading_rows": 118
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:comex_futures/silver/2026-09-27.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 179,
+      "path": "feed-capture:comex_futures/silver/2026-09-28.csv",
+      "raw_rows": 179,
+      "reading_rows": 179
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 201,
+      "path": "feed-capture:comex_futures/silver/2026-09-29.csv",
+      "raw_rows": 201,
+      "reading_rows": 201
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 186,
+      "path": "feed-capture:comex_futures/silver/2026-09-30.csv",
+      "raw_rows": 186,
+      "reading_rows": 186
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 31,
+      "path": "feed-capture:comex_futures/silver/2026-10-01.csv",
+      "raw_rows": 31,
+      "reading_rows": 31
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 438,
+      "path": "feed-capture:comex_futures/silver/2026-10-02.csv",
+      "raw_rows": 438,
+      "reading_rows": 438
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 16,
+      "path": "feed-capture:comex_futures/silver/2026-10-05.csv",
+      "raw_rows": 16,
+      "reading_rows": 16
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 14,
+      "path": "feed-capture:comex_futures/silver/2026-10-06.csv",
+      "raw_rows": 14,
+      "reading_rows": 14
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-10-07.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8,
+      "path": "feed-capture:comex_futures/silver/2026-10-08.csv",
+      "raw_rows": 8,
+      "reading_rows": 8
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-10-09.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 89,
+      "path": "feed-capture:comex_futures/silver/2026-10-11.csv",
+      "raw_rows": 89,
+      "reading_rows": 89
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1201,
+      "path": "feed-capture:comex_futures/silver/2026-10-12.csv",
+      "raw_rows": 1201,
+      "reading_rows": 1201
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1217,
+      "path": "feed-capture:comex_futures/silver/2026-10-13.csv",
+      "raw_rows": 1217,
+      "reading_rows": 1217
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 1101,
+      "path": "feed-capture:comex_futures/silver/2026-10-14.csv",
+      "raw_rows": 1101,
+      "reading_rows": 1101
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-10-15.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/silver/2026-10-16.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 13,
+      "path": "feed-capture:comex_futures/silver/2026-10-19.csv",
+      "raw_rows": 13,
+      "reading_rows": 13
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 12,
+      "path": "feed-capture:comex_futures/silver/2026-10-20.csv",
+      "raw_rows": 12,
+      "reading_rows": 12
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:comex_futures/silver/2026-10-21.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/silver/2026-10-22.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11,
+      "path": "feed-capture:comex_futures/silver/2026-10-23.csv",
+      "raw_rows": 11,
+      "reading_rows": 11
+    }
+  ],
+  "raw_rows": 86819,
+  "reading_rows": 80825,
+  "rows": 80825,
+  "sources": [
+    {
+      "bytes": 583,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "af05641dc7cf70831d738628150b31d0efadaa9cccff8480052e6a749851086d",
+      "url": "feed-capture:comex_futures/copper/2026-07-15.csv"
+    },
+    {
+      "bytes": 2442,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c9bc31d71a2a261f2191642a40cd05633de08b57495d24e3d194ea37ea8cba98",
+      "url": "feed-capture:comex_futures/copper/2026-07-16.csv"
+    },
+    {
+      "bytes": 316,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3b64aec9f41d96bbebfccc2b40753c24feb1d2f20b24afacb53b0455636c452b",
+      "url": "feed-capture:comex_futures/copper/2026-07-21.csv"
+    },
+    {
+      "bytes": 1421,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "21e2d1561442e2938358be5e8448d977dfa8bac5305399ae50b7a2327eeb4448",
+      "url": "feed-capture:comex_futures/copper/2026-07-27.csv"
+    },
+    {
+      "bytes": 2101,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a0a8f3c14ba8b2f59e0f5873f56cc14920060c3c2a3e8f663d6c3f1039bafd28",
+      "url": "feed-capture:comex_futures/copper/2026-07-28.csv"
+    },
+    {
+      "bytes": 4164,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f95244aa7acd2330fbdb6948420e993680e587e3129fe9a01f9a7ac67dca8b3f",
+      "url": "feed-capture:comex_futures/copper/2026-07-29.csv"
+    },
+    {
+      "bytes": 878,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a1f3dd161e7e3b4b78a5f33a655710c9e446eedf2c6ff032ef5620f40a48f51d",
+      "url": "feed-capture:comex_futures/copper/2026-07-30.csv"
+    },
+    {
+      "bytes": 878,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "296755d164cf639fcbd089d76b906e59e1875c6fddda27731584d694e32aa3a7",
+      "url": "feed-capture:comex_futures/copper/2026-07-31.csv"
+    },
+    {
+      "bytes": 2535,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "16e2aef17c05a630002a4b1dd4a5542bd3eb491bdc6ad7199e4fa6e9349f3ee7",
+      "url": "feed-capture:comex_futures/copper/2026-08-03.csv"
+    },
+    {
+      "bytes": 8329,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bff5ac4c276418572f4781f2d153ffcdd037bb8402577654b06ea3aba7c2266d",
+      "url": "feed-capture:comex_futures/copper/2026-08-04.csv"
+    },
+    {
+      "bytes": 5844,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "aeb4add467fa8ac115d7f2eb26a477f984ad582485e23f1fbb67ca869ccb370f",
+      "url": "feed-capture:comex_futures/copper/2026-08-05.csv"
+    },
+    {
+      "bytes": 6671,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3a7fbcd5aff48a7624b1cd1d8518f978929e091843ebf6a83dad6c31f4ac6afa",
+      "url": "feed-capture:comex_futures/copper/2026-08-06.csv"
+    },
+    {
+      "bytes": 5010,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ebec1c33bd6f83f4a6b1a6de72e6de82d7cb144867c69dc2110d41fbfac2d00f",
+      "url": "feed-capture:comex_futures/copper/2026-08-11.csv"
+    },
+    {
+      "bytes": 1703,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "23ceae9c132c406dba5045929b537b921db6d09558e1ebd7be90f9e1d6bb2fc7",
+      "url": "feed-capture:comex_futures/copper/2026-08-12.csv"
+    },
+    {
+      "bytes": 5016,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "dbbcf54079bb42a07aec0e49e0745d2c844de5a800796528ef0a8fa341872529",
+      "url": "feed-capture:comex_futures/copper/2026-08-13.csv"
+    },
+    {
+      "bytes": 7488,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9ddcc8cab4b75195ff86b5d50c441fc8ecb069797b21197674ab54933144a055",
+      "url": "feed-capture:comex_futures/copper/2026-08-14.csv"
+    },
+    {
+      "bytes": 9968,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9e1f8310c5e73db5332da1236ece4236e856a13c7ed6850dc9f32bed928b2963",
+      "url": "feed-capture:comex_futures/copper/2026-08-18.csv"
+    },
+    {
+      "bytes": 4994,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f0c45fc62f308c9b0c2939a5a53b78fbb8e41440a2439ec88b5536efab7643d4",
+      "url": "feed-capture:comex_futures/copper/2026-08-20.csv"
+    },
+    {
+      "bytes": 45511,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "55b8af11cb50d9ac91e663090c611ee65ae9173445bf2649ce045d5d27061bab",
+      "url": "feed-capture:comex_futures/copper/2026-08-21.csv"
+    },
+    {
+      "bytes": 3348,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0844afa8e30cadb7148d596d519e225f37a7e87c687a80c201dadef124d24146",
+      "url": "feed-capture:comex_futures/copper/2026-08-23.csv"
+    },
+    {
+      "bytes": 45502,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e2b4cf2e47e71530f6baf1c096f6f73229a74cc4df0f90d8a827068ca3746834",
+      "url": "feed-capture:comex_futures/copper/2026-08-24.csv"
+    },
+    {
+      "bytes": 48798,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5f11939f06033a294377e8429f25acd05c4a0ebc19ee6fa78e42049180173e0d",
+      "url": "feed-capture:comex_futures/copper/2026-08-25.csv"
+    },
+    {
+      "bytes": 50536,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9e1bc3d4dc498de301ca439dc6315e55c4e755c5539cfd9c1cbf7923527dbf02",
+      "url": "feed-capture:comex_futures/copper/2026-08-26.csv"
+    },
+    {
+      "bytes": 705998,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "dc276039b0152e1c33d52ee450b7f082500c0a60a120c753c39207a2b1acb7b0",
+      "url": "feed-capture:comex_futures/copper/2026-08-27.csv"
+    },
+    {
+      "bytes": 24846,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5e937744a889667ad650b42bf361519c0c44dca496d7e68b888d60411d3cad0d",
+      "url": "feed-capture:comex_futures/copper/2026-08-28.csv"
+    },
+    {
+      "bytes": 9948,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4476917ad964fda9b78e06dc763a1925d735af8821f5bb29b4972ce5a51bd5c9",
+      "url": "feed-capture:comex_futures/copper/2026-08-30.csv"
+    },
+    {
+      "bytes": 56251,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "63e91b1623feeb10ef433dd456125acfc553a4b58aa703f13ff7edfa3a5ee422",
+      "url": "feed-capture:comex_futures/copper/2026-08-31.csv"
+    },
+    {
+      "bytes": 81217,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c83475cf1094b0291db065d34bf8cb69be56425f36369587ef5e74ffa347b196",
+      "url": "feed-capture:comex_futures/copper/2026-09-01.csv"
+    },
+    {
+      "bytes": 80387,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ab8af609ad173e19017200694a75b01cc09e3df7e45d24439cbd43093f4f37e6",
+      "url": "feed-capture:comex_futures/copper/2026-09-02.csv"
+    },
+    {
+      "bytes": 204932,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c942e36e78b9968f75410a044b00f8ef3cfa894b3f34afc7542e57f0152bd77d",
+      "url": "feed-capture:comex_futures/copper/2026-09-03.csv"
+    },
+    {
+      "bytes": 110924,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "912d0d24bea1e4dc72064e8e7527293b1adc30c7302c2b497851f5b31538bad8",
+      "url": "feed-capture:comex_futures/copper/2026-09-04.csv"
+    },
+    {
+      "bytes": 4184,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "aff1d8762aabc7bf5c08ec32204bf82d759aa8d6b63c48f1c8e10ac52e509c82",
+      "url": "feed-capture:comex_futures/copper/2026-09-06.csv"
+    },
+    {
+      "bytes": 87857,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5dd0099008a3875f281dfb94ee9b742637fc7f6031f1162988944d631692584d",
+      "url": "feed-capture:comex_futures/copper/2026-09-07.csv"
+    },
+    {
+      "bytes": 484649,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2435dc9e484a162ab08374f7fcd181cf6e0d85a45705688275cc19acb1115836",
+      "url": "feed-capture:comex_futures/copper/2026-09-08.csv"
+    },
+    {
+      "bytes": 215332,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "857dc062d43db3e88c2e14c602514259382da3a430f6ffbf08e3bc8dc0893e1b",
+      "url": "feed-capture:comex_futures/copper/2026-09-09.csv"
+    },
+    {
+      "bytes": 19915,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "80a388a2e537463a742e77c38978240f99e36f70d0e586810749929f6702bfbc",
+      "url": "feed-capture:comex_futures/copper/2026-09-10.csv"
+    },
+    {
+      "bytes": 19934,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "98bce7ba00ef826dc41a03e87cae44e61209e4a4d38c7c7a310eeeea82c5d8b6",
+      "url": "feed-capture:comex_futures/copper/2026-09-11.csv"
+    },
+    {
+      "bytes": 1700,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8efb06b8eec8db3373966e45e5864916cec812195341b00b19a025a4fed89da6",
+      "url": "feed-capture:comex_futures/copper/2026-09-13.csv"
+    },
+    {
+      "bytes": 21543,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "335c7844d56132e166e2401503f3e337e5afeab419d1c8bc21574e8289b69aed",
+      "url": "feed-capture:comex_futures/copper/2026-09-14.csv"
+    },
+    {
+      "bytes": 28188,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ec453fe296c87e56da3713531d4411a8a13fde8b5ecb9326e24e7103464eb88f",
+      "url": "feed-capture:comex_futures/copper/2026-09-15.csv"
+    },
+    {
+      "bytes": 25705,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "eea70a0b0950379882d27736170dfc30b7142fa7bc5a49b5d0bb78f75f6f62f0",
+      "url": "feed-capture:comex_futures/copper/2026-09-16.csv"
+    },
+    {
+      "bytes": 30640,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "45128e851fb7e096a37d42e71e9757936fe64ab8c017ca7344879cd5580f46ec",
+      "url": "feed-capture:comex_futures/copper/2026-09-17.csv"
+    },
+    {
+      "bytes": 77892,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0307ddadcacb28d926d1f8c486868a484f3ce059cc1648a37b04fad4e310aa9d",
+      "url": "feed-capture:comex_futures/copper/2026-09-18.csv"
+    },
+    {
+      "bytes": 6664,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7b120e9d0f6abd13b61865a24fb2bd8043a1df8e9f231d8bd41bd8b6c6f6c976",
+      "url": "feed-capture:comex_futures/copper/2026-09-20.csv"
+    },
+    {
+      "bytes": 163137,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9322122f42de67663b8bbebfe6005a79ac8ac5de3211b99287bccb112cb27e91",
+      "url": "feed-capture:comex_futures/copper/2026-09-21.csv"
+    },
+    {
+      "bytes": 126769,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a2e67be4b55fe0066eaf34a14405fac97ceb4372d11284c78c351056ff871a0d",
+      "url": "feed-capture:comex_futures/copper/2026-09-22.csv"
+    },
+    {
+      "bytes": 62873,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e18d4f8fb82ed2ea32339563c6cb3b78390b6f69fb68300554b77f95fc1b04f1",
+      "url": "feed-capture:comex_futures/copper/2026-09-23.csv"
+    },
+    {
+      "bytes": 94448,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7531aa6c4171cf65900fa7c300a349252632ce8089c9a3eb8615bc35ad520db1",
+      "url": "feed-capture:comex_futures/copper/2026-09-24.csv"
+    },
+    {
+      "bytes": 111539,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8a194d21158c634b5b8f19a132c30d9e18d179b2cd61895c8c2ed0db03383cb1",
+      "url": "feed-capture:comex_futures/copper/2026-09-25.csv"
+    },
+    {
+      "bytes": 2524,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7cda8eae6f166196b32970de442a4c015790928ea47ff30273ecd56e3dd551fd",
+      "url": "feed-capture:comex_futures/copper/2026-09-27.csv"
+    },
+    {
+      "bytes": 161294,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "71b2c65446af12b37f89995aa89cbf91e3b0fb8151db9b78717a3fe990e5c725",
+      "url": "feed-capture:comex_futures/copper/2026-09-28.csv"
+    },
+    {
+      "bytes": 182277,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0dee3f1bd1e0167c68f814751d0fa30bb39e875689c0624ed9bb9841dda687ba",
+      "url": "feed-capture:comex_futures/copper/2026-09-29.csv"
+    },
+    {
+      "bytes": 179884,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a49b36c9c951e9ef95ea46382576bd5be30ee7e858fb19e1d46f991f537fe891",
+      "url": "feed-capture:comex_futures/copper/2026-09-30.csv"
+    },
+    {
+      "bytes": 35635,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "50c18f06b6822811358fbbcd0da0e474ed56ce39f6562b1985b3680c542ed40b",
+      "url": "feed-capture:comex_futures/copper/2026-10-01.csv"
+    },
+    {
+      "bytes": 389489,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6653401310469f0afa737c2abc4e7f1661341d69715432484a0ff2fa2e6cb8ad",
+      "url": "feed-capture:comex_futures/copper/2026-10-02.csv"
+    },
+    {
+      "bytes": 1699,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "aa6e96ea9474b837161d765321aac35aa2967d390553658f227eaf6ea9f3ffbb",
+      "url": "feed-capture:comex_futures/copper/2026-10-04.csv"
+    },
+    {
+      "bytes": 24841,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a1bd58922b70af5ec46d2ba32ae4bf6d68c0618ca5d00ca139744eb27aec8fee",
+      "url": "feed-capture:comex_futures/copper/2026-10-05.csv"
+    },
+    {
+      "bytes": 22363,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1886de15397927a7dc31dc199ad714d4775ad2e4854594670104d098ce7dd9f3",
+      "url": "feed-capture:comex_futures/copper/2026-10-06.csv"
+    },
+    {
+      "bytes": 21571,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f7865d71eb6464ec9f2934805c7fcc5876e12d9d429f91806ee919bacc7e86a0",
+      "url": "feed-capture:comex_futures/copper/2026-10-07.csv"
+    },
+    {
+      "bytes": 18260,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ff049092058a29fb94bc9ddac2d1952e71549a8f79469028d2a6766a1087151d",
+      "url": "feed-capture:comex_futures/copper/2026-10-08.csv"
+    },
+    {
+      "bytes": 31516,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0d738f7921ec427ba3348b2230fe1f63440bcb922f088184643f32d1e0deaf25",
+      "url": "feed-capture:comex_futures/copper/2026-10-09.csv"
+    },
+    {
+      "bytes": 59440,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3f795c9a75c0e4c6fef9f716e146f2ed459f538f4b84d78bae44ac142cc9dde6",
+      "url": "feed-capture:comex_futures/copper/2026-10-11.csv"
+    },
+    {
+      "bytes": 983429,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "cd34619e91dcd8e258e5a1d8d074ac3ce361c089d9a15d1c0520aa3d3153a55b",
+      "url": "feed-capture:comex_futures/copper/2026-10-12.csv"
+    },
+    {
+      "bytes": 974123,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3940ae1c5def5b45238a9eaa2e70ab12e30175295a20f27149e05db1560a3766",
+      "url": "feed-capture:comex_futures/copper/2026-10-13.csv"
+    },
+    {
+      "bytes": 957035,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "57114257f2a30eadebdc23522734537afcf52c206e412dbda4955b9cb85489ef",
+      "url": "feed-capture:comex_futures/copper/2026-10-14.csv"
+    },
+    {
+      "bytes": 21572,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a9275865debba359656147a063269189b8b290c19ae168b81448df53080421dc",
+      "url": "feed-capture:comex_futures/copper/2026-10-15.csv"
+    },
+    {
+      "bytes": 10816,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "305fcc48f4fb21ba7637bcec0e0bd61690ab3e89dae9817688aa92effc16e6f2",
+      "url": "feed-capture:comex_futures/copper/2026-10-16.csv"
+    },
+    {
+      "bytes": 9141,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "05f4ee48784426b52c20b94d1185ee1f8f3d40205efab5d2242e5d66266ebbe6",
+      "url": "feed-capture:comex_futures/copper/2026-10-18.csv"
+    },
+    {
+      "bytes": 25703,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d8292ba4bb2fc53c5eaf7749c551e849f06a3ea93f9820c31c4191540ce91b4d",
+      "url": "feed-capture:comex_futures/copper/2026-10-19.csv"
+    },
+    {
+      "bytes": 28170,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4efc160a9ac14f4ace985784d6f00a3cfba5b722af9c4757e4845aa2a979974f",
+      "url": "feed-capture:comex_futures/copper/2026-10-20.csv"
+    },
+    {
+      "bytes": 12476,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f10113c85573c5cb18e1b2e13eaa8b023412c8855719ad14070df8d8c2f85bf7",
+      "url": "feed-capture:comex_futures/copper/2026-10-21.csv"
+    },
+    {
+      "bytes": 15762,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bfa3e13155777b821d92cbc3d21d399b511fefedc926f7a81cab0a5454194d29",
+      "url": "feed-capture:comex_futures/copper/2026-10-22.csv"
+    },
+    {
+      "bytes": 12453,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5fbb6434b4ba9a38844c528b9aef80e816361d62473989c63571b8475f6f09b8",
+      "url": "feed-capture:comex_futures/copper/2026-10-23.csv"
+    },
+    {
+      "bytes": 605,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fd145f87b7eb22dc30b28cd5a776387218b820221b26827627a6a84797c3525d",
+      "url": "feed-capture:comex_futures/crude/2026-07-15.csv"
+    },
+    {
+      "bytes": 2801,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "45ea67ad0006c73f8adbcb2a08a1a66c4d6e956324be49509925dd870d1fc580",
+      "url": "feed-capture:comex_futures/crude/2026-07-16.csv"
+    },
+    {
+      "bytes": 327,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "03790374385fbfb8e9cd0db7439399d215fe0eb32b3063393757ac14e974a833",
+      "url": "feed-capture:comex_futures/crude/2026-07-21.csv"
+    },
+    {
+      "bytes": 1461,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "54dcde79add68c8d9d8ac64c841b11314904dee6b0ff7f3766c82e3b4185343a",
+      "url": "feed-capture:comex_futures/crude/2026-07-27.csv"
+    },
+    {
+      "bytes": 1460,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "014db1e9d86f5e06fe167bfe65ced5036d53d4945dbf5a30697cda52a4a25856",
+      "url": "feed-capture:comex_futures/crude/2026-07-28.csv"
+    },
+    {
+      "bytes": 3579,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "eee13964c93f1dd6ae8d0b1abe38a1503cad4608baff2f1ce484dede5998c09a",
+      "url": "feed-capture:comex_futures/crude/2026-07-29.csv"
+    },
+    {
+      "bytes": 901,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1a66026101a4b368f991473b3cbba44ac35009023a8d9825ff387cf0384fd637",
+      "url": "feed-capture:comex_futures/crude/2026-07-31.csv"
+    },
+    {
+      "bytes": 2600,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "11243a12f39d0445c43c22a63fa1db0d75bfec7456db64fcea42d58859f30b8c",
+      "url": "feed-capture:comex_futures/crude/2026-08-03.csv"
+    },
+    {
+      "bytes": 6007,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "948692aab9851fe4fb5f4ba7e014f459f162f8bdc7b30429c21037d8470a83c5",
+      "url": "feed-capture:comex_futures/crude/2026-08-04.csv"
+    },
+    {
+      "bytes": 7709,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2bd1ca17e71bd61b9d78e6f8f71c7c8dd05385a47e3037eb215e352bde27b38a",
+      "url": "feed-capture:comex_futures/crude/2026-08-05.csv"
+    },
+    {
+      "bytes": 5155,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "52bc17bcdb66809af9e0557b68492748fd00e9499124a7acc6a0d60e2555f5f6",
+      "url": "feed-capture:comex_futures/crude/2026-08-06.csv"
+    },
+    {
+      "bytes": 4305,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "cba9e839aafc9aa6c097aca55a84a41a2093b2ae1ce759ee583a7390d27d8c5b",
+      "url": "feed-capture:comex_futures/crude/2026-08-11.csv"
+    },
+    {
+      "bytes": 3452,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "84b9ef939a27beb10d8bb3c4ce47249c5230bd24268a4aa5d1d9c02fd5418290",
+      "url": "feed-capture:comex_futures/crude/2026-08-12.csv"
+    },
+    {
+      "bytes": 5154,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "64da5205f3cfea958a614ff7f2dbc38f632c939a8cff330412be7dd5922f2954",
+      "url": "feed-capture:comex_futures/crude/2026-08-13.csv"
+    },
+    {
+      "bytes": 6005,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ae99e00683172d1dd85edb9301699abae42e6b822d4944c093edd76712f487e7",
+      "url": "feed-capture:comex_futures/crude/2026-08-14.csv"
+    },
+    {
+      "bytes": 15335,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2d5df225bcf33f20752ee1f318386ad946a74e5eae962900e0d52107f9be302b",
+      "url": "feed-capture:comex_futures/crude/2026-08-20.csv"
+    },
+    {
+      "bytes": 40913,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "becd005167830dcc759d182178eff039aebc89a59aa830ed26a7201e452b8601",
+      "url": "feed-capture:comex_futures/crude/2026-08-21.csv"
+    },
+    {
+      "bytes": 899,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7fd32df76ed8aec759fb8f09700437d8bfb83ae4eaf54631d8859bcfdf6e74dd",
+      "url": "feed-capture:comex_futures/crude/2026-08-23.csv"
+    },
+    {
+      "bytes": 54504,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "afd98dbcccabe524139383daa9eb6df5300ca7c26cf72603565aea9a7abb2c23",
+      "url": "feed-capture:comex_futures/crude/2026-08-24.csv"
+    },
+    {
+      "bytes": 39205,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9632d93733de0df0284e0944bfb960619c698f2caa3d89503cebc6d3fc977e85",
+      "url": "feed-capture:comex_futures/crude/2026-08-25.csv"
+    },
+    {
+      "bytes": 53645,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8ab35c94c2bea33f510cec4457bba55921e60260e04ab17b4dc4935f1a67ee7d",
+      "url": "feed-capture:comex_futures/crude/2026-08-26.csv"
+    },
+    {
+      "bytes": 96968,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7455292319a6b175988c9dbf333248cdc813528474b1a8872ebef582d90e32d3",
+      "url": "feed-capture:comex_futures/crude/2026-08-27.csv"
+    },
+    {
+      "bytes": 33237,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d5dddf40af0016daa7b7f9c3889316da46825557309656703eff9472fafcc782",
+      "url": "feed-capture:comex_futures/crude/2026-08-28.csv"
+    },
+    {
+      "bytes": 13635,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "089e67153512f5cf333d3ffa5ecf98c01f0a9e4d48ec5259bc4c79ea518daa04",
+      "url": "feed-capture:comex_futures/crude/2026-08-30.csv"
+    },
+    {
+      "bytes": 45954,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "65b58f72bcaa6b51919c25da9b9a3e4e1171b74c2ebbe5fdf12002efb1a59bf3",
+      "url": "feed-capture:comex_futures/crude/2026-08-31.csv"
+    },
+    {
+      "bytes": 76663,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f731e67a420f0a4e412b83943ddb925b4dfa0bf27a513e285dbb928ec73a6da2",
+      "url": "feed-capture:comex_futures/crude/2026-09-01.csv"
+    },
+    {
+      "bytes": 86896,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2445a0b3bed2aaee607eaca7e49541ad41aefe370c825027fe7625468ab3b1c7",
+      "url": "feed-capture:comex_futures/crude/2026-09-02.csv"
+    },
+    {
+      "bytes": 204209,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "254729da5f4262d9a67fa4610d5ec050c3c375197931ae3b232df3e912c0336c",
+      "url": "feed-capture:comex_futures/crude/2026-09-03.csv"
+    },
+    {
+      "bytes": 98597,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d4e082a4493ee2a62d5851d887653270389ab34761cc263e91e470fe87a64afd",
+      "url": "feed-capture:comex_futures/crude/2026-09-04.csv"
+    },
+    {
+      "bytes": 899,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f1ad2f26e537ebeae987894ad2a553142dd04de468578957a2b0588ad5f6de04",
+      "url": "feed-capture:comex_futures/crude/2026-09-06.csv"
+    },
+    {
+      "bytes": 111535,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4e615b6e833ef6e411ec3808238231a536592b5ef7e12b141168804c21103fff",
+      "url": "feed-capture:comex_futures/crude/2026-09-07.csv"
+    },
+    {
+      "bytes": 471978,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b05c7d5854e175033e16a59c3ea94a2600982748909cc82b6edc5b66df2b0eb9",
+      "url": "feed-capture:comex_futures/crude/2026-09-08.csv"
+    },
+    {
+      "bytes": 200083,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "dcd354a9d42644307043aefbe387eed446b5af7cadc4b09d20ce4b0f281f2532",
+      "url": "feed-capture:comex_futures/crude/2026-09-09.csv"
+    },
+    {
+      "bytes": 15394,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ee5e2e3c228d70a513ae0f0fcb62a2a2869cbbbcd94da8b0c1c5acd390f7e90f",
+      "url": "feed-capture:comex_futures/crude/2026-09-10.csv"
+    },
+    {
+      "bytes": 13706,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c79a2be979aaae7d20dbb6755da88b4e2d355ad6e2fc279f5c6c94217067b956",
+      "url": "feed-capture:comex_futures/crude/2026-09-11.csv"
+    },
+    {
+      "bytes": 902,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bf185cc3f4a10b633f349d35b27cdbd01dc5ed116c77ff775b3afea631a05c90",
+      "url": "feed-capture:comex_futures/crude/2026-09-13.csv"
+    },
+    {
+      "bytes": 16254,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8add33620d9b378359fccf6a1dc6adf23c6a0249cb7506e21118f4c8b46ffdfe",
+      "url": "feed-capture:comex_futures/crude/2026-09-14.csv"
+    },
+    {
+      "bytes": 17106,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "85cf3554210502a9cc9f546a29865a2a9eb77c86ae82a137ecff9abdf00d6dc1",
+      "url": "feed-capture:comex_futures/crude/2026-09-15.csv"
+    },
+    {
+      "bytes": 23918,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3231f51c346a5aeb0f1033bcb653e8d93603abfc811a00cceb7d67ada5c2ebf9",
+      "url": "feed-capture:comex_futures/crude/2026-09-16.csv"
+    },
+    {
+      "bytes": 25635,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "400d2614615bb11346f50e98c7d9c7bbb1b163c0f7355f6b7b75a1cc2741f4fe",
+      "url": "feed-capture:comex_futures/crude/2026-09-17.csv"
+    },
+    {
+      "bytes": 50304,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c0b3949d0e5ae168c40f9caa627ac08b36da087a5e7518742f7eb38524a00706",
+      "url": "feed-capture:comex_futures/crude/2026-09-18.csv"
+    },
+    {
+      "bytes": 1749,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "59eb0e0f8cb84bdc3751aea0f0fbd1c7ed71d2e3dc36843857c2b5bf09b20877",
+      "url": "feed-capture:comex_futures/crude/2026-09-20.csv"
+    },
+    {
+      "bytes": 162589,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7660d4a3d17df0edd4f31dcbdf89d02a139f0f647c6b1535fd9016a3130437b0",
+      "url": "feed-capture:comex_futures/crude/2026-09-21.csv"
+    },
+    {
+      "bytes": 122690,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e9123bc0cbe5b6a4e44dfa4e7047f465ad934131141f85cbd5dad71a95941298",
+      "url": "feed-capture:comex_futures/crude/2026-09-22.csv"
+    },
+    {
+      "bytes": 59642,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "cbc063ec79dae9bb7424ff864505380f80f46cd1d6bbff238655f0ffd69d5119",
+      "url": "feed-capture:comex_futures/crude/2026-09-23.csv"
+    },
+    {
+      "bytes": 86073,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c4b8aa8d79a7ba73472e4932397b19030833fc6232d8fe7072fad5e1599f030e",
+      "url": "feed-capture:comex_futures/crude/2026-09-24.csv"
+    },
+    {
+      "bytes": 95456,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0bc23085b77dd546fd6366a976efc4b4f234ce0f33d5337776e20f802bff43a3",
+      "url": "feed-capture:comex_futures/crude/2026-09-25.csv"
+    },
+    {
+      "bytes": 155045,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f53985514bb3637a5b7f73a0cc41af2d1e68e496e3bd2b545a2a7b37a03b73cd",
+      "url": "feed-capture:comex_futures/crude/2026-09-28.csv"
+    },
+    {
+      "bytes": 157431,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "40ececc83ae1e5319977a7f7abc39af39b86608e06656ece77c84fcee0a069b9",
+      "url": "feed-capture:comex_futures/crude/2026-09-29.csv"
+    },
+    {
+      "bytes": 174578,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4e11679e341502dbb9cf27fe0bb5a9d01af4e60aeeb206b02b07d066c9f11aaa",
+      "url": "feed-capture:comex_futures/crude/2026-09-30.csv"
+    },
+    {
+      "bytes": 31546,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "34443e012e4115921b77bff9ddb9f84a16c451b4a2a3af666df617e07ff6f5d0",
+      "url": "feed-capture:comex_futures/crude/2026-10-01.csv"
+    },
+    {
+      "bytes": 366299,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "79f4abaa7bfbfc781c4ba39b7adc20532563795f023b5f62516d16f838247db0",
+      "url": "feed-capture:comex_futures/crude/2026-10-02.csv"
+    },
+    {
+      "bytes": 901,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fb8dccd5847c399dce943d7f00ac1113915d123a380853c3416be9e65a36e96b",
+      "url": "feed-capture:comex_futures/crude/2026-10-03.csv"
+    },
+    {
+      "bytes": 899,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3284326fdfd232142a37620952b09485fd33257ccbe179b7f9d0a6163f7c1cdd",
+      "url": "feed-capture:comex_futures/crude/2026-10-04.csv"
+    },
+    {
+      "bytes": 20457,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "78fd3083fb3420e714b9f640f66b81902ae6c3dd398da6b4f17d0cc7fbaac601",
+      "url": "feed-capture:comex_futures/crude/2026-10-05.csv"
+    },
+    {
+      "bytes": 15363,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fb2f996f7c83cc77883e60cf9955b4cd3022d7fe684fb9e7f3905a165a9ec85e",
+      "url": "feed-capture:comex_futures/crude/2026-10-06.csv"
+    },
+    {
+      "bytes": 20463,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f1a822bfddec48373b2076a0d59c0b831c15d039b3fbac124568a5eefbf1d604",
+      "url": "feed-capture:comex_futures/crude/2026-10-07.csv"
+    },
+    {
+      "bytes": 23865,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9e16ea9d0e4e00f1f54a3a5e88b400944c9e889811bc52647dcae1bddb2e6d39",
+      "url": "feed-capture:comex_futures/crude/2026-10-08.csv"
+    },
+    {
+      "bytes": 10269,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8a12e3fbb15f50c9610ac85a2fd91d452c0b351a6e3a6c577b6f90db6f17837c",
+      "url": "feed-capture:comex_futures/crude/2026-10-09.csv"
+    },
+    {
+      "bytes": 84185,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7f273304b378fa46307c4c05d074e027c76bc999a61d4c87aab2a957999fc620",
+      "url": "feed-capture:comex_futures/crude/2026-10-11.csv"
+    },
+    {
+      "bytes": 1055347,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1a366fbafedce305ca97045a3e82564fb4d15a92339b97dc6fee7ca3b463ef38",
+      "url": "feed-capture:comex_futures/crude/2026-10-12.csv"
+    },
+    {
+      "bytes": 1065460,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "24eb4f6fbd1be4c6c6ffc53dbc1777b06e07f7d9bb76c21d8fe01b85f6e7e1dd",
+      "url": "feed-capture:comex_futures/crude/2026-10-13.csv"
+    },
+    {
+      "bytes": 963506,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9dd93089915b20812a1681186a4e1ebff72efb268c8c827139dfb39a383861cb",
+      "url": "feed-capture:comex_futures/crude/2026-10-14.csv"
+    },
+    {
+      "bytes": 11108,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5359def72cfd31a5f7640b0bb99caa5e8731c7dc90b41c17e91bee0a2f32cc61",
+      "url": "feed-capture:comex_futures/crude/2026-10-15.csv"
+    },
+    {
+      "bytes": 8557,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1acb6ff4d74daa068de4b822a3f43b774b2c4bb5f6c01857ce95ccfb212f2d44",
+      "url": "feed-capture:comex_futures/crude/2026-10-16.csv"
+    },
+    {
+      "bytes": 6848,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6f2084e75ef7e6781c8b7e207a5b801e0bdbc63e2148596f73db682b642255ae",
+      "url": "feed-capture:comex_futures/crude/2026-10-18.csv"
+    },
+    {
+      "bytes": 18772,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0df3b0507bc2674e26ae6102b4d348ce17fc0cb947e6b3d09e261e07f202f775",
+      "url": "feed-capture:comex_futures/crude/2026-10-19.csv"
+    },
+    {
+      "bytes": 18765,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "31a03bb0b42ea0c90d7af633f9776643695103c64f0e222abdca6c98dd4e739a",
+      "url": "feed-capture:comex_futures/crude/2026-10-20.csv"
+    },
+    {
+      "bytes": 11970,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8f247d76859344863860319a8af276c730ad9804dd1aac5f6a1583c76669eb0d",
+      "url": "feed-capture:comex_futures/crude/2026-10-21.csv"
+    },
+    {
+      "bytes": 17911,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2f72ce60cca60cb74538b2009cc7f57681b84a7dfd1f34b9622a9a098d38546b",
+      "url": "feed-capture:comex_futures/crude/2026-10-22.csv"
+    },
+    {
+      "bytes": 9430,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7e69031d2f7039a8af4c22431bbbf1898c0623612b4e47a751e2f91f237add6b",
+      "url": "feed-capture:comex_futures/crude/2026-10-23.csv"
+    },
+    {
+      "bytes": 199521,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "45bb619b9e4478c9f79d897cde658f84b9dfd4497e67e2c553c67dd0659f619d",
+      "url": "feed-capture:comex_futures/gold/2026-07-10.csv"
+    },
+    {
+      "bytes": 294785,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d4fc0a665dc492b57bcab92b9888977224f79b85be8adab5119d48fc8cdb18f3",
+      "url": "feed-capture:comex_futures/gold/2026-07-11.csv"
+    },
+    {
+      "bytes": 290833,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e7fc2f2712d0db7c83175b48267245467d6765efa71fec2d97697df0eef18c4a",
+      "url": "feed-capture:comex_futures/gold/2026-07-12.csv"
+    },
+    {
+      "bytes": 296033,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a84b21ab58acdf575f7415335051e66f8088e8ad1baaefc66a84dcb99bf9ddcc",
+      "url": "feed-capture:comex_futures/gold/2026-07-13.csv"
+    },
+    {
+      "bytes": 305911,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b370bab3c203adb60c9e62be7d6547250fcb437a8d786a555f46a37e4d827f5a",
+      "url": "feed-capture:comex_futures/gold/2026-07-14.csv"
+    },
+    {
+      "bytes": 355825,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "51acb1f3d87681c82566830ca8b850a25879e3aed21ca7bc895a6afe87f19f64",
+      "url": "feed-capture:comex_futures/gold/2026-07-15.csv"
+    },
+    {
+      "bytes": 353894,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "74c7c7170c746808229b2313715ddea840ec1da47b61811c24408a81f048b720",
+      "url": "feed-capture:comex_futures/gold/2026-07-16.csv"
+    },
+    {
+      "bytes": 332420,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5fc4bd2f20d17e296ede7a1418dda5e937f8db26c737f09e7158721b117e053b",
+      "url": "feed-capture:comex_futures/gold/2026-07-17.csv"
+    },
+    {
+      "bytes": 28556,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "24148ce2c61f579c8900efd6653ed3be6659f8974ebc95606a8d1285740f4a75",
+      "url": "feed-capture:comex_futures/gold/2026-07-19.csv"
+    },
+    {
+      "bytes": 353875,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "03fbd4da0c0b2a66d085f3f2380065281e4d171cf510c02cd5bd39dfe8e24ef5",
+      "url": "feed-capture:comex_futures/gold/2026-07-20.csv"
+    },
+    {
+      "bytes": 353476,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "16eb76c90a0fb66128733483c4f4b146309e1892b0991432cd6e9f2cac4ed372",
+      "url": "feed-capture:comex_futures/gold/2026-07-21.csv"
+    },
+    {
+      "bytes": 354907,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7acb6656071de615a3429b729a31f06a5c10da04eac370e688c416d8e2c813bd",
+      "url": "feed-capture:comex_futures/gold/2026-07-22.csv"
+    },
+    {
+      "bytes": 895978,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "738a21828e1e283e1a7738ec66d07b5d5ea6ff5a08bd1693e77f1933ca0f4219",
+      "url": "feed-capture:comex_futures/gold/2026-07-23.csv"
+    },
+    {
+      "bytes": 845898,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "388f08db410d95746e99c5d2174c514128c72448f234e2e1fd578aeaede592a5",
+      "url": "feed-capture:comex_futures/gold/2026-07-24.csv"
+    },
+    {
+      "bytes": 47649,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7fb945a3e4949870a07ec037ee5930b6cc008f9b1fcfb96fc11783ee8471fa14",
+      "url": "feed-capture:comex_futures/gold/2026-07-26.csv"
+    },
+    {
+      "bytes": 876655,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "34c110a80d088b5575bc948273f29f814da0707de3859e4005c9611295da668d",
+      "url": "feed-capture:comex_futures/gold/2026-07-27.csv"
+    },
+    {
+      "bytes": 529825,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bef75f3b23c3c7e046180ea527ca17fd5facae0d311925576c20ded86beaec14",
+      "url": "feed-capture:comex_futures/gold/2026-07-28.csv"
+    },
+    {
+      "bytes": 366178,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "823e06695e64fe642499abd4a68cee97deb0921fc2c33ee16b1b79f3c079fcf7",
+      "url": "feed-capture:comex_futures/gold/2026-07-29.csv"
+    },
+    {
+      "bytes": 677996,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "74eed35758328f9a2c6cf183658d83c6bde50a599a4c4e1ff24bdb3d2309c133",
+      "url": "feed-capture:comex_futures/gold/2026-07-30.csv"
+    },
+    {
+      "bytes": 935124,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1781af71d9820c482403f4fd5f2775bff0cea91e5faa6d4724afaab60706aa2d",
+      "url": "feed-capture:comex_futures/gold/2026-07-31.csv"
+    },
+    {
+      "bytes": 68109,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "906c21f4551d31ec806b3e20cef883d757800687bd9e54bf896bc8a136120a9f",
+      "url": "feed-capture:comex_futures/gold/2026-08-02.csv"
+    },
+    {
+      "bytes": 1018707,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "aef4d7b662e4dc3172350ec9fd9df63f160b688b4cb6d1d7944e4ebd33ccf401",
+      "url": "feed-capture:comex_futures/gold/2026-08-03.csv"
+    },
+    {
+      "bytes": 904779,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d8739458aac14abd99949ed4767da65944df994b8d9afa7a88a9396c47e803c3",
+      "url": "feed-capture:comex_futures/gold/2026-08-04.csv"
+    },
+    {
+      "bytes": 166658,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "48a2f0720b39caccfe6c61ca7509c7ab4af9b70cc2a286fbaa8279da5f16b0b8",
+      "url": "feed-capture:comex_futures/gold/2026-08-05.csv"
+    },
+    {
+      "bytes": 29627,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ee969fea916765dde5a149881e5828a9360486e7c6d55fd40b9761d41a364f3a",
+      "url": "feed-capture:comex_futures/gold/2026-08-06.csv"
+    },
+    {
+      "bytes": 392927,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c27b4908f4c63c1ce7a8fc5fb2341f1b2cb3e2a030cf5b9ccf3e5241a3d70da6",
+      "url": "feed-capture:comex_futures/gold/2026-08-07.csv"
+    },
+    {
+      "bytes": 94334,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "294120d7b436f28c906632c722beb72703470fefeea81bcedb33bcbc521cd347",
+      "url": "feed-capture:comex_futures/gold/2026-08-10.csv"
+    },
+    {
+      "bytes": 243837,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "420b1fc938a57f456351848911bfaa13e87e46d4a44f052f367bb9c68b994a96",
+      "url": "feed-capture:comex_futures/gold/2026-08-11.csv"
+    },
+    {
+      "bytes": 619989,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "810cc6f860d3b6fb5c62649990b085b0ed64e993766e2126e00ec7b7d7a82fe5",
+      "url": "feed-capture:comex_futures/gold/2026-08-12.csv"
+    },
+    {
+      "bytes": 105850,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "58fb0cdec1d7a3cb282c6f25288553d1fe35f4c531bc560aef474ac504495cce",
+      "url": "feed-capture:comex_futures/gold/2026-08-13.csv"
+    },
+    {
+      "bytes": 82943,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b99ddbb2d480184ee29d5cb9f458dd33a1fe3ebc21de36476ac2ade5f585ffea",
+      "url": "feed-capture:comex_futures/gold/2026-08-14.csv"
+    },
+    {
+      "bytes": 80394,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f4b9d6fe80ef055917e2e56843fa237b77ecc2f715be7ea16c079a768c11c2ad",
+      "url": "feed-capture:comex_futures/gold/2026-08-16.csv"
+    },
+    {
+      "bytes": 973046,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6700f5e9b3c2b68e94ce9d5fbadc4ce4240ee5688c4cc228f479be7c89319c87",
+      "url": "feed-capture:comex_futures/gold/2026-08-17.csv"
+    },
+    {
+      "bytes": 59974,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fed766a65e6a4b3a55b09b20428084ff715d8873d77b709e70606f183ce5f847",
+      "url": "feed-capture:comex_futures/gold/2026-08-18.csv"
+    },
+    {
+      "bytes": 637460,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "45351b8a7172ccefcc254b33afc6ecab450f1177ae387cf3b7748323a027e36d",
+      "url": "feed-capture:comex_futures/gold/2026-08-19.csv"
+    },
+    {
+      "bytes": 952728,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "21c5429522f36ea6796f61e2b9e9a42f55169b2db1f957de7b0042bee61268e7",
+      "url": "feed-capture:comex_futures/gold/2026-08-20.csv"
+    },
+    {
+      "bytes": 41948,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "20582e74f46a4f0aeb058ff795961e22070a7392e84d90d1a972ed8aaac74421",
+      "url": "feed-capture:comex_futures/gold/2026-08-21.csv"
+    },
+    {
+      "bytes": 36200,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f7cc567e9f8c745155c758d59d78f7b5600258fcff5e2eeb52b1186e2741c32a",
+      "url": "feed-capture:comex_futures/gold/2026-08-24.csv"
+    },
+    {
+      "bytes": 34558,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ea4da4c55b839da7bf362a7a18227bf3e9177e66ef8789f2ff8e09325c0a310b",
+      "url": "feed-capture:comex_futures/gold/2026-08-25.csv"
+    },
+    {
+      "bytes": 36185,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1a356f8d154493513c7123868c1aaef3e8e752aba77fc1980074e06dac5b9ecc",
+      "url": "feed-capture:comex_futures/gold/2026-08-26.csv"
+    },
+    {
+      "bytes": 86978,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "789309dee928d2bc2090242ab03029598687f90e8a6fdcdb3d06f2e915ee983d",
+      "url": "feed-capture:comex_futures/gold/2026-08-27.csv"
+    },
+    {
+      "bytes": 20587,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "04a9c9f3878b6adbb02e7cf1b9c86d9c1f970e9996d491b5b9b566a9dec1de05",
+      "url": "feed-capture:comex_futures/gold/2026-08-28.csv"
+    },
+    {
+      "bytes": 9889,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "29d002f06e17054559e7fda4604277b438d0fde07bf78403f1fc5a9b6413174d",
+      "url": "feed-capture:comex_futures/gold/2026-08-30.csv"
+    },
+    {
+      "bytes": 35367,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1227ccf1e8c2701e8b7e647a5c9a86b830309aa7aedbffab8d123998bee60009",
+      "url": "feed-capture:comex_futures/gold/2026-08-31.csv"
+    },
+    {
+      "bytes": 64953,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b7fd667b18be3badbb8d159aeb01b050c26aa6231429002a1e9fc4b3e0c8b739",
+      "url": "feed-capture:comex_futures/gold/2026-09-01.csv"
+    },
+    {
+      "bytes": 74836,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0b47a432b8f151552cf05382a18f4a32e047ed9f2dea3dc6e3fab465a20c50fa",
+      "url": "feed-capture:comex_futures/gold/2026-09-02.csv"
+    },
+    {
+      "bytes": 204467,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4094615caf621b5748e600995f984c8ed5c5e6618cf40cece2666644cc37ff7d",
+      "url": "feed-capture:comex_futures/gold/2026-09-03.csv"
+    },
+    {
+      "bytes": 100202,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1b680e93eaafdd7de6acdf83172ec5737ac5ab1772dc02dc45b1acd0e840c13d",
+      "url": "feed-capture:comex_futures/gold/2026-09-04.csv"
+    },
+    {
+      "bytes": 89537,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "17c893883480e1d93333b203a35e7cd2528cdbb083877d1e5fb07aa2faae7348",
+      "url": "feed-capture:comex_futures/gold/2026-09-07.csv"
+    },
+    {
+      "bytes": 463500,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d862aa5746aff41a06abdc6a6638cc09c8900c32cd1555a75fa828bf90fb890d",
+      "url": "feed-capture:comex_futures/gold/2026-09-08.csv"
+    },
+    {
+      "bytes": 193853,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bad34da8253b2edd053d17d91c1bf94f7a21d9e8b7b4ea54a68bc04af48c1889",
+      "url": "feed-capture:comex_futures/gold/2026-09-09.csv"
+    },
+    {
+      "bytes": 13200,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "98d9dc7f70e9818f55dd29036563da64613b08fb9a7eabbb13125be07e5b9c72",
+      "url": "feed-capture:comex_futures/gold/2026-09-10.csv"
+    },
+    {
+      "bytes": 14023,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "befb796b4832eb4551c9247a79014d01ef968cfb6fab7caae05f72dafee8dcc5",
+      "url": "feed-capture:comex_futures/gold/2026-09-11.csv"
+    },
+    {
+      "bytes": 8269,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fa7334cb3be0336409c074a21bff0cae73987d2657761f0dbe0d3ed5fd1c09ef",
+      "url": "feed-capture:comex_futures/gold/2026-09-14.csv"
+    },
+    {
+      "bytes": 9912,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "09b3da1b9eef6350ac98ef209c3e3b08ddfc6d68abb66f1942021c199d7e237d",
+      "url": "feed-capture:comex_futures/gold/2026-09-15.csv"
+    },
+    {
+      "bytes": 12375,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "265da5188ff4ff8fccd350d6c2834537b30703e3d88d2ed9790ee613c5592e79",
+      "url": "feed-capture:comex_futures/gold/2026-09-16.csv"
+    },
+    {
+      "bytes": 14844,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "35a88953374d143e867807671efaa3f3822757c65288503dabf55011d5092af8",
+      "url": "feed-capture:comex_futures/gold/2026-09-17.csv"
+    },
+    {
+      "bytes": 55889,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9005ef018c3d798de2905b890b260a2b2e4f778d78fb0b28440194c9465c5856",
+      "url": "feed-capture:comex_futures/gold/2026-09-18.csv"
+    },
+    {
+      "bytes": 1689,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "466e891f0e55c80fdf21bd720960e5eb998fbfbc804306fa5d363051b62fedfe",
+      "url": "feed-capture:comex_futures/gold/2026-09-20.csv"
+    },
+    {
+      "bytes": 149405,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d2fdb88f4094cfc3d932d3ece329639aa035dcd52a1b75319f966224824bf4c6",
+      "url": "feed-capture:comex_futures/gold/2026-09-21.csv"
+    },
+    {
+      "bytes": 116713,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a5325b094b7f6067a5b9016608073a84eaa82ea30877107a35066715a1a95bcd",
+      "url": "feed-capture:comex_futures/gold/2026-09-22.csv"
+    },
+    {
+      "bytes": 53435,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1ceb368e67d4c245351c9d7d65eb8a12cea2a7861340d2efb207c39646a21877",
+      "url": "feed-capture:comex_futures/gold/2026-09-23.csv"
+    },
+    {
+      "bytes": 86330,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9d2c28359000114697bb6bae88a639a2c468a2cc5c6556e8dd39242a577da6c7",
+      "url": "feed-capture:comex_futures/gold/2026-09-24.csv"
+    },
+    {
+      "bytes": 110917,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "32d2ee7a77aba65b1c362bf9b31efb88fea502f53ff143d2871123725dee2a5c",
+      "url": "feed-capture:comex_futures/gold/2026-09-25.csv"
+    },
+    {
+      "bytes": 152100,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "72aeb1620325ccbf80ea640b626da0140eb5a817d3c9e5dc7b40f262011040a0",
+      "url": "feed-capture:comex_futures/gold/2026-09-28.csv"
+    },
+    {
+      "bytes": 173330,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2c60a433249a7d9418c02875e2750b9cd19bfcb2e062aaa67f37dc676dcaedda",
+      "url": "feed-capture:comex_futures/gold/2026-09-29.csv"
+    },
+    {
+      "bytes": 162621,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1a647227a6f607192f58c1bcd7cdbeab310cd45d57085a9867d4969cced2fc9d",
+      "url": "feed-capture:comex_futures/gold/2026-09-30.csv"
+    },
+    {
+      "bytes": 27152,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "edd3e0a93dc736e691e8e18aa98cdc74e734f129ac89fcbf1e4c9b9e6a006eb4",
+      "url": "feed-capture:comex_futures/gold/2026-10-01.csv"
+    },
+    {
+      "bytes": 380448,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "240fcb2e2e14eed7046b8cb6f3b0870457e94e1ef78f14a643cb2ce5437ce077",
+      "url": "feed-capture:comex_futures/gold/2026-10-02.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9b33fe47243199297982c8545ba6dba66544fa95bc61ffbd9c9cfd144fcfda44",
+      "url": "feed-capture:comex_futures/gold/2026-10-05.csv"
+    },
+    {
+      "bytes": 7444,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d0a292200d19527e8b897164b341bf818ce881a96ce5752dd84a3d45f8cb178d",
+      "url": "feed-capture:comex_futures/gold/2026-10-06.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4953d5a40af13a1c9a71141ee75da4fce1d704f4e3719f2f435394140a214520",
+      "url": "feed-capture:comex_futures/gold/2026-10-07.csv"
+    },
+    {
+      "bytes": 8269,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bc8f3f7a6a31dbe269c45f010b6014c658ea96816c67af45f48d62300dc37edb",
+      "url": "feed-capture:comex_futures/gold/2026-10-08.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2f6d63378d0385fe86756ae852ea67d1378c149dec88ca2ccb0163c80eca8a11",
+      "url": "feed-capture:comex_futures/gold/2026-10-09.csv"
+    },
+    {
+      "bytes": 73844,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e14ec88f60eaaeff2c558c776e1807c7bde61eb0179cb94e0b051aa6e6409fde",
+      "url": "feed-capture:comex_futures/gold/2026-10-11.csv"
+    },
+    {
+      "bytes": 1054859,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ff4398fe9df5cc58510dd5814b002bf925c5b6bb856710b71710e10e9bb6b33d",
+      "url": "feed-capture:comex_futures/gold/2026-10-12.csv"
+    },
+    {
+      "bytes": 1059993,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "9cc63f3a50efd5ea465661a649b4ee9b0191bbd649e5827b4e9ae5da14753d8f",
+      "url": "feed-capture:comex_futures/gold/2026-10-13.csv"
+    },
+    {
+      "bytes": 947835,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d5f012ca92886b21df68832821390aba85f55afba0daac204d8a543c455260c1",
+      "url": "feed-capture:comex_futures/gold/2026-10-14.csv"
+    },
+    {
+      "bytes": 6625,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "27acb74c55d57f853485b13a2733ee490478c4684dd0ec18a341483fdd3b3ef0",
+      "url": "feed-capture:comex_futures/gold/2026-10-15.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b61d70d3ac65e7855379b360ff9501a6c00b31fa8f8e0ad1a3b171826007e0ee",
+      "url": "feed-capture:comex_futures/gold/2026-10-16.csv"
+    },
+    {
+      "bytes": 8269,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8bc6fffc16b098554cadb997d3713bee5028b13de4ff9c1508a5321cb5269fa7",
+      "url": "feed-capture:comex_futures/gold/2026-10-19.csv"
+    },
+    {
+      "bytes": 7447,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "251dee23a02d8c826c11cae22ecec5e1c82972ce1982273ed3c57bc2c3878a50",
+      "url": "feed-capture:comex_futures/gold/2026-10-20.csv"
+    },
+    {
+      "bytes": 8269,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "49e0f2971ade6882f74bd3c68e9e463fda8ff203ab00df34b2744491bda4cc55",
+      "url": "feed-capture:comex_futures/gold/2026-10-21.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ddf6fd8b8ccae580873dce3cfc36e5ddaa81a9430db59cc974374cfd988ec1ef",
+      "url": "feed-capture:comex_futures/gold/2026-10-22.csv"
+    },
+    {
+      "bytes": 9091,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "317f17ae7f6a6e4ce511809fc2347ce4c998e23fdcb613a1948408c3d4f2bf14",
+      "url": "feed-capture:comex_futures/gold/2026-10-23.csv"
+    },
+    {
+      "bytes": 202575,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "52c8598a051773258eec3f0d22cd147bb0b47a0673841c4dc788d432568928ee",
+      "url": "feed-capture:comex_futures/silver/2026-07-10.csv"
+    },
+    {
+      "bytes": 298787,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2391a3741885638bc4e24ffb7ac08fed4237ebdefada8f933e438f8af4504573",
+      "url": "feed-capture:comex_futures/silver/2026-07-11.csv"
+    },
+    {
+      "bytes": 298698,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bfa3b670603bda258d6cfe1a579eb29527c29476dc3700f90d3b418c4744c6ad",
+      "url": "feed-capture:comex_futures/silver/2026-07-12.csv"
+    },
+    {
+      "bytes": 300870,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "641e012765f31e25b5d8883c38b5a098ebc723f59b878531d981af6a3d315ec2",
+      "url": "feed-capture:comex_futures/silver/2026-07-13.csv"
+    },
+    {
+      "bytes": 296067,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "77fbf6a063610cdfbdfbc67226be72555251f7f159499aec27a1c43ba005d4af",
+      "url": "feed-capture:comex_futures/silver/2026-07-14.csv"
+    },
+    {
+      "bytes": 337042,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "461e26ba172536479b53d1de8e69743d0e96b526c94590f7781a89c1d3c8998e",
+      "url": "feed-capture:comex_futures/silver/2026-07-15.csv"
+    },
+    {
+      "bytes": 339594,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2a2e984cbb1d53ce645de5b0130b05830f615653f7c054faf874a71112642b1a",
+      "url": "feed-capture:comex_futures/silver/2026-07-16.csv"
+    },
+    {
+      "bytes": 327902,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "cbaa67aa6fafcfce811872db43d9dabad78a39a740935f184718d5f024784c60",
+      "url": "feed-capture:comex_futures/silver/2026-07-17.csv"
+    },
+    {
+      "bytes": 24033,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8ade4485de1a036a1e1841cfefbd4a8afbf5e8fc2109ec230167e26af0017787",
+      "url": "feed-capture:comex_futures/silver/2026-07-19.csv"
+    },
+    {
+      "bytes": 345346,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6d7951484bd4c359458a9f087e16ddff2f8e2f197fb1a113ad0e62005ae804b3",
+      "url": "feed-capture:comex_futures/silver/2026-07-20.csv"
+    },
+    {
+      "bytes": 341221,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bc7388ce435b16e6b5faefc1fb63aa51f11277545d4e8270b472245bd20a110a",
+      "url": "feed-capture:comex_futures/silver/2026-07-21.csv"
+    },
+    {
+      "bytes": 342142,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3c40ba61f77b65681dcc4fa9e657acaca37569bbf2c2a39d0298925fee2ce403",
+      "url": "feed-capture:comex_futures/silver/2026-07-22.csv"
+    },
+    {
+      "bytes": 836285,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6c7204c92f90abdbc5336bfbd0799d0acfa773bb8f5f47fc8f0496373b7a6050",
+      "url": "feed-capture:comex_futures/silver/2026-07-23.csv"
+    },
+    {
+      "bytes": 809326,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "339a5f4fc1698c499a1b2a5bbab6caa4731675e78bc926fa1b9337fa9972c1db",
+      "url": "feed-capture:comex_futures/silver/2026-07-24.csv"
+    },
+    {
+      "bytes": 46648,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "44d47b2e35ef58ccc571c2559ebee3af6e926c80e69fd4ce59e12e9df19daa04",
+      "url": "feed-capture:comex_futures/silver/2026-07-26.csv"
+    },
+    {
+      "bytes": 819667,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1ac17b2dc09389a92957baaeb3d09a1955bc8ed2aa55051dfe1ea8ecc623ef01",
+      "url": "feed-capture:comex_futures/silver/2026-07-27.csv"
+    },
+    {
+      "bytes": 522654,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6663bf6946544420708da056191e6a0061d97f5a574f70d6dd1d3413368641e9",
+      "url": "feed-capture:comex_futures/silver/2026-07-28.csv"
+    },
+    {
+      "bytes": 123544,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d65eaffe569a6a9b04153a03217d1866108b815a01d9256ae9ebf27664974c3a",
+      "url": "feed-capture:comex_futures/silver/2026-07-29.csv"
+    },
+    {
+      "bytes": 202605,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "cb0bdcf7ab8ed2f74c5e31f0868ffcf6ea962a59d69b3e110faad5db8a68d194",
+      "url": "feed-capture:comex_futures/silver/2026-07-30.csv"
+    },
+    {
+      "bytes": 314511,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "da5cda8a12899b1b6635e5d93cadbefeeea93afc76c5a60a04f65ac380e4bca3",
+      "url": "feed-capture:comex_futures/silver/2026-07-31.csv"
+    },
+    {
+      "bytes": 15759,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fb316b6ec1c925fb6349ff0d4026614431cb99a86098f2584a7477d2fd570cfc",
+      "url": "feed-capture:comex_futures/silver/2026-08-02.csv"
+    },
+    {
+      "bytes": 53841,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e118ca324ef8a9cb20c34bd37768eb60bd3e7f0eecf3003b224ad2142368d613",
+      "url": "feed-capture:comex_futures/silver/2026-08-03.csv"
+    },
+    {
+      "bytes": 441414,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "12ec1960d59fae716e0e26f7852e231923cee7f1f1e9927687b25d5db288283f",
+      "url": "feed-capture:comex_futures/silver/2026-08-04.csv"
+    },
+    {
+      "bytes": 152283,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ca6fdc314a27fbb903a16fb8e1d93603f4f2f29a84b6550560e8594f98f455c3",
+      "url": "feed-capture:comex_futures/silver/2026-08-05.csv"
+    },
+    {
+      "bytes": 28196,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e6eb8703048e8d76f2faef30562ddb6a1e262c939a0fe3e7c77398e11376b179",
+      "url": "feed-capture:comex_futures/silver/2026-08-06.csv"
+    },
+    {
+      "bytes": 373659,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e3c836d08fa96b4673ddee8f8e1d2ee976fe4237b96a636d5b4750ea1201c7b3",
+      "url": "feed-capture:comex_futures/silver/2026-08-07.csv"
+    },
+    {
+      "bytes": 80220,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0247c7712986b6167ea84110d12baaf9f401c4b18354cba4df60e0935a030684",
+      "url": "feed-capture:comex_futures/silver/2026-08-10.csv"
+    },
+    {
+      "bytes": 232566,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b3885729c5f5f4918732c93564e2b1ec7912c2e9c984607daf7d8c825b8fe95f",
+      "url": "feed-capture:comex_futures/silver/2026-08-11.csv"
+    },
+    {
+      "bytes": 574581,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "24f1a82caaf1f4f50d3bdc10e30add1c48d975a005047069d09c8f0fe3918880",
+      "url": "feed-capture:comex_futures/silver/2026-08-12.csv"
+    },
+    {
+      "bytes": 95896,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6dec512f951dd2b0b026c63a5ffb8104fab88bada73cc67d268ade529adc5642",
+      "url": "feed-capture:comex_futures/silver/2026-08-13.csv"
+    },
+    {
+      "bytes": 78647,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "276c874123f9da5acb51abc05df1a8bcad4f361a9805d2292231c901be38a7a2",
+      "url": "feed-capture:comex_futures/silver/2026-08-14.csv"
+    },
+    {
+      "bytes": 81090,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e8f4f8e1fa31e63f64d80a3759651814b09e69ab93d03ebbc60867d945f54683",
+      "url": "feed-capture:comex_futures/silver/2026-08-16.csv"
+    },
+    {
+      "bytes": 922457,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "93de89eaa4679d7853bdd11ce4f5bc29cce34ebde90d31af2e0ad24152c604cc",
+      "url": "feed-capture:comex_futures/silver/2026-08-17.csv"
+    },
+    {
+      "bytes": 56341,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "4ec6ed622abe0a424eeff26a6f18521f57a7c710877e1ae61851ce8f0f05645e",
+      "url": "feed-capture:comex_futures/silver/2026-08-18.csv"
+    },
+    {
+      "bytes": 613822,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "eb23f4861386215b188148a8a19fb78f7d5776106aa4f5aa826d1b656c519c75",
+      "url": "feed-capture:comex_futures/silver/2026-08-19.csv"
+    },
+    {
+      "bytes": 906164,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "de2390056879265d0a339a76a6cb90a8f1a39d74dfd90833cdab26b130259102",
+      "url": "feed-capture:comex_futures/silver/2026-08-20.csv"
+    },
+    {
+      "bytes": 38141,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "bf688e2f97bbc8de51c291da438b81884ce15d34d9b0555ef5782fa3ba95936a",
+      "url": "feed-capture:comex_futures/silver/2026-08-21.csv"
+    },
+    {
+      "bytes": 35622,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "48ccd09a6f8f51982e979e41527fd87d7587e3765257c14ff01e58d62fae600b",
+      "url": "feed-capture:comex_futures/silver/2026-08-24.csv"
+    },
+    {
+      "bytes": 29876,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "6fbce2b950dcab12d33c07ff1d2b1823f03d0554e8610fbda430383e859b9005",
+      "url": "feed-capture:comex_futures/silver/2026-08-25.csv"
+    },
+    {
+      "bytes": 36494,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "879fb90eb68ed8ec9f6509d2dd16006d5ee7115af02fc46c11100957921a02fe",
+      "url": "feed-capture:comex_futures/silver/2026-08-26.csv"
+    },
+    {
+      "bytes": 518202,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8c0c41621786aa2886c682a87f40ae88d95b6c59f5e01877f7d230f0b965f89e",
+      "url": "feed-capture:comex_futures/silver/2026-08-27.csv"
+    },
+    {
+      "bytes": 19096,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7902d309145aff7a3474a49ebb1fdb6d7740733fb56ca6a9f22c456466c47cff",
+      "url": "feed-capture:comex_futures/silver/2026-08-28.csv"
+    },
+    {
+      "bytes": 9151,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "73c0868ea5b21f3a7d2c3086442854513d0d4dfc6076da03421fd668c1ac94d9",
+      "url": "feed-capture:comex_futures/silver/2026-08-30.csv"
+    },
+    {
+      "bytes": 38133,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "31427cc1c81c7254323e0807ca6f206bd101df309901b9fe1fc2919f05c593f6",
+      "url": "feed-capture:comex_futures/silver/2026-08-31.csv"
+    },
+    {
+      "bytes": 67074,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3958768715c1ca97f55966ae5a7750a17a8f434371c71e80facaeb769c4398f7",
+      "url": "feed-capture:comex_futures/silver/2026-09-01.csv"
+    },
+    {
+      "bytes": 72112,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "69a74cb7c1aeed2a17afa4a3a5c1e9853064c17ff73f2f54d108dfcc9e486a02",
+      "url": "feed-capture:comex_futures/silver/2026-09-02.csv"
+    },
+    {
+      "bytes": 185453,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "d57d6ed5c84a77bb6728df3fcd437ba3c3846e37af3f33758529ce7888454c80",
+      "url": "feed-capture:comex_futures/silver/2026-09-03.csv"
+    },
+    {
+      "bytes": 90250,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fef28ec159d843979bef2f7f43851e7403887d67b47baef24f9212d0f6221239",
+      "url": "feed-capture:comex_futures/silver/2026-09-04.csv"
+    },
+    {
+      "bytes": 1703,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "263c7d7f60c162cd48a2905d96fff7712220809ceddaad782507182326ab4652",
+      "url": "feed-capture:comex_futures/silver/2026-09-06.csv"
+    },
+    {
+      "bytes": 75429,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a3fef6a528562aa1a560bb14e593d350a8c295f7fe4103e5a821b3dc18b563a6",
+      "url": "feed-capture:comex_futures/silver/2026-09-07.csv"
+    },
+    {
+      "bytes": 441596,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ad96dbaf316a6f30419aed5026eb9b3bdfa9cbe3acc73a551920e65b81f5f077",
+      "url": "feed-capture:comex_futures/silver/2026-09-08.csv"
+    },
+    {
+      "bytes": 193315,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "dfb8ac1459f4c614519c6a3a343dec7c5c37608439bceae2ad7ecbb0381726e3",
+      "url": "feed-capture:comex_futures/silver/2026-09-09.csv"
+    },
+    {
+      "bytes": 12473,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "c9da486b9929698ee76e31fc466077605b3b0cb535d2ed52c2ce5852661d9491",
+      "url": "feed-capture:comex_futures/silver/2026-09-10.csv"
+    },
+    {
+      "bytes": 11646,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f8bc83ce0f18cd7267ca3de61d15276c133784cc9f3fd9e2f7ef0c5141e09b32",
+      "url": "feed-capture:comex_futures/silver/2026-09-11.csv"
+    },
+    {
+      "bytes": 9163,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "a54158cdff7e2aa42686c5bb08280cbc59eca803ac3b9641b06f5f40d23428e3",
+      "url": "feed-capture:comex_futures/silver/2026-09-14.csv"
+    },
+    {
+      "bytes": 10819,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ec0886a89f5706d0c404ca2cccc39f26245411fe34980c723fb5178aae572049",
+      "url": "feed-capture:comex_futures/silver/2026-09-15.csv"
+    },
+    {
+      "bytes": 10814,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f4acf6e9a2018d9f85c57e0c2ff32509de2a1a42efd91fcc6fe350a2ff43eebc",
+      "url": "feed-capture:comex_futures/silver/2026-09-16.csv"
+    },
+    {
+      "bytes": 15793,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7017a3cc71e907985b8f78b0d665f42933ee23b243420a836d3da775e43d1ed4",
+      "url": "feed-capture:comex_futures/silver/2026-09-17.csv"
+    },
+    {
+      "bytes": 51408,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "490f2dca60776fd3868e295a6821b59da2716938770da7409c6472e928a8a22e",
+      "url": "feed-capture:comex_futures/silver/2026-09-18.csv"
+    },
+    {
+      "bytes": 1702,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "0df5e438b63a8d46338491a569eb1d65898109e9526b2b0d155fed3bce9423e0",
+      "url": "feed-capture:comex_futures/silver/2026-09-20.csv"
+    },
+    {
+      "bytes": 144069,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fd71670ca5e9e58217b49a28a9b8c33a1513b89a8a1546b60631daf1f98e64ab",
+      "url": "feed-capture:comex_futures/silver/2026-09-21.csv"
+    },
+    {
+      "bytes": 112712,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "7cb66370dcf95d50240d85acfd5bb3e4d6bf0d96f66e5bc81171143f64a89fc8",
+      "url": "feed-capture:comex_futures/silver/2026-09-22.csv"
+    },
+    {
+      "bytes": 57970,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ac109435225a5a5992162453584e8cfabd5ffffe634e0af686a0826269dc51f3",
+      "url": "feed-capture:comex_futures/silver/2026-09-23.csv"
+    },
+    {
+      "bytes": 84540,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "5ac57ceffbce04d6b668783d964486b9575a1d196ce3b9e9af60e4d61c525ab7",
+      "url": "feed-capture:comex_futures/silver/2026-09-24.csv"
+    },
+    {
+      "bytes": 97787,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "737b5075b8097c198583aa75a9a7c42ebf5afa04efd481ee9875628109101690",
+      "url": "feed-capture:comex_futures/silver/2026-09-25.csv"
+    },
+    {
+      "bytes": 875,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "78510e918a93feeea83c4a597ea5006b97cb469e29a0985a8d0f5e973c46a482",
+      "url": "feed-capture:comex_futures/silver/2026-09-27.csv"
+    },
+    {
+      "bytes": 148341,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2ee3652b81d37e999aef08eeb85e2355a0e30dd165076e5641dbb73bb5424b25",
+      "url": "feed-capture:comex_futures/silver/2026-09-28.csv"
+    },
+    {
+      "bytes": 166554,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3c9f1dca0eeee2680ab7ce4393eb934d36d1d1249573b8e88ae031f9b20398bc",
+      "url": "feed-capture:comex_futures/silver/2026-09-29.csv"
+    },
+    {
+      "bytes": 154109,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "febd74146f4d12907e21b74330b415e525ee0c982fe664d7443db9a5743e5b75",
+      "url": "feed-capture:comex_futures/silver/2026-09-30.csv"
+    },
+    {
+      "bytes": 25727,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "8c399badeae0696ad83ca66572e05227823f94647d860e1482db59215f6ae2e2",
+      "url": "feed-capture:comex_futures/silver/2026-10-01.csv"
+    },
+    {
+      "bytes": 362824,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "1bf5d8a5e70fcf3f4d9adfd0acb02fb49a1739dfc8d9649183e4d6975e480b85",
+      "url": "feed-capture:comex_futures/silver/2026-10-02.csv"
+    },
+    {
+      "bytes": 13290,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3748f693f5556cc75f1e6fed6ac92639a154a33ad854f91bb14c62852bd1bed0",
+      "url": "feed-capture:comex_futures/silver/2026-10-05.csv"
+    },
+    {
+      "bytes": 11620,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "3cee558fdb161ac1bcf52f12e24335c9733bd0ed159d8298758d5fc295d5df7e",
+      "url": "feed-capture:comex_futures/silver/2026-10-06.csv"
+    },
+    {
+      "bytes": 10809,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "2201a05261cc875821ac7557101dbe8250d7b67f033d6f1cef5569fb3ee38dea",
+      "url": "feed-capture:comex_futures/silver/2026-10-07.csv"
+    },
+    {
+      "bytes": 6677,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "51cc3eca7db33d1e5ca4956fa957fd433f6ea022f8757b92b6050cc1473d56d2",
+      "url": "feed-capture:comex_futures/silver/2026-10-08.csv"
+    },
+    {
+      "bytes": 10821,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fd01535117e112f2e4e786a52339d33d6c8cefe9863608673e566beeab872b63",
+      "url": "feed-capture:comex_futures/silver/2026-10-09.csv"
+    },
+    {
+      "bytes": 73655,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "ad1712f51f29f8e821d0adcd92c2a8928809e0659b5a8a4ebed43f58cb530114",
+      "url": "feed-capture:comex_futures/silver/2026-10-11.csv"
+    },
+    {
+      "bytes": 994228,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f29a7cc8741576d0045698f582b00d96728d3b929e1e1e3f6d3fc91e9e587c27",
+      "url": "feed-capture:comex_futures/silver/2026-10-12.csv"
+    },
+    {
+      "bytes": 1007427,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "18e17e2e71b404768e6dfc433b63eed445feef42ecc7e74d9ea8d703aab33caa",
+      "url": "feed-capture:comex_futures/silver/2026-10-13.csv"
+    },
+    {
+      "bytes": 911803,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "03914d2c9ac3d284131b1af8bd26f618ec69bebcae066a704fe7337bec9a4037",
+      "url": "feed-capture:comex_futures/silver/2026-10-14.csv"
+    },
+    {
+      "bytes": 10813,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "b7cbec966bad2ed422f885e5c72fef434568eab013e94f72966e2c612504f6ed",
+      "url": "feed-capture:comex_futures/silver/2026-10-15.csv"
+    },
+    {
+      "bytes": 8334,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "67ef71d87337ec242dba0ab9a9516dce456d9e597308c56c555aa2b3dfe2891b",
+      "url": "feed-capture:comex_futures/silver/2026-10-16.csv"
+    },
+    {
+      "bytes": 10812,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "55028a71c20e7bbeba6bdb806f44c6514b333f56450c8b69d6ad38a370c09fad",
+      "url": "feed-capture:comex_futures/silver/2026-10-19.csv"
+    },
+    {
+      "bytes": 9980,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "e1c5bc4b233b68cfce9925f069a7da30c39551dc1ad2691a080514c7bd587ba0",
+      "url": "feed-capture:comex_futures/silver/2026-10-20.csv"
+    },
+    {
+      "bytes": 8315,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "f49c51a8a006b886fb62279a8e516feeb1f0751b1e2c15584e96ebc38f1eba95",
+      "url": "feed-capture:comex_futures/silver/2026-10-21.csv"
+    },
+    {
+      "bytes": 9154,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "fc062c11694e49e0b3593b91b02e6009c8b390773eb13525a46441773ff23c85",
+      "url": "feed-capture:comex_futures/silver/2026-10-22.csv"
+    },
+    {
+      "bytes": 9156,
+      "fetched_at_utc": "2026-10-23T21:39:48Z",
+      "sha256": "30ca9cdd33f32c108d4287b7c3ceee41f879fcc4f0fb3c7d06053d11ec27647b",
+      "url": "feed-capture:comex_futures/silver/2026-10-23.csv"
+    }
+  ],
+  "status_rows": {
+    "delayed": 80825
+  }
+}

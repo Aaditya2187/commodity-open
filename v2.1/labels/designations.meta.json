@@ -1,0 +1,235 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:58:02.172242+00:00",
+    "command": "python -m swing_dataset.labels build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 17724
+    },
+    "rule": "Every input row is a Bhav Copy row whose availability is the session close instant from mcx_sessions (class published: the exchange publishes after the close and we did not capture live). Each output row carries the close instant of the latest session it depends on."
+  },
+  "columns": [
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "08:30 Asia/Kolkata on the cutoff's MCX trading day, in UTC",
+      "name": "cutoff_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "sessions in the horizon: 5 | 10 | 20",
+      "name": "horizon",
+      "type": "int64"
+    },
+    {
+      "meaning": "Asia/Kolkata civil date of the cutoff (session k = 1)",
+      "name": "cutoff_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "true when a contract, P_ref, roll plan and sigma_c could all be frozen at the cutoff",
+      "name": "eligible",
+      "type": "bool"
+    },
+    {
+      "meaning": "insufficient_sessions | no_eligible_contract | no_traded_contract | missing_p_ref | no_roll_contract | insufficient_vol_history | degenerate_sigma; null when eligible",
+      "name": "ineligible_reason",
+      "type": "string"
+    },
+    {
+      "meaning": "designated contract (highest two-session volume before the cutoff among contracts not in delivery and not expiring within the horizon; ties by earlier expiry); null when no contract qualifies",
+      "name": "contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "printed expiry of the designated contract",
+      "name": "expiry_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "last trading session of the designated contract by the product's expiry rule",
+      "name": "expiry_session_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "last session the designated contract may sit in a chain: the session before its staggered tender period, or the expiry session for cash-settled crude",
+      "name": "last_eligible_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "designated contract's volume in lots over the two completed sessions before the cutoff",
+      "name": "volume_2s",
+      "type": "double"
+    },
+    {
+      "meaning": "designated contract's settlement on the last completed session before the cutoff, INR per quotation unit; anchors W_0 = 1",
+      "name": "p_ref",
+      "type": "double"
+    },
+    {
+      "meaning": "sample standard deviation (ddof 1) of the 20 most recent daily log settlement returns of the historical designated-contract chain before the cutoff, roll transitions skipped",
+      "name": "sigma_c",
+      "type": "double"
+    },
+    {
+      "meaning": "oldest session whose return is inside the sigma window",
+      "name": "sigma_start_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "returns collected for sigma_c (20 when eligible)",
+      "name": "sigma_returns",
+      "type": "int64"
+    },
+    {
+      "meaning": "k index of the first transition session in the frozen roll plan; null when the designated contract stays eligible through the horizon",
+      "name": "roll_k",
+      "type": "int64"
+    },
+    {
+      "meaning": "session date of that transition",
+      "name": "roll_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "contract the chain moves to at the transition, chosen by the same rule with the rolling contract excluded",
+      "name": "roll_contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "transitions in the plan (0 or 1 in this data)",
+      "name": "roll_count",
+      "type": "int64"
+    },
+    {
+      "meaning": "session date at k = h",
+      "name": "horizon_end_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "true when session h has a Bhav Copy in mcx_daily; labels and targets exist only then",
+      "name": "horizon_complete",
+      "type": "bool"
+    },
+    {
+      "meaning": "close instant of the last completed session before the cutoff: the newest Bhav Copy the designation and sigma_c depend on",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "published",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "cutoff_utc",
+    "cutoff_end": "2026-10-23",
+    "cutoff_start": "2021-02-01",
+    "end": "2026-10-23T03:00:00+00:00",
+    "start": "2021-02-01T03:00:00+00:00"
+  },
+  "ineligible_by_reason": {
+    "copper": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "crude": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "gold": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "silver": {
+      "10": {
+        "insufficient_vol_history": 3
+      },
+      "20": {
+        "insufficient_vol_history": 3
+      },
+      "5": {
+        "insufficient_vol_history": 3
+      }
+    }
+  },
+  "name": "designations",
+  "notes": [
+    "one row per (asset, cutoff_utc, horizon) for every cutoff, eligible or not; ineligible rows keep the contract choice where one exists and name the reason",
+    "available_utc is the close of the last completed session before the cutoff and is always before cutoff_utc",
+    "cutoffs: 08:30 Asia/Kolkata on every MCX trading session per mcx_sessions from 2021-02-01 to 2026-10-23 (the last Bhav Copy); horizons [5, 10, 20] sessions, k = 1 is the cutoff's own session",
+    "designation: highest volume_lots summed over the two completed sessions before the cutoff among contracts listed on those sessions, excluding contracts whose staggered tender period has begun by the cutoff session and contracts whose expiry session is at or before session h; ties by earlier expiry then contract id; the winner must have traded (volume > 0)",
+    "expiry session: for compulsory-delivery products (gold, silver, copper) the last full open non-holiday session at or before the printed expiry (Bhav Copy rows of GOLD05OCT22FUT, COPPER31MAR25FUT and COPPER31MAR26FUT end there); for cash-settled crude the last trading session at or before it (three crude contracts expired on evening-only holiday sessions). The rule reproduces the last Bhav Copy row of all 199 finished contracts",
+    "tender period: the last N trading sessions including the expiry session, N per mcx_contract_specs.json (gold 5 through the June 2026 expiry then 3; silver 5 through July 2026 then 3; copper 5 through December 2024 then 3; crude none). Every non-closed mcx_sessions date counts as a trading session",
+    "roll plan: when the designated contract's last eligible session is before session h, the chain moves on the next session to the highest-volume contract (same two-session volumes) not in delivery on that transition session and not expiring within the horizon, the rolling contract excluded; applied recursively",
+    "sigma_c: sample standard deviation (ddof 1) of the 20 most recent daily log settlement returns of the historical chain before the cutoff, where session s uses the contract designated at cutoff s for the same horizon and log(settle_s / settle_(s-1)) on that contract; a session whose designation differs from the previous session's, or has none, is skipped and the window extends backwards",
+    "wealth chain: W_0 = 1 at P_ref; W_k^q = W_(k-1)^close * D_k^q / D_(k-1)^close for q in open, high, low, close (close = settlement); on a transition to B the denominator is B_(k-1)^close. A missing settlement stops the chain and makes labels from that session on ungradable",
+    "no synthetic rows: a session where the chain contract printed no trade keeps its settlement-based w_close and has null open/high/low",
+    "build identity: {'commit': '103e51076f54ba35f5f80527095f90432cf2fdc7', 'command': 'python -m swing_dataset.labels build', 'built_utc': '2026-10-23T21:58:02.172242+00:00'}"
+  ],
+  "rows": 17724,
+  "sources": [
+    {
+      "bytes": 4120141,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "build/mcx/mcx_daily.parquet"
+    },
+    {
+      "bytes": 17048,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "url": "build/mcx/mcx_sessions.parquet"
+    },
+    {
+      "bytes": 71397,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "04cc5ed58d55dce874fd5a744b0efc51598ce5098aafcf68c57453ae2f8f8007",
+      "url": "build/mcx/mcx_contract_specs.json"
+    }
+  ]
+}

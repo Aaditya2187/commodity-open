@@ -1,0 +1,342 @@
+[
+  {
+    "bytes": 227285,
+    "circular": "MCX/TRD/763/2020",
+    "fetched_at_utc": "2026-09-15T11:23:29.323784+00:00",
+    "id": "mcx-circular-763-2020-trading-hours",
+    "issued": "2020-10-13",
+    "sha256": "48297d89b7cc887c587d725fe6b4b9fc374b754ec5c0b45183a84123498647ec",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/october/circular-763---2020612a064757fb64e3bdfdff00007acb35guab8e7f08-f25f-4529-8da1-882e6137eede.pdf?sfvrsn=ad224966_0"
+  },
+  {
+    "bytes": 35177,
+    "circular": "MCX/TRD/931/2020",
+    "fetched_at_utc": "2026-09-15T11:23:30.993910+00:00",
+    "id": "mcx-circular-931-2020-trading-holidays-2021",
+    "issued": "2020-12-11",
+    "sha256": "21dd039120460550224e0d73759f1f7467ad36eb67ad3445ed900399f089b15b",
+    "title": "Trading Holidays for the Calendar Year 2021",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/december/circular-931---2020gu38ca59cd-7915-43b4-a1ff-b082d7d5a5d1.pdf?sfvrsn=11e9170_0"
+  },
+  {
+    "bytes": 224499,
+    "circular": "MCX/TRD/085/2021",
+    "fetched_at_utc": "2026-09-15T11:23:31.994023+00:00",
+    "id": "mcx-circular-085-2021-trading-hours",
+    "issued": "2021-02-15",
+    "sha256": "5b478a52bd7626418a6163c22a4590f8f4abb566ec3cb3558a3f957de50cc05d",
+    "title": "Revision in Trading Timings",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/february/circular-085-2021gu0b8fae08-251c-4833-bd69-93f4d05cdf70.pdf?sfvrsn=69d3ab8d_0"
+  },
+  {
+    "bytes": 120839,
+    "circular": "MCX/TRD/646/2021",
+    "fetched_at_utc": "2026-09-15T11:23:32.994093+00:00",
+    "id": "mcx-circular-646-2021-trading-hours",
+    "issued": "2021-10-08",
+    "sha256": "652871fdd415613d299694cd714f5cc55c201f46b89b84007c3de8ae5fcaa119",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/october/circular-646-2021gu6e709d40-df2f-41a3-a9a3-aa19cad3962d.pdf?sfvrsn=d3d0907e_0"
+  },
+  {
+    "bytes": 119111,
+    "circular": "MCX/TRD/671/2021",
+    "fetched_at_utc": "2026-09-15T11:23:33.994184+00:00",
+    "id": "mcx-circular-671-2021-muhurat-2021-11-04",
+    "issued": "2021-10-21",
+    "sha256": "9312a0626cdd565fe2cc00aa3a2fa7d14eeeef6a937fc0a899a1250e7ad92486",
+    "title": "Muhurat Trading Session on account of Diwali on November 04, 2021",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/october/circular-671-2021gu4042631c-f292-4004-bcf5-1b493bf5b91c.pdf?sfvrsn=b13c08b8_0"
+  },
+  {
+    "bytes": 141193,
+    "circular": "MCX/TRD/764/2021",
+    "fetched_at_utc": "2026-09-15T11:23:34.994253+00:00",
+    "id": "mcx-circular-764-2021-trading-holidays-2022",
+    "issued": "2021-12-10",
+    "sha256": "57db0e4ef637f4d042c1b07ae49878db9a0cb1914a048d677e017b5306fc1b6c",
+    "title": "Trading Holidays for the Calendar Year 2022",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/december/circular-764-2021gubc959d92-1933-48a2-bec0-872344823ea9.pdf?sfvrsn=d637d37a_0"
+  },
+  {
+    "bytes": 122685,
+    "circular": "MCX/TRD/076/2022",
+    "fetched_at_utc": "2026-09-15T11:23:35.994320+00:00",
+    "id": "mcx-circular-076-2022-trading-hours",
+    "issued": "2022-02-14",
+    "sha256": "215a12816b86e89a6d223bfd6a0bd4b5fba0efcb37459313e34b09cb6b39bed1",
+    "title": "Revision in Trading Timings",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/february/circular-076-2022gu2341741e-d5b1-4c17-88e4-3c15c30cd131.pdf?sfvrsn=4635184_0"
+  },
+  {
+    "bytes": 120454,
+    "circular": "MCX/TRD/574/2022",
+    "fetched_at_utc": "2026-09-15T11:23:36.994386+00:00",
+    "id": "mcx-circular-574-2022-trading-hours",
+    "issued": "2022-10-07",
+    "sha256": "d799c72f6d65fc1cb9525809a7b46b39cc237b4f1540e57f7a147e5a8dddb90d",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/october/circular-574-2022guf769761e-6856-4063-9eaa-1ec6dd7c5921.pdf?sfvrsn=d8496884_0"
+  },
+  {
+    "bytes": 121388,
+    "circular": "MCX/TRD/586/2022",
+    "fetched_at_utc": "2026-09-15T11:23:37.994460+00:00",
+    "id": "mcx-circular-586-2022-muhurat-2022-10-24",
+    "issued": "2022-10-11",
+    "sha256": "69a3f0d5ce858f8dac2bae6e0e9549ac7907ed14edd1198a058beab0a127a10a",
+    "title": "Muhurat Trading Session on account of Diwali on October 24, 2022",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/october/circular-586-2022gu36ebc63c-ddc9-45a6-bf5a-d9b670ee2a6a.pdf?sfvrsn=52a37e2b_0"
+  },
+  {
+    "bytes": 143520,
+    "circular": "MCX/TRD/710/2022",
+    "fetched_at_utc": "2026-09-15T11:23:38.994550+00:00",
+    "id": "mcx-circular-710-2022-trading-holidays-2023",
+    "issued": "2022-12-09",
+    "sha256": "b9eae0c0b7516a1d36a144fc66570dc5bb2ec3b06bef382cec43a7b28164cf8e",
+    "title": "Trading Holidays for the Calendar Year 2023",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/december/circular---710-2022gu3c04e8dd-2eb5-49e2-901f-c27813a3fc06.pdf?sfvrsn=a0f055f5_0"
+  },
+  {
+    "bytes": 120822,
+    "circular": "MCX/TRD/095/2023",
+    "fetched_at_utc": "2026-09-15T11:23:39.994618+00:00",
+    "id": "mcx-circular-095-2023-trading-hours",
+    "issued": "2023-02-13",
+    "sha256": "7727caa6b807ab1d18cdc773f91c20eac92e5aa3c6d5521b17bee416f695a1c0",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/february/circular---095-2023gufec3679d-b9de-4fd3-b8a6-42f71762a998.pdf?sfvrsn=70a41003_0"
+  },
+  {
+    "bytes": 365331,
+    "circular": "MCX/TRD/409/2023",
+    "fetched_at_utc": "2026-09-15T11:23:40.994696+00:00",
+    "id": "mcx-circular-409-2023-holiday-revision-bakri-id",
+    "issued": "2023-06-27",
+    "sha256": "62ed5d604b7b72b56f7892c343cae92c66984aab9275d8dd9048c92a40f69038",
+    "title": "Revision in Trading Holiday on account of Bakri ID",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/june/circular-409-2023gu40bf789b-ae02-4fad-9653-995e0d8f0061.pdf?sfvrsn=24472ae1_0"
+  },
+  {
+    "bytes": 120568,
+    "circular": "MCX/TRD/675/2023",
+    "fetched_at_utc": "2026-09-15T11:23:41.994764+00:00",
+    "id": "mcx-circular-675-2023-trading-hours",
+    "issued": "2023-10-06",
+    "sha256": "3c1925d72c586d72181dde1eb1d2a99a1fe82c07ea78b1d2931cf45a56f99648",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/october/circular-675-2023gu25570a47-dbf8-4cff-a883-e8e7d0085379.pdf?sfvrsn=26662f0b_0"
+  },
+  {
+    "bytes": 123533,
+    "circular": "MCX/TRD/700/2023",
+    "fetched_at_utc": "2026-09-15T11:23:42.994845+00:00",
+    "id": "mcx-circular-700-2023-trading-hours-2023-10-16",
+    "issued": "2023-10-12",
+    "sha256": "95e23638a1079ad7b0348bdf8ef8869413c19a449ff3923baeb5a6f0e3f86a0a",
+    "title": "Revision in Trading Hours for October 16, 2023",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/october/circuar-700-2023guedcccf74-865d-4ba0-a6cf-ce627f613283.pdf?sfvrsn=766704e9_0"
+  },
+  {
+    "bytes": 120412,
+    "circular": "MCX/TRD/740/2023",
+    "fetched_at_utc": "2026-09-15T11:23:43.994908+00:00",
+    "id": "mcx-circular-740-2023-muhurat-2023-11-12",
+    "issued": "2023-10-27",
+    "sha256": "9a0eac908e8ca0164037832a92f34d56145360d781882c3c9169bc95cb23934a",
+    "title": "Muhurat Trading Session on account of Diwali on November 12, 2023",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/october/circular-740-2023gu594fb6fb-c14b-40db-b435-3df23d59555f.pdf?sfvrsn=26d139bc_0"
+  },
+  {
+    "bytes": 141610,
+    "circular": "MCX/TRD/872/2023",
+    "fetched_at_utc": "2026-09-15T11:23:44.994981+00:00",
+    "id": "mcx-circular-872-2023-trading-holidays-2024",
+    "issued": "2023-12-14",
+    "sha256": "3a6915a21014547c62c03fca08fb3626a68949eb4fcded48b5f20a544765d8c8",
+    "title": "Trading Holidays for the Calendar Year 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/december/circular-872-2023gu79208045-e0ef-481b-89bf-d89619b4fba8.pdf?sfvrsn=7b65d09a_0"
+  },
+  {
+    "bytes": 121044,
+    "circular": "MCX/TRD/037/2024",
+    "fetched_at_utc": "2026-09-15T11:23:45.995046+00:00",
+    "id": "mcx-circular-037-2024-holiday-2024-01-22",
+    "issued": "2024-01-19",
+    "sha256": "6d8220277855c84f45a06a0ab4afadc0e8a1b507f98379d1f3461332d3239810",
+    "title": "Holiday declared by Government of Maharashtra on January 22, 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/january/circular-037-2024b0d4024857fb64e3bdfdff00007acb35gucbc618a7-b38f-42d1-b83d-73e86e71a6a0.pdf?sfvrsn=a7034672_0"
+  },
+  {
+    "bytes": 121471,
+    "circular": "MCX/TRD/082/2024",
+    "fetched_at_utc": "2026-09-15T11:23:46.995128+00:00",
+    "id": "mcx-circular-082-2024-trading-hours",
+    "issued": "2024-02-09",
+    "sha256": "15430b0097203096b7b3340cf1011166a0192dfc69ec6d2a0f16ee0d8531bca1",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/february/circular-082-2024gu52b563c7-7318-4327-8c2b-9c64889a8151.pdf?sfvrsn=feab49aa_0"
+  },
+  {
+    "bytes": 119823,
+    "circular": "MCX/CSQ/087/2024",
+    "fetched_at_utc": "2026-09-15T11:23:47.995237+00:00",
+    "id": "mcx-circular-087-2024-trading-hours-2024-02-13",
+    "issued": "2024-02-13",
+    "sha256": "0d129569d4053e2238f47eace9668443617c4a65844a0011c143a2025d5321d0",
+    "title": "Revision in Trading Hours for 13th Feb 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/february/mcxcsq0872024-revision-in-trading-hours-for-13the-feb-2024gu9ba26e02-d2c6-4656-8cbe-313d9849a25c.pdf?sfvrsn=cfadbfab_0"
+  },
+  {
+    "bytes": 119492,
+    "circular": "MCX/CSQ/088/2024",
+    "fetched_at_utc": "2026-09-15T11:23:48.995301+00:00",
+    "id": "mcx-circular-088-2024-trading-hours-2024-02-13",
+    "issued": "2024-02-13",
+    "sha256": "29f2eff1eba09ad5db5b54ab5c8becf1dc80c5a9ae3b8224d0925bff2ba64283",
+    "title": "Revision in Trading Hours February 13, 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/february/mcxcsq0882024-revision-in-trading-hours-for-13the-feb-2024gu143a9f70-ebc0-418d-9e9c-d5e0f1b48d03.pdf?sfvrsn=c0ba4da7_0"
+  },
+  {
+    "bytes": 119097,
+    "circular": "MCX/CSQ/89/2024",
+    "fetched_at_utc": "2026-09-15T11:23:49.995372+00:00",
+    "id": "mcx-circular-089-2024-trading-hours-2024-02-13",
+    "issued": "2024-02-13",
+    "sha256": "79788e69076ccdc461b3f1fa8cc70154522c2f079a29606c534ab731423050a3",
+    "title": "Revision in Trading Hours February 13, 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/february/mcxcsq0892024-revision-in-trading-hours-for-13the-feb-2024-03gu5769f3ea-885f-43b0-9849-b75ca9bcdacb.pdf?sfvrsn=d7ae2e67_0"
+  },
+  {
+    "bytes": 531641,
+    "circular": "MCX/TRD/219/2024",
+    "fetched_at_utc": "2026-09-15T11:23:50.995461+00:00",
+    "id": "mcx-circular-219-2024-holiday-2024-05-20",
+    "issued": "2024-04-09",
+    "sha256": "5469b644ba188f527d2eb6d9720a01167de0adc168fe9cbc3e4c8bb9b1b58c2b",
+    "title": "Trading Holiday on account of General Parliamentary Elections 2024 on May 20 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/april/circular-219-2024gub46cefe8-daac-472a-ba37-68fcd43db046.pdf?sfvrsn=b2716a6f_0"
+  },
+  {
+    "bytes": 121027,
+    "circular": "MCX/TRD/643/2024",
+    "fetched_at_utc": "2026-09-15T11:23:52.044587+00:00",
+    "id": "mcx-circular-643-2024-trading-hours",
+    "issued": "2024-09-27",
+    "sha256": "05b0f4e9bfad898ba37091408c7781db49cccaa7eddb10b85237d4c3826ba67c",
+    "title": "Revision in trading hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/september/circular-643-2024gu941bf9ae-b996-4d5c-9f2b-090896ece6c0.pdf?sfvrsn=2c2bd5d3_0"
+  },
+  {
+    "bytes": 120739,
+    "circular": "MCX/TRD/704/2024",
+    "fetched_at_utc": "2026-09-15T11:23:53.044652+00:00",
+    "id": "mcx-circular-704-2024-muhurat-2024-11-01",
+    "issued": "2024-10-21",
+    "sha256": "089edc6452ffdd349102959a0a6678abfaf104a832ba994373d68c8b0cf8fe3a",
+    "title": "Muhurat Trading Session on account of Diwali on November 01, 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/october/circular-704-2024gufb868326-a938-42d9-aea7-13475772b26d.pdf?sfvrsn=bf7da1bb_0"
+  },
+  {
+    "bytes": 271851,
+    "circular": "MCX/TRD/738/2024",
+    "fetched_at_utc": "2026-09-15T11:23:54.044730+00:00",
+    "id": "mcx-circular-738-2024-holiday-2024-11-20",
+    "issued": "2024-11-08",
+    "sha256": "f0878e9737a79a4ede3bbc3e75201752d7dc03f3ff199c7fceaf245f6fecc7ef",
+    "title": "Trading Holiday on account of Maharashtra Legislative Assembly General Election on November 20, 2024",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/november/circular-738-2024gubc8bbce8-0732-46e4-a7aa-1d72d41a4eeb.pdf?sfvrsn=9e334992_0"
+  },
+  {
+    "bytes": 90625,
+    "circular": "MCX/TRD/814/2024",
+    "fetched_at_utc": "2026-09-15T11:23:55.044795+00:00",
+    "id": "mcx-circular-814-2024-trading-holidays-2025",
+    "issued": "2024-12-13",
+    "sha256": "fba1d4bc0b1fa10f84795da94605cab9d31df82d975985b33d64eb738a4f5dce",
+    "title": "Trading Holidays for the Calendar Year 2025",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/december/circular-814-2024gub7919944-a07e-4e62-b440-51fdece1c579.pdf?sfvrsn=c7593ddd_0"
+  },
+  {
+    "bytes": 72669,
+    "circular": "MCX/TRD/841/2024",
+    "fetched_at_utc": "2026-09-15T11:23:56.044869+00:00",
+    "id": "mcx-circular-841-2024-live-session-2025-02-01",
+    "issued": "2024-12-24",
+    "sha256": "6728a08c4d4b807166a372155a600c95fc698ad923ace08239c8d3ec7b5d3460",
+    "title": "Live Trading Session on February 01, 2025 (Saturday)",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/december/circular---841-2024gubcdb6400-80b9-4cf9-9b72-885e9a19bbec.pdf?sfvrsn=154e71d8_0"
+  },
+  {
+    "bytes": 120924,
+    "circular": "MCX/TRD/071/2025",
+    "fetched_at_utc": "2026-09-15T11:23:57.044943+00:00",
+    "id": "mcx-circular-071-2025-trading-hours",
+    "issued": "2025-02-07",
+    "sha256": "024df676fe2d3468b71b9394a71b34dddf6a50384ad9209b02b676def2675ab3",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/february/circular-071-2025gue247f267-0cab-4e56-a006-0f9e76d0fe20.pdf?sfvrsn=2b327666_0"
+  },
+  {
+    "bytes": 307572,
+    "circular": "MCX/TRD/477/2025",
+    "fetched_at_utc": "2026-09-15T11:23:58.045020+00:00",
+    "id": "mcx-circular-477-2025-muhurat-2025-10-21",
+    "issued": "2025-09-23",
+    "sha256": "0f24d1a566a040f68b17633f32280d20bb3deb5ebcf3af21d69b94c6d300a2d5",
+    "title": "Muhurat Trading Session on account of Diwali on October 21, 2025",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/september/circular-477-2025gu181dc0e7-2d60-47e4-b28e-d8b740ea1a9f.pdf?sfvrsn=f637cb3b_0"
+  },
+  {
+    "bytes": 116526,
+    "circular": "MCX/TRD/491/2025",
+    "fetched_at_utc": "2026-09-15T11:23:59.045089+00:00",
+    "id": "mcx-circular-491-2025-trading-hours",
+    "issued": "2025-09-29",
+    "sha256": "47a59cfb895ce1f390e98a1d9b8404b5bfe7a47d40398f423a4aec39d2b4ec8e",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/september/circular-491--2025guc9d9f33c-f9eb-4bd9-a8a2-6a1565fbb79d.pdf?sfvrsn=d4f02716_0"
+  },
+  {
+    "bytes": 141087,
+    "circular": "MCX/TRD/636/2025",
+    "fetched_at_utc": "2026-09-15T11:24:00.045162+00:00",
+    "id": "mcx-circular-636-2025-trading-holidays-2026",
+    "issued": "2025-12-15",
+    "sha256": "526b359aa9d7ce2455046a0304e78802e751c30fc9f7b6a144b605b03412708b",
+    "title": "Trading Holidays for the Calendar Year 2026",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/december/circular-636-2025guc877eb08-5a12-46b1-9aee-d233258a4887.pdf?sfvrsn=ee99eafb_0"
+  },
+  {
+    "bytes": 124764,
+    "circular": "MCX/TRD/017/2026",
+    "fetched_at_utc": "2026-09-15T11:24:01.045243+00:00",
+    "id": "mcx-circular-017-2026-holiday-2026-01-15",
+    "issued": "2026-01-12",
+    "sha256": "8b3d988d1d6749d241fdfeb2b52dc640522c87363304746811fe5de18d7af55b",
+    "title": "Trading Holiday on account of Municipal Corporation Election in Maharashtra on January 15, 2026",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/january/circular-017---2026gu39024.pdf?sfvrsn=fefc2504_0"
+  },
+  {
+    "bytes": 123229,
+    "circular": "MCX/TRD/027/2026",
+    "fetched_at_utc": "2026-09-15T11:24:02.045312+00:00",
+    "id": "mcx-circular-027-2026-live-session-2026-02-01",
+    "issued": "2026-01-16",
+    "sha256": "96fc068a11f843609afd749fb1a70203c5690ca4f0e7cbc771beb2a1f0cf52a9",
+    "title": "Live Trading Session on February 01, 2026 (Sunday)",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/january/circular-027-2026gu37931.pdf?sfvrsn=1ff7cdc1_0"
+  },
+  {
+    "bytes": 153141,
+    "circular": "MCX/TRD/068/2026",
+    "fetched_at_utc": "2026-09-15T11:24:03.045386+00:00",
+    "id": "mcx-circular-068-2026-trading-hours",
+    "issued": "2026-02-09",
+    "sha256": "9b2c55c22577d1d1d7c6da0a437b7f4b0adab66c62e7968b0697bef075ea99d5",
+    "title": "Revision in Trading Hours",
+    "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/february/circular---068---2026.pdf?sfvrsn=c58e2e11_3"
+  }
+]

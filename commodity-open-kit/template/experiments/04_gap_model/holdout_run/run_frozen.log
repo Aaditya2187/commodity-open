@@ -1,0 +1,19 @@
+153 trading days from 2026-06-01 to 2026-12-31; fit at 2026-06-01T03:00:00+00:00
+fit done in 0.0s
+20/153 sessions, 160 rows, 0 outcomes delivered
+40/153 sessions, 320 rows, 0 outcomes delivered
+60/153 sessions, 480 rows, 0 outcomes delivered
+80/153 sessions, 640 rows, 0 outcomes delivered
+100/153 sessions, 800 rows, 0 outcomes delivered
+2026-10-26: the pack has no designation for this session; stopping
+signal file: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/04_gap_model/holdout_run/c2_holdout_frozen.parquet
+challenge: 2
+rows: 832  signals: 832 (832 valid, 0 invalid)  no_signal: 0 (0 valid)
+horizons: h3=416 h5=416
+assets: copper=208 crude=208 gold=208 silver=208
+errors: 0  warnings: 0
+result: VALID
+signals: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/04_gap_model/holdout_run/c2_holdout_frozen.parquet
+read log: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/04_gap_model/holdout_run/c2_holdout_frozen.readlog.jsonl (627 entries)
+sessions: 104, updates: 0, outcomes delivered: 0, 21.104s
+$PY run.py --pack $K/v2.1 --challenge 2 --period holdout --frozen --out   30.41s user 1.40s system 148% cpu 21.469 total

@@ -1,0 +1,93 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "baseline_predictions",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "SwingForecaster",
+    "seed": 20260919,
+    "training_data_cutoff": "the train_end passed to fit(); no pretrained weights"
+  },
+  "pack": {
+    "root": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 416,
+    "signals": 416,
+    "no_signals": 0,
+    "updates": 101,
+    "outcomes_delivered": 411,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 1.694,
+    "loop_seconds": 51.201
+  },
+  "rows": {
+    "rows": 416,
+    "signals": 416,
+    "no_signals": 0,
+    "by_horizon": {
+      "5": 416
+    },
+    "by_asset": {
+      "copper": 104,
+      "crude": 104,
+      "gold": 104,
+      "silver": 104
+    },
+    "by_direction": {
+      "down": 236,
+      "up": 180
+    },
+    "no_signals_by_asset": {}
+  },
+  "fit": {
+    "model": "SwingForecaster",
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "prior_keys": 8,
+    "assets": [
+      "gold",
+      "silver",
+      "copper",
+      "crude"
+    ]
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 731
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 54.223,
+  "python": "3.13.7"
+}

@@ -1,0 +1,7 @@
+{"utc": "2026-10-25T10:34:32.700023+00:00", "config": "C1", "fold": "F1", "tag": "", "paired_gain_pp": -1.014, "direction": 62.5, "frozen": 63.51351351351351, "n_paired": 296}
+{"utc": "2026-10-25T10:35:00.527496+00:00", "config": "C1", "fold": "F2", "tag": "", "paired_gain_pp": 2.296, "direction": 64.79591836734694, "frozen": 62.5, "n_paired": 392}
+{"utc": "2026-10-25T10:35:24.156414+00:00", "config": "C2", "fold": "F1", "tag": "", "paired_gain_pp": -4.054, "direction": 59.45945945945946, "frozen": 63.51351351351351, "n_paired": 296}
+{"utc": "2026-10-25T10:35:52.072948+00:00", "config": "C2", "fold": "F2", "tag": "", "paired_gain_pp": -1.786, "direction": 60.71428571428571, "frozen": 62.5, "n_paired": 392}
+{"utc": "2026-10-25T10:37:03.060243+00:00", "config": "R1", "fold": "F1", "tag": "", "paired_gain_pp": 0.676, "direction": 64.1891891891892, "frozen": 63.51351351351351, "n_paired": 296}
+{"utc": "2026-10-25T10:37:30.639063+00:00", "config": "R1", "fold": "F2", "tag": "", "paired_gain_pp": 2.551, "direction": 65.05102040816327, "frozen": 62.5, "n_paired": 392}
+{"utc": "2026-10-25T10:38:56.182357+00:00", "config": "R1", "fold": "HOLDOUT", "tag": "", "paired_gain_pp": 0.241, "direction": 56.3855421686747, "frozen": 56.144578313253014, "n_paired": 830}

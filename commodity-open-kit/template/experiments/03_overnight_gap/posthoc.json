@@ -1,0 +1,49 @@
+{
+  "note": "post-hoc diagnostics; not used for any selection",
+  "h3": {
+    "overnight_gap": {
+      "n": 275,
+      "direction": 64.7
+    },
+    "placebo_pre_anchor_9h": {
+      "n": 275,
+      "direction": 40.4
+    }
+  },
+  "h5": {
+    "overnight_gap": {
+      "n": 274,
+      "direction": 69.3
+    },
+    "placebo_pre_anchor_9h": {
+      "n": 274,
+      "direction": 42.3
+    }
+  },
+  "passthrough_open_vs_p0": {
+    "copper": {
+      "n": 70,
+      "sign_agree_pct": 82.9,
+      "slope": 0.36,
+      "corr": 0.74
+    },
+    "crude": {
+      "n": 70,
+      "sign_agree_pct": 90.0,
+      "slope": 0.32,
+      "corr": 0.69
+    },
+    "gold": {
+      "n": 70,
+      "sign_agree_pct": 84.3,
+      "slope": 0.68,
+      "corr": 0.81
+    },
+    "silver": {
+      "n": 70,
+      "sign_agree_pct": 88.6,
+      "slope": 0.66,
+      "corr": 0.81
+    }
+  }
+}

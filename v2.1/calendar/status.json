@@ -1,0 +1,47 @@
+{
+  "bytes": 521842,
+  "duration_s": 2.906,
+  "finished_utc": "2026-10-23T21:40:59.501814+00:00",
+  "last_run_utc": "2026-10-23T21:40:56.595970+00:00",
+  "ok": true,
+  "sources": {
+    "forexfactory_nextweek": {
+      "attempts": 1,
+      "bytes": 146,
+      "elapsed_s": 1.08,
+      "error": "http 404",
+      "fetched_at_utc": "2026-10-23T21:40:57.932582+00:00",
+      "http_status": 404,
+      "ok": false,
+      "pages": 1,
+      "path": "raw/forexfactory_nextweek/2026-10-23/214057Z.http404.txt",
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0"
+    },
+    "forexfactory_thisweek": {
+      "attempts": 1,
+      "bytes": 11604,
+      "elapsed_s": 0.182,
+      "error": null,
+      "fetched_at_utc": "2026-10-23T21:40:56.850537+00:00",
+      "http_status": 200,
+      "ok": true,
+      "pages": 1,
+      "path": "raw/forexfactory_thisweek/2026-10-23/214056Z.json",
+      "sha256": "34f4e34dca834ef3440292c452a87c6236bb9109c6283a050b2e830fd6c0f281"
+    },
+    "investing": {
+      "attempts": 1,
+      "bytes": 510092,
+      "elapsed_s": 1.569,
+      "error": null,
+      "fetched_at_utc": "2026-10-23T21:40:59.493076+00:00",
+      "http_status": 200,
+      "ok": true,
+      "pages": 1,
+      "path": "raw/investing/2026-10-23/214059Z.json",
+      "sha256": "fa5882509a1af8352efd845ae90aaaadb17b3d3cddd743bb71332d1350156b48"
+    }
+  },
+  "sources_ok": 2,
+  "sources_total": 3
+}

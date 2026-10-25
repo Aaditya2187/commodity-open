@@ -1,0 +1,93 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/04_gap_model/holdout_run",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "GapForecaster",
+    "seed": 20261025,
+    "training_data_cutoff": "none: no parameters are fitted; no pretrained weights"
+  },
+  "pack": {
+    "root": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 832,
+    "signals": 832,
+    "no_signals": 0,
+    "updates": 102,
+    "outcomes_delivered": 822,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 0.0,
+    "loop_seconds": 31.66
+  },
+  "rows": {
+    "rows": 832,
+    "signals": 832,
+    "no_signals": 0,
+    "by_horizon": {
+      "3": 416,
+      "5": 416
+    },
+    "by_asset": {
+      "copper": 208,
+      "crude": 208,
+      "gold": 208,
+      "silver": 208
+    },
+    "by_direction": {
+      "down": 434,
+      "up": 398
+    },
+    "no_signals_by_asset": {}
+  },
+  "fit": {
+    "spec": "gap-v1",
+    "fitted_parameters": 0,
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "issued_horizons": [
+      3,
+      5
+    ]
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 936
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 31.72,
+  "python": "3.13.7"
+}

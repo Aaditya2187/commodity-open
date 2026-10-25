@@ -1,0 +1,152 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:58:12.006352+00:00",
+    "command": "python -m swing_dataset.pack build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "confirm_available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 2150
+    },
+    "rule": "A swing row is available from confirm_available_utc: the settlement publication of the session of the bar that completed the leg, that session's close instant from mcx_sessions, the same convention mcx_daily uses. A leg is only a swing once the price has reversed threshold_pct from its extreme, and that reversal can print sessions after the extreme, so no row is knowable earlier. The exchange publishes at or after the close and we did not capture at that instant, so the class is published. available_utc, the settlement publication of the session the extreme printed in, is a data column and not the availability of the row. The bar instants are not availability: an hourly bar carries the quotes' own clocks (mcx_quotes states exact or published per row) and a daily bar carries the session's opening instant, inside which the Bhav Copy high and low printed at an unknown time, and confirm_utc is a bar instant of that kind."
+  },
+  "columns": [
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "up | down: the sign of the move from the turn to the extreme",
+      "name": "direction",
+      "type": "string"
+    },
+    {
+      "meaning": "start instant of the bar the turn printed in (the previous leg's extreme)",
+      "name": "turn_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "price at the turn: that bar's low for an up leg, its high for a down leg, INR per exchange unit",
+      "name": "turn_price",
+      "type": "double"
+    },
+    {
+      "meaning": "start instant of the bar the extreme printed in",
+      "name": "extreme_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "price at the extreme: that bar's high for an up leg, its low for a down leg, INR per exchange unit",
+      "name": "extreme_price",
+      "type": "double"
+    },
+    {
+      "meaning": "signed (extreme_price - turn_price) / turn_price * 100; its magnitude is at least threshold_pct",
+      "name": "move_pct",
+      "type": "double"
+    },
+    {
+      "meaning": "MCX trading sessions from the turn's session to the extreme's session, inclusive",
+      "name": "sessions_spanned",
+      "type": "int64"
+    },
+    {
+      "meaning": "designated contract the extreme printed on; the turn's contract differs exactly when contract_changed",
+      "name": "contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "true when the designation rolled between the turn bar and the extreme bar, so the two prices are of different contracts and the move includes the calendar spread",
+      "name": "contract_changed",
+      "type": "bool"
+    },
+    {
+      "meaning": "hourly | daily | mixed: the bar type behind the leg's bars",
+      "name": "bar",
+      "type": "string"
+    },
+    {
+      "meaning": "the asset's swing threshold in percent (RULES.md section 2)",
+      "name": "threshold_pct",
+      "type": "double"
+    },
+    {
+      "meaning": "settlement publication of the session the extreme printed in: that session's close instant. A data column. It is not the availability of the row: the leg is not knowable until confirm_available_utc, which is at or after this instant on every row",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "start instant of the bar whose move completed the leg: the first bar to reverse threshold_pct from the extreme. At or after extreme_utc on every row",
+      "name": "confirm_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "settlement publication of the session the confirming bar printed in, the same convention available_utc uses. The earliest instant this leg is knowable as a swing and the published clock of this file: the point-in-time client returns the row from here",
+      "name": "confirm_available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "published",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "extreme_utc",
+    "end": "2026-10-23T13:30:00+00:00",
+    "start": "2021-02-02T03:30:00+00:00"
+  },
+  "legs_per_asset": {
+    "copper": 567,
+    "crude": 616,
+    "gold": 386,
+    "silver": 581
+  },
+  "name": "swings",
+  "notes": [
+    "One row per completed leg of the percent-threshold zigzag of RULES.md section 2, per asset.",
+    "Price series: the contract of designations.parquet at horizon 5, session by session. Prices are the contract's own, never spread-adjusted; contract_changed marks a leg whose turn and extreme sit on different contracts, so its move includes the calendar spread.",
+    "Bars: hourly highs and lows of ltp from pack/quotes/mcx_quotes.parquet, bucketed on available_utc floored to the Asia/Kolkata hour so a bar boundary falls on the 09:00 IST open. A quote counts only inside its session's own trading window from mcx_sessions; the 2026-06-22 to 2026-07-14 polling era also wrote rows outside trading hours and on closed days, carrying an already-settled last traded price, and those are not part of any bar.",
+    "Before 2026-06-22 there are no intraday quotes and the bar is the Bhav Copy session high and low, marked daily. The same fallback covers the sessions after 2026-06-22 where the feed had not yet started polling the contract the designation rule had already moved to (for example silver 2026-08-31 to 2026-09-03 on the December contract).",
+    "Within a bar the order of the high and the low is unknown. A bar that both reverses the threshold from the running extreme and makes a new extreme completes the leg: the extreme established in an earlier bar wins.",
+    "A leg in progress at the last session is not a swing and is not written; the reversal that would complete it has not happened inside the data.",
+    "A leg is knowable only when it is confirmed: the reversal that completes it can print sessions after its extreme. confirm_utc is the instant of that confirming bar and confirm_available_utc is the settlement publication of its session, the same convention mcx_daily uses. confirm_available_utc is the published clock of this file, so the point-in-time client returns a leg from there and never at its extreme. available_utc is the settlement publication of the session the extreme printed in: a data column that says when the extreme's own session published, and a consumer that reads this file without the client must filter on confirm_available_utc, not on available_utc.",
+    "Both confirmation columns are non-null on every row, because a leg is only written once it has completed. confirm_utc is at or after extreme_utc and confirm_available_utc is at or after confirm_utc; stats.json carries the distribution of confirm_available_utc minus available_utc in sessions, per asset.",
+    "The confirming bar can sit on a different contract from the leg. A roll between the extreme and the reversal leaves contract_changed false on this leg and true on the next one, which is the leg whose own turn-to-extreme span crosses the roll; contract_changed is a statement about the leg's own span and never about the bar that confirmed it.",
+    "The 1-sigma barrier labels of version 2.4 under build/labels/ are untouched and ship as research.",
+    "The zigzag reads bars in order, so a leg's fields depend on no bar after its confirming bar. On the same inputs, a build stopped at an earlier session writes exactly the rows of the later build whose confirm_available_utc falls on or before that session's close, and the later build adds the legs confirmed since."
+  ],
+  "rows": 2150,
+  "sources": [
+    {
+      "bytes": 243804,
+      "fetched_at_utc": null,
+      "sha256": "248d746006ecbac6762e5b3466f82f0687f9c918e66dac312c04a3c2602dad63",
+      "url": "build/labels/designations.parquet"
+    },
+    {
+      "bytes": 4120141,
+      "fetched_at_utc": null,
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "build/mcx/mcx_daily.parquet"
+    },
+    {
+      "bytes": 17048,
+      "fetched_at_utc": null,
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "url": "build/mcx/mcx_sessions.parquet"
+    },
+    {
+      "bytes": 63989284,
+      "fetched_at_utc": null,
+      "sha256": "5a5dedfca5c54f7e9cdff27cfa94db2ec245f409e1e8d23e4eec82b3dbe7ab07",
+      "url": "build/pack/quotes/mcx_quotes.parquet"
+    }
+  ]
+}

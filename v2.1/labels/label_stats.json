@@ -1,0 +1,918 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:58:02.172242+00:00",
+    "command": "python -m swing_dataset.labels build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "class_balance": {
+    "copper": {
+      "10": {
+        "0.75": {
+          "both": 1,
+          "down_swing": 506,
+          "no_swing": 323,
+          "shares": {
+            "both": 0.0006830601092896175,
+            "down_swing": 0.34562841530054644,
+            "no_swing": 0.22062841530054644,
+            "up_swing": 0.43306010928961747
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 634
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 388,
+          "no_swing": 581,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2650273224043716,
+            "no_swing": 0.3968579234972678,
+            "up_swing": 0.33811475409836067
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 495
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 292,
+          "no_swing": 812,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.1994535519125683,
+            "no_swing": 0.5546448087431693,
+            "up_swing": 0.2459016393442623
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 360
+        }
+      },
+      "20": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 490,
+          "no_swing": 289,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.33700137551581844,
+            "no_swing": 0.19876203576341128,
+            "up_swing": 0.4642365887207703
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 675
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 385,
+          "no_swing": 539,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.26478679504814306,
+            "no_swing": 0.3707015130674003,
+            "up_swing": 0.36451169188445665
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 530
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 329,
+          "no_swing": 702,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.22627235213204952,
+            "no_swing": 0.4828060522696011,
+            "up_swing": 0.2909215955983494
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 423
+        }
+      },
+      "5": {
+        "0.75": {
+          "both": 10,
+          "down_swing": 503,
+          "no_swing": 350,
+          "shares": {
+            "both": 0.0068073519400953025,
+            "down_swing": 0.3424098025867937,
+            "no_swing": 0.2382573179033356,
+            "up_swing": 0.41252552756977534
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 606
+        },
+        "1.0": {
+          "both": 1,
+          "down_swing": 383,
+          "no_swing": 616,
+          "shares": {
+            "both": 0.0006807351940095302,
+            "down_swing": 0.2607215793056501,
+            "no_swing": 0.41933287950987064,
+            "up_swing": 0.3192648059904697
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 469
+        },
+        "1.25": {
+          "both": 1,
+          "down_swing": 299,
+          "no_swing": 830,
+          "shares": {
+            "both": 0.0006807351940095302,
+            "down_swing": 0.20353982300884957,
+            "no_swing": 0.5650102110279102,
+            "up_swing": 0.23076923076923078
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 339
+        }
+      }
+    },
+    "crude": {
+      "10": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 572,
+          "no_swing": 292,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.3907103825136612,
+            "no_swing": 0.1994535519125683,
+            "up_swing": 0.4098360655737705
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 600
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 426,
+          "no_swing": 596,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.29098360655737704,
+            "no_swing": 0.40710382513661203,
+            "up_swing": 0.30191256830601093
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 442
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 315,
+          "no_swing": 829,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2151639344262295,
+            "no_swing": 0.5662568306010929,
+            "up_swing": 0.2185792349726776
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 320
+        }
+      },
+      "20": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 550,
+          "no_swing": 271,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.3782668500687758,
+            "no_swing": 0.18638239339752408,
+            "up_swing": 0.43535075653370015
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 633
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 418,
+          "no_swing": 572,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2874828060522696,
+            "no_swing": 0.39339752407152684,
+            "up_swing": 0.31911966987620355
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 464
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 330,
+          "no_swing": 769,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.22696011004126548,
+            "no_swing": 0.5288858321870702,
+            "up_swing": 0.24415405777166438
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 355
+        }
+      },
+      "5": {
+        "0.75": {
+          "both": 2,
+          "down_swing": 578,
+          "no_swing": 269,
+          "shares": {
+            "both": 0.0013614703880190605,
+            "down_swing": 0.3934649421375085,
+            "no_swing": 0.18311776718856365,
+            "up_swing": 0.42205582028590877
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 620
+        },
+        "1.0": {
+          "both": 1,
+          "down_swing": 438,
+          "no_swing": 593,
+          "shares": {
+            "both": 0.0006807351940095302,
+            "down_swing": 0.2981620149761743,
+            "no_swing": 0.4036759700476515,
+            "up_swing": 0.29748127978216476
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 437
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 328,
+          "no_swing": 835,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.22328114363512594,
+            "no_swing": 0.5684138869979578,
+            "up_swing": 0.20830496936691628
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 306
+        }
+      }
+    },
+    "gold": {
+      "10": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 454,
+          "no_swing": 297,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.31010928961748635,
+            "no_swing": 0.2028688524590164,
+            "up_swing": 0.4870218579234973
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 713
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 338,
+          "no_swing": 581,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.23087431693989072,
+            "no_swing": 0.3968579234972678,
+            "up_swing": 0.3722677595628415
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 545
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 240,
+          "no_swing": 798,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.16393442622950818,
+            "no_swing": 0.5450819672131147,
+            "up_swing": 0.29098360655737704
+          },
+          "total": 1464,
+          "ungradable": 0,
+          "up_swing": 426
+        }
+      },
+      "20": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 430,
+          "no_swing": 321,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.29573590096286106,
+            "no_swing": 0.22077028885832187,
+            "up_swing": 0.48349381017881704
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 703
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 313,
+          "no_swing": 545,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2152682255845942,
+            "no_swing": 0.374828060522696,
+            "up_swing": 0.40990371389270974
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 596
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 225,
+          "no_swing": 749,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.15474552957359008,
+            "no_swing": 0.515130674002751,
+            "up_swing": 0.33012379642365886
+          },
+          "total": 1454,
+          "ungradable": 0,
+          "up_swing": 480
+        }
+      },
+      "5": {
+        "0.75": {
+          "both": 8,
+          "down_swing": 474,
+          "no_swing": 332,
+          "shares": {
+            "both": 0.005445881552076242,
+            "down_swing": 0.32266848196051734,
+            "no_swing": 0.22600408441116407,
+            "up_swing": 0.44588155207624236
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 655
+        },
+        "1.0": {
+          "both": 2,
+          "down_swing": 348,
+          "no_swing": 609,
+          "shares": {
+            "both": 0.0013614703880190605,
+            "down_swing": 0.23689584751531653,
+            "no_swing": 0.41456773315180395,
+            "up_swing": 0.34717494894486045
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 510
+        },
+        "1.25": {
+          "both": 1,
+          "down_swing": 253,
+          "no_swing": 832,
+          "shares": {
+            "both": 0.0006807351940095302,
+            "down_swing": 0.17222600408441116,
+            "no_swing": 0.5663716814159292,
+            "up_swing": 0.2607215793056501
+          },
+          "total": 1469,
+          "ungradable": 0,
+          "up_swing": 383
+        }
+      }
+    },
+    "silver": {
+      "10": {
+        "0.75": {
+          "both": 1,
+          "down_swing": 561,
+          "no_swing": 291,
+          "shares": {
+            "both": 0.0006825938566552901,
+            "down_swing": 0.38293515358361774,
+            "no_swing": 0.19863481228668942,
+            "up_swing": 0.41774744027303756
+          },
+          "total": 1465,
+          "ungradable": 0,
+          "up_swing": 612
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 414,
+          "no_swing": 548,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2825938566552901,
+            "no_swing": 0.37406143344709897,
+            "up_swing": 0.3433447098976109
+          },
+          "total": 1465,
+          "ungradable": 0,
+          "up_swing": 503
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 314,
+          "no_swing": 755,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2143344709897611,
+            "no_swing": 0.515358361774744,
+            "up_swing": 0.27030716723549486
+          },
+          "total": 1465,
+          "ungradable": 0,
+          "up_swing": 396
+        }
+      },
+      "20": {
+        "0.75": {
+          "both": 0,
+          "down_swing": 533,
+          "no_swing": 259,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.3663230240549828,
+            "no_swing": 0.17800687285223368,
+            "up_swing": 0.4556701030927835
+          },
+          "total": 1455,
+          "ungradable": 0,
+          "up_swing": 663
+        },
+        "1.0": {
+          "both": 0,
+          "down_swing": 426,
+          "no_swing": 477,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2927835051546392,
+            "no_swing": 0.32783505154639175,
+            "up_swing": 0.37938144329896906
+          },
+          "total": 1455,
+          "ungradable": 0,
+          "up_swing": 552
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 309,
+          "no_swing": 724,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.21237113402061855,
+            "no_swing": 0.49759450171821307,
+            "up_swing": 0.2900343642611684
+          },
+          "total": 1455,
+          "ungradable": 0,
+          "up_swing": 422
+        }
+      },
+      "5": {
+        "0.75": {
+          "both": 5,
+          "down_swing": 562,
+          "no_swing": 316,
+          "shares": {
+            "both": 0.003401360544217687,
+            "down_swing": 0.38231292517006804,
+            "no_swing": 0.21496598639455783,
+            "up_swing": 0.39931972789115644
+          },
+          "total": 1470,
+          "ungradable": 0,
+          "up_swing": 587
+        },
+        "1.0": {
+          "both": 1,
+          "down_swing": 424,
+          "no_swing": 580,
+          "shares": {
+            "both": 0.0006802721088435374,
+            "down_swing": 0.28843537414965986,
+            "no_swing": 0.3945578231292517,
+            "up_swing": 0.3163265306122449
+          },
+          "total": 1470,
+          "ungradable": 0,
+          "up_swing": 465
+        },
+        "1.25": {
+          "both": 0,
+          "down_swing": 310,
+          "no_swing": 828,
+          "shares": {
+            "both": 0.0,
+            "down_swing": 0.2108843537414966,
+            "no_swing": 0.563265306122449,
+            "up_swing": 0.22585034013605443
+          },
+          "total": 1470,
+          "ungradable": 0,
+          "up_swing": 332
+        }
+      }
+    }
+  },
+  "class_balance_pooled": {
+    "10": {
+      "0.75": {
+        "both": 2,
+        "down_swing": 2093,
+        "no_swing": 1203,
+        "shares": {
+          "both": 0.0003414717432132491,
+          "down_swing": 0.3573501792726652,
+          "no_swing": 0.20539525354276933,
+          "up_swing": 0.4369130954413522
+        },
+        "ungradable": 0,
+        "up_swing": 2559
+      },
+      "1.0": {
+        "both": 0,
+        "down_swing": 1566,
+        "no_swing": 2306,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.26737237493597404,
+          "no_swing": 0.39371691992487623,
+          "up_swing": 0.3389107051391497
+        },
+        "ungradable": 0,
+        "up_swing": 1985
+      },
+      "1.25": {
+        "both": 0,
+        "down_swing": 1161,
+        "no_swing": 3194,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.19822434693529112,
+          "no_swing": 0.5453303739115588,
+          "up_swing": 0.2564452791531501
+        },
+        "ungradable": 0,
+        "up_swing": 1502
+      }
+    },
+    "20": {
+      "0.75": {
+        "both": 0,
+        "down_swing": 2003,
+        "no_swing": 1140,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.34433556816228295,
+          "no_swing": 0.19597730789066528,
+          "up_swing": 0.45968712394705175
+        },
+        "ungradable": 0,
+        "up_swing": 2674
+      },
+      "1.0": {
+        "both": 0,
+        "down_swing": 1542,
+        "no_swing": 2133,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.26508509541000513,
+          "no_swing": 0.3666838576585869,
+          "up_swing": 0.36823104693140796
+        },
+        "ungradable": 0,
+        "up_swing": 2142
+      },
+      "1.25": {
+        "both": 0,
+        "down_swing": 1193,
+        "no_swing": 2944,
+        "shares": {
+          "both": 0.0,
+          "down_swing": 0.20508853360838922,
+          "no_swing": 0.506102802131683,
+          "up_swing": 0.2888086642599278
+        },
+        "ungradable": 0,
+        "up_swing": 1680
+      }
+    },
+    "5": {
+      "0.75": {
+        "both": 25,
+        "down_swing": 2117,
+        "no_swing": 1267,
+        "shares": {
+          "both": 0.004253871022630594,
+          "down_swing": 0.3602177981963587,
+          "no_swing": 0.2155861834269185,
+          "up_swing": 0.41994214735409224
+        },
+        "ungradable": 0,
+        "up_swing": 2468
+      },
+      "1.0": {
+        "both": 5,
+        "down_swing": 1593,
+        "no_swing": 2398,
+        "shares": {
+          "both": 0.0008507742045261188,
+          "down_swing": 0.27105666156202146,
+          "no_swing": 0.40803130849072655,
+          "up_swing": 0.32006125574272587
+        },
+        "ungradable": 0,
+        "up_swing": 1881
+      },
+      "1.25": {
+        "both": 2,
+        "down_swing": 1190,
+        "no_swing": 3325,
+        "shares": {
+          "both": 0.0003403096818104475,
+          "down_swing": 0.20248426067721625,
+          "no_swing": 0.565764846009869,
+          "up_swing": 0.2314105836311043
+        },
+        "ungradable": 0,
+        "up_swing": 1360
+      }
+    }
+  },
+  "coverage": {
+    "copper": {
+      "10": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 753,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1464,
+        "graded_labels_k1": 1464,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 232
+      },
+      "20": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 1427,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1454,
+        "graded_labels_k1": 1454,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 228
+      },
+      "5": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 408,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1469,
+        "graded_labels_k1": 1469,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 232
+      }
+    },
+    "crude": {
+      "10": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 759,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1464,
+        "graded_labels_k1": 1464,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 0
+      },
+      "20": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 1422,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1454,
+        "graded_labels_k1": 1454,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 0
+      },
+      "5": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 414,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1469,
+        "graded_labels_k1": 1469,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 0
+      }
+    },
+    "gold": {
+      "10": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 376,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1464,
+        "graded_labels_k1": 1464,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 132
+      },
+      "20": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 716,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1454,
+        "graded_labels_k1": 1454,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 132
+      },
+      "5": {
+        "abstention_free_coverage": 0.997291807718348,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 210,
+        "eligible": 1473,
+        "eligible_with_complete_horizon": 1469,
+        "graded_labels_k1": 1469,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 128
+      }
+    },
+    "silver": {
+      "10": {
+        "abstention_free_coverage": 0.997968855788761,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 319,
+        "eligible": 1474,
+        "eligible_with_complete_horizon": 1465,
+        "graded_labels_k1": 1465,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 114
+      },
+      "20": {
+        "abstention_free_coverage": 0.997968855788761,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 609,
+        "eligible": 1474,
+        "eligible_with_complete_horizon": 1455,
+        "graded_labels_k1": 1455,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 112
+      },
+      "5": {
+        "abstention_free_coverage": 0.997968855788761,
+        "chain_sessions_without_trades": 0,
+        "cutoffs": 1477,
+        "designated_not_front_listed": 175,
+        "eligible": 1474,
+        "eligible_with_complete_horizon": 1470,
+        "graded_labels_k1": 1470,
+        "graded_share_of_complete": 1.0,
+        "roll_plans": 113
+      }
+    }
+  },
+  "cutoffs": {
+    "first": "2021-02-01",
+    "last": "2026-10-23",
+    "per_asset_horizon": {
+      "copper": {
+        "10": 1477,
+        "20": 1477,
+        "5": 1477
+      },
+      "crude": {
+        "10": 1477,
+        "20": 1477,
+        "5": 1477
+      },
+      "gold": {
+        "10": 1477,
+        "20": 1477,
+        "5": 1477
+      },
+      "silver": {
+        "10": 1477,
+        "20": 1477,
+        "5": 1477
+      }
+    }
+  },
+  "ineligible_by_reason": {
+    "copper": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "crude": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "gold": {
+      "10": {
+        "insufficient_vol_history": 4
+      },
+      "20": {
+        "insufficient_vol_history": 4
+      },
+      "5": {
+        "insufficient_vol_history": 4
+      }
+    },
+    "silver": {
+      "10": {
+        "insufficient_vol_history": 3
+      },
+      "20": {
+        "insufficient_vol_history": 3
+      },
+      "5": {
+        "insufficient_vol_history": 3
+      }
+    }
+  },
+  "name": "label_stats",
+  "sources": [
+    {
+      "bytes": 4120141,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "build/mcx/mcx_daily.parquet"
+    },
+    {
+      "bytes": 17048,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "url": "build/mcx/mcx_sessions.parquet"
+    },
+    {
+      "bytes": 71397,
+      "fetched_at_utc": null,
+      "producer_build": {
+        "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+        "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+      },
+      "sha256": "04cc5ed58d55dce874fd5a744b0efc51598ce5098aafcf68c57453ae2f8f8007",
+      "url": "build/mcx/mcx_contract_specs.json"
+    }
+  ],
+  "ungradable_by_reason": {}
+}

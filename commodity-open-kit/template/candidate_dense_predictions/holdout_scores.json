@@ -1,0 +1,300 @@
+{
+  "period": {
+    "name": "holdout",
+    "start": "2026-06-01",
+    "end": "2026-12-31",
+    "train_end_utc": "2026-06-01T03:00:00+00:00"
+  },
+  "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+  "swings": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1/swings/swings.parquet",
+  "challenges": {
+    "2": {
+      "report": "candidate_dense_predictions/report_2_holdout.json",
+      "scores": {
+        "direction": {
+          "value": 43.373493975903614,
+          "ci_lo": 37.946254597442724,
+          "ci_hi": 48.78670090521083,
+          "level": 0.9,
+          "n": 415,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 72.22222222222221,
+          "ci_lo": 65.48131770369982,
+          "ci_hi": 78.61172865468966,
+          "level": 0.9,
+          "n": 180,
+          "n_episodes": 69,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 2.4038461538461453,
+          "level": 0.9,
+          "n": 415,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 38.531905399375276,
+          "ci_lo": 36.05111209891529,
+          "ci_hi": 41.183415448736525,
+          "level": 0.9,
+          "n": 180,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 416,
+        "invalid": 0,
+        "unmatured": 1,
+        "scored": 415,
+        "no_price": 0,
+        "ambiguous_bar": 1,
+        "scored_on_incomplete_window": 15,
+        "tick_priced": 262,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 180,
+        "in_band": 130,
+        "invalidation_pct_median": 1.75,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 416,
+        "valid_signal_rows": 416,
+        "invalid_signal_rows": 0,
+        "invalid_reasons": {},
+        "no_signal_rows": 0,
+        "valid_no_signal_rows": 0
+      },
+      "coverage": {
+        "floor": 0.9,
+        "rule": "a valid signal row or a valid no_signal row on at least 90 percent of the asset's sessions in the window",
+        "per_asset": {
+          "copper": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "crude": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "gold": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "silver": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          }
+        },
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "decision_records": 416,
+        "decision_records_outside_a_session": 0,
+        "met": true
+      },
+      "award_conditions": {
+        "period": "holdout",
+        "horizons_scored": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "minimum_success_rate": 70.0,
+        "success_rate": 38.531905399375276,
+        "success_rate_at_least_minimum": false,
+        "coverage_floor_met": true,
+        "minimum_met_this_period": false,
+        "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
+        "hard_conditions": {
+          "learning_beats_frozen": false,
+          "second_half_at_least_first_half": false,
+          "direction_at_least_minimum": false,
+          "frozen_beats_prevailing_null": false,
+          "learning_beats_prevailing_null": false
+        },
+        "hard_conditions_met_this_period": false
+      },
+      "baselines": {
+        "prevailing_direction": {
+          "direction": {
+            "value": 46.86746987951807,
+            "ci_lo": 42.17289719626168,
+            "ci_hi": 52.13270142180095,
+            "level": 0.9,
+            "n": 830,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "depth": {
+            "value": 79.94858611825192,
+            "ci_lo": 72.47474747474747,
+            "ci_hi": 87.2866252560629,
+            "level": 0.9,
+            "n": 389,
+            "n_episodes": 43,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "improvement": {
+            "value": 0.0,
+            "ci_lo": 0.0,
+            "ci_hi": 0.0,
+            "level": 0.9,
+            "n": 830,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "success_rate": {
+            "value": 42.27201866592333,
+            "ci_lo": 39.527849161834276,
+            "ci_hi": 44.98310468710997,
+            "level": 0.9,
+            "n": 389,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          }
+        },
+        "rv_band": {
+          "direction": {
+            "value": 51.204819277108435,
+            "ci_lo": 45.9008217162013,
+            "ci_hi": 56.808407214716105,
+            "level": 0.9,
+            "n": 830,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "depth": {
+            "value": 67.29411764705883,
+            "ci_lo": 58.183816842992435,
+            "ci_hi": 76.50015199108319,
+            "level": 0.9,
+            "n": 425,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "improvement": {
+            "value": 0.0,
+            "ci_lo": 0.0,
+            "ci_hi": 0.0,
+            "level": 0.9,
+            "n": 830,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "success_rate": {
+            "value": 39.49964564138909,
+            "ci_lo": 36.620425960788054,
+            "ci_hi": 42.417807741957134,
+            "level": 0.9,
+            "n": 425,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          }
+        },
+        "range_break_vol": {
+          "direction": {
+            "value": 49.57081545064378,
+            "ci_lo": 44.84019734019734,
+            "ci_hi": 54.30327868852459,
+            "level": 0.9,
+            "n": 466,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "depth": {
+            "value": 69.6969696969697,
+            "ci_lo": 60.90519508648163,
+            "ci_hi": 78.00829875518673,
+            "level": 0.9,
+            "n": 231,
+            "n_episodes": 42,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "improvement": {
+            "value": 0.0,
+            "ci_lo": 0.0,
+            "ci_hi": 0.0,
+            "level": 0.9,
+            "n": 466,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          },
+          "success_rate": {
+            "value": 39.755928382537824,
+            "ci_lo": 36.345482051947926,
+            "ci_hi": 42.89609121494128,
+            "level": 0.9,
+            "n": 231,
+            "n_episodes": 44,
+            "n_boot": 2000,
+            "seed": 0,
+            "resamples_used": 2000
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "challenge": 2,
+  "rules_version": "2.6",
+  "window": {
+    "period": "holdout",
+    "start_utc": "2026-06-01T00:00:00+00:00",
+    "end_utc": "2026-10-23T18:00:00+00:00",
+    "horizons_scored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "episode_horizon": 10
+  },
+  "scores": {
+    "direction": {
+      "value": 51.204819277108435,
+      "ci_lo": 45.9008217162013,
+      "ci_hi": 56.808407214716105,
+      "level": 0.9,
+      "n": 830,
+      "n_episodes": 44,
+      "n_boot": 2000,
+      "seed": 0,
+      "resamples_used": 2000
+    },
+    "depth": {
+      "value": 67.29411764705883,
+      "ci_lo": 58.183816842992435,
+      "ci_hi": 76.50015199108319,
+      "level": 0.9,
+      "n": 425,
+      "n_episodes": 44,
+      "n_boot": 2000,
+      "seed": 0,
+      "resamples_used": 2000
+    },
+    "improvement": {
+      "value": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0,
+      "level": 0.9,
+      "n": 830,
+      "n_episodes": 44,
+      "n_boot": 2000,
+      "seed": 0,
+      "resamples_used": 2000
+    },
+    "success_rate": {
+      "value": 39.49964564138909,
+      "ci_lo": 36.620425960788054,
+      "ci_hi": 42.417807741957134,
+      "level": 0.9,
+      "n": 425,
+      "n_episodes": 44,
+      "n_boot": 2000,
+      "seed": 0,
+      "resamples_used": 2000
+    }
+  },
+  "counts": {
+    "signals_in_window": 832,
+    "invalid": 2,
+    "unmatured": 2,
+    "scored": 830,
+    "no_price": 0,
+    "ambiguous_bar": 2,
+    "scored_on_incomplete_window": 50,
+    "tick_priced": 524,
+    "recorded_not_scored_other_horizon": 0,
+    "directionally_realized": 425,
+    "in_band": 286,
+    "invalidation_pct_median": 1.75,
+    "invalidation_pct_max": 3.0,
+    "signal_rows": 832,
+    "valid_signal_rows": 830,
+    "invalid_signal_rows": 2,
+    "invalid_reasons": {
+      "band_too_wide": 2
+    },
+    "no_signal_rows": 0,
+    "valid_no_signal_rows": 0
+  },
+  "coverage": {
+    "floor": 0.9,
+    "rule": "a valid signal row or a valid no_signal row on at least 90 percent of the asset's sessions in the window",
+    "per_asset": {
+      "copper": {
+        "sessions": 104,
+        "sessions_with_a_decision": 104,
+        "share": 1.0,
+        "met": true
+      },
+      "crude": {
+        "sessions": 104,
+        "sessions_with_a_decision": 104,
+        "share": 1.0,
+        "met": true
+      },
+      "gold": {
+        "sessions": 104,
+        "sessions_with_a_decision": 104,
+        "share": 1.0,
+        "met": true
+      },
+      "silver": {
+        "sessions": 104,
+        "sessions_with_a_decision": 104,
+        "share": 1.0,
+        "met": true
+      }
+    },
+    "pooled": {
+      "sessions": 416,
+      "sessions_with_a_decision": 416,
+      "share": 1.0,
+      "met": true
+    },
+    "decision_records": 830,
+    "decision_records_outside_a_session": 0,
+    "met": true
+  },
+  "hard_conditions": {
+    "learning_beats_frozen": false,
+    "second_half_at_least_first_half": true,
+    "direction_at_least_minimum": false,
+    "frozen_beats_prevailing_null": true,
+    "learning_beats_prevailing_null": true
+  },
+  "paired_direction": {
+    "n": 830,
+    "learning": 51.204819277108435,
+    "frozen": 51.204819277108435
+  },
+  "halves": {
+    "first_half_direction": 48.55769230769231,
+    "second_half_direction": 53.864734299516904,
+    "first_half_sessions": 52,
+    "second_half_sessions": 52
+  },
+  "prevailing_direction_null": {
+    "rule": "the sign of the last five completed sessions' move, issued at the entry's instants with the entry's horizon, expected and invalidation at the asset threshold",
+    "direction_at_entry_instants": 46.85990338164252,
+    "direction_at_frozen_instants": 46.85990338164252,
+    "n": 828
+  },
+  "frozen": {
+    "direction": 51.204819277108435,
+    "signals_in_window": 832,
+    "scored": 830
+  },
+  "baselines": {
+    "prevailing_direction": {
+      "episode_horizon": 10,
+      "scores": {
+        "direction": {
+          "value": 46.86746987951807,
+          "ci_lo": 42.17289719626168,
+          "ci_hi": 52.13270142180095,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 79.94858611825192,
+          "ci_lo": 72.47474747474747,
+          "ci_hi": 87.2866252560629,
+          "level": 0.9,
+          "n": 389,
+          "n_episodes": 43,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 42.27201866592333,
+          "ci_lo": 39.527849161834276,
+          "ci_hi": 44.98310468710997,
+          "level": 0.9,
+          "n": 389,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 832,
+        "invalid": 2,
+        "unmatured": 2,
+        "scored": 830,
+        "no_price": 0,
+        "ambiguous_bar": 2,
+        "scored_on_incomplete_window": 50,
+        "tick_priced": 524,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 389,
+        "in_band": 311,
+        "invalidation_pct_median": 1.75,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 832,
+        "valid_signal_rows": 830,
+        "invalid_signal_rows": 2,
+        "invalid_reasons": {
+          "band_too_wide": 2
+        },
+        "no_signal_rows": 0,
+        "valid_no_signal_rows": 0
+      },
+      "coverage": {
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "met": true
+      },
+      "hard_conditions": {
+        "learning_beats_frozen": false,
+        "second_half_at_least_first_half": false,
+        "direction_at_least_minimum": false,
+        "frozen_beats_prevailing_null": false,
+        "learning_beats_prevailing_null": false
+      },
+      "note": "the frozen copy of a baseline is the baseline itself, so its improvement score is zero by construction"
+    },
+    "rv_band": {
+      "episode_horizon": 10,
+      "scores": {
+        "direction": {
+          "value": 51.204819277108435,
+          "ci_lo": 45.9008217162013,
+          "ci_hi": 56.808407214716105,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 67.29411764705883,
+          "ci_lo": 58.183816842992435,
+          "ci_hi": 76.50015199108319,
+          "level": 0.9,
+          "n": 425,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 39.49964564138909,
+          "ci_lo": 36.620425960788054,
+          "ci_hi": 42.417807741957134,
+          "level": 0.9,
+          "n": 425,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 832,
+        "invalid": 2,
+        "unmatured": 2,
+        "scored": 830,
+        "no_price": 0,
+        "ambiguous_bar": 2,
+        "scored_on_incomplete_window": 50,
+        "tick_priced": 524,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 425,
+        "in_band": 286,
+        "invalidation_pct_median": 1.75,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 832,
+        "valid_signal_rows": 830,
+        "invalid_signal_rows": 2,
+        "invalid_reasons": {
+          "band_too_wide": 2
+        },
+        "no_signal_rows": 0,
+        "valid_no_signal_rows": 0
+      },
+      "coverage": {
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "met": true
+      },
+      "hard_conditions": {
+        "learning_beats_frozen": false,
+        "second_half_at_least_first_half": true,
+        "direction_at_least_minimum": false,
+        "frozen_beats_prevailing_null": true,
+        "learning_beats_prevailing_null": true
+      },
+      "note": "the frozen copy of a baseline is the baseline itself, so its improvement score is zero by construction"
+    },
+    "range_break_vol": {
+      "episode_horizon": 10,
+      "scores": {
+        "direction": {
+          "value": 49.57081545064378,
+          "ci_lo": 44.84019734019734,
+          "ci_hi": 54.30327868852459,
+          "level": 0.9,
+          "n": 466,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 69.6969696969697,
+          "ci_lo": 60.90519508648163,
+          "ci_hi": 78.00829875518673,
+          "level": 0.9,
+          "n": 231,
+          "n_episodes": 42,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "level": 0.9,
+          "n": 466,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 39.755928382537824,
+          "ci_lo": 36.345482051947926,
+          "ci_hi": 42.89609121494128,
+          "level": 0.9,
+          "n": 231,
+          "n_episodes": 44,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 468,
+        "invalid": 2,
+        "unmatured": 2,
+        "scored": 466,
+        "no_price": 0,
+        "ambiguous_bar": 2,
+        "scored_on_incomplete_window": 27,
+        "tick_priced": 296,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 231,
+        "in_band": 161,
+        "invalidation_pct_median": 2.0,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 468,
+        "valid_signal_rows": 466,
+        "invalid_signal_rows": 2,
+        "invalid_reasons": {
+          "band_too_wide": 2
+        },
+        "no_signal_rows": 182,
+        "valid_no_signal_rows": 182
+      },
+      "coverage": {
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "met": true
+      },
+      "hard_conditions": {
+        "learning_beats_frozen": false,
+        "second_half_at_least_first_half": false,
+        "direction_at_least_minimum": false,
+        "frozen_beats_prevailing_null": false,
+        "learning_beats_prevailing_null": false
+      },
+      "note": "the frozen copy of a baseline is the baseline itself, so its improvement score is zero by construction"
+    }
+  },
+  "award_conditions": {
+    "period": "holdout",
+    "horizons_scored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "minimum_success_rate": 70.0,
+    "success_rate": 39.49964564138909,
+    "success_rate_at_least_minimum": false,
+    "coverage_floor_met": true,
+    "minimum_met_this_period": false,
+    "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
+    "hard_conditions": {
+      "learning_beats_frozen": false,
+      "second_half_at_least_first_half": true,
+      "direction_at_least_minimum": false,
+      "frozen_beats_prevailing_null": true,
+      "learning_beats_prevailing_null": true
+    },
+    "hard_conditions_met_this_period": false
+  },
+  "inputs": {
+    "signals": {
+      "path": "output/baseline_2_rv_band_holdout.parquet",
+      "sha256": "7b7cc7b598c5161bc3e8eba197f0b2a760da3f522a583c5e1e9bcf0328897928",
+      "bytes": 36515,
+      "rows": 832
+    },
+    "no_signals": null,
+    "frozen": {
+      "path": "output/baseline_2_rv_band_holdout.parquet",
+      "sha256": "7b7cc7b598c5161bc3e8eba197f0b2a760da3f522a583c5e1e9bcf0328897928",
+      "bytes": 36515,
+      "rows": 832
+    },
+    "swings": {
+      "path": "pack/v2.1/swings/swings.parquet",
+      "sha256": "2db9866d45deba3d8149a78792a9494765c1d206196f69b9467b8bcf4ab4cbee",
+      "bytes": 70692,
+      "rows": 2150
+    },
+    "mcx_daily": {
+      "path": "pack/v2.1/mcx/mcx_daily.parquet",
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "bytes": 4120141,
+      "rows": 159529
+    },
+    "designations": {
+      "path": "pack/v2.1/labels/designations.parquet",
+      "sha256": "3d2d2d54a2382e5db98db4c02a36637323159c8a40dc6b30d8a3e55d53db4811",
+      "bytes": 243835,
+      "rows": 17724
+    },
+    "mcx_sessions": {
+      "path": "pack/v2.1/mcx/mcx_sessions.parquet",
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "bytes": 17048,
+      "rows": 2191
+    },
+    "quotes": {
+      "path": "pack/v2.1/pack/quotes/mcx_quotes.parquet",
+      "sha256": "5a5dedfca5c54f7e9cdff27cfa94db2ec245f409e1e8d23e4eec82b3dbe7ab07",
+      "bytes": 63989284,
+      "rows": 1532825
+    }
+  },
+  "build": {
+    "branch": "unknown",
+    "commit": "unknown",
+    "command": "ipykernel_launcher.py (notebooks/02_baseline_submission.ipynb)"
+  },
+  "definitions": {
+    "price_series": "the contract designated for the signal's session in labels/designations.parquet at horizon 5, held for the whole window so a roll never enters as a calendar spread",
+    "entry_price": "the last price of that contract available at or before signal_utc: the last captured tick or the last published settlement, whichever became available later",
+    "path_resolution": "tick by tick where a session carries at least 5 captured quotes after the signal, session high and low otherwise; inside a session bar the order of two barriers is unknowable, so the adverse one is taken first and the row is flagged",
+    "horizons": "Task 2: any whole number of completed MCX sessions from 1 to 20; the holdout scores every one; the forward window scores only horizons of at most 5 sessions, and a valid row with a longer horizon is recorded under counts.recorded_not_scored_other_horizon and never scored",
+    "horizon_window": "from signal_utc to the close of the h-th session that closes strictly after it; a signal already decided inside a truncated window is scored, otherwise it is unmatured",
+    "unmatured": "counted, left out of both the numerator and the denominator, still a decision record",
+    "invalid_row": "counted as issued and never correct; not a decision record for coverage. Reasons are listed in counts.invalid_reasons",
+    "episode": "a block of h sessions per asset counted from the window start, h in window.episode_horizon. Task 1: the longest horizon the period scores, 10 on the holdout and 5 on the forward window. Task 2: the longest horizon the entry's valid scored rows use, so an entry at 5 and 10 is drawn in blocks of 10; with no such row the longest baseline horizon the period scores, 10 on the holdout and 5 on the forward window",
+    "confidence_interval": "the 90% percentile interval over 2000 seeded resamples of the shared episode universe; every score in one report is recomputed on the same draw, so the success rate's interval is the interval of the average and not an average of intervals",
+    "coverage_floor": "a valid signal row or a valid no_signal row on at least 90% of the asset's sessions in the window, per asset and pooled",
+    "success_rate": "the plain average of the three scores; null when any of the three has no units",
+    "minimum": "success rate at or above 70 percent on the holdout and on the forward window, with the coverage floor met and the hard conditions",
+    "direction": "signals whose direction was realized divided by signals issued. Realized means the price moved at least the asset's threshold in the signalled direction inside the horizon before it moved the threshold against it: deliberately the ruler Task 1 scores correctness on and the one the prevailing-direction null is measured by, so the two tasks compare",
+    "depth": "among directionally right signals, the share whose realized move landed inside [p10_pct, p90_pct]. The realized move is the favorable extreme of the window from the entry price (mfe_pct). This is where expected_pct and the band are scored, and the band may be at most 12 times the asset's threshold wide",
+    "improvement": "10 times the learning model's direction gain over its frozen copy in percentage points, floored at 0 and capped at 100, on the rows both issued at the same instant, asset and horizon",
+    "prevailing_direction_null": "the sign of the last five completed sessions' move, issued at the entry's instants with the entry's horizon, expected and invalidation at the asset's threshold",
+    "hard_conditions": "learning beats frozen on both periods; the second half of each period is at least the first; direction alone is at least 60 percent on both periods; the frozen copy beats the null on the holdout"
+  }
+}

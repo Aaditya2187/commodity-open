@@ -1,0 +1,74 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:31.301182+00:00",
+    "command": "python -m swing_dataset.pack build --stage news",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 436302,
+      "unvintaged": 1
+    },
+    "rule": "clock inherited from the cluster version's created_at (exact)."
+  },
+  "columns": [
+    {
+      "meaning": "news.cluster_memberships.cluster_version_id",
+      "name": "cluster_version_id",
+      "type": "string"
+    },
+    {
+      "meaning": "member raw_id",
+      "name": "raw_id",
+      "type": "string"
+    },
+    {
+      "meaning": "order within the version",
+      "name": "member_order",
+      "type": "int64"
+    },
+    {
+      "meaning": "publisher identity used for independence counting",
+      "name": "publisher_identity",
+      "type": "string"
+    },
+    {
+      "meaning": "created_at of the cluster version (joined)",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= fetched_utc",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact; unvintaged when the version row is missing",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:30:02.103714+00:00",
+    "start": "2026-07-16T02:55:53.469699+00:00"
+  },
+  "name": "news_memberships",
+  "notes": [],
+  "rows": 436303,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 22853926,
+      "fetched_at_utc": "2026-10-23T21:40:33Z",
+      "sha256": "8994055a0a494a20509d9b7588f2d424864c0dbdc0ba0206513d8606c80cf484",
+      "url": "feed-db:cluster_memberships"
+    }
+  ]
+}

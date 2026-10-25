@@ -1,0 +1,71 @@
+{
+  "expiry_rule": {
+    "finished_contracts": 203,
+    "mismatches": [],
+    "ok": true
+  },
+  "invariants": {
+    "chain_daily_available_after_cutoff": {
+      "null_available": 0,
+      "ok": true
+    },
+    "chain_rows_contiguous": {
+      "chains": 17679,
+      "ok": true
+    },
+    "complete_chains_have_h_rows": {
+      "ok": true
+    },
+    "cutoff_is_0830_ist": {
+      "ok": true
+    },
+    "designations_available_before_cutoff": {
+      "ok": true
+    },
+    "horizons_and_assets": {
+      "ok": true
+    },
+    "labels_are_known_classes": {
+      "ok": true
+    },
+    "labels_exactly_for_eligible_complete": {
+      "eligible_complete": 17551,
+      "label_keys": 17551,
+      "label_rows": 52653,
+      "multipliers": [
+        0.75,
+        1.0,
+        1.25
+      ],
+      "ok": true
+    },
+    "no_labels_past_data_end": {
+      "ok": true,
+      "tail_cutoffs": 128,
+      "tail_label_rows": 0
+    },
+    "return_targets_available_after_cutoff": {
+      "null_available": 0,
+      "ok": true
+    },
+    "swing_labels_available_after_cutoff": {
+      "null_available": 0,
+      "ok": true
+    },
+    "targets_exactly_for_eligible_complete": {
+      "ok": true
+    }
+  },
+  "mismatches": [],
+  "name": "labels_check",
+  "ok": true,
+  "recomputed": 335,
+  "sample": 300,
+  "sampled_by_category": {
+    "ineligible": 5,
+    "total": 335,
+    "uniform": 300,
+    "with_roll_plan": 54
+  },
+  "seed": 20260916
+}

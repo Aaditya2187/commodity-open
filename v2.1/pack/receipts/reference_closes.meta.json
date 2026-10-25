@@ -1,0 +1,125 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:31.699280+00:00",
+    "command": "python -m swing_dataset.pack build --stage receipts",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 4126
+    },
+    "rule": "fetched_ts is the feed's own capture clock: exact. effective_utc is the venue close, not a clock."
+  },
+  "columns": [
+    {
+      "meaning": "feed.reference_closes.receipt_id",
+      "name": "receipt_id",
+      "type": "string"
+    },
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "mcx | comex | nymex | ice_brent | lbma | lme | shfe | ine",
+      "name": "venue",
+      "type": "string"
+    },
+    {
+      "meaning": "session the value closes (venue-local civil date)",
+      "name": "session_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "close / settlement value in currency",
+      "name": "value",
+      "type": "double"
+    },
+    {
+      "meaning": "value currency",
+      "name": "currency",
+      "type": "string"
+    },
+    {
+      "meaning": "exchange_close | official_settlement | session_close",
+      "name": "kind",
+      "type": "string"
+    },
+    {
+      "meaning": "documented venue close instant for session_date",
+      "name": "effective_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "feed source path (e.g. angel:FULL:close, yahoo:GCZ26.CMX:chart:1d)",
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "meaning": "provider instrument symbol",
+      "name": "instrument_symbol",
+      "type": "string"
+    },
+    {
+      "meaning": "venue:SYMBOL contract id",
+      "name": "contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "YYYY-MM contract month",
+      "name": "contract_month",
+      "type": "string"
+    },
+    {
+      "meaning": "first time the feed saw this value",
+      "name": "first_seen_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "fetched_ts: the feed's fetch clock",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "available_ts as recorded by the feed (= fetched_ts)",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "feed verified the session/publication semantics",
+      "name": "verified",
+      "type": "bool"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:11:48.823172+00:00",
+    "start": "2026-07-14T16:01:26.246723+00:00"
+  },
+  "name": "reference_closes",
+  "notes": [
+    "MCX rows (angel:FULL:close) are the previous-session close the broker quote carried at the next open; verified=false for those."
+  ],
+  "rows": 4126,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 291573,
+      "fetched_at_utc": "2026-10-23T21:40:36Z",
+      "sha256": "1bfdac3f5de9f36504a66f6610ff58ec2dece80ecb97bb187b6b2bdfa008c8c0",
+      "url": "feed-db:reference_closes"
+    }
+  ]
+}

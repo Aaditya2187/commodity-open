@@ -1,0 +1,4998 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:56:45.582353+00:00",
+    "command": "python -m swing_dataset.pack build --stage quotes --source moneyplant",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 1940091
+    },
+    "rule": "fetched_utc = raw linuxReceivedTs (feed receive clock), else raw fetchTs (bridge capture clock): exact. available_utc = fetched_utc (the bridge's own availabilityTs is a few hundred ms earlier and is not used as the pack clock). Rows with neither clock would be published on eventTs; none observed."
+  },
+  "columns": [
+    {
+      "meaning": "feed observation clock for the row (raw ts unless a capture clock exists in the payload; see rule)",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "availability lower bound: = fetched_utc for exact rows, source-stated instant for published rows, null for unvintaged",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact | published | unvintaged (see README.md, Clock quality)",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "raw eventTs = source (MT5) event time = raw ts",
+      "name": "event_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "comex | nymex | london_spot",
+      "name": "venue",
+      "type": "string"
+    },
+    {
+      "meaning": "MT5 symbol exactly as received (GCZ26, XAUUSD, ...)",
+      "name": "native_symbol",
+      "type": "string"
+    },
+    {
+      "meaning": "live | stale (stale = event older than 30 s at receipt or historical replay)",
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "meaning": "Reading.price, USD: (bid+ask)/2 when both present, else last",
+      "name": "price",
+      "type": "double"
+    },
+    {
+      "meaning": "bid, USD",
+      "name": "bid",
+      "type": "double"
+    },
+    {
+      "meaning": "ask, USD",
+      "name": "ask",
+      "type": "double"
+    },
+    {
+      "meaning": "last, USD",
+      "name": "last",
+      "type": "double"
+    },
+    {
+      "meaning": "raw fetchTs: bridge capture clock",
+      "name": "bridge_fetch_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "raw linuxReceivedTs: feed receive clock",
+      "name": "linux_received_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "raw hydratedTs",
+      "name": "hydrated_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "raw selectedTs",
+      "name": "selected_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "raw hydrationMs",
+      "name": "hydration_ms",
+      "type": "int64"
+    },
+    {
+      "meaning": "source clock correction applied to sourceEventEpochMs",
+      "name": "clock_correction_sec",
+      "type": "double"
+    },
+    {
+      "meaning": "raw clockMaxResidualMs",
+      "name": "clock_max_residual_ms",
+      "type": "double"
+    },
+    {
+      "meaning": "raw clockSamples",
+      "name": "clock_samples",
+      "type": "int64"
+    },
+    {
+      "meaning": "raw connectionGeneration",
+      "name": "connection_generation",
+      "type": "int64"
+    },
+    {
+      "meaning": "raw snapshotSequence",
+      "name": "snapshot_sequence",
+      "type": "int64"
+    },
+    {
+      "meaning": "bridge protocol version (v1 | v2)",
+      "name": "protocol",
+      "type": "string"
+    },
+    {
+      "meaning": "tick volume",
+      "name": "volume",
+      "type": "double"
+    },
+    {
+      "meaning": "tick volume_real",
+      "name": "volume_real",
+      "type": "double"
+    },
+    {
+      "meaning": "symbol_info.session_volume",
+      "name": "session_volume",
+      "type": "double"
+    },
+    {
+      "meaning": "symbol_info.session_turnover",
+      "name": "session_turnover",
+      "type": "double"
+    },
+    {
+      "meaning": "symbol_info.session_interest (open interest)",
+      "name": "session_interest",
+      "type": "double"
+    },
+    {
+      "meaning": "symbol_info volume high",
+      "name": "volume_high",
+      "type": "double"
+    },
+    {
+      "meaning": "symbol_info volume low",
+      "name": "volume_low",
+      "type": "double"
+    },
+    {
+      "meaning": "raw marketBook (JSON) when present",
+      "name": "market_book_json",
+      "type": "string"
+    },
+    {
+      "meaning": "raw instrumentMetadata (JSON): contract size, exchange, path, tick",
+      "name": "instrument_metadata_json",
+      "type": "string"
+    },
+    {
+      "meaning": "raw tradingSpecification (JSON)",
+      "name": "trading_specification_json",
+      "type": "string"
+    },
+    {
+      "meaning": "UTC day the feed appended the row (raw file name); availability is never later than the end of this day",
+      "name": "raw_file_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "residual raw keys with no typed column (JSON object) or null",
+      "name": "extra_json",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:00:29.149733+00:00",
+    "start": "2026-07-21T18:36:08.298258+00:00"
+  },
+  "dated_contract_duplicates_dropped": 0,
+  "dedup_rule": "exact duplicates share (ts, sha256 of scrubbed raw + asset/venue/price/currency/status/source); the first occurrence is kept",
+  "duplicates_dropped": 0,
+  "emitted_rows": 1940091,
+  "name": "moneyplant_quotes",
+  "notes": [
+    "Native unit: USD per contract unit as quoted by MT5 (COMEX/NYMEX futures, XAU/XAG spot).",
+    "terminalSession (opaque session id) and clockCalibratedTs are dropped; the dated-contract block is always empty in this source and dropped.",
+    "The broker account object of the raw rows is removed by the reader; it never reaches a frame.",
+    "extra_json keys seen: regeneratedAt (33286), regeneratedFrom (33286)"
+  ],
+  "origins": {},
+  "per_file": [
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2406,
+      "path": "feed-capture:moneyplant/copper/2026-07-28.csv",
+      "raw_rows": 2406,
+      "reading_rows": 2406
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7969,
+      "path": "feed-capture:moneyplant/copper/2026-07-29.csv",
+      "raw_rows": 7969,
+      "reading_rows": 7969
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7654,
+      "path": "feed-capture:moneyplant/copper/2026-07-30.csv",
+      "raw_rows": 7654,
+      "reading_rows": 7654
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 4791,
+      "path": "feed-capture:moneyplant/copper/2026-07-31.csv",
+      "raw_rows": 4791,
+      "reading_rows": 4791
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 609,
+      "path": "feed-capture:moneyplant/copper/2026-08-02.csv",
+      "raw_rows": 609,
+      "reading_rows": 609
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9148,
+      "path": "feed-capture:moneyplant/copper/2026-08-03.csv",
+      "raw_rows": 9148,
+      "reading_rows": 9148
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 4990,
+      "path": "feed-capture:moneyplant/copper/2026-08-04.csv",
+      "raw_rows": 4990,
+      "reading_rows": 4990
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7834,
+      "path": "feed-capture:moneyplant/copper/2026-08-05.csv",
+      "raw_rows": 7834,
+      "reading_rows": 7834
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8244,
+      "path": "feed-capture:moneyplant/copper/2026-08-06.csv",
+      "raw_rows": 8244,
+      "reading_rows": 8244
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 5636,
+      "path": "feed-capture:moneyplant/copper/2026-08-07.csv",
+      "raw_rows": 5636,
+      "reading_rows": 5636
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-08-08.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6049,
+      "path": "feed-capture:moneyplant/copper/2026-08-10.csv",
+      "raw_rows": 6049,
+      "reading_rows": 6049
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7129,
+      "path": "feed-capture:moneyplant/copper/2026-08-11.csv",
+      "raw_rows": 7129,
+      "reading_rows": 7129
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3920,
+      "path": "feed-capture:moneyplant/copper/2026-08-12.csv",
+      "raw_rows": 3920,
+      "reading_rows": 3920
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8090,
+      "path": "feed-capture:moneyplant/copper/2026-08-13.csv",
+      "raw_rows": 8090,
+      "reading_rows": 8090
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8314,
+      "path": "feed-capture:moneyplant/copper/2026-08-14.csv",
+      "raw_rows": 8314,
+      "reading_rows": 8314
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 561,
+      "path": "feed-capture:moneyplant/copper/2026-08-17.csv",
+      "raw_rows": 561,
+      "reading_rows": 561
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9165,
+      "path": "feed-capture:moneyplant/copper/2026-08-18.csv",
+      "raw_rows": 9165,
+      "reading_rows": 9165
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3522,
+      "path": "feed-capture:moneyplant/copper/2026-08-19.csv",
+      "raw_rows": 3522,
+      "reading_rows": 3522
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 788,
+      "path": "feed-capture:moneyplant/copper/2026-08-20.csv",
+      "raw_rows": 788,
+      "reading_rows": 788
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8304,
+      "path": "feed-capture:moneyplant/copper/2026-08-21.csv",
+      "raw_rows": 8304,
+      "reading_rows": 8304
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-08-22.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 831,
+      "path": "feed-capture:moneyplant/copper/2026-08-23.csv",
+      "raw_rows": 831,
+      "reading_rows": 831
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9196,
+      "path": "feed-capture:moneyplant/copper/2026-08-24.csv",
+      "raw_rows": 9196,
+      "reading_rows": 9196
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9449,
+      "path": "feed-capture:moneyplant/copper/2026-08-25.csv",
+      "raw_rows": 9449,
+      "reading_rows": 9449
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8929,
+      "path": "feed-capture:moneyplant/copper/2026-08-26.csv",
+      "raw_rows": 8929,
+      "reading_rows": 8929
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2109,
+      "path": "feed-capture:moneyplant/copper/2026-08-27.csv",
+      "raw_rows": 2109,
+      "reading_rows": 2109
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8543,
+      "path": "feed-capture:moneyplant/copper/2026-08-28.csv",
+      "raw_rows": 8543,
+      "reading_rows": 8543
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-08-29.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 690,
+      "path": "feed-capture:moneyplant/copper/2026-08-30.csv",
+      "raw_rows": 690,
+      "reading_rows": 690
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8747,
+      "path": "feed-capture:moneyplant/copper/2026-08-31.csv",
+      "raw_rows": 8747,
+      "reading_rows": 8747
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8394,
+      "path": "feed-capture:moneyplant/copper/2026-09-01.csv",
+      "raw_rows": 8394,
+      "reading_rows": 8394
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8051,
+      "path": "feed-capture:moneyplant/copper/2026-09-02.csv",
+      "raw_rows": 8051,
+      "reading_rows": 8051
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6225,
+      "path": "feed-capture:moneyplant/copper/2026-09-03.csv",
+      "raw_rows": 6225,
+      "reading_rows": 6225
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7512,
+      "path": "feed-capture:moneyplant/copper/2026-09-04.csv",
+      "raw_rows": 7512,
+      "reading_rows": 7512
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-09-05.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 729,
+      "path": "feed-capture:moneyplant/copper/2026-09-06.csv",
+      "raw_rows": 729,
+      "reading_rows": 729
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7160,
+      "path": "feed-capture:moneyplant/copper/2026-09-07.csv",
+      "raw_rows": 7160,
+      "reading_rows": 7160
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3530,
+      "path": "feed-capture:moneyplant/copper/2026-09-08.csv",
+      "raw_rows": 3530,
+      "reading_rows": 3530
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 4599,
+      "path": "feed-capture:moneyplant/copper/2026-09-09.csv",
+      "raw_rows": 4599,
+      "reading_rows": 4599
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9837,
+      "path": "feed-capture:moneyplant/copper/2026-09-10.csv",
+      "raw_rows": 9837,
+      "reading_rows": 9837
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8868,
+      "path": "feed-capture:moneyplant/copper/2026-09-11.csv",
+      "raw_rows": 8868,
+      "reading_rows": 8868
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-09-12.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 840,
+      "path": "feed-capture:moneyplant/copper/2026-09-13.csv",
+      "raw_rows": 840,
+      "reading_rows": 840
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9909,
+      "path": "feed-capture:moneyplant/copper/2026-09-14.csv",
+      "raw_rows": 9909,
+      "reading_rows": 9909
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9909,
+      "path": "feed-capture:moneyplant/copper/2026-09-15.csv",
+      "raw_rows": 9909,
+      "reading_rows": 9909
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10014,
+      "path": "feed-capture:moneyplant/copper/2026-09-16.csv",
+      "raw_rows": 10014,
+      "reading_rows": 10014
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8564,
+      "path": "feed-capture:moneyplant/copper/2026-09-17.csv",
+      "raw_rows": 8564,
+      "reading_rows": 8564
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7065,
+      "path": "feed-capture:moneyplant/copper/2026-09-18.csv",
+      "raw_rows": 7065,
+      "reading_rows": 7065
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:moneyplant/copper/2026-09-19.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 700,
+      "path": "feed-capture:moneyplant/copper/2026-09-20.csv",
+      "raw_rows": 700,
+      "reading_rows": 700
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6926,
+      "path": "feed-capture:moneyplant/copper/2026-09-21.csv",
+      "raw_rows": 6926,
+      "reading_rows": 6926
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7516,
+      "path": "feed-capture:moneyplant/copper/2026-09-22.csv",
+      "raw_rows": 7516,
+      "reading_rows": 7516
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8131,
+      "path": "feed-capture:moneyplant/copper/2026-09-23.csv",
+      "raw_rows": 8131,
+      "reading_rows": 8131
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 8049,
+      "path": "feed-capture:moneyplant/copper/2026-09-24.csv",
+      "raw_rows": 8049,
+      "reading_rows": 8049
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7148,
+      "path": "feed-capture:moneyplant/copper/2026-09-25.csv",
+      "raw_rows": 7148,
+      "reading_rows": 7148
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-09-26.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 782,
+      "path": "feed-capture:moneyplant/copper/2026-09-27.csv",
+      "raw_rows": 782,
+      "reading_rows": 782
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7384,
+      "path": "feed-capture:moneyplant/copper/2026-09-28.csv",
+      "raw_rows": 7384,
+      "reading_rows": 7384
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7028,
+      "path": "feed-capture:moneyplant/copper/2026-09-29.csv",
+      "raw_rows": 7028,
+      "reading_rows": 7028
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 6532,
+      "path": "feed-capture:moneyplant/copper/2026-09-30.csv",
+      "raw_rows": 6532,
+      "reading_rows": 6532
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 7869,
+      "path": "feed-capture:moneyplant/copper/2026-10-01.csv",
+      "raw_rows": 7869,
+      "reading_rows": 7869
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 5572,
+      "path": "feed-capture:moneyplant/copper/2026-10-02.csv",
+      "raw_rows": 5572,
+      "reading_rows": 5572
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-10-03.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 949,
+      "path": "feed-capture:moneyplant/copper/2026-10-04.csv",
+      "raw_rows": 949,
+      "reading_rows": 949
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10673,
+      "path": "feed-capture:moneyplant/copper/2026-10-05.csv",
+      "raw_rows": 10673,
+      "reading_rows": 10673
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10688,
+      "path": "feed-capture:moneyplant/copper/2026-10-06.csv",
+      "raw_rows": 10688,
+      "reading_rows": 10688
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10712,
+      "path": "feed-capture:moneyplant/copper/2026-10-07.csv",
+      "raw_rows": 10712,
+      "reading_rows": 10712
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10761,
+      "path": "feed-capture:moneyplant/copper/2026-10-08.csv",
+      "raw_rows": 10761,
+      "reading_rows": 10761
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9757,
+      "path": "feed-capture:moneyplant/copper/2026-10-09.csv",
+      "raw_rows": 9757,
+      "reading_rows": 9757
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-10-10.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 203,
+      "path": "feed-capture:moneyplant/copper/2026-10-11.csv",
+      "raw_rows": 203,
+      "reading_rows": 203
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2437,
+      "path": "feed-capture:moneyplant/copper/2026-10-12.csv",
+      "raw_rows": 2437,
+      "reading_rows": 2437
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 2457,
+      "path": "feed-capture:moneyplant/copper/2026-10-13.csv",
+      "raw_rows": 2457,
+      "reading_rows": 2457
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 3258,
+      "path": "feed-capture:moneyplant/copper/2026-10-14.csv",
+      "raw_rows": 3258,
+      "reading_rows": 3258
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10548,
+      "path": "feed-capture:moneyplant/copper/2026-10-15.csv",
+      "raw_rows": 10548,
+      "reading_rows": 10548
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 9659,
+      "path": "feed-capture:moneyplant/copper/2026-10-16.csv",
+      "raw_rows": 9659,
+      "reading_rows": 9659
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 1,
+      "path": "feed-capture:moneyplant/copper/2026-10-17.csv",
+      "raw_rows": 1,
+      "reading_rows": 1
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 811,
+      "path": "feed-capture:moneyplant/copper/2026-10-18.csv",
+      "raw_rows": 811,
+      "reading_rows": 811
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10586,
+      "path": "feed-capture:moneyplant/copper/2026-10-19.csv",
+      "raw_rows": 10586,
+      "reading_rows": 10586
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10836,
+      "path": "feed-capture:moneyplant/copper/2026-10-20.csv",
+      "raw_rows": 10836,
+      "reading_rows": 10836
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10966,
+      "path": "feed-capture:moneyplant/copper/2026-10-21.csv",
+      "raw_rows": 10966,
+      "reading_rows": 10966
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10957,
+      "path": "feed-capture:moneyplant/copper/2026-10-22.csv",
+      "raw_rows": 10957,
+      "reading_rows": 10957
+    },
+    {
+      "asset": "copper",
+      "duplicates": 0,
+      "emitted_rows": 10022,
+      "path": "feed-capture:moneyplant/copper/2026-10-23.csv",
+      "raw_rows": 10022,
+      "reading_rows": 10022
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3077,
+      "path": "feed-capture:moneyplant/crude/2026-07-28.csv",
+      "raw_rows": 3077,
+      "reading_rows": 3077
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8146,
+      "path": "feed-capture:moneyplant/crude/2026-07-29.csv",
+      "raw_rows": 8146,
+      "reading_rows": 8146
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8724,
+      "path": "feed-capture:moneyplant/crude/2026-07-30.csv",
+      "raw_rows": 8724,
+      "reading_rows": 8724
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6440,
+      "path": "feed-capture:moneyplant/crude/2026-07-31.csv",
+      "raw_rows": 6440,
+      "reading_rows": 6440
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 549,
+      "path": "feed-capture:moneyplant/crude/2026-08-02.csv",
+      "raw_rows": 549,
+      "reading_rows": 549
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9356,
+      "path": "feed-capture:moneyplant/crude/2026-08-03.csv",
+      "raw_rows": 9356,
+      "reading_rows": 9356
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4988,
+      "path": "feed-capture:moneyplant/crude/2026-08-04.csv",
+      "raw_rows": 4988,
+      "reading_rows": 4988
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7874,
+      "path": "feed-capture:moneyplant/crude/2026-08-05.csv",
+      "raw_rows": 7874,
+      "reading_rows": 7874
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8259,
+      "path": "feed-capture:moneyplant/crude/2026-08-06.csv",
+      "raw_rows": 8259,
+      "reading_rows": 8259
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5638,
+      "path": "feed-capture:moneyplant/crude/2026-08-07.csv",
+      "raw_rows": 5638,
+      "reading_rows": 5638
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/crude/2026-08-08.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6177,
+      "path": "feed-capture:moneyplant/crude/2026-08-10.csv",
+      "raw_rows": 6177,
+      "reading_rows": 6177
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7220,
+      "path": "feed-capture:moneyplant/crude/2026-08-11.csv",
+      "raw_rows": 7220,
+      "reading_rows": 7220
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3952,
+      "path": "feed-capture:moneyplant/crude/2026-08-12.csv",
+      "raw_rows": 3952,
+      "reading_rows": 3952
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8227,
+      "path": "feed-capture:moneyplant/crude/2026-08-13.csv",
+      "raw_rows": 8227,
+      "reading_rows": 8227
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4588,
+      "path": "feed-capture:moneyplant/crude/2026-08-14.csv",
+      "raw_rows": 4588,
+      "reading_rows": 4588
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 763,
+      "path": "feed-capture:moneyplant/crude/2026-08-20.csv",
+      "raw_rows": 763,
+      "reading_rows": 763
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8339,
+      "path": "feed-capture:moneyplant/crude/2026-08-21.csv",
+      "raw_rows": 8339,
+      "reading_rows": 8339
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/crude/2026-08-22.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 863,
+      "path": "feed-capture:moneyplant/crude/2026-08-23.csv",
+      "raw_rows": 863,
+      "reading_rows": 863
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9201,
+      "path": "feed-capture:moneyplant/crude/2026-08-24.csv",
+      "raw_rows": 9201,
+      "reading_rows": 9201
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9535,
+      "path": "feed-capture:moneyplant/crude/2026-08-25.csv",
+      "raw_rows": 9535,
+      "reading_rows": 9535
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9051,
+      "path": "feed-capture:moneyplant/crude/2026-08-26.csv",
+      "raw_rows": 9051,
+      "reading_rows": 9051
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8006,
+      "path": "feed-capture:moneyplant/crude/2026-08-27.csv",
+      "raw_rows": 8006,
+      "reading_rows": 8006
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8523,
+      "path": "feed-capture:moneyplant/crude/2026-08-28.csv",
+      "raw_rows": 8523,
+      "reading_rows": 8523
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/crude/2026-08-29.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 689,
+      "path": "feed-capture:moneyplant/crude/2026-08-30.csv",
+      "raw_rows": 689,
+      "reading_rows": 689
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8866,
+      "path": "feed-capture:moneyplant/crude/2026-08-31.csv",
+      "raw_rows": 8866,
+      "reading_rows": 8866
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8432,
+      "path": "feed-capture:moneyplant/crude/2026-09-01.csv",
+      "raw_rows": 8432,
+      "reading_rows": 8432
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8113,
+      "path": "feed-capture:moneyplant/crude/2026-09-02.csv",
+      "raw_rows": 8113,
+      "reading_rows": 8113
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6357,
+      "path": "feed-capture:moneyplant/crude/2026-09-03.csv",
+      "raw_rows": 6357,
+      "reading_rows": 6357
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7607,
+      "path": "feed-capture:moneyplant/crude/2026-09-04.csv",
+      "raw_rows": 7607,
+      "reading_rows": 7607
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/crude/2026-09-05.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 773,
+      "path": "feed-capture:moneyplant/crude/2026-09-06.csv",
+      "raw_rows": 773,
+      "reading_rows": 773
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7197,
+      "path": "feed-capture:moneyplant/crude/2026-09-07.csv",
+      "raw_rows": 7197,
+      "reading_rows": 7197
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3548,
+      "path": "feed-capture:moneyplant/crude/2026-09-08.csv",
+      "raw_rows": 3548,
+      "reading_rows": 3548
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4710,
+      "path": "feed-capture:moneyplant/crude/2026-09-09.csv",
+      "raw_rows": 4710,
+      "reading_rows": 4710
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9883,
+      "path": "feed-capture:moneyplant/crude/2026-09-10.csv",
+      "raw_rows": 9883,
+      "reading_rows": 9883
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8915,
+      "path": "feed-capture:moneyplant/crude/2026-09-11.csv",
+      "raw_rows": 8915,
+      "reading_rows": 8915
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/crude/2026-09-12.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 857,
+      "path": "feed-capture:moneyplant/crude/2026-09-13.csv",
+      "raw_rows": 857,
+      "reading_rows": 857
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9982,
+      "path": "feed-capture:moneyplant/crude/2026-09-14.csv",
+      "raw_rows": 9982,
+      "reading_rows": 9982
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10051,
+      "path": "feed-capture:moneyplant/crude/2026-09-15.csv",
+      "raw_rows": 10051,
+      "reading_rows": 10051
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10059,
+      "path": "feed-capture:moneyplant/crude/2026-09-16.csv",
+      "raw_rows": 10059,
+      "reading_rows": 10059
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8664,
+      "path": "feed-capture:moneyplant/crude/2026-09-17.csv",
+      "raw_rows": 8664,
+      "reading_rows": 8664
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7163,
+      "path": "feed-capture:moneyplant/crude/2026-09-18.csv",
+      "raw_rows": 7163,
+      "reading_rows": 7163
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6,
+      "path": "feed-capture:moneyplant/crude/2026-09-19.csv",
+      "raw_rows": 6,
+      "reading_rows": 6
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 743,
+      "path": "feed-capture:moneyplant/crude/2026-09-20.csv",
+      "raw_rows": 743,
+      "reading_rows": 743
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7019,
+      "path": "feed-capture:moneyplant/crude/2026-09-21.csv",
+      "raw_rows": 7019,
+      "reading_rows": 7019
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7483,
+      "path": "feed-capture:moneyplant/crude/2026-09-22.csv",
+      "raw_rows": 7483,
+      "reading_rows": 7483
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8199,
+      "path": "feed-capture:moneyplant/crude/2026-09-23.csv",
+      "raw_rows": 8199,
+      "reading_rows": 8199
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 8079,
+      "path": "feed-capture:moneyplant/crude/2026-09-24.csv",
+      "raw_rows": 8079,
+      "reading_rows": 8079
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7169,
+      "path": "feed-capture:moneyplant/crude/2026-09-25.csv",
+      "raw_rows": 7169,
+      "reading_rows": 7169
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/crude/2026-09-26.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 790,
+      "path": "feed-capture:moneyplant/crude/2026-09-27.csv",
+      "raw_rows": 790,
+      "reading_rows": 790
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7443,
+      "path": "feed-capture:moneyplant/crude/2026-09-28.csv",
+      "raw_rows": 7443,
+      "reading_rows": 7443
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7075,
+      "path": "feed-capture:moneyplant/crude/2026-09-29.csv",
+      "raw_rows": 7075,
+      "reading_rows": 7075
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 6590,
+      "path": "feed-capture:moneyplant/crude/2026-09-30.csv",
+      "raw_rows": 6590,
+      "reading_rows": 6590
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 7875,
+      "path": "feed-capture:moneyplant/crude/2026-10-01.csv",
+      "raw_rows": 7875,
+      "reading_rows": 7875
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5580,
+      "path": "feed-capture:moneyplant/crude/2026-10-02.csv",
+      "raw_rows": 5580,
+      "reading_rows": 5580
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/crude/2026-10-03.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 948,
+      "path": "feed-capture:moneyplant/crude/2026-10-04.csv",
+      "raw_rows": 948,
+      "reading_rows": 948
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10760,
+      "path": "feed-capture:moneyplant/crude/2026-10-05.csv",
+      "raw_rows": 10760,
+      "reading_rows": 10760
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10808,
+      "path": "feed-capture:moneyplant/crude/2026-10-06.csv",
+      "raw_rows": 10808,
+      "reading_rows": 10808
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10776,
+      "path": "feed-capture:moneyplant/crude/2026-10-07.csv",
+      "raw_rows": 10776,
+      "reading_rows": 10776
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10790,
+      "path": "feed-capture:moneyplant/crude/2026-10-08.csv",
+      "raw_rows": 10790,
+      "reading_rows": 10790
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9893,
+      "path": "feed-capture:moneyplant/crude/2026-10-09.csv",
+      "raw_rows": 9893,
+      "reading_rows": 9893
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/crude/2026-10-10.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 218,
+      "path": "feed-capture:moneyplant/crude/2026-10-11.csv",
+      "raw_rows": 218,
+      "reading_rows": 218
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2501,
+      "path": "feed-capture:moneyplant/crude/2026-10-12.csv",
+      "raw_rows": 2501,
+      "reading_rows": 2501
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 2484,
+      "path": "feed-capture:moneyplant/crude/2026-10-13.csv",
+      "raw_rows": 2484,
+      "reading_rows": 2484
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 3263,
+      "path": "feed-capture:moneyplant/crude/2026-10-14.csv",
+      "raw_rows": 3263,
+      "reading_rows": 3263
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10649,
+      "path": "feed-capture:moneyplant/crude/2026-10-15.csv",
+      "raw_rows": 10649,
+      "reading_rows": 10649
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 9666,
+      "path": "feed-capture:moneyplant/crude/2026-10-16.csv",
+      "raw_rows": 9666,
+      "reading_rows": 9666
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:moneyplant/crude/2026-10-17.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 912,
+      "path": "feed-capture:moneyplant/crude/2026-10-18.csv",
+      "raw_rows": 912,
+      "reading_rows": 912
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10734,
+      "path": "feed-capture:moneyplant/crude/2026-10-19.csv",
+      "raw_rows": 10734,
+      "reading_rows": 10734
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10957,
+      "path": "feed-capture:moneyplant/crude/2026-10-20.csv",
+      "raw_rows": 10957,
+      "reading_rows": 10957
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 11024,
+      "path": "feed-capture:moneyplant/crude/2026-10-21.csv",
+      "raw_rows": 11024,
+      "reading_rows": 11024
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10990,
+      "path": "feed-capture:moneyplant/crude/2026-10-22.csv",
+      "raw_rows": 10990,
+      "reading_rows": 10990
+    },
+    {
+      "asset": "crude",
+      "duplicates": 0,
+      "emitted_rows": 10038,
+      "path": "feed-capture:moneyplant/crude/2026-10-23.csv",
+      "raw_rows": 10038,
+      "reading_rows": 10038
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 44,
+      "path": "feed-capture:moneyplant/gold/2026-07-21.csv",
+      "raw_rows": 44,
+      "reading_rows": 44
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 87,
+      "path": "feed-capture:moneyplant/gold/2026-07-22.csv",
+      "raw_rows": 87,
+      "reading_rows": 87
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 91,
+      "path": "feed-capture:moneyplant/gold/2026-07-23.csv",
+      "raw_rows": 91,
+      "reading_rows": 91
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 79,
+      "path": "feed-capture:moneyplant/gold/2026-07-24.csv",
+      "raw_rows": 79,
+      "reading_rows": 79
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10,
+      "path": "feed-capture:moneyplant/gold/2026-07-26.csv",
+      "raw_rows": 10,
+      "reading_rows": 10
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 82,
+      "path": "feed-capture:moneyplant/gold/2026-07-27.csv",
+      "raw_rows": 82,
+      "reading_rows": 82
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3182,
+      "path": "feed-capture:moneyplant/gold/2026-07-28.csv",
+      "raw_rows": 3182,
+      "reading_rows": 3182
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5861,
+      "path": "feed-capture:moneyplant/gold/2026-07-29.csv",
+      "raw_rows": 5861,
+      "reading_rows": 5861
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3759,
+      "path": "feed-capture:moneyplant/gold/2026-07-30.csv",
+      "raw_rows": 3759,
+      "reading_rows": 3759
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 82,
+      "path": "feed-capture:moneyplant/gold/2026-07-31.csv",
+      "raw_rows": 82,
+      "reading_rows": 82
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 26,
+      "path": "feed-capture:moneyplant/gold/2026-08-02.csv",
+      "raw_rows": 26,
+      "reading_rows": 26
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 148,
+      "path": "feed-capture:moneyplant/gold/2026-08-03.csv",
+      "raw_rows": 148,
+      "reading_rows": 148
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 901,
+      "path": "feed-capture:moneyplant/gold/2026-08-04.csv",
+      "raw_rows": 901,
+      "reading_rows": 901
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8049,
+      "path": "feed-capture:moneyplant/gold/2026-08-05.csv",
+      "raw_rows": 8049,
+      "reading_rows": 8049
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8517,
+      "path": "feed-capture:moneyplant/gold/2026-08-06.csv",
+      "raw_rows": 8517,
+      "reading_rows": 8517
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5694,
+      "path": "feed-capture:moneyplant/gold/2026-08-07.csv",
+      "raw_rows": 5694,
+      "reading_rows": 5694
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/gold/2026-08-08.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 6256,
+      "path": "feed-capture:moneyplant/gold/2026-08-10.csv",
+      "raw_rows": 6256,
+      "reading_rows": 6256
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7397,
+      "path": "feed-capture:moneyplant/gold/2026-08-11.csv",
+      "raw_rows": 7397,
+      "reading_rows": 7397
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 4094,
+      "path": "feed-capture:moneyplant/gold/2026-08-12.csv",
+      "raw_rows": 4094,
+      "reading_rows": 4094
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8282,
+      "path": "feed-capture:moneyplant/gold/2026-08-13.csv",
+      "raw_rows": 8282,
+      "reading_rows": 8282
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8545,
+      "path": "feed-capture:moneyplant/gold/2026-08-14.csv",
+      "raw_rows": 8545,
+      "reading_rows": 8545
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:moneyplant/gold/2026-08-15.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 684,
+      "path": "feed-capture:moneyplant/gold/2026-08-17.csv",
+      "raw_rows": 684,
+      "reading_rows": 684
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9386,
+      "path": "feed-capture:moneyplant/gold/2026-08-18.csv",
+      "raw_rows": 9386,
+      "reading_rows": 9386
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3606,
+      "path": "feed-capture:moneyplant/gold/2026-08-19.csv",
+      "raw_rows": 3606,
+      "reading_rows": 3606
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 956,
+      "path": "feed-capture:moneyplant/gold/2026-08-20.csv",
+      "raw_rows": 956,
+      "reading_rows": 956
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8434,
+      "path": "feed-capture:moneyplant/gold/2026-08-21.csv",
+      "raw_rows": 8434,
+      "reading_rows": 8434
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/gold/2026-08-22.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 901,
+      "path": "feed-capture:moneyplant/gold/2026-08-23.csv",
+      "raw_rows": 901,
+      "reading_rows": 901
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9403,
+      "path": "feed-capture:moneyplant/gold/2026-08-24.csv",
+      "raw_rows": 9403,
+      "reading_rows": 9403
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9697,
+      "path": "feed-capture:moneyplant/gold/2026-08-25.csv",
+      "raw_rows": 9697,
+      "reading_rows": 9697
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9342,
+      "path": "feed-capture:moneyplant/gold/2026-08-26.csv",
+      "raw_rows": 9342,
+      "reading_rows": 9342
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8083,
+      "path": "feed-capture:moneyplant/gold/2026-08-27.csv",
+      "raw_rows": 8083,
+      "reading_rows": 8083
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8650,
+      "path": "feed-capture:moneyplant/gold/2026-08-28.csv",
+      "raw_rows": 8650,
+      "reading_rows": 8650
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/gold/2026-08-29.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 736,
+      "path": "feed-capture:moneyplant/gold/2026-08-30.csv",
+      "raw_rows": 736,
+      "reading_rows": 736
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9071,
+      "path": "feed-capture:moneyplant/gold/2026-08-31.csv",
+      "raw_rows": 9071,
+      "reading_rows": 9071
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8602,
+      "path": "feed-capture:moneyplant/gold/2026-09-01.csv",
+      "raw_rows": 8602,
+      "reading_rows": 8602
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8378,
+      "path": "feed-capture:moneyplant/gold/2026-09-02.csv",
+      "raw_rows": 8378,
+      "reading_rows": 8378
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 6976,
+      "path": "feed-capture:moneyplant/gold/2026-09-03.csv",
+      "raw_rows": 6976,
+      "reading_rows": 6976
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7822,
+      "path": "feed-capture:moneyplant/gold/2026-09-04.csv",
+      "raw_rows": 7822,
+      "reading_rows": 7822
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/gold/2026-09-05.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 798,
+      "path": "feed-capture:moneyplant/gold/2026-09-06.csv",
+      "raw_rows": 798,
+      "reading_rows": 798
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7525,
+      "path": "feed-capture:moneyplant/gold/2026-09-07.csv",
+      "raw_rows": 7525,
+      "reading_rows": 7525
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 4114,
+      "path": "feed-capture:moneyplant/gold/2026-09-08.csv",
+      "raw_rows": 4114,
+      "reading_rows": 4114
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5294,
+      "path": "feed-capture:moneyplant/gold/2026-09-09.csv",
+      "raw_rows": 5294,
+      "reading_rows": 5294
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9968,
+      "path": "feed-capture:moneyplant/gold/2026-09-10.csv",
+      "raw_rows": 9968,
+      "reading_rows": 9968
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9001,
+      "path": "feed-capture:moneyplant/gold/2026-09-11.csv",
+      "raw_rows": 9001,
+      "reading_rows": 9001
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/gold/2026-09-12.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 878,
+      "path": "feed-capture:moneyplant/gold/2026-09-13.csv",
+      "raw_rows": 878,
+      "reading_rows": 878
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10146,
+      "path": "feed-capture:moneyplant/gold/2026-09-14.csv",
+      "raw_rows": 10146,
+      "reading_rows": 10146
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10160,
+      "path": "feed-capture:moneyplant/gold/2026-09-15.csv",
+      "raw_rows": 10160,
+      "reading_rows": 10160
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10168,
+      "path": "feed-capture:moneyplant/gold/2026-09-16.csv",
+      "raw_rows": 10168,
+      "reading_rows": 10168
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8766,
+      "path": "feed-capture:moneyplant/gold/2026-09-17.csv",
+      "raw_rows": 8766,
+      "reading_rows": 8766
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7206,
+      "path": "feed-capture:moneyplant/gold/2026-09-18.csv",
+      "raw_rows": 7206,
+      "reading_rows": 7206
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:moneyplant/gold/2026-09-19.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 766,
+      "path": "feed-capture:moneyplant/gold/2026-09-20.csv",
+      "raw_rows": 766,
+      "reading_rows": 766
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7103,
+      "path": "feed-capture:moneyplant/gold/2026-09-21.csv",
+      "raw_rows": 7103,
+      "reading_rows": 7103
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7668,
+      "path": "feed-capture:moneyplant/gold/2026-09-22.csv",
+      "raw_rows": 7668,
+      "reading_rows": 7668
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8304,
+      "path": "feed-capture:moneyplant/gold/2026-09-23.csv",
+      "raw_rows": 8304,
+      "reading_rows": 8304
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8163,
+      "path": "feed-capture:moneyplant/gold/2026-09-24.csv",
+      "raw_rows": 8163,
+      "reading_rows": 8163
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7229,
+      "path": "feed-capture:moneyplant/gold/2026-09-25.csv",
+      "raw_rows": 7229,
+      "reading_rows": 7229
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/gold/2026-09-26.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 810,
+      "path": "feed-capture:moneyplant/gold/2026-09-27.csv",
+      "raw_rows": 810,
+      "reading_rows": 810
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7528,
+      "path": "feed-capture:moneyplant/gold/2026-09-28.csv",
+      "raw_rows": 7528,
+      "reading_rows": 7528
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 7151,
+      "path": "feed-capture:moneyplant/gold/2026-09-29.csv",
+      "raw_rows": 7151,
+      "reading_rows": 7151
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 6728,
+      "path": "feed-capture:moneyplant/gold/2026-09-30.csv",
+      "raw_rows": 6728,
+      "reading_rows": 6728
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 8072,
+      "path": "feed-capture:moneyplant/gold/2026-10-01.csv",
+      "raw_rows": 8072,
+      "reading_rows": 8072
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5682,
+      "path": "feed-capture:moneyplant/gold/2026-10-02.csv",
+      "raw_rows": 5682,
+      "reading_rows": 5682
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/gold/2026-10-03.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 967,
+      "path": "feed-capture:moneyplant/gold/2026-10-04.csv",
+      "raw_rows": 967,
+      "reading_rows": 967
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10873,
+      "path": "feed-capture:moneyplant/gold/2026-10-05.csv",
+      "raw_rows": 10873,
+      "reading_rows": 10873
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10894,
+      "path": "feed-capture:moneyplant/gold/2026-10-06.csv",
+      "raw_rows": 10894,
+      "reading_rows": 10894
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10864,
+      "path": "feed-capture:moneyplant/gold/2026-10-07.csv",
+      "raw_rows": 10864,
+      "reading_rows": 10864
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10870,
+      "path": "feed-capture:moneyplant/gold/2026-10-08.csv",
+      "raw_rows": 10870,
+      "reading_rows": 10870
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9907,
+      "path": "feed-capture:moneyplant/gold/2026-10-09.csv",
+      "raw_rows": 9907,
+      "reading_rows": 9907
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/gold/2026-10-10.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 219,
+      "path": "feed-capture:moneyplant/gold/2026-10-11.csv",
+      "raw_rows": 219,
+      "reading_rows": 219
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 2513,
+      "path": "feed-capture:moneyplant/gold/2026-10-12.csv",
+      "raw_rows": 2513,
+      "reading_rows": 2513
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 2505,
+      "path": "feed-capture:moneyplant/gold/2026-10-13.csv",
+      "raw_rows": 2505,
+      "reading_rows": 2505
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 3304,
+      "path": "feed-capture:moneyplant/gold/2026-10-14.csv",
+      "raw_rows": 3304,
+      "reading_rows": 3304
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10689,
+      "path": "feed-capture:moneyplant/gold/2026-10-15.csv",
+      "raw_rows": 10689,
+      "reading_rows": 10689
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 9679,
+      "path": "feed-capture:moneyplant/gold/2026-10-16.csv",
+      "raw_rows": 9679,
+      "reading_rows": 9679
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:moneyplant/gold/2026-10-17.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 960,
+      "path": "feed-capture:moneyplant/gold/2026-10-18.csv",
+      "raw_rows": 960,
+      "reading_rows": 960
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10809,
+      "path": "feed-capture:moneyplant/gold/2026-10-19.csv",
+      "raw_rows": 10809,
+      "reading_rows": 10809
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11038,
+      "path": "feed-capture:moneyplant/gold/2026-10-20.csv",
+      "raw_rows": 11038,
+      "reading_rows": 11038
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11070,
+      "path": "feed-capture:moneyplant/gold/2026-10-21.csv",
+      "raw_rows": 11070,
+      "reading_rows": 11070
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 11033,
+      "path": "feed-capture:moneyplant/gold/2026-10-22.csv",
+      "raw_rows": 11033,
+      "reading_rows": 11033
+    },
+    {
+      "asset": "gold",
+      "duplicates": 0,
+      "emitted_rows": 10053,
+      "path": "feed-capture:moneyplant/gold/2026-10-23.csv",
+      "raw_rows": 10053,
+      "reading_rows": 10053
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3031,
+      "path": "feed-capture:moneyplant/silver/2026-07-28.csv",
+      "raw_rows": 3031,
+      "reading_rows": 3031
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8478,
+      "path": "feed-capture:moneyplant/silver/2026-07-29.csv",
+      "raw_rows": 8478,
+      "reading_rows": 8478
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7956,
+      "path": "feed-capture:moneyplant/silver/2026-07-30.csv",
+      "raw_rows": 7956,
+      "reading_rows": 7956
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 5737,
+      "path": "feed-capture:moneyplant/silver/2026-07-31.csv",
+      "raw_rows": 5737,
+      "reading_rows": 5737
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 606,
+      "path": "feed-capture:moneyplant/silver/2026-08-02.csv",
+      "raw_rows": 606,
+      "reading_rows": 606
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9350,
+      "path": "feed-capture:moneyplant/silver/2026-08-03.csv",
+      "raw_rows": 9350,
+      "reading_rows": 9350
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 4990,
+      "path": "feed-capture:moneyplant/silver/2026-08-04.csv",
+      "raw_rows": 4990,
+      "reading_rows": 4990
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7934,
+      "path": "feed-capture:moneyplant/silver/2026-08-05.csv",
+      "raw_rows": 7934,
+      "reading_rows": 7934
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8336,
+      "path": "feed-capture:moneyplant/silver/2026-08-06.csv",
+      "raw_rows": 8336,
+      "reading_rows": 8336
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 5641,
+      "path": "feed-capture:moneyplant/silver/2026-08-07.csv",
+      "raw_rows": 5641,
+      "reading_rows": 5641
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-08-08.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 6179,
+      "path": "feed-capture:moneyplant/silver/2026-08-10.csv",
+      "raw_rows": 6179,
+      "reading_rows": 6179
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7319,
+      "path": "feed-capture:moneyplant/silver/2026-08-11.csv",
+      "raw_rows": 7319,
+      "reading_rows": 7319
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 4042,
+      "path": "feed-capture:moneyplant/silver/2026-08-12.csv",
+      "raw_rows": 4042,
+      "reading_rows": 4042
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8234,
+      "path": "feed-capture:moneyplant/silver/2026-08-13.csv",
+      "raw_rows": 8234,
+      "reading_rows": 8234
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8480,
+      "path": "feed-capture:moneyplant/silver/2026-08-14.csv",
+      "raw_rows": 8480,
+      "reading_rows": 8480
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2,
+      "path": "feed-capture:moneyplant/silver/2026-08-15.csv",
+      "raw_rows": 2,
+      "reading_rows": 2
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 665,
+      "path": "feed-capture:moneyplant/silver/2026-08-17.csv",
+      "raw_rows": 665,
+      "reading_rows": 665
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9277,
+      "path": "feed-capture:moneyplant/silver/2026-08-18.csv",
+      "raw_rows": 9277,
+      "reading_rows": 9277
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3531,
+      "path": "feed-capture:moneyplant/silver/2026-08-19.csv",
+      "raw_rows": 3531,
+      "reading_rows": 3531
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 855,
+      "path": "feed-capture:moneyplant/silver/2026-08-20.csv",
+      "raw_rows": 855,
+      "reading_rows": 855
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8357,
+      "path": "feed-capture:moneyplant/silver/2026-08-21.csv",
+      "raw_rows": 8357,
+      "reading_rows": 8357
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-08-22.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 888,
+      "path": "feed-capture:moneyplant/silver/2026-08-23.csv",
+      "raw_rows": 888,
+      "reading_rows": 888
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9330,
+      "path": "feed-capture:moneyplant/silver/2026-08-24.csv",
+      "raw_rows": 9330,
+      "reading_rows": 9330
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9604,
+      "path": "feed-capture:moneyplant/silver/2026-08-25.csv",
+      "raw_rows": 9604,
+      "reading_rows": 9604
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9179,
+      "path": "feed-capture:moneyplant/silver/2026-08-26.csv",
+      "raw_rows": 9179,
+      "reading_rows": 9179
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2195,
+      "path": "feed-capture:moneyplant/silver/2026-08-27.csv",
+      "raw_rows": 2195,
+      "reading_rows": 2195
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8577,
+      "path": "feed-capture:moneyplant/silver/2026-08-28.csv",
+      "raw_rows": 8577,
+      "reading_rows": 8577
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-08-29.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 694,
+      "path": "feed-capture:moneyplant/silver/2026-08-30.csv",
+      "raw_rows": 694,
+      "reading_rows": 694
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8938,
+      "path": "feed-capture:moneyplant/silver/2026-08-31.csv",
+      "raw_rows": 8938,
+      "reading_rows": 8938
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8475,
+      "path": "feed-capture:moneyplant/silver/2026-09-01.csv",
+      "raw_rows": 8475,
+      "reading_rows": 8475
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8187,
+      "path": "feed-capture:moneyplant/silver/2026-09-02.csv",
+      "raw_rows": 8187,
+      "reading_rows": 8187
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 6384,
+      "path": "feed-capture:moneyplant/silver/2026-09-03.csv",
+      "raw_rows": 6384,
+      "reading_rows": 6384
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7598,
+      "path": "feed-capture:moneyplant/silver/2026-09-04.csv",
+      "raw_rows": 7598,
+      "reading_rows": 7598
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-09-05.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 769,
+      "path": "feed-capture:moneyplant/silver/2026-09-06.csv",
+      "raw_rows": 769,
+      "reading_rows": 769
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7263,
+      "path": "feed-capture:moneyplant/silver/2026-09-07.csv",
+      "raw_rows": 7263,
+      "reading_rows": 7263
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3565,
+      "path": "feed-capture:moneyplant/silver/2026-09-08.csv",
+      "raw_rows": 3565,
+      "reading_rows": 3565
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 4913,
+      "path": "feed-capture:moneyplant/silver/2026-09-09.csv",
+      "raw_rows": 4913,
+      "reading_rows": 4913
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9964,
+      "path": "feed-capture:moneyplant/silver/2026-09-10.csv",
+      "raw_rows": 9964,
+      "reading_rows": 9964
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9001,
+      "path": "feed-capture:moneyplant/silver/2026-09-11.csv",
+      "raw_rows": 9001,
+      "reading_rows": 9001
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/silver/2026-09-12.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 878,
+      "path": "feed-capture:moneyplant/silver/2026-09-13.csv",
+      "raw_rows": 878,
+      "reading_rows": 878
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10145,
+      "path": "feed-capture:moneyplant/silver/2026-09-14.csv",
+      "raw_rows": 10145,
+      "reading_rows": 10145
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10153,
+      "path": "feed-capture:moneyplant/silver/2026-09-15.csv",
+      "raw_rows": 10153,
+      "reading_rows": 10153
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10165,
+      "path": "feed-capture:moneyplant/silver/2026-09-16.csv",
+      "raw_rows": 10165,
+      "reading_rows": 10165
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8762,
+      "path": "feed-capture:moneyplant/silver/2026-09-17.csv",
+      "raw_rows": 8762,
+      "reading_rows": 8762
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7206,
+      "path": "feed-capture:moneyplant/silver/2026-09-18.csv",
+      "raw_rows": 7206,
+      "reading_rows": 7206
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:moneyplant/silver/2026-09-19.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 765,
+      "path": "feed-capture:moneyplant/silver/2026-09-20.csv",
+      "raw_rows": 765,
+      "reading_rows": 765
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7103,
+      "path": "feed-capture:moneyplant/silver/2026-09-21.csv",
+      "raw_rows": 7103,
+      "reading_rows": 7103
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7664,
+      "path": "feed-capture:moneyplant/silver/2026-09-22.csv",
+      "raw_rows": 7664,
+      "reading_rows": 7664
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8291,
+      "path": "feed-capture:moneyplant/silver/2026-09-23.csv",
+      "raw_rows": 8291,
+      "reading_rows": 8291
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8162,
+      "path": "feed-capture:moneyplant/silver/2026-09-24.csv",
+      "raw_rows": 8162,
+      "reading_rows": 8162
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7230,
+      "path": "feed-capture:moneyplant/silver/2026-09-25.csv",
+      "raw_rows": 7230,
+      "reading_rows": 7230
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 4,
+      "path": "feed-capture:moneyplant/silver/2026-09-26.csv",
+      "raw_rows": 4,
+      "reading_rows": 4
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 806,
+      "path": "feed-capture:moneyplant/silver/2026-09-27.csv",
+      "raw_rows": 806,
+      "reading_rows": 806
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7520,
+      "path": "feed-capture:moneyplant/silver/2026-09-28.csv",
+      "raw_rows": 7520,
+      "reading_rows": 7520
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 7147,
+      "path": "feed-capture:moneyplant/silver/2026-09-29.csv",
+      "raw_rows": 7147,
+      "reading_rows": 7147
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 6717,
+      "path": "feed-capture:moneyplant/silver/2026-09-30.csv",
+      "raw_rows": 6717,
+      "reading_rows": 6717
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 8068,
+      "path": "feed-capture:moneyplant/silver/2026-10-01.csv",
+      "raw_rows": 8068,
+      "reading_rows": 8068
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 5674,
+      "path": "feed-capture:moneyplant/silver/2026-10-02.csv",
+      "raw_rows": 5674,
+      "reading_rows": 5674
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-10-03.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 966,
+      "path": "feed-capture:moneyplant/silver/2026-10-04.csv",
+      "raw_rows": 966,
+      "reading_rows": 966
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10848,
+      "path": "feed-capture:moneyplant/silver/2026-10-05.csv",
+      "raw_rows": 10848,
+      "reading_rows": 10848
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10857,
+      "path": "feed-capture:moneyplant/silver/2026-10-06.csv",
+      "raw_rows": 10857,
+      "reading_rows": 10857
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10851,
+      "path": "feed-capture:moneyplant/silver/2026-10-07.csv",
+      "raw_rows": 10851,
+      "reading_rows": 10851
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10866,
+      "path": "feed-capture:moneyplant/silver/2026-10-08.csv",
+      "raw_rows": 10866,
+      "reading_rows": 10866
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9903,
+      "path": "feed-capture:moneyplant/silver/2026-10-09.csv",
+      "raw_rows": 9903,
+      "reading_rows": 9903
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3,
+      "path": "feed-capture:moneyplant/silver/2026-10-10.csv",
+      "raw_rows": 3,
+      "reading_rows": 3
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 219,
+      "path": "feed-capture:moneyplant/silver/2026-10-11.csv",
+      "raw_rows": 219,
+      "reading_rows": 219
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2496,
+      "path": "feed-capture:moneyplant/silver/2026-10-12.csv",
+      "raw_rows": 2496,
+      "reading_rows": 2496
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 2498,
+      "path": "feed-capture:moneyplant/silver/2026-10-13.csv",
+      "raw_rows": 2498,
+      "reading_rows": 2498
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 3302,
+      "path": "feed-capture:moneyplant/silver/2026-10-14.csv",
+      "raw_rows": 3302,
+      "reading_rows": 3302
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10665,
+      "path": "feed-capture:moneyplant/silver/2026-10-15.csv",
+      "raw_rows": 10665,
+      "reading_rows": 10665
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 9679,
+      "path": "feed-capture:moneyplant/silver/2026-10-16.csv",
+      "raw_rows": 9679,
+      "reading_rows": 9679
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 5,
+      "path": "feed-capture:moneyplant/silver/2026-10-17.csv",
+      "raw_rows": 5,
+      "reading_rows": 5
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 959,
+      "path": "feed-capture:moneyplant/silver/2026-10-18.csv",
+      "raw_rows": 959,
+      "reading_rows": 959
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10766,
+      "path": "feed-capture:moneyplant/silver/2026-10-19.csv",
+      "raw_rows": 10766,
+      "reading_rows": 10766
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11016,
+      "path": "feed-capture:moneyplant/silver/2026-10-20.csv",
+      "raw_rows": 11016,
+      "reading_rows": 11016
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11067,
+      "path": "feed-capture:moneyplant/silver/2026-10-21.csv",
+      "raw_rows": 11067,
+      "reading_rows": 11067
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 11032,
+      "path": "feed-capture:moneyplant/silver/2026-10-22.csv",
+      "raw_rows": 11032,
+      "reading_rows": 11032
+    },
+    {
+      "asset": "silver",
+      "duplicates": 0,
+      "emitted_rows": 10051,
+      "path": "feed-capture:moneyplant/silver/2026-10-23.csv",
+      "raw_rows": 10051,
+      "reading_rows": 10051
+    }
+  ],
+  "raw_rows": 1940091,
+  "reading_rows": 1940091,
+  "rows": 1940091,
+  "sources": [
+    {
+      "bytes": 1911621,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4fbb2d7bb3f1ec85c1801900e19df01dfef72cc29499fcbba5a3a9456b2897f0",
+      "url": "feed-capture:moneyplant/copper/2026-07-28.csv"
+    },
+    {
+      "bytes": 6336351,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "45b3d2442f2a4255acbed8bd5d58978bfcb008df3c9fcd6bdc903704d4466a96",
+      "url": "feed-capture:moneyplant/copper/2026-07-29.csv"
+    },
+    {
+      "bytes": 6164100,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2fcdcda69e3664885fedc6605b87a247969e0bc72efff7d0aa2dc4ac917a3a71",
+      "url": "feed-capture:moneyplant/copper/2026-07-30.csv"
+    },
+    {
+      "bytes": 5219331,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "619e823b807e28b7a98ed8173abe17072623164d144a3e3302c9e01d15e49ff8",
+      "url": "feed-capture:moneyplant/copper/2026-07-31.csv"
+    },
+    {
+      "bytes": 661275,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "76dfbef36e2ce5538f02b0246910f438e2e90938f23b2e8ff8e65878399ebd60",
+      "url": "feed-capture:moneyplant/copper/2026-08-02.csv"
+    },
+    {
+      "bytes": 9954361,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3065118832af3d594e11892b98f34b4879e0c1be6515cee28cd71c899e136c16",
+      "url": "feed-capture:moneyplant/copper/2026-08-03.csv"
+    },
+    {
+      "bytes": 5432497,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1515cc05ecf312c6ef811d4d6e6b16c439b22e655ce7bed5fffd4af28dbd7f1a",
+      "url": "feed-capture:moneyplant/copper/2026-08-04.csv"
+    },
+    {
+      "bytes": 8526602,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0fffb15ac48a4e3451f27a6fa06e8dffac3d30a8aa971a9063895f8160e02dda",
+      "url": "feed-capture:moneyplant/copper/2026-08-05.csv"
+    },
+    {
+      "bytes": 8973589,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "36eaf02cde8fdf328e3c7d980c21213ed9bee3224443617d28ee1e6a13bda24d",
+      "url": "feed-capture:moneyplant/copper/2026-08-06.csv"
+    },
+    {
+      "bytes": 6142453,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1058d7a58fabdd43a82bfab6183795f30d6dc16c412e563133349ec38d0d7028",
+      "url": "feed-capture:moneyplant/copper/2026-08-07.csv"
+    },
+    {
+      "bytes": 1133,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9f18c075b2436011bb25b0154cc31ef95259da8ea8ab47f3208ca77f92aa6c85",
+      "url": "feed-capture:moneyplant/copper/2026-08-08.csv"
+    },
+    {
+      "bytes": 6581973,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "74ff3a6635e25bf4b370f259e96910c7856ee15b1ae99aee2572fd1655f6930d",
+      "url": "feed-capture:moneyplant/copper/2026-08-10.csv"
+    },
+    {
+      "bytes": 7749602,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "16cf6634d87611621e636e282cbf35a84d634e82164da1eaebae5346239e88f1",
+      "url": "feed-capture:moneyplant/copper/2026-08-11.csv"
+    },
+    {
+      "bytes": 4265161,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c3c0eb155051a12d5dd655a19870136ffeb5cf48b89f79c58cb602a416b2b4fa",
+      "url": "feed-capture:moneyplant/copper/2026-08-12.csv"
+    },
+    {
+      "bytes": 8803645,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1165809a2de99bbfd818be781e0fb8fc3bd565b1f525b4471b822782b969cfc4",
+      "url": "feed-capture:moneyplant/copper/2026-08-13.csv"
+    },
+    {
+      "bytes": 9054590,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b7447a76582833d90971c465f16cfe22f3e34b4d191600109ca7d12c69aee3ab",
+      "url": "feed-capture:moneyplant/copper/2026-08-14.csv"
+    },
+    {
+      "bytes": 612667,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "22537dca5d2788c8f16e4ef0763509d4b2fd6fb6320b60ee2f9c70ade5997e2a",
+      "url": "feed-capture:moneyplant/copper/2026-08-17.csv"
+    },
+    {
+      "bytes": 9982774,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "64e5747f0b9218c6d6f33756cf58ba27c47b90a4420877d35360d765d2c2d5f6",
+      "url": "feed-capture:moneyplant/copper/2026-08-18.csv"
+    },
+    {
+      "bytes": 3834920,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "176035e6f430c12094a51b6da4cbef3825cdd6e578cbb6e8bb8e31233139e5c0",
+      "url": "feed-capture:moneyplant/copper/2026-08-19.csv"
+    },
+    {
+      "bytes": 858695,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "49fcdd2940221aad055dd81ec1fe2aa3d831974d099ac6982c4e3fc507092ca9",
+      "url": "feed-capture:moneyplant/copper/2026-08-20.csv"
+    },
+    {
+      "bytes": 9047581,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "48f1b93bb6e98f3ef44999a1c8b3fffb5fc8bdfc01ef7278d881a4f8866f2e8e",
+      "url": "feed-capture:moneyplant/copper/2026-08-21.csv"
+    },
+    {
+      "bytes": 1130,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ff763638f6b1b75cfeb3dfb901c333abbfed83488734a28b084ca88f8c814cb9",
+      "url": "feed-capture:moneyplant/copper/2026-08-22.csv"
+    },
+    {
+      "bytes": 903554,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5e19c04a42a76b744bc271b961e6aba61df708ad83760e58be6667eff8f7bf77",
+      "url": "feed-capture:moneyplant/copper/2026-08-23.csv"
+    },
+    {
+      "bytes": 10006324,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "528227852d774ae3f6fa377d1071afacb1e78db22f6496df4ce1dcf3cf81b478",
+      "url": "feed-capture:moneyplant/copper/2026-08-24.csv"
+    },
+    {
+      "bytes": 10285052,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "061b75b79e147b0ffc7b5610e251c77a10caa31d1ae4102b2b67c9e1bab67d9d",
+      "url": "feed-capture:moneyplant/copper/2026-08-25.csv"
+    },
+    {
+      "bytes": 10548750,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "82153a3030b8eb267f932eec3af146bca5e31f48cf6e38b56be6312db66b5e17",
+      "url": "feed-capture:moneyplant/copper/2026-08-26.csv"
+    },
+    {
+      "bytes": 2610715,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ab217b72d6fdc963025cde330e65eb1a7e0046c2b1399a39df9c08ad8dbcf368",
+      "url": "feed-capture:moneyplant/copper/2026-08-27.csv"
+    },
+    {
+      "bytes": 10563788,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7e824626ae0be9faca2188db24b910fe406b9ac3e9088944b2feffe09b851a37",
+      "url": "feed-capture:moneyplant/copper/2026-08-28.csv"
+    },
+    {
+      "bytes": 1278,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2b043948e7d140dc56263ae10c10bf5e03682e50fa9a9dad6e631fc4318bda9d",
+      "url": "feed-capture:moneyplant/copper/2026-08-29.csv"
+    },
+    {
+      "bytes": 852116,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a02ab8edd5aba3bf93768755c92cc3a69a8869ba836d7c3d8f1f9f5bcd370c9f",
+      "url": "feed-capture:moneyplant/copper/2026-08-30.csv"
+    },
+    {
+      "bytes": 10815489,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3e6a5406459ae9f337e915f9d6c6bd4c729064f8933686152cc07a56abaebb4b",
+      "url": "feed-capture:moneyplant/copper/2026-08-31.csv"
+    },
+    {
+      "bytes": 10374590,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7c49a34178fb0994761c2252ca4b234bbcb7cb4a47733390e958a5f3b1c17bc0",
+      "url": "feed-capture:moneyplant/copper/2026-09-01.csv"
+    },
+    {
+      "bytes": 9955569,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d75d9182731ebc5f96d2b3478d839639702e9e30dee729ca2983d8c2c48060e7",
+      "url": "feed-capture:moneyplant/copper/2026-09-02.csv"
+    },
+    {
+      "bytes": 7703037,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "caa80b7afee49b4a248d09b51a80d10ce3236b52a712f710b71a3457d8035ae9",
+      "url": "feed-capture:moneyplant/copper/2026-09-03.csv"
+    },
+    {
+      "bytes": 9291942,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9394cc022883e34350c7d5cf88ebb5a7430ba3832d612e35d969421da3add525",
+      "url": "feed-capture:moneyplant/copper/2026-09-04.csv"
+    },
+    {
+      "bytes": 1281,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3b8fca28d395fe431e8dd470eb80569a7013526ab9ea5276c77ea71fc9648377",
+      "url": "feed-capture:moneyplant/copper/2026-09-05.csv"
+    },
+    {
+      "bytes": 1322236,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d70e6a1210d8243ce11ad786b56dbc162a04334550370c8143756d589866f58d",
+      "url": "feed-capture:moneyplant/copper/2026-09-06.csv"
+    },
+    {
+      "bytes": 12998491,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1a2a15cfac2dd190d45451635888fbf125fc3405427b0818ee707e9d69fa8a36",
+      "url": "feed-capture:moneyplant/copper/2026-09-07.csv"
+    },
+    {
+      "bytes": 6409889,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c815e44b2515903ef2a3f2cc07b961a005e88968a5b03191d5449c4fc7b5cdd8",
+      "url": "feed-capture:moneyplant/copper/2026-09-08.csv"
+    },
+    {
+      "bytes": 8346323,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "929bb36a5a546d39fbdca1ef6509770bc8edf1508929c338f5aef684ddb489a7",
+      "url": "feed-capture:moneyplant/copper/2026-09-09.csv"
+    },
+    {
+      "bytes": 17857186,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "bf72391abcd2579e06a1d76c520d7c4b9dfa5ec54793b44864188dc3f3a5caf1",
+      "url": "feed-capture:moneyplant/copper/2026-09-10.csv"
+    },
+    {
+      "bytes": 16113091,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "bb526e49bef596fc4d194f4566b6d776a526ffd90ba1fbeff65b2fa7d7c641d9",
+      "url": "feed-capture:moneyplant/copper/2026-09-11.csv"
+    },
+    {
+      "bytes": 1859,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "80589f318ee8a47dcf85117bcb58279cf1ee81e996f5e26906efcc6692a94cd3",
+      "url": "feed-capture:moneyplant/copper/2026-09-12.csv"
+    },
+    {
+      "bytes": 1527386,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7de804f04620f572727e9fceb7baf19306bbd802f95efdbef9781f7db8914139",
+      "url": "feed-capture:moneyplant/copper/2026-09-13.csv"
+    },
+    {
+      "bytes": 18013305,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "17d2ad13f941d5ae374ecd0ad069e2aa98e41189c663de247dcbfb12dfbed898",
+      "url": "feed-capture:moneyplant/copper/2026-09-14.csv"
+    },
+    {
+      "bytes": 18005473,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a23c637796c65bf3d323f91a0ddead9cd6b63c5d409abd437b2d6d3e3d1b8350",
+      "url": "feed-capture:moneyplant/copper/2026-09-15.csv"
+    },
+    {
+      "bytes": 18190373,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "298844f75e169e59dc7b51f6960f661b25f4358f747766bbe49bdfa5d4073963",
+      "url": "feed-capture:moneyplant/copper/2026-09-16.csv"
+    },
+    {
+      "bytes": 15565436,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d9ce055a09c4eaa0b6c6c2fc0b41395051042add969612797556c44081aa21ab",
+      "url": "feed-capture:moneyplant/copper/2026-09-17.csv"
+    },
+    {
+      "bytes": 17624272,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f767688e5f99fd5ba002ba5cd3e5919cbc4e8673575892b7d557cd5256cb4b45",
+      "url": "feed-capture:moneyplant/copper/2026-09-18.csv"
+    },
+    {
+      "bytes": 6131,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b554940f29e1d359d3e70d7d2f4dfbfcb2958a20a271c5d7dced56baf91fba3a",
+      "url": "feed-capture:moneyplant/copper/2026-09-19.csv"
+    },
+    {
+      "bytes": 2133868,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c51fcc02d978a4335c92030bb8cd1ce3567d148bed0ebd067d1effd2bd4dde93",
+      "url": "feed-capture:moneyplant/copper/2026-09-20.csv"
+    },
+    {
+      "bytes": 21167873,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1ae64b192d7eacad910e3993284650cb6c0b7b93689cc828cc6dcc506be14ce8",
+      "url": "feed-capture:moneyplant/copper/2026-09-21.csv"
+    },
+    {
+      "bytes": 22972569,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3a1738c58a9c1ec1f3aba4488cdf9ebba89d8011ac17695da8b28d79ab23fdcb",
+      "url": "feed-capture:moneyplant/copper/2026-09-22.csv"
+    },
+    {
+      "bytes": 24864621,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "96a68cfe214dd38818cbce83ad08c64220273d262098a04e4c108b9fe51f7ded",
+      "url": "feed-capture:moneyplant/copper/2026-09-23.csv"
+    },
+    {
+      "bytes": 24598875,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "58bbb8eb36c43d4494e231dc40620d87f9fdd31cacc4b237fb109d200919115a",
+      "url": "feed-capture:moneyplant/copper/2026-09-24.csv"
+    },
+    {
+      "bytes": 21849888,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "25501b4e3dced8a1f0e2e36f17b241241756d255640326a0e2be5d1bc69e387d",
+      "url": "feed-capture:moneyplant/copper/2026-09-25.csv"
+    },
+    {
+      "bytes": 3109,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3d69e08b051e60d7d68a00e0ddc50fce63c7213972191d35e5bc58c53aae4f04",
+      "url": "feed-capture:moneyplant/copper/2026-09-26.csv"
+    },
+    {
+      "bytes": 2388156,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7f1a60ada3df4bd4116b77f8c16dd525a0f9f94aad39ba3b075dac0c2369863c",
+      "url": "feed-capture:moneyplant/copper/2026-09-27.csv"
+    },
+    {
+      "bytes": 22578052,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "56736bd0534d1c3152cb1bb07cf176b7c8bc8fda28105260652390d3344ce118",
+      "url": "feed-capture:moneyplant/copper/2026-09-28.csv"
+    },
+    {
+      "bytes": 21491588,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b583e9f254ca76cbadf013ab2c9e8eceb70d7916ca3faad979ccbd506e1f59f3",
+      "url": "feed-capture:moneyplant/copper/2026-09-29.csv"
+    },
+    {
+      "bytes": 19963332,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3640dc52adecb9f2ab59879996a359318b0e384d68b4133f743af0edcad2bf7e",
+      "url": "feed-capture:moneyplant/copper/2026-09-30.csv"
+    },
+    {
+      "bytes": 24046548,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2359718300288fa6e118e3726169f3962f85cf56de4d2f9bbb1cbad90aec5b30",
+      "url": "feed-capture:moneyplant/copper/2026-10-01.csv"
+    },
+    {
+      "bytes": 17059589,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e26f9a6f0be038e42d8d6a2a09913b4ba31f67df231b7ebd35b040758f7c574c",
+      "url": "feed-capture:moneyplant/copper/2026-10-02.csv"
+    },
+    {
+      "bytes": 3088,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "502299d5ca17d81aa685ba5a232cc701ae938f6681ad346e561a15bcde49a934",
+      "url": "feed-capture:moneyplant/copper/2026-10-03.csv"
+    },
+    {
+      "bytes": 2894167,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dd30d510258f95fcaa580c0295f93ad355e6b110e67d61bd4764a98b94c4afea",
+      "url": "feed-capture:moneyplant/copper/2026-10-04.csv"
+    },
+    {
+      "bytes": 32625343,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0af06f6dc9aa30fcd3131ae25a2204ffd121217bc656cc8f60079a9712acd827",
+      "url": "feed-capture:moneyplant/copper/2026-10-05.csv"
+    },
+    {
+      "bytes": 32683534,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3abb258a4133ac885d4a2ee7252c6453dee4ff3df802b8d9e6cbac22b11c01fe",
+      "url": "feed-capture:moneyplant/copper/2026-10-06.csv"
+    },
+    {
+      "bytes": 32767436,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "23b3e6343528e28a0881f1e9b3153075f85e5f4bdcce4c0d9df229d92034db12",
+      "url": "feed-capture:moneyplant/copper/2026-10-07.csv"
+    },
+    {
+      "bytes": 32931421,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "27a3b4633e01656eb0428d6cec2315ec6897b50555fbf10af37cc82697e71fe5",
+      "url": "feed-capture:moneyplant/copper/2026-10-08.csv"
+    },
+    {
+      "bytes": 29859239,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "815458816ce1059c6688ffb5ec685579f18896073b2c01f1cb0b241e0e223616",
+      "url": "feed-capture:moneyplant/copper/2026-10-09.csv"
+    },
+    {
+      "bytes": 3087,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9f2da4ee41111e5f482657b844fab9b92d02bc76bf0ce6ea899f1857ccc82bfb",
+      "url": "feed-capture:moneyplant/copper/2026-10-10.csv"
+    },
+    {
+      "bytes": 628783,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "63eb26836aaf0aeb651fe90e620a18d560ff3616a556d593358e4b79a90fec40",
+      "url": "feed-capture:moneyplant/copper/2026-10-11.csv"
+    },
+    {
+      "bytes": 7561081,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b8ad744f437a228e9e860b274ae81daa70fbd088325ffb03820d2cd24bd8ed50",
+      "url": "feed-capture:moneyplant/copper/2026-10-12.csv"
+    },
+    {
+      "bytes": 7616530,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "71ca23464b839888a3b9d8c525a01711c6ca9b9cef4dc4ceaf767761e44468ee",
+      "url": "feed-capture:moneyplant/copper/2026-10-13.csv"
+    },
+    {
+      "bytes": 10055290,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cabeef70003c86f06c6f205a6ab31198085bc7f119dde62dfd431f2d9a220e19",
+      "url": "feed-capture:moneyplant/copper/2026-10-14.csv"
+    },
+    {
+      "bytes": 32279530,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "10b9f2a3cc0daa355e72bcf1e59f35d7d47a7c500fba5eb5f45e68ccf07b9d00",
+      "url": "feed-capture:moneyplant/copper/2026-10-15.csv"
+    },
+    {
+      "bytes": 29579885,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e5449d38d2e07fd4538e9d4b76868edef2cab301c6194f27eaaca4c3dfdef332",
+      "url": "feed-capture:moneyplant/copper/2026-10-16.csv"
+    },
+    {
+      "bytes": 3079,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dd7daa4bff65c7b79a86009a3442fc5a8846643e38dbc1f5d47e250747e29850",
+      "url": "feed-capture:moneyplant/copper/2026-10-17.csv"
+    },
+    {
+      "bytes": 2476478,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d03dff9c26af12057b35dd3aedc8c8a12542e7c8648c1854e42d13067cea4342",
+      "url": "feed-capture:moneyplant/copper/2026-10-18.csv"
+    },
+    {
+      "bytes": 32341415,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7937a7065ad1c052900c297fafabedcf1762cdd73ba203777135fd726cb6886d",
+      "url": "feed-capture:moneyplant/copper/2026-10-19.csv"
+    },
+    {
+      "bytes": 33128199,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1fc6cde243f345fc7970a7f9e4416045a06cf69ce8270a6ac3e010bc3788e9b7",
+      "url": "feed-capture:moneyplant/copper/2026-10-20.csv"
+    },
+    {
+      "bytes": 33545230,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "525a95fd897fe334b5f1a4a8842210c72ee0ab329512993e8709db3be2505c4f",
+      "url": "feed-capture:moneyplant/copper/2026-10-21.csv"
+    },
+    {
+      "bytes": 33448221,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1d561616e0b74bd7e3733778f390f921233e38c8c33e8db049d4e3eb7f396756",
+      "url": "feed-capture:moneyplant/copper/2026-10-22.csv"
+    },
+    {
+      "bytes": 30585777,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ed65e065bb6276794f36c27c74e61214e400cbe8f93df397ced2f616885c056a",
+      "url": "feed-capture:moneyplant/copper/2026-10-23.csv"
+    },
+    {
+      "bytes": 2437815,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "29b3203e713bcbc59446de784719f7e3d97cfc2810ad8e46acf54b5004579730",
+      "url": "feed-capture:moneyplant/crude/2026-07-28.csv"
+    },
+    {
+      "bytes": 6457413,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dfa59611493913f8567ff1402201eee7e971cf0dc0b684ae48ca8c0ceeabe8bb",
+      "url": "feed-capture:moneyplant/crude/2026-07-29.csv"
+    },
+    {
+      "bytes": 7294105,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4dc1ab54d8c9a0011fa9208048b1f9ff5763a875299ae7d6ac072814608dc64a",
+      "url": "feed-capture:moneyplant/crude/2026-07-30.csv"
+    },
+    {
+      "bytes": 6973624,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6e871955efd510eb5689a2bebbc4a2eeb8626794f5b42c9b914f245d73935955",
+      "url": "feed-capture:moneyplant/crude/2026-07-31.csv"
+    },
+    {
+      "bytes": 592476,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8abdd455660eacf68a90c1e4b7cc6f6f888cb3d5a4086abdd3ce1244745046c3",
+      "url": "feed-capture:moneyplant/crude/2026-08-02.csv"
+    },
+    {
+      "bytes": 10122209,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "82ff9f9b2572ac3ce0e22a23b27e01ee59224785890491dae8fcced5c1def9ab",
+      "url": "feed-capture:moneyplant/crude/2026-08-03.csv"
+    },
+    {
+      "bytes": 5398200,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "198df6b32248496d5ca5a15d61958cc1728c0b8b0f3c97a091c67150bc7576d4",
+      "url": "feed-capture:moneyplant/crude/2026-08-04.csv"
+    },
+    {
+      "bytes": 8524554,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "df80b870b1b9c9d1702a795c7a990ad3aadaeab0361ec8a2cd0e7431452d47f6",
+      "url": "feed-capture:moneyplant/crude/2026-08-05.csv"
+    },
+    {
+      "bytes": 8936893,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2d02128a22bd1c17d5770570e82a8644be296020ab1ce2768a0a2ae29dad90f3",
+      "url": "feed-capture:moneyplant/crude/2026-08-06.csv"
+    },
+    {
+      "bytes": 6108950,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1c2f9ab917ab9781f59cd43801da7f44483efc7407a0c6261d12f36cb93e4092",
+      "url": "feed-capture:moneyplant/crude/2026-08-07.csv"
+    },
+    {
+      "bytes": 3289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cbcd45da1ca4387ba1a125b66e6e91585c8749e52c1785b238eaeb7972305d78",
+      "url": "feed-capture:moneyplant/crude/2026-08-08.csv"
+    },
+    {
+      "bytes": 6685275,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9f24bcb1c65fe9c07bafb869f2b1db2d5b63ee03e0a7f4e2a4cee0b422cca56f",
+      "url": "feed-capture:moneyplant/crude/2026-08-10.csv"
+    },
+    {
+      "bytes": 7810090,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "555ab3839da8781aa3029c957ba31ada9c2fecd5a7f71994b76c27f74ba5b046",
+      "url": "feed-capture:moneyplant/crude/2026-08-11.csv"
+    },
+    {
+      "bytes": 4275003,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "fcfc59b37973ba4218a4c7cfacdddb36f76e1f6df427928d0b6509b58a7fb0cd",
+      "url": "feed-capture:moneyplant/crude/2026-08-12.csv"
+    },
+    {
+      "bytes": 8904642,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8243605c8eaaa88127caee70871c2520af365abd4ef9d38d6c3a075036eb0a8a",
+      "url": "feed-capture:moneyplant/crude/2026-08-13.csv"
+    },
+    {
+      "bytes": 4967813,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5aad9b4be28578796e2b2f6faf281f02ca667d3ae33411bd87774ba6d4a833ab",
+      "url": "feed-capture:moneyplant/crude/2026-08-14.csv"
+    },
+    {
+      "bytes": 827106,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "288abd8bcf3d946c40afc2e73caf7af1e8d67eecb6877e2a718dc9d2bf219e1b",
+      "url": "feed-capture:moneyplant/crude/2026-08-20.csv"
+    },
+    {
+      "bytes": 9036346,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6f097f267c7a806d0e8ec8a0377980facbcc91958fe32a68e1ae0b3844104535",
+      "url": "feed-capture:moneyplant/crude/2026-08-21.csv"
+    },
+    {
+      "bytes": 3289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b5ed3f74508bb2342cafa3521bff90dc0f622d9213f7f815ee046b309dcb8bc5",
+      "url": "feed-capture:moneyplant/crude/2026-08-22.csv"
+    },
+    {
+      "bytes": 932448,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "47dc83666103364105ea3651d0e1970c3e537c8e5440bf4e1d904bdcacf12dac",
+      "url": "feed-capture:moneyplant/crude/2026-08-23.csv"
+    },
+    {
+      "bytes": 9953951,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "43d91ba71e9d87d9db2001c58fa01213a26338e3ea220b350b32502da5207ebd",
+      "url": "feed-capture:moneyplant/crude/2026-08-24.csv"
+    },
+    {
+      "bytes": 10324209,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4d2aebd04c56034ca5f4dded5e7a0be2cfa60187ead1a4eb1ca8486fdd9091ac",
+      "url": "feed-capture:moneyplant/crude/2026-08-25.csv"
+    },
+    {
+      "bytes": 10647552,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "afd465585d856cda6cf2479e0ac618cdace9a4cb7857f91a14f2bca51d7bf90d",
+      "url": "feed-capture:moneyplant/crude/2026-08-26.csv"
+    },
+    {
+      "bytes": 9850178,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4c8b534ab6ad879ad1aef217eb7fb1a15ee97736d8e69980f187e3b9062922d5",
+      "url": "feed-capture:moneyplant/crude/2026-08-27.csv"
+    },
+    {
+      "bytes": 10490493,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "09f276824ac135a23633673bd41542450b7569d6e927df620d2e545acb952e3f",
+      "url": "feed-capture:moneyplant/crude/2026-08-28.csv"
+    },
+    {
+      "bytes": 3733,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3f6588cf5c42fb339982239339ae4a309c56a0d28a3f96f28ccca357366d9d77",
+      "url": "feed-capture:moneyplant/crude/2026-08-29.csv"
+    },
+    {
+      "bytes": 845954,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "de5815ff43b8055b850c2d8feae223802229f892b2d7e0ddb0cb7bc7d7e3b29e",
+      "url": "feed-capture:moneyplant/crude/2026-08-30.csv"
+    },
+    {
+      "bytes": 10906279,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ee64828f6d81124c4e7410ac73e743d42e99d07997b65424613fe5ea782dc55a",
+      "url": "feed-capture:moneyplant/crude/2026-08-31.csv"
+    },
+    {
+      "bytes": 10371563,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2758b084eb35edc51acdde816ec6fceca82061bc318d14b92637b6ce6d08b728",
+      "url": "feed-capture:moneyplant/crude/2026-09-01.csv"
+    },
+    {
+      "bytes": 9984089,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0c6ac4b969f42c234916b3d4c30b21cff6252b85b5b6fb69eb6b00aef7b3fdf0",
+      "url": "feed-capture:moneyplant/crude/2026-09-02.csv"
+    },
+    {
+      "bytes": 7825893,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5d94a8936084ae6e8af9a0cd813c11a572cf48df1dcf1885adb4a0f61856a2a3",
+      "url": "feed-capture:moneyplant/crude/2026-09-03.csv"
+    },
+    {
+      "bytes": 9365473,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "004130dbb21a70c024db9789ad5f481ccbf0e86ffafd629df165fe5c731d6627",
+      "url": "feed-capture:moneyplant/crude/2026-09-04.csv"
+    },
+    {
+      "bytes": 4961,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5357d4d58a60a5fea92b272451a7acdf501de2564ca420731084ff9d6587dafe",
+      "url": "feed-capture:moneyplant/crude/2026-09-05.csv"
+    },
+    {
+      "bytes": 1396039,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5a22a72e41031d1e677a94544710c6a10db55178de8d55e749e1f31b23e4920d",
+      "url": "feed-capture:moneyplant/crude/2026-09-06.csv"
+    },
+    {
+      "bytes": 13017799,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "24263f171d860d94e69403136e4e579843d71a266f3cc5f5f674ff988bacc5e1",
+      "url": "feed-capture:moneyplant/crude/2026-09-07.csv"
+    },
+    {
+      "bytes": 6420628,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "befc644c98dc12c6d0f2b65dc040d26b08eb31c5ab2f78ccabebeba0392637a9",
+      "url": "feed-capture:moneyplant/crude/2026-09-08.csv"
+    },
+    {
+      "bytes": 8520904,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "fb19ee79997e87f1181cacb9f56d5b7f6881d962db082d78995cc0f074d4cdd9",
+      "url": "feed-capture:moneyplant/crude/2026-09-09.csv"
+    },
+    {
+      "bytes": 17896829,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "249f832acd0af0fdb2b9687721ea3e34aa527d823bcd4e428d81c1a12a15958c",
+      "url": "feed-capture:moneyplant/crude/2026-09-10.csv"
+    },
+    {
+      "bytes": 16158266,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0cb7db918c2c4e77ca08972bb397883baeb26f741d0426f78a07997c977e0f0b",
+      "url": "feed-capture:moneyplant/crude/2026-09-11.csv"
+    },
+    {
+      "bytes": 7277,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0364b5a843dd0df89ecf7d3ddf3b62ff24655866e533bef0c3e3914e3653d09c",
+      "url": "feed-capture:moneyplant/crude/2026-09-12.csv"
+    },
+    {
+      "bytes": 1554318,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5b67deb0474fa1622bb3155c3eebe26eceebe29e76cb48aaccecc6bdcc3b01a5",
+      "url": "feed-capture:moneyplant/crude/2026-09-13.csv"
+    },
+    {
+      "bytes": 18113850,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "28771464581decc2eff5dd3830cfd208f929b21030503c9b73aee3a4425087b4",
+      "url": "feed-capture:moneyplant/crude/2026-09-14.csv"
+    },
+    {
+      "bytes": 18238868,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5026e188719ed1443ee9c8ffd5eedce23b87712ce9ed058d988096303ec65cd9",
+      "url": "feed-capture:moneyplant/crude/2026-09-15.csv"
+    },
+    {
+      "bytes": 18242311,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5372b9d191af4fe114028c3510f8fcb0caeba0a10da93bd8dcf2739eef774246",
+      "url": "feed-capture:moneyplant/crude/2026-09-16.csv"
+    },
+    {
+      "bytes": 24489200,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a97cf65bcfd516d95409824c888b431af1fb98e4dd4962905b3c1268e6e77c03",
+      "url": "feed-capture:moneyplant/crude/2026-09-17.csv"
+    },
+    {
+      "bytes": 28471700,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3fefc6ce0eae86ba6b7c0b397dd634dc3eb9d39cdfe9379688e5d5621951ca89",
+      "url": "feed-capture:moneyplant/crude/2026-09-18.csv"
+    },
+    {
+      "bytes": 24373,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7bdebfd068b71969a4175ee1b213c9f9516ad0d7eb6cec917c66941e84477a03",
+      "url": "feed-capture:moneyplant/crude/2026-09-19.csv"
+    },
+    {
+      "bytes": 3103104,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b74b3984fbf57870b3468a41b692c12fd143b4a77392a0ff5b339798342581a0",
+      "url": "feed-capture:moneyplant/crude/2026-09-20.csv"
+    },
+    {
+      "bytes": 29332479,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f9e3e2cc72073a3f78b05f4ea8acb8f19f779b698ab33ebcc10a09cc126d0361",
+      "url": "feed-capture:moneyplant/crude/2026-09-21.csv"
+    },
+    {
+      "bytes": 14849921,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "972ade99a8955ea13b4474465db3dd81e4e406005be93db4def8f555ada96904",
+      "url": "feed-capture:moneyplant/crude/2026-09-22.csv"
+    },
+    {
+      "bytes": 16269556,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "00d7f73a3c2c21a932ecad44fbfb30ab69e849d490a898f93e70a519d377b4d4",
+      "url": "feed-capture:moneyplant/crude/2026-09-23.csv"
+    },
+    {
+      "bytes": 16040195,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "295d503fec689280ac0c079cd34268779e241a854b5276d8d32fd4572a51e610",
+      "url": "feed-capture:moneyplant/crude/2026-09-24.csv"
+    },
+    {
+      "bytes": 14233168,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b5bb0571cf4cca1880d1e36292da0d6431ce67cc6df4b60b371c534db70c5cb0",
+      "url": "feed-capture:moneyplant/crude/2026-09-25.csv"
+    },
+    {
+      "bytes": 7977,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2fc987c2513d22a408a0f69fe162b975ab46a915812e24bd560e96e869f0bf34",
+      "url": "feed-capture:moneyplant/crude/2026-09-26.csv"
+    },
+    {
+      "bytes": 1568871,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "890301cbc6dca0225958f3b5555f39da19465613d2768fab5c33829ca4f3a320",
+      "url": "feed-capture:moneyplant/crude/2026-09-27.csv"
+    },
+    {
+      "bytes": 14776254,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e9d1711ecc1b5c452e6e37ce16355d9a9872c6cc4adab1e6797b0c2ad4f106f0",
+      "url": "feed-capture:moneyplant/crude/2026-09-28.csv"
+    },
+    {
+      "bytes": 14045203,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5c0571ad45d39b3b6c7f90ae99a98a3a23e8c912ed331c281a0e8084634bf4c6",
+      "url": "feed-capture:moneyplant/crude/2026-09-29.csv"
+    },
+    {
+      "bytes": 13084216,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "535fdd9e253b474b81c625d4a9be8d23e3162878f968be83cabb81d203612fed",
+      "url": "feed-capture:moneyplant/crude/2026-09-30.csv"
+    },
+    {
+      "bytes": 15638347,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "27c8aa56ec255d13e85e92ad7aee92ee94c46ad7750ab592572b37769a9bfbbd",
+      "url": "feed-capture:moneyplant/crude/2026-10-01.csv"
+    },
+    {
+      "bytes": 11119862,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f7485da9df17e272b49f13d354ad11e87ebeb9708ff92431844c21b0fc2f2682",
+      "url": "feed-capture:moneyplant/crude/2026-10-02.csv"
+    },
+    {
+      "bytes": 5995,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "913fa8088e31d3daa9cf1da731ef00c95c1055f017d5a95e90c33d30325336dc",
+      "url": "feed-capture:moneyplant/crude/2026-10-03.csv"
+    },
+    {
+      "bytes": 1877897,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5c04ebb2d32121afa68a7b03feaf775b398f91c6d05f771eb96a168ac74e226d",
+      "url": "feed-capture:moneyplant/crude/2026-10-04.csv"
+    },
+    {
+      "bytes": 21356981,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b0d28cc6a47bbd8f09fdb2084bd77d671b6534f311956365448d82a724f86952",
+      "url": "feed-capture:moneyplant/crude/2026-10-05.csv"
+    },
+    {
+      "bytes": 21462860,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ee7610b84f57464a00279e955ac7e314637b45e5cb068532851d3d0c19746bf1",
+      "url": "feed-capture:moneyplant/crude/2026-10-06.csv"
+    },
+    {
+      "bytes": 21407404,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b170844ea3cfbbd0e78901701db644404d825b8c4db5681a33ac7423110ab6af",
+      "url": "feed-capture:moneyplant/crude/2026-10-07.csv"
+    },
+    {
+      "bytes": 21431068,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "42b47f78e931b0cfd8bcfc36c1687776c7777f6133ca782d63f3bde7cf5b60f4",
+      "url": "feed-capture:moneyplant/crude/2026-10-08.csv"
+    },
+    {
+      "bytes": 19654036,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "16bd1f967da11368f612b776fe9016151e829ddbdf1210e9ab4bd4e5d6867bad",
+      "url": "feed-capture:moneyplant/crude/2026-10-09.csv"
+    },
+    {
+      "bytes": 5998,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4ff48c7decf19a3097822b69812480fcfb4dc9d36a5fe4905979ba98398f8b9d",
+      "url": "feed-capture:moneyplant/crude/2026-10-10.csv"
+    },
+    {
+      "bytes": 441888,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e4df7286a045fe948c030735cefdf37d6a897550dd4485ab7a352e3a65152333",
+      "url": "feed-capture:moneyplant/crude/2026-10-11.csv"
+    },
+    {
+      "bytes": 5071954,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "940c3d7319115fe87e9b13e0b54c3e702aaa2cf19cf14742616daa4d7e5e8825",
+      "url": "feed-capture:moneyplant/crude/2026-10-12.csv"
+    },
+    {
+      "bytes": 5036949,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "18199df212fba93b3f31c85714f6102f10264255014e7482811e545fad836282",
+      "url": "feed-capture:moneyplant/crude/2026-10-13.csv"
+    },
+    {
+      "bytes": 9988740,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1c507067f6a59d717fdd4237cc8c47e07f6e0d7304dd463eac8a3764b0c10552",
+      "url": "feed-capture:moneyplant/crude/2026-10-14.csv"
+    },
+    {
+      "bytes": 44569872,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dfce25e89f3dfdf8a94f7a10ab3400f78ca0ae0c43bbe613dd9df81f6878ec8e",
+      "url": "feed-capture:moneyplant/crude/2026-10-15.csv"
+    },
+    {
+      "bytes": 40467013,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cc2f9e8adf0ea702bbc902d6cb86e3c691a81e345d8bfce52bd0515babc6a24d",
+      "url": "feed-capture:moneyplant/crude/2026-10-16.csv"
+    },
+    {
+      "bytes": 20964,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9874ba207e9ab2adad8a8f8c15b1ca4ca316281e20fae30546d9a112e55413ad",
+      "url": "feed-capture:moneyplant/crude/2026-10-17.csv"
+    },
+    {
+      "bytes": 3813004,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "69358b5d288fe2df9ec17d2edede661a5c3d29db2af471bd01c0aef56bddf876",
+      "url": "feed-capture:moneyplant/crude/2026-10-18.csv"
+    },
+    {
+      "bytes": 44891346,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "af1deab67bcf0657dd8ff76d770b966bc6bdc2433860b90150c5056a267deedb",
+      "url": "feed-capture:moneyplant/crude/2026-10-19.csv"
+    },
+    {
+      "bytes": 21761699,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "68402159bf91e03afc51ea48cd9b461f029644b958d68cf24cddcd61e02d685c",
+      "url": "feed-capture:moneyplant/crude/2026-10-20.csv"
+    },
+    {
+      "bytes": 21898615,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "99321a0df5812dddd533f3182cf984ec20d6c53dad0c0c5d9490740b9973c383",
+      "url": "feed-capture:moneyplant/crude/2026-10-21.csv"
+    },
+    {
+      "bytes": 21835803,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "16b6136e2187490f9e91b684d3f335b72c58350d7a34e043368faedd9db3aa1a",
+      "url": "feed-capture:moneyplant/crude/2026-10-22.csv"
+    },
+    {
+      "bytes": 19973216,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5f7f3946832048bb3e862e1e7a646081abe0f48b2f7a5cae3e392a9b1ae792fc",
+      "url": "feed-capture:moneyplant/crude/2026-10-23.csv"
+    },
+    {
+      "bytes": 32008,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5bc8141185efb593ab851b1099865b11bd777b43341d6dff224ac25be3e889b2",
+      "url": "feed-capture:moneyplant/gold/2026-07-21.csv"
+    },
+    {
+      "bytes": 69984,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "57ca63ebd2a0b64e9ddad3a09440910e9f2548c383d39c26bc1dc0210bac5b69",
+      "url": "feed-capture:moneyplant/gold/2026-07-22.csv"
+    },
+    {
+      "bytes": 73192,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b733a66ec217a4add86144f3b93883e86361e70084f9632969de4150d1bad5ee",
+      "url": "feed-capture:moneyplant/gold/2026-07-23.csv"
+    },
+    {
+      "bytes": 63551,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c12da16022e0d3705a08e53221b4f2c71acad1a4c9e75bc5692db037a4e58bda",
+      "url": "feed-capture:moneyplant/gold/2026-07-24.csv"
+    },
+    {
+      "bytes": 8062,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2f0a338b1f5066f68d64521160dccb6d53518d5519d07ff8e558f8e55e15b2ec",
+      "url": "feed-capture:moneyplant/gold/2026-07-26.csv"
+    },
+    {
+      "bytes": 65978,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d52d65e6c08f3443ac2661c1e12d5e4c962e43a914edeeaa707ff8ea3a9e8fcf",
+      "url": "feed-capture:moneyplant/gold/2026-07-27.csv"
+    },
+    {
+      "bytes": 2525704,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "812655d93d2eb611259d1078f15bc5b7936749833e22eaf22e8f3327e5099abb",
+      "url": "feed-capture:moneyplant/gold/2026-07-28.csv"
+    },
+    {
+      "bytes": 4651443,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2ad8f0ec1676d3247bc6bdda04817c17a3dc1004b8b5a03cb6fa18a704afba80",
+      "url": "feed-capture:moneyplant/gold/2026-07-29.csv"
+    },
+    {
+      "bytes": 2991819,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "125b594c75e32c01cbf791b009453d5eac05867042b985d5d22c78eec5aca8d7",
+      "url": "feed-capture:moneyplant/gold/2026-07-30.csv"
+    },
+    {
+      "bytes": 88056,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0eae3a71ec1f369e8cab3748fffdfb1781a9e88aa265897c864cad4105029b8c",
+      "url": "feed-capture:moneyplant/gold/2026-07-31.csv"
+    },
+    {
+      "bytes": 27935,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "43a01c564b6abbf93f8a9d9bf2ef2fd56ebb362e7742dfbe13bdd8e29315389d",
+      "url": "feed-capture:moneyplant/gold/2026-08-02.csv"
+    },
+    {
+      "bytes": 158877,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "976bf033ba06b721ad3c89c64b3acbd89aacbb5d72f57ef049265a003756f9a8",
+      "url": "feed-capture:moneyplant/gold/2026-08-03.csv"
+    },
+    {
+      "bytes": 972773,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2daa5c43ac2af68be55936ec511c94d2d92e37ccf7e336797b4f5ac91fa9adeb",
+      "url": "feed-capture:moneyplant/gold/2026-08-04.csv"
+    },
+    {
+      "bytes": 8701995,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "218e3e37c67e5810b055ba52f4179f968f8cedc98586cd81fead1466bd990dc2",
+      "url": "feed-capture:moneyplant/gold/2026-08-05.csv"
+    },
+    {
+      "bytes": 9204583,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3d21e0e8ffb251b30dd7f5a2022007ca59b057d6eb2f6e85b60785e2f3a1416c",
+      "url": "feed-capture:moneyplant/gold/2026-08-06.csv"
+    },
+    {
+      "bytes": 6162154,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "57a8d50a1e4373b3c9b8ddc0276d28c2e7e5f970986e52a06c2815483c89d794",
+      "url": "feed-capture:moneyplant/gold/2026-08-07.csv"
+    },
+    {
+      "bytes": 3289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "301ce275f57762c6c13243d5a99f1b49eacb4330b9d7cff27d95deeb008379c4",
+      "url": "feed-capture:moneyplant/gold/2026-08-08.csv"
+    },
+    {
+      "bytes": 6765459,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7910993cc66b1d66615da715e0c6751485e0ee3bd51cc9ca60f89c393a70824c",
+      "url": "feed-capture:moneyplant/gold/2026-08-10.csv"
+    },
+    {
+      "bytes": 7992610,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7c9ac5bf606ceefc148c9e750a6b760632245454d4e910a73b0ab54b540d36df",
+      "url": "feed-capture:moneyplant/gold/2026-08-11.csv"
+    },
+    {
+      "bytes": 4423660,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "072995090205f617b7220516afd6460ee84d7006540eed286bd8535424cbecb3",
+      "url": "feed-capture:moneyplant/gold/2026-08-12.csv"
+    },
+    {
+      "bytes": 8955454,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6f6399018ad3d3f6c6895d2c0d85259284dbb33265a3585a461f9be1201303af",
+      "url": "feed-capture:moneyplant/gold/2026-08-13.csv"
+    },
+    {
+      "bytes": 9253541,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8d44a2038ca7736baa0a4a5218f4233d06472b486e5e7fbfc9e84910412ee427",
+      "url": "feed-capture:moneyplant/gold/2026-08-14.csv"
+    },
+    {
+      "bytes": 2211,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d5d2229d90140c45714389d4b4f5e34b6c5a3beed68554ff88c0c736116e7ed0",
+      "url": "feed-capture:moneyplant/gold/2026-08-15.csv"
+    },
+    {
+      "bytes": 739502,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "99dad642010ac22c02557e43a5bbfa1d65555496a215660567eee12768634607",
+      "url": "feed-capture:moneyplant/gold/2026-08-17.csv"
+    },
+    {
+      "bytes": 10161586,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f89a93735cd33799d8df37dab111ffb2fd59ddd75630a89a33b65a6a0c3cd6a7",
+      "url": "feed-capture:moneyplant/gold/2026-08-18.csv"
+    },
+    {
+      "bytes": 3905688,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b98fad0945c39564ba82d85f995450468a7c977f3061d03b04d2eabd5c1e0f45",
+      "url": "feed-capture:moneyplant/gold/2026-08-19.csv"
+    },
+    {
+      "bytes": 1033345,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "87111eeff0cd107992ccae2ad4c998de41f2798d194dabaccd3659bf112355e9",
+      "url": "feed-capture:moneyplant/gold/2026-08-20.csv"
+    },
+    {
+      "bytes": 9134955,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "16bcbda8289826fc857d9faf1f1c0087277ff6857fcc6fa05a4c3fa7c728133d",
+      "url": "feed-capture:moneyplant/gold/2026-08-21.csv"
+    },
+    {
+      "bytes": 3289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2bb1db0b4a57eebfa767c5499f2ad2547e63ed46e93089f20b4a73208555913d",
+      "url": "feed-capture:moneyplant/gold/2026-08-22.csv"
+    },
+    {
+      "bytes": 971261,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "67e23d09e487a26a6025405cec67b7277008cc4574b6b5f829994674e024a2ea",
+      "url": "feed-capture:moneyplant/gold/2026-08-23.csv"
+    },
+    {
+      "bytes": 10159327,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "fefb738fb91f703ae035f874b6e885c449578bf2e1e42866a2ab58e4790bebfe",
+      "url": "feed-capture:moneyplant/gold/2026-08-24.csv"
+    },
+    {
+      "bytes": 10486628,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "14ba6d123d751226bcf3482037c7fa500df670774875ddb13559d5d37842f02d",
+      "url": "feed-capture:moneyplant/gold/2026-08-25.csv"
+    },
+    {
+      "bytes": 10987638,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b0e15188940317eb487c04b9821760927bff10766f9e40f04c0a1f10b6e0b6d7",
+      "url": "feed-capture:moneyplant/gold/2026-08-26.csv"
+    },
+    {
+      "bytes": 9946436,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a7ce107a8d36559cde7daf7c917c16ab37356c56575944187ae90f15bf10ede2",
+      "url": "feed-capture:moneyplant/gold/2026-08-27.csv"
+    },
+    {
+      "bytes": 10644342,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "14830af4243e7c334f518f7d3ff101c94f25dffcc8957138edb0ea7babaa3333",
+      "url": "feed-capture:moneyplant/gold/2026-08-28.csv"
+    },
+    {
+      "bytes": 3733,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "10613d935cde33108633adb8e770f0522e4eb5d9395d88573e168e7dbc22043b",
+      "url": "feed-capture:moneyplant/gold/2026-08-29.csv"
+    },
+    {
+      "bytes": 902490,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "250d072a6603440bf218425350ba94bf2f3266733e59a5a1cc6b86e69c694c61",
+      "url": "feed-capture:moneyplant/gold/2026-08-30.csv"
+    },
+    {
+      "bytes": 11153187,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "50d06b463feec4d725d13aaa6bac708459b3d0036cfb13fdb69dba2582792093",
+      "url": "feed-capture:moneyplant/gold/2026-08-31.csv"
+    },
+    {
+      "bytes": 10578655,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a35a9b97067e4c149b620991f880e7716a4f750176bb1826597d72ca4ed5ac04",
+      "url": "feed-capture:moneyplant/gold/2026-09-01.csv"
+    },
+    {
+      "bytes": 10304241,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e4199be5fe1305bb1ba3be60565843e5c51a83240bdf1d24d1cfa9692dd5560e",
+      "url": "feed-capture:moneyplant/gold/2026-09-02.csv"
+    },
+    {
+      "bytes": 8581403,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "195c865cdd274b8573f67688da3a3e6dd18d73a651feb0dcb24f1a392faa45d3",
+      "url": "feed-capture:moneyplant/gold/2026-09-03.csv"
+    },
+    {
+      "bytes": 9629988,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0a80463d2fbf72fbfe82a83faf58358e420847cc2e21589a3ed4d285c94a7d2b",
+      "url": "feed-capture:moneyplant/gold/2026-09-04.csv"
+    },
+    {
+      "bytes": 4953,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dcf587d5b7da894b6fbd49d0269bc6f58c8c65c80c7997136f29f68df7d53c74",
+      "url": "feed-capture:moneyplant/gold/2026-09-05.csv"
+    },
+    {
+      "bytes": 1473594,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "679b145f14836a301aa4b485b3cd1deded113a5123b8c8f900eb15c4309eed74",
+      "url": "feed-capture:moneyplant/gold/2026-09-06.csv"
+    },
+    {
+      "bytes": 14078519,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5884607be9a163d7201aee2d741c6bf87134f1c501b3a61dac15d2c34b6f4bf8",
+      "url": "feed-capture:moneyplant/gold/2026-09-07.csv"
+    },
+    {
+      "bytes": 8538538,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "38c9a7b6012486d83c03990d8acc9c01e15128afb2e323d7831cd287828f44bf",
+      "url": "feed-capture:moneyplant/gold/2026-09-08.csv"
+    },
+    {
+      "bytes": 10705316,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ca769272f48bb32c910e45dcacc50744a22a47f89ac57b46a5d6dfb492269511",
+      "url": "feed-capture:moneyplant/gold/2026-09-09.csv"
+    },
+    {
+      "bytes": 18182584,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "eae8a6b2472ef41630bb449c9101cd3685a65c1d7c7b71563815fb6f600d316a",
+      "url": "feed-capture:moneyplant/gold/2026-09-10.csv"
+    },
+    {
+      "bytes": 16454990,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0f515c62e36bc09b94647acb00ab4c0d8d55bb2523f9d03936b24072449e85c7",
+      "url": "feed-capture:moneyplant/gold/2026-09-11.csv"
+    },
+    {
+      "bytes": 7273,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "aed08fc389db30a45714cdd246e2fd9b682812ce205ad3f15997c0eefaf846f9",
+      "url": "feed-capture:moneyplant/gold/2026-09-12.csv"
+    },
+    {
+      "bytes": 1624556,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0df04c84280973321b7b7a21a159ff7bae2b7d9e26da375a7e2fcad62c450a7c",
+      "url": "feed-capture:moneyplant/gold/2026-09-13.csv"
+    },
+    {
+      "bytes": 18557809,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "fccf73705d2c9f0e45b95225db6945273934cdd0198baff5f1ac42fcba8c19ba",
+      "url": "feed-capture:moneyplant/gold/2026-09-14.csv"
+    },
+    {
+      "bytes": 18524235,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5288ec126fc48b6230a00667591d11bbd803e9ce31dc1ecaed19e14a45f6346c",
+      "url": "feed-capture:moneyplant/gold/2026-09-15.csv"
+    },
+    {
+      "bytes": 18496808,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "95a2a473dfca1703166e0f7122a51b58a36e3e527cc1bf8705d402b2ea50cffd",
+      "url": "feed-capture:moneyplant/gold/2026-09-16.csv"
+    },
+    {
+      "bytes": 15976224,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6db97d911746a77e7f72ae5bb21da5297d407774028ef5ad0c61df6639b8b22d",
+      "url": "feed-capture:moneyplant/gold/2026-09-17.csv"
+    },
+    {
+      "bytes": 17950047,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e60fd8ca0d7ed83827cf817e90a9b7df5d8638f63c691e725a4dd94bf5b2ea83",
+      "url": "feed-capture:moneyplant/gold/2026-09-18.csv"
+    },
+    {
+      "bytes": 14926,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ca11d38991efd0f23a81020e5366206cb1cb803e488518e9952395873d23e436",
+      "url": "feed-capture:moneyplant/gold/2026-09-19.csv"
+    },
+    {
+      "bytes": 2369428,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e4a8104c1e09fcfd79a84b7773adc16163b5faac50e9c27a59965480c8b5a342",
+      "url": "feed-capture:moneyplant/gold/2026-09-20.csv"
+    },
+    {
+      "bytes": 21741289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3263ec7647c5d6c78501fc128a832157da2850c7f9c7428141ade0f3c14a1c40",
+      "url": "feed-capture:moneyplant/gold/2026-09-21.csv"
+    },
+    {
+      "bytes": 23446481,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cf6eacf9d4f3c6f09d0a4edcaa2b86e06e0374b92fc194febd45f5ad13bdaf57",
+      "url": "feed-capture:moneyplant/gold/2026-09-22.csv"
+    },
+    {
+      "bytes": 25381454,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f8b3b08480b21e1a3ed2480a0eb60971dcded9f709e3f00d28249f7b9a01a52f",
+      "url": "feed-capture:moneyplant/gold/2026-09-23.csv"
+    },
+    {
+      "bytes": 24929009,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c42d8550270c72fa48368860822d5333bbbce30c1e7c8f70ae446e6092b55f0f",
+      "url": "feed-capture:moneyplant/gold/2026-09-24.csv"
+    },
+    {
+      "bytes": 22106566,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6ce5a121ea7c8434739475a7d35e5ad01eda13d1f77ba223ff9bdf07abd42866",
+      "url": "feed-capture:moneyplant/gold/2026-09-25.csv"
+    },
+    {
+      "bytes": 12225,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cf92ce35ca8d6b891106fd8274c3758adb0b85e3d0ef9dc01249ff734ff886be",
+      "url": "feed-capture:moneyplant/gold/2026-09-26.csv"
+    },
+    {
+      "bytes": 2505226,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c23def2bcbb148ffa0fb5e31cb6e9f950eec1712f2b89cf6950a799378e447e2",
+      "url": "feed-capture:moneyplant/gold/2026-09-27.csv"
+    },
+    {
+      "bytes": 23004101,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "747fa91e7a7a5982e862d2f1b9ceeaa82206a99384ad26bc6b3c7e6e0ec7d434",
+      "url": "feed-capture:moneyplant/gold/2026-09-28.csv"
+    },
+    {
+      "bytes": 21871382,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c173b7880278fe82c3df4044ddf864908057c83b505f0419d514fd8a25f3ee4f",
+      "url": "feed-capture:moneyplant/gold/2026-09-29.csv"
+    },
+    {
+      "bytes": 20619626,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5b7d090e0dd7ebd02cfd9a948ba4fa9e233b891bddd7b59492b913193eb7310e",
+      "url": "feed-capture:moneyplant/gold/2026-09-30.csv"
+    },
+    {
+      "bytes": 24881384,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "24a7f1ed429fde7acb488356f26cd9c5f6174d630def8c51f138d57114aa9e66",
+      "url": "feed-capture:moneyplant/gold/2026-10-01.csv"
+    },
+    {
+      "bytes": 17524014,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e831d5969db42f50cffb476e347516b0f7ffa9886e67ac5bd4faef603ae4b646",
+      "url": "feed-capture:moneyplant/gold/2026-10-02.csv"
+    },
+    {
+      "bytes": 9169,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ad11d772abe79b1c31907b2e8b083c3a78dd18cc29ac67142875f43f081c0baa",
+      "url": "feed-capture:moneyplant/gold/2026-10-03.csv"
+    },
+    {
+      "bytes": 2935666,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9c6723f3105b6aeb3a9f3e62b8738e125db92867b8dbb4fc6a60ffa997e1a8d6",
+      "url": "feed-capture:moneyplant/gold/2026-10-04.csv"
+    },
+    {
+      "bytes": 33052800,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "65da477b4845a42f3df1ac51e134a11ba3d536f190c064cfc725e241f220fa2f",
+      "url": "feed-capture:moneyplant/gold/2026-10-05.csv"
+    },
+    {
+      "bytes": 33128119,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a5c3990fabbcfd5eb2d6cf234cb4ac00959a22adce5e88cc3b82eeded73dcada",
+      "url": "feed-capture:moneyplant/gold/2026-10-06.csv"
+    },
+    {
+      "bytes": 33046386,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2cc191733e738dcbdfce5e88993334aedac7d969dea949c48e4238530ef19945",
+      "url": "feed-capture:moneyplant/gold/2026-10-07.csv"
+    },
+    {
+      "bytes": 33063358,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a5a2037ea43ddd674072d44bc73228f7e7cb8eed3312eea8a7850797eaa4fff7",
+      "url": "feed-capture:moneyplant/gold/2026-10-08.csv"
+    },
+    {
+      "bytes": 30144140,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "532e8f6efac3c6f46d5c63c194a1d48bbbe7eeef016dc9608fc099fb48838a26",
+      "url": "feed-capture:moneyplant/gold/2026-10-09.csv"
+    },
+    {
+      "bytes": 9160,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b69ffaff073b7de01609f5b7f47ecc7ed9a12d60b38dc12a4ab4a171e689515f",
+      "url": "feed-capture:moneyplant/gold/2026-10-10.csv"
+    },
+    {
+      "bytes": 674808,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ca308d5b4424bf50274210a3a2b216043bddbd35a516f13136a04547d26fa7a9",
+      "url": "feed-capture:moneyplant/gold/2026-10-11.csv"
+    },
+    {
+      "bytes": 7747665,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "640c69d4672070930e49c6b3aa8aca75d51bb36abbe69f414702dea2d02e9729",
+      "url": "feed-capture:moneyplant/gold/2026-10-12.csv"
+    },
+    {
+      "bytes": 7723775,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1700526283fd66b712dc92ae42fd95af3aef3fbc985208823d3e97bdda0e574c",
+      "url": "feed-capture:moneyplant/gold/2026-10-13.csv"
+    },
+    {
+      "bytes": 10140283,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "85dfdf48794643b07bf31dd6768cca2bfd905324918b3bba6c528bf975e5b8bd",
+      "url": "feed-capture:moneyplant/gold/2026-10-14.csv"
+    },
+    {
+      "bytes": 32517152,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "cc6065680a923fc12179371be224f41c77e226f7ecb927cf6284d4f5cfd0373c",
+      "url": "feed-capture:moneyplant/gold/2026-10-15.csv"
+    },
+    {
+      "bytes": 29447967,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f5cd7bb6897513e7a9e438d366d232de5205d3d71ccb95b441e15fd25f08c270",
+      "url": "feed-capture:moneyplant/gold/2026-10-16.csv"
+    },
+    {
+      "bytes": 15249,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dc9d2c18e07a667e217791489b05eb68070245d83ac4d54e0e9cc583ff964803",
+      "url": "feed-capture:moneyplant/gold/2026-10-17.csv"
+    },
+    {
+      "bytes": 2915427,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c9f4ad30f7c70967009d19a0d7008120a1755e6978f4752091cf787fa78d401d",
+      "url": "feed-capture:moneyplant/gold/2026-10-18.csv"
+    },
+    {
+      "bytes": 32861118,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9c8e5bca30950091525354cfaf00384bad9e65f7531fd625dd0f5f5e7246412c",
+      "url": "feed-capture:moneyplant/gold/2026-10-19.csv"
+    },
+    {
+      "bytes": 33566931,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4da60d2b5f96fa48f3f8c02f007c9a031e72dd330fbddd4c8fb3518821c17386",
+      "url": "feed-capture:moneyplant/gold/2026-10-20.csv"
+    },
+    {
+      "bytes": 33702740,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "02cd6402cdf3255eb5dc63fc8c516a27e80afe6361168f8bb31c06ee9703c18e",
+      "url": "feed-capture:moneyplant/gold/2026-10-21.csv"
+    },
+    {
+      "bytes": 33559512,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e198ba20bff96e600a485450ea52c9e7295a4a0b846b04a0a4457f1be6fee4b9",
+      "url": "feed-capture:moneyplant/gold/2026-10-22.csv"
+    },
+    {
+      "bytes": 30560468,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "315f0fc4e99aa07e5d5b746405cb55068b44ff51427e2dc974e6642fbba29f2c",
+      "url": "feed-capture:moneyplant/gold/2026-10-23.csv"
+    },
+    {
+      "bytes": 2406618,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e2bc43fa30f1d3a0dd57ef1e0bcfa428669de4490690a0920791de00044e20ce",
+      "url": "feed-capture:moneyplant/silver/2026-07-28.csv"
+    },
+    {
+      "bytes": 6735628,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0b4d37e7970f0ce293881c34d5a9319b927d8cf67051514831f7f0b36579da5a",
+      "url": "feed-capture:moneyplant/silver/2026-07-29.csv"
+    },
+    {
+      "bytes": 6423458,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e63a7662499dc25caf8d2806fa0146ca3e1197af3f997b88176197f5e32697a0",
+      "url": "feed-capture:moneyplant/silver/2026-07-30.csv"
+    },
+    {
+      "bytes": 6240192,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d26aa4144edef9986ea1e838406383aa80581f66ca6a41499f48078cacc1d570",
+      "url": "feed-capture:moneyplant/silver/2026-07-31.csv"
+    },
+    {
+      "bytes": 657339,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8dc49231757ac31d08242db2f3875e0587737e76d0c64f5c84093ac79f6c33b4",
+      "url": "feed-capture:moneyplant/silver/2026-08-02.csv"
+    },
+    {
+      "bytes": 10158657,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "eeacdf90c3a174deddf3fb91486a235b151b5b37497e0bf293e05aa440232cab",
+      "url": "feed-capture:moneyplant/silver/2026-08-03.csv"
+    },
+    {
+      "bytes": 5422734,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "48bd8be91fe09af704b804df5f9a3e90e4e70791dfec1623d93ee07836842530",
+      "url": "feed-capture:moneyplant/silver/2026-08-04.csv"
+    },
+    {
+      "bytes": 8621796,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c715b4c9054c272c807776f9baafc8374e14f5603d57cf791949cc259df9abec",
+      "url": "feed-capture:moneyplant/silver/2026-08-05.csv"
+    },
+    {
+      "bytes": 9057747,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "32b975d7daec2bed4245e2064eaf94993ee98a782ad9f9299ded0b7f4db0d9ed",
+      "url": "feed-capture:moneyplant/silver/2026-08-06.csv"
+    },
+    {
+      "bytes": 6142483,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d2f24dec388433696fd6f8b268b205c426676ca6aef098eb27130f62cbfae4bd",
+      "url": "feed-capture:moneyplant/silver/2026-08-07.csv"
+    },
+    {
+      "bytes": 3292,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9c39b4f7f8a9297f850dc2bb9f453ae41f52fc5a839c9f89d44e23c68efa4270",
+      "url": "feed-capture:moneyplant/silver/2026-08-08.csv"
+    },
+    {
+      "bytes": 6728072,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "97e61b3318a004e1eec43441e7b26a4611c969eeab986cf1ca6fce62be8fc7d3",
+      "url": "feed-capture:moneyplant/silver/2026-08-10.csv"
+    },
+    {
+      "bytes": 7965289,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ac7913979b89c1be860a98bf374d1f3ad9c4a1ce953f0ef66082486dfd5b12b1",
+      "url": "feed-capture:moneyplant/silver/2026-08-11.csv"
+    },
+    {
+      "bytes": 4398960,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3283122b137645f43863e62557c566bdb07983bb93bc445d3443fb59622def7b",
+      "url": "feed-capture:moneyplant/silver/2026-08-12.csv"
+    },
+    {
+      "bytes": 8966692,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "5ba763ca777aa83223e8c6dd78eb529255b278f71ee3bfd857be7268a0fb0aa5",
+      "url": "feed-capture:moneyplant/silver/2026-08-13.csv"
+    },
+    {
+      "bytes": 9241847,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7ef0c9aabf5e03eabee282d31d0dfbd83c71497ba6a97cd9ff3d50878f368bf2",
+      "url": "feed-capture:moneyplant/silver/2026-08-14.csv"
+    },
+    {
+      "bytes": 2225,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f0e0fe792f70facd30e92e6efe01252fcb5b1548d2368ea7c4fdcba4f53bca52",
+      "url": "feed-capture:moneyplant/silver/2026-08-15.csv"
+    },
+    {
+      "bytes": 724676,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6e47fb77756c00b33c1e5a558fcc476084f2b483cdc6f1a1619264296b9f9d49",
+      "url": "feed-capture:moneyplant/silver/2026-08-17.csv"
+    },
+    {
+      "bytes": 10107101,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ca7ae5454ab46cfbcef9591ee8a1fd861f61928d5179b738013eac28fad02076",
+      "url": "feed-capture:moneyplant/silver/2026-08-18.csv"
+    },
+    {
+      "bytes": 3840909,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "dd9767587cf789d42523874d51f15363537931bf558b88d9d6b0d909fbb564b6",
+      "url": "feed-capture:moneyplant/silver/2026-08-19.csv"
+    },
+    {
+      "bytes": 931029,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f4412882968b0774f21f0948c2418ad23e427e1800875b9a5dd13fe2dd95e68b",
+      "url": "feed-capture:moneyplant/silver/2026-08-20.csv"
+    },
+    {
+      "bytes": 9108033,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "de8f5a1cdfefe138410af2ab26fa8d48b83911839d4320dfe34679ce83785383",
+      "url": "feed-capture:moneyplant/silver/2026-08-21.csv"
+    },
+    {
+      "bytes": 3301,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d10d5369ef4d766a1f23142363c51a44a5b661ba7d0c3988674a02af316e34e2",
+      "url": "feed-capture:moneyplant/silver/2026-08-22.csv"
+    },
+    {
+      "bytes": 963692,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0f301e1f13aade52536b8f1d66c63fe15b35847947c16dda27200f759c88bd5e",
+      "url": "feed-capture:moneyplant/silver/2026-08-23.csv"
+    },
+    {
+      "bytes": 10159059,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7b1869255df118a1cfeb06901a4444b64c92fb295d7f32f0b307aa87f9c49616",
+      "url": "feed-capture:moneyplant/silver/2026-08-24.csv"
+    },
+    {
+      "bytes": 10457494,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b0cf5cfd43ce7fe1e4fb7ccb561378de888916550ea1df62153d6c086be70f5f",
+      "url": "feed-capture:moneyplant/silver/2026-08-25.csv"
+    },
+    {
+      "bytes": 10864355,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ace7c6bb5a7868ee225e8af23238b1800d2de61cec1f62e7a38bc1037b8533ce",
+      "url": "feed-capture:moneyplant/silver/2026-08-26.csv"
+    },
+    {
+      "bytes": 2715396,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "013b5946c359fa5d900ab9e74b06644c3a764de1abd38ae66959ee016bcd83fe",
+      "url": "feed-capture:moneyplant/silver/2026-08-27.csv"
+    },
+    {
+      "bytes": 10617081,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "726b8f82b5d830ea78d12451dc8a43e327ef989d2e2635825ea5242eaf440f10",
+      "url": "feed-capture:moneyplant/silver/2026-08-28.csv"
+    },
+    {
+      "bytes": 3745,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7726d6177544490261a401c097db2d361b70821e487eaeeac6ce1df584effa6c",
+      "url": "feed-capture:moneyplant/silver/2026-08-29.csv"
+    },
+    {
+      "bytes": 856332,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b89a72fbf7020a21b3aa00f5769c9d9df5c45d22280ac42b5e5c9737439a376e",
+      "url": "feed-capture:moneyplant/silver/2026-08-30.csv"
+    },
+    {
+      "bytes": 11055950,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "db06069bc66d4f50a192d37a73b36b88371db2ed31b8fc2df61d59da1c70e49f",
+      "url": "feed-capture:moneyplant/silver/2026-08-31.csv"
+    },
+    {
+      "bytes": 10482680,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2224cf969ee26495144a1af84f4e6bcf067cda391871ac3d390c88dab4cda34e",
+      "url": "feed-capture:moneyplant/silver/2026-09-01.csv"
+    },
+    {
+      "bytes": 10124588,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "3c1ad959d49fb9559a72b307084c8e53f50de07b63776657b37b95f13c10dd85",
+      "url": "feed-capture:moneyplant/silver/2026-09-02.csv"
+    },
+    {
+      "bytes": 7900388,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ded72577bb2237b0239ce48105cb1657f021607f23edb35248f789998e5e8536",
+      "url": "feed-capture:moneyplant/silver/2026-09-03.csv"
+    },
+    {
+      "bytes": 9405083,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f501ee228b1ae4fc13296482e168d4bb6f121f9ca4c10af442e10f28eebdf3ee",
+      "url": "feed-capture:moneyplant/silver/2026-09-04.csv"
+    },
+    {
+      "bytes": 3745,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8b31a80917d9b2d638178c343e8f022f26706e0d4ef59277c957777ab45625f4",
+      "url": "feed-capture:moneyplant/silver/2026-09-05.csv"
+    },
+    {
+      "bytes": 1395137,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4fdcba940ad67f009af51f424075b71d7da7e9b8748687cb90445d5fea27af0b",
+      "url": "feed-capture:moneyplant/silver/2026-09-06.csv"
+    },
+    {
+      "bytes": 13201608,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e8802f3f690c36de3a087caea26fe849eaf53fcfd3ff11ccb25fe78ed36d8f45",
+      "url": "feed-capture:moneyplant/silver/2026-09-07.csv"
+    },
+    {
+      "bytes": 6480406,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a52486ad4981aca86ed3ae1b6f85b4dd874bbd2e1bc2fa96f37d8134fdb81da7",
+      "url": "feed-capture:moneyplant/silver/2026-09-08.csv"
+    },
+    {
+      "bytes": 9323953,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7fedeeb395b299833869a98e55936d0d929a089c872cba18aab6a4a6ed9e651c",
+      "url": "feed-capture:moneyplant/silver/2026-09-09.csv"
+    },
+    {
+      "bytes": 18273767,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8ea98a7fc403db02f01649089c243dc80aeedd91d53f5c62692f9b44e590911a",
+      "url": "feed-capture:moneyplant/silver/2026-09-10.csv"
+    },
+    {
+      "bytes": 16542643,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6926d06e91a38b8eafd2fa556f909a94e1dd597c253ac40a47de7071e62934e6",
+      "url": "feed-capture:moneyplant/silver/2026-09-11.csv"
+    },
+    {
+      "bytes": 7301,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7a3e7b7a6575caef764936c1ccf476643bb122e25b88c610620c9cbc7c7f709f",
+      "url": "feed-capture:moneyplant/silver/2026-09-12.csv"
+    },
+    {
+      "bytes": 1634204,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d291268fbc458161f11f46be2a6fb96db4090afa50b77754ec9fc3682edbc137",
+      "url": "feed-capture:moneyplant/silver/2026-09-13.csv"
+    },
+    {
+      "bytes": 18646846,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0215e9b915bcec0348e3a83b959d95cdfaa38f5dd14747abdfbe37a4c11e364a",
+      "url": "feed-capture:moneyplant/silver/2026-09-14.csv"
+    },
+    {
+      "bytes": 18583241,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f48cc272e567d4da9f782ed4089ae3df86319f03c30a8297ad81a67a0d7d8cf1",
+      "url": "feed-capture:moneyplant/silver/2026-09-15.csv"
+    },
+    {
+      "bytes": 18579214,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "65821ef8ad05c1f764bf69fd2bbfd9ec19b1dc5e726d77f4da2dcb69202e5910",
+      "url": "feed-capture:moneyplant/silver/2026-09-16.csv"
+    },
+    {
+      "bytes": 16042485,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c4fd8d677f41719d8b206dfe4add947a40d34bac308e5553c13ed5d25f706672",
+      "url": "feed-capture:moneyplant/silver/2026-09-17.csv"
+    },
+    {
+      "bytes": 17980295,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e9faf822a80a69ac27288672a48a6773f84c5e785ea754c749c7c90fe8eaea9b",
+      "url": "feed-capture:moneyplant/silver/2026-09-18.csv"
+    },
+    {
+      "bytes": 14874,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "7fd4e37eb8b0dd3d403efe940aa5974ea5f79ffce93c7f2e261e915fd7b014ac",
+      "url": "feed-capture:moneyplant/silver/2026-09-19.csv"
+    },
+    {
+      "bytes": 2366503,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "2f7a1c4d84205b84a20f52851095ce6a81c36a230d491624adc8d881d386c86f",
+      "url": "feed-capture:moneyplant/silver/2026-09-20.csv"
+    },
+    {
+      "bytes": 21730935,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "a4ba3a88553cb10f6de37767cfa3edec44a99b16c29cca4567c724d2a3552398",
+      "url": "feed-capture:moneyplant/silver/2026-09-21.csv"
+    },
+    {
+      "bytes": 23423416,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b9b40ac4261e171161cb7ab227ee3f076d478cc5907f4db80cde524f2cb2830e",
+      "url": "feed-capture:moneyplant/silver/2026-09-22.csv"
+    },
+    {
+      "bytes": 25328827,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b958805554b77dba49de68e7c30e312223cfc784421f7e4169f16c271a3a5acf",
+      "url": "feed-capture:moneyplant/silver/2026-09-23.csv"
+    },
+    {
+      "bytes": 24918613,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "f5f17203abe032c86ed82c7aa142f9738a30e9de046861f1a693ec98d3292020",
+      "url": "feed-capture:moneyplant/silver/2026-09-24.csv"
+    },
+    {
+      "bytes": 22105370,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "24890d6c2dce0fa7225e0918458d7c0048cb7403335416f6e05f1e597d4b16af",
+      "url": "feed-capture:moneyplant/silver/2026-09-25.csv"
+    },
+    {
+      "bytes": 12149,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ae40929bc3bd9280c36561cff3145b1a37fe44c900ca9ac5ae97934379b06899",
+      "url": "feed-capture:moneyplant/silver/2026-09-26.csv"
+    },
+    {
+      "bytes": 2493691,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "8b875517453cc4c1ff39cd60b78db57aa7e5ae89923f9a82b6e727c9396e5dac",
+      "url": "feed-capture:moneyplant/silver/2026-09-27.csv"
+    },
+    {
+      "bytes": 22958257,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "804f8cc622870ced6c9d5e0adb7951e44fce58ab97ad72dd970b0b90fd8aa4f6",
+      "url": "feed-capture:moneyplant/silver/2026-09-28.csv"
+    },
+    {
+      "bytes": 21835183,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "e86e6133b8bcecdac979938e8ca67e07b891f46bd37574d362cc300a264f6181",
+      "url": "feed-capture:moneyplant/silver/2026-09-29.csv"
+    },
+    {
+      "bytes": 20559968,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ebcf5815158698d62fdf37a5fb81e92135163598801fa576caaafceea17ee51a",
+      "url": "feed-capture:moneyplant/silver/2026-09-30.csv"
+    },
+    {
+      "bytes": 24837170,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "6755f5795f815f8fc0fe0b04c2c307336060223d408aed734fa015193120a3cf",
+      "url": "feed-capture:moneyplant/silver/2026-10-01.csv"
+    },
+    {
+      "bytes": 17477881,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9681e2f8a2b3a9d34980194503462981379931e20c9f3163b5cc2388345ea84c",
+      "url": "feed-capture:moneyplant/silver/2026-10-02.csv"
+    },
+    {
+      "bytes": 9127,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "175b6d52ff7d9f528421d508a8f833c03856d19bd2b00237ac3162c5b1d1e7f5",
+      "url": "feed-capture:moneyplant/silver/2026-10-03.csv"
+    },
+    {
+      "bytes": 2929804,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "577927447e54a364860bf1320226c84b3bbd81232c35241fcbdacc44b868dfcc",
+      "url": "feed-capture:moneyplant/silver/2026-10-04.csv"
+    },
+    {
+      "bytes": 32936623,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d6d6e55c17d5ae366d74092475566cd8ed57448c68d3e6ef3cbc2c3117b7c959",
+      "url": "feed-capture:moneyplant/silver/2026-10-05.csv"
+    },
+    {
+      "bytes": 32973839,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4927e23f66ac60cf79937e498ebd50fa0ecffbcd294bc778c6b0610b26f6fd78",
+      "url": "feed-capture:moneyplant/silver/2026-10-06.csv"
+    },
+    {
+      "bytes": 32969193,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1dd4e31eae8e896343b7e40877d5f05a548e4084b1433a01d01bcdae4b529653",
+      "url": "feed-capture:moneyplant/silver/2026-10-07.csv"
+    },
+    {
+      "bytes": 33013189,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "49dcbd6821579e13921be8b1df984684706648a996d67e79430241b761b280aa",
+      "url": "feed-capture:moneyplant/silver/2026-10-08.csv"
+    },
+    {
+      "bytes": 30092813,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "fd6b07f7dea9c2b788429dedcc1d6340474084de3a49466a4eb3b35ff677405f",
+      "url": "feed-capture:moneyplant/silver/2026-10-09.csv"
+    },
+    {
+      "bytes": 9151,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "b35449b52897f195976b5a6835f1b0f29e4ce6a75911b4c070566f33a5a0ede2",
+      "url": "feed-capture:moneyplant/silver/2026-10-10.csv"
+    },
+    {
+      "bytes": 674486,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "c33fda94a4bbdfed1001e25749805a8947bce933c3bdadf982525b59de6f5034",
+      "url": "feed-capture:moneyplant/silver/2026-10-11.csv"
+    },
+    {
+      "bytes": 7687440,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4d4e4ff4fb6edd7db773d75ffcd1a7d648f20c61f6376ef3ab57a13109c8effc",
+      "url": "feed-capture:moneyplant/silver/2026-10-12.csv"
+    },
+    {
+      "bytes": 7693162,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0c55b54b54e63b0238bca19856dd5afda8f2253682152ec4fdb0a4bcd83c77c9",
+      "url": "feed-capture:moneyplant/silver/2026-10-13.csv"
+    },
+    {
+      "bytes": 10123315,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "eebef3e13898bed77b534cdab580a356a830809b8f38857a92f131acbb180b42",
+      "url": "feed-capture:moneyplant/silver/2026-10-14.csv"
+    },
+    {
+      "bytes": 32415949,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "4371159d69119eadded375865a1fd2aa2b57a660095571c57f246c292cf29658",
+      "url": "feed-capture:moneyplant/silver/2026-10-15.csv"
+    },
+    {
+      "bytes": 29415307,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "ab4274054c058d6dfef55bc7412a17c1561a4ea7d6961955e37f78638b5261da",
+      "url": "feed-capture:moneyplant/silver/2026-10-16.csv"
+    },
+    {
+      "bytes": 15184,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d42af809d8451cde37b188f1c2557008c30aee5acef306538efc26fa03e1f9e2",
+      "url": "feed-capture:moneyplant/silver/2026-10-17.csv"
+    },
+    {
+      "bytes": 2911057,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "0ceea71c3b343bb2ef251684b2d3c8d3a6a0ebf8a3b58e52122a8bf53a4278fa",
+      "url": "feed-capture:moneyplant/silver/2026-10-18.csv"
+    },
+    {
+      "bytes": 32701359,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "1f0cbf8b5928a551d332dcd900ac25ef4f472885a4ec0671bb21c25c02b1e467",
+      "url": "feed-capture:moneyplant/silver/2026-10-19.csv"
+    },
+    {
+      "bytes": 33467555,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "12e817042c4dc785a5b6d2c108a953342050a60c90892337033f928b6fb7adde",
+      "url": "feed-capture:moneyplant/silver/2026-10-20.csv"
+    },
+    {
+      "bytes": 33649510,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "9b28e880046f41243bdc8c53edb016ca8c50160735d6d0623ea78eeb2028806a",
+      "url": "feed-capture:moneyplant/silver/2026-10-21.csv"
+    },
+    {
+      "bytes": 33547621,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "550cb10e6c2c8ced9c4f5b078c22883abe2c1b58417391cae922aac37f98118a",
+      "url": "feed-capture:moneyplant/silver/2026-10-22.csv"
+    },
+    {
+      "bytes": 30559317,
+      "fetched_at_utc": "2026-10-23T21:39:40Z",
+      "sha256": "d0a301b9bbe0b6d254cffc91a79ddf65873334fa5d5db08242fe903975730f9e",
+      "url": "feed-capture:moneyplant/silver/2026-10-23.csv"
+    }
+  ],
+  "status_rows": {
+    "live": 1940071,
+    "stale": 20
+  }
+}

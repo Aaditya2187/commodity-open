@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "detail": "scanned build:mcx; 0 hit(s)",
+      "items": [],
+      "name": "broker account object absent from every output file",
+      "ok": true
+    },
+    {
+      "detail": "0 malformed",
+      "items": [],
+      "name": "contract ids follow mcx:<SYMBOL><DD><MON><YY>FUT",
+      "ok": true
+    },
+    {
+      "detail": "0 duplicate key(s)",
+      "items": [],
+      "name": "no duplicate (session_date, contract_id)",
+      "ok": true
+    },
+    {
+      "detail": "0 open violation(s), 3 non-final-day settlement(s) outside range (0 on the four products), 0 untraded row(s) with prices, 90391 traded rows",
+      "items": [
+        "settlement outside range on a non-final day 2021-10-20 mcx:CPO31JAN22FUT h=1122.7 l=1122.7 settlement=1120.0 lots=1",
+        "settlement outside range on a non-final day 2022-01-03 mcx:CPO31JAN22FUT h=1076.1 l=1076.1 settlement=1075.0 lots=1",
+        "settlement outside range on a non-final day 2022-01-03 mcx:CPO28FEB22FUT h=1057.5 l=1057.5 settlement=1060.0 lots=1"
+      ],
+      "name": "OHLC ordering: open within [low, high] on traded rows; settlement within range except on a contract's final session; no prices on untraded rows",
+      "ok": true
+    },
+    {
+      "detail": "1 mismatch(es) over 89231 chained rows, 0 unexplained",
+      "items": [
+        "2023-10-17 mcx:CRUDEOIL19OCT23FUT previous_close=7192.0 prior settlement=7239.0 (known: first session after the 2023-10-16 trading-platform migration (MCX/TRD/700/2023): the file restates previous close as the day's own settlement)"
+      ],
+      "name": "previous_close equals the contract's prior traded settlement",
+      "ok": true
+    },
+    {
+      "detail": "295/343 receipt rows match exactly; 36 carry the next session's settlement under the wrong session_date; 7 carry the previous session's settlement (near-expiry contracts at the morning fetch); 5 are labelled with a day that has no Bhav Copy and carry the previous session's settlement; 0 match no adjacent settlement; 0 have no Bhav Copy row",
+      "items": [
+        "2026-07-13 mcx:CRUDEOIL20JUL26FUT receipt=7584.0 fetched=2026-07-14T18:00:07.928889+00:00 equals the 2026-07-14 settlement; Bhav Copy 2026-07-13 settlement=7360.0",
+        "2026-07-16 mcx:GOLD05AUG26FUT receipt=140906.0 fetched=2026-07-17T18:00:03.628376+00:00 equals the 2026-07-17 settlement; Bhav Copy 2026-07-16 settlement=140348.0",
+        "2026-07-16 mcx:SILVER04SEP26FUT receipt=216403.0 fetched=2026-07-17T18:00:20.069811+00:00 equals the 2026-07-17 settlement; Bhav Copy 2026-07-16 settlement=216013.0",
+        "2026-07-16 mcx:COPPER31JUL26FUT receipt=1302.35 fetched=2026-07-17T18:00:20.069811+00:00 equals the 2026-07-17 settlement; Bhav Copy 2026-07-16 settlement=1308.5",
+        "2026-07-16 mcx:CRUDEOIL20JUL26FUT receipt=7945.0 fetched=2026-07-17T18:00:20.069811+00:00 equals the 2026-07-17 settlement; Bhav Copy 2026-07-16 settlement=7614.0",
+        "2026-07-21 mcx:CRUDEOIL19AUG26FUT receipt=8410.0 fetched=2026-07-22T18:00:04.422730+00:00 equals the 2026-07-22 settlement; Bhav Copy 2026-07-21 settlement=8150.0",
+        "2026-07-22 mcx:CRUDEOIL19AUG26FUT receipt=9024.0 fetched=2026-07-23T18:00:14.627192+00:00 equals the 2026-07-23 settlement; Bhav Copy 2026-07-22 settlement=8410.0",
+        "2026-07-23 mcx:CRUDEOIL19AUG26FUT receipt=8604.0 fetched=2026-07-24T18:00:05.785964+00:00 equals the 2026-07-24 settlement; Bhav Copy 2026-07-23 settlement=9024.0",
+        "2026-07-24 mcx:CRUDEOIL19AUG26FUT receipt=7957.0 fetched=2026-07-27T18:00:15.486635+00:00 equals the 2026-07-27 settlement; Bhav Copy 2026-07-24 settlement=8604.0",
+        "2026-07-27 mcx:CRUDEOIL19AUG26FUT receipt=7603.0 fetched=2026-07-28T18:00:39.119898+00:00 equals the 2026-07-28 settlement; Bhav Copy 2026-07-27 settlement=7957.0",
+        "2026-07-28 mcx:CRUDEOIL19AUG26FUT receipt=8114.0 fetched=2026-07-29T18:00:28.512331+00:00 equals the 2026-07-29 settlement; Bhav Copy 2026-07-28 settlement=7603.0",
+        "2026-07-31 mcx:CRUDEOIL19AUG26FUT receipt=7645.0 fetched=2026-08-03T18:00:13.478798+00:00 equals the 2026-08-03 settlement; Bhav Copy 2026-07-31 settlement=8113.0",
+        "2026-08-03 mcx:CRUDEOIL19AUG26FUT receipt=7214.0 fetched=2026-08-04T18:00:08.297415+00:00 equals the 2026-08-04 settlement; Bhav Copy 2026-08-03 settlement=7645.0",
+        "2026-08-04 mcx:GOLD05OCT26FUT receipt=148493.0 fetched=2026-08-05T18:30:28.731133+00:00 equals the 2026-08-05 settlement; Bhav Copy 2026-08-04 settlement=144299.0",
+        "2026-08-05 mcx:CRUDEOIL19AUG26FUT receipt=7377.0 fetched=2026-08-06T18:00:05.251881+00:00 equals the 2026-08-06 settlement; Bhav Copy 2026-08-05 settlement=7109.0",
+        "2026-08-06 mcx:SILVER04SEP26FUT receipt=231466.0 fetched=2026-08-07T18:00:33.868488+00:00 equals the 2026-08-07 settlement; Bhav Copy 2026-08-06 settlement=225836.0",
+        "2026-08-07 mcx:CRUDEOIL19AUG26FUT receipt=7803.0 fetched=2026-08-10T18:00:18.033099+00:00 equals the 2026-08-10 settlement; Bhav Copy 2026-08-07 settlement=7424.0",
+        "2026-08-13 mcx:SILVER04SEP26FUT receipt=235924.0 fetched=2026-08-14T18:00:06.164452+00:00 equals the 2026-08-14 settlement; Bhav Copy 2026-08-13 settlement=235447.0",
+        "2026-08-13 mcx:COPPER31AUG26FUT receipt=1378.3 fetched=2026-08-14T18:00:06.164452+00:00 equals the 2026-08-14 settlement; Bhav Copy 2026-08-13 settlement=1375.85",
+        "2026-08-13 mcx:GOLD05OCT26FUT receipt=154506.0 fetched=2026-08-14T18:00:22.318534+00:00 equals the 2026-08-14 settlement; Bhav Copy 2026-08-13 settlement=153466.0",
+        "2026-08-13 mcx:CRUDEOIL19AUG26FUT receipt=7870.0 fetched=2026-08-14T18:30:25.823242+00:00 equals the 2026-08-14 settlement; Bhav Copy 2026-08-13 settlement=7821.0",
+        "2026-08-24 mcx:CRUDEOIL21SEP26FUT receipt=7837.0 fetched=2026-08-25T18:00:20.022359+00:00 equals the 2026-08-25 settlement; Bhav Copy 2026-08-24 settlement=8135.0",
+        "2026-08-31 mcx:CRUDEOIL21SEP26FUT receipt=8536.0 fetched=2026-09-01T18:00:11.582439+00:00 equals the 2026-09-01 settlement; Bhav Copy 2026-08-31 settlement=8149.0",
+        "2026-09-08 mcx:CRUDEOIL21SEP26FUT receipt=9099.0 fetched=2026-09-09T18:00:28.397829+00:00 equals the 2026-09-09 settlement; Bhav Copy 2026-09-08 settlement=8734.0",
+        "2026-09-09 mcx:SILVER04DEC26FUT receipt=234099.0 fetched=2026-09-10T18:00:09.041553+00:00 equals the 2026-09-10 settlement; Bhav Copy 2026-09-09 settlement=244213.0",
+        "2026-09-09 mcx:CRUDEOIL21SEP26FUT receipt=9722.0 fetched=2026-09-10T18:00:09.041553+00:00 equals the 2026-09-10 settlement; Bhav Copy 2026-09-09 settlement=9099.0",
+        "2026-09-11 mcx:CRUDEOIL21SEP26FUT receipt=9717.0 fetched=2026-09-14T18:00:25.844299+00:00 equals the 2026-09-14 settlement; Bhav Copy 2026-09-11 settlement=9527.0",
+        "2026-09-14 mcx:CRUDEOIL21SEP26FUT receipt=10209.0 fetched=2026-09-15T18:00:12.658871+00:00 equals the 2026-09-15 settlement; Bhav Copy 2026-09-14 settlement=9717.0",
+        "2026-09-15 mcx:CRUDEOIL21SEP26FUT receipt=9819.0 fetched=2026-09-16T18:00:18.699102+00:00 equals the 2026-09-16 settlement; Bhav Copy 2026-09-15 settlement=10209.0",
+        "2026-09-18 mcx:CRUDEOIL21SEP26FUT receipt=9158.0 fetched=2026-09-21T18:00:20.358520+00:00 equals the 2026-09-21 settlement; Bhav Copy 2026-09-18 settlement=9659.0",
+        "2026-09-18 mcx:CRUDEOIL19OCT26FUT receipt=8836.0 fetched=2026-09-21T18:30:54.780009+00:00 equals the 2026-09-21 settlement; Bhav Copy 2026-09-18 settlement=9223.0",
+        "2026-09-23 mcx:CRUDEOIL19OCT26FUT receipt=9167.0 fetched=2026-09-24T18:00:07.595028+00:00 equals the 2026-09-24 settlement; Bhav Copy 2026-09-23 settlement=8825.0",
+        "2026-09-24 mcx:CRUDEOIL19OCT26FUT receipt=8848.0 fetched=2026-09-25T18:00:23.255636+00:00 equals the 2026-09-25 settlement; Bhav Copy 2026-09-24 settlement=9167.0",
+        "2026-10-07 mcx:CRUDEOIL19OCT26FUT receipt=8864.0 fetched=2026-10-08T18:00:05.961014+00:00 equals the 2026-10-08 settlement; Bhav Copy 2026-10-07 settlement=8552.0",
+        "2026-10-13 mcx:SILVER04DEC26FUT receipt=208338.0 fetched=2026-10-14T18:00:03.186714+00:00 equals the 2026-10-14 settlement; Bhav Copy 2026-10-13 settlement=219217.0",
+        "2026-10-19 mcx:CRUDEOIL19NOV26FUT receipt=9311.0 fetched=2026-10-20T18:00:18.118635+00:00 equals the 2026-10-20 settlement; Bhav Copy 2026-10-19 settlement=9456.0",
+        "2026-07-28 mcx:COPPER31JUL26FUT receipt=1324.4 fetched=2026-07-29T03:30:38.438162+00:00 equals the 2026-07-27 settlement; Bhav Copy 2026-07-28 settlement=1311.35",
+        "2026-07-30 mcx:COPPER31JUL26FUT receipt=1313.3 fetched=2026-07-31T03:30:53.515001+00:00 equals the 2026-07-29 settlement; Bhav Copy 2026-07-30 settlement=1330.95",
+        "2026-08-04 mcx:GOLD05AUG26FUT receipt=141095.0 fetched=2026-08-05T03:30:27.452012+00:00 equals the 2026-08-03 settlement; Bhav Copy 2026-08-04 settlement=142589.0",
+        "2026-08-28 mcx:COPPER31AUG26FUT receipt=1379.5 fetched=2026-08-31T03:31:19.632651+00:00 equals the 2026-08-27 settlement; Bhav Copy 2026-08-28 settlement=1382.15",
+        "2026-09-01 mcx:SILVER04SEP26FUT receipt=233841.0 fetched=2026-09-02T03:30:36.651164+00:00 equals the 2026-08-31 settlement; Bhav Copy 2026-09-01 settlement=229549.0",
+        "2026-09-02 mcx:SILVER04SEP26FUT receipt=229549.0 fetched=2026-09-03T03:30:28.187933+00:00 equals the 2026-09-01 settlement; Bhav Copy 2026-09-02 settlement=229943.0",
+        "2026-09-03 mcx:SILVER04SEP26FUT receipt=229943.0 fetched=2026-09-04T03:36:38.855396+00:00 equals the 2026-09-02 settlement; Bhav Copy 2026-09-03 settlement=236054.0",
+        "2026-10-02 mcx:SILVER04DEC26FUT receipt=225877.0 fetched=2026-10-05T03:30:05.781967+00:00 is labelled with a day that has no Bhav Copy and equals the 2026-10-01 settlement",
+        "2026-10-02 mcx:COPPER30OCT26FUT receipt=1399.6 fetched=2026-10-05T03:30:05.781967+00:00 is labelled with a day that has no Bhav Copy and equals the 2026-10-01 settlement",
+        "2026-10-02 mcx:CRUDEOIL19OCT26FUT receipt=8916.0 fetched=2026-10-05T03:30:05.781967+00:00 is labelled with a day that has no Bhav Copy and equals the 2026-10-01 settlement",
+        "2026-10-02 mcx:GOLD05OCT26FUT receipt=147866.0 fetched=2026-10-05T03:45:10.144424+00:00 is labelled with a day that has no Bhav Copy and equals the 2026-10-01 settlement",
+        "2026-10-02 mcx:GOLD04DEC26FUT receipt=150390.0 fetched=2026-10-05T18:30:57.168660+00:00 is labelled with a day that has no Bhav Copy and equals the 2026-10-01 settlement"
+      ],
+      "name": "settlement equals the production reference close (MCX exchange_close receipts)",
+      "ok": true
+    },
+    {
+      "detail": "1497 Bhav Copy dates vs 1497 calendar dates through 2026-10-23; 0 missing (0 unexplained), 0 unexpected",
+      "items": [],
+      "name": "Bhav Copy session dates equal calendar dates with state != closed",
+      "ok": true
+    },
+    {
+      "detail": "2191 rows 2021-01-01 to 2026-12-31; 0 problem(s)",
+      "items": [],
+      "name": "session calendar: every date once, every row published, no unnotified close earlier than the later one",
+      "ok": true
+    },
+    {
+      "detail": "1497 sessions through 2026-10-23; 0 with a missing product",
+      "items": [],
+      "name": "every Bhav Copy session has rows for GOLD, SILVER, COPPER and CRUDEOIL",
+      "ok": true
+    }
+  ],
+  "ok": true
+}

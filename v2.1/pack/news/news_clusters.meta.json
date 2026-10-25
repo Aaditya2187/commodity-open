@@ -1,0 +1,105 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:29.004625+00:00",
+    "command": "python -m swing_dataset.pack build --stage news",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 166570
+    },
+    "rule": "created_at is the feed's own computation time: exact."
+  },
+  "columns": [
+    {
+      "meaning": "news.cluster_versions.cluster_version_id",
+      "name": "cluster_version_id",
+      "type": "string"
+    },
+    {
+      "meaning": "stable story id across versions",
+      "name": "logical_cluster_id",
+      "type": "string"
+    },
+    {
+      "meaning": "clustering algorithm version",
+      "name": "algorithm_version",
+      "type": "string"
+    },
+    {
+      "meaning": "previous version of the same logical cluster",
+      "name": "predecessor_version_id",
+      "type": "string"
+    },
+    {
+      "meaning": "raw_id of the canonical member",
+      "name": "canonical_raw_id",
+      "type": "string"
+    },
+    {
+      "meaning": "distinct publishers in the cluster",
+      "name": "independent_source_count",
+      "type": "int64"
+    },
+    {
+      "meaning": "earliest member published_at",
+      "name": "first_published_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "latest member published_at",
+      "name": "last_published_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "fetched_at horizon the version was computed from",
+      "name": "as_of_fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "hash of the member set",
+      "name": "member_hash",
+      "type": "string"
+    },
+    {
+      "meaning": "created_at: when the version was computed",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= fetched_utc",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:30:02.103714+00:00",
+    "start": "2026-07-16T02:55:53.469699+00:00"
+  },
+  "name": "news_clusters",
+  "notes": [
+    "One row per cluster version; join memberships on cluster_version_id."
+  ],
+  "rows": 166570,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 31435336,
+      "fetched_at_utc": "2026-10-23T21:40:28Z",
+      "sha256": "3f8adfcfe545fe101c78adb1e8156b09d096d6a06745ac53a737312d995bd806",
+      "url": "feed-db:cluster_versions"
+    }
+  ]
+}

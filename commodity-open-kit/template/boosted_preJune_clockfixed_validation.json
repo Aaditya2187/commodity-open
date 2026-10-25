@@ -1,0 +1,79 @@
+{
+  "model": "HGB shared selector plus online success calibration",
+  "rows": 10616,
+  "feature_count": 33,
+  "train_end": "2026-06-01T03:00:00+00:00",
+  "validation": {
+    "policy_selection_2024": [
+      {
+        "cutoff": 0.0,
+        "n": 1016,
+        "direction": 40.846456692913385
+      },
+      {
+        "cutoff": 0.4,
+        "n": 828,
+        "direction": 42.51207729468599
+      },
+      {
+        "cutoff": 0.45,
+        "n": 693,
+        "direction": 43.290043290043286
+      },
+      {
+        "cutoff": 0.5,
+        "n": 458,
+        "direction": 46.724890829694324
+      },
+      {
+        "cutoff": 0.55,
+        "n": 288,
+        "direction": 46.875
+      }
+    ],
+    "selected_cutoff": 0.5,
+    "adaptation_selection_2025": [
+      {
+        "eta": 0.0,
+        "n": 461,
+        "direction": 44.03470715835141,
+        "frozen": 44.03470715835141,
+        "gain_pp": 0.0,
+        "first": 43.15352697095436,
+        "second": 45.0
+      },
+      {
+        "eta": 0.05,
+        "n": 461,
+        "direction": 45.5531453362256,
+        "frozen": 44.03470715835141,
+        "gain_pp": 1.5184381778741873,
+        "first": 43.56846473029046,
+        "second": 47.72727272727273
+      },
+      {
+        "eta": 0.15,
+        "n": 461,
+        "direction": 45.5531453362256,
+        "frozen": 44.03470715835141,
+        "gain_pp": 1.5184381778741873,
+        "first": 43.15352697095436,
+        "second": 48.18181818181818
+      }
+    ],
+    "selected_eta": 0.05,
+    "audit_2026_preJune": {
+      "n": 320,
+      "direction": 51.5625,
+      "frozen": 51.87500000000001,
+      "gain_pp": -0.31250000000000444,
+      "first": 54.90196078431373,
+      "second": 48.50299401197605
+    },
+    "audit_note": "daily-bar labels; conservative completed-window delayed updates; NOT official replay",
+    "positive_learning_evidence": false,
+    "audit_direction_at_least_60": false
+  },
+  "magnitude": "fixed training-only successful completed-window quantiles",
+  "limitations": "preJune validation is a daily-bar delayed-update proxy, not official tick replay"
+}

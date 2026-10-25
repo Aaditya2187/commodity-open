@@ -1,0 +1,59 @@
+{
+  "model": "HGB shared selector plus online success calibration",
+  "rows": 11112,
+  "feature_count": 33,
+  "train_end": "2026-06-01T03:00:00+00:00",
+  "validation": {
+    "policy_selection_2024": [
+      {
+        "cutoff": 0.0,
+        "n": 1016,
+        "direction": 41.63385826771653
+      }
+    ],
+    "selected_cutoff": 0.0,
+    "adaptation_selection_2025": [
+      {
+        "eta": 0.0,
+        "n": 1020,
+        "direction": 50.78431372549019,
+        "frozen": 50.78431372549019,
+        "gain_pp": 0.0,
+        "first": 49.01574803149607,
+        "second": 52.5390625
+      },
+      {
+        "eta": 0.05,
+        "n": 1020,
+        "direction": 49.90196078431373,
+        "frozen": 50.78431372549019,
+        "gain_pp": -0.8823529411764675,
+        "first": 48.818897637795274,
+        "second": 50.9765625
+      },
+      {
+        "eta": 0.15,
+        "n": 1020,
+        "direction": 49.31372549019608,
+        "frozen": 50.78431372549019,
+        "gain_pp": -1.4705882352941124,
+        "first": 47.44094488188976,
+        "second": 51.171875
+      }
+    ],
+    "selected_eta": 0.0,
+    "audit_2026_preJune": {
+      "n": 416,
+      "direction": 50.72115384615385,
+      "frozen": 50.72115384615385,
+      "gain_pp": 0.0,
+      "first": 54.807692307692314,
+      "second": 46.63461538461539
+    },
+    "audit_note": "daily-bar labels; conservative completed-window delayed updates; NOT official replay",
+    "positive_learning_evidence": false,
+    "audit_direction_at_least_60": false
+  },
+  "magnitude": "fixed training-only successful completed-window quantiles",
+  "limitations": "preJune validation is a daily-bar delayed-update proxy, not official tick replay"
+}

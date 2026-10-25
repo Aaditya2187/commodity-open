@@ -1,0 +1,90 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:42.989306+00:00",
+    "command": "python -m swing_dataset.pack build --stage receipts",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 52
+    },
+    "rule": "fetched_ts is the feed's own capture clock: exact. The CFTC release instant the feed recorded is kept as release_utc."
+  },
+  "columns": [
+    {
+      "meaning": "feed.cot_record_receipts_v1.receipt_id",
+      "name": "receipt_id",
+      "type": "string"
+    },
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "CFTC market code",
+      "name": "contract_market_code",
+      "type": "string"
+    },
+    {
+      "meaning": "COT report date (Tuesday)",
+      "name": "report_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "hash of the CFTC payload",
+      "name": "source_payload_hash",
+      "type": "string"
+    },
+    {
+      "meaning": "available_ts as recorded by the feed: the CFTC release instant it applied",
+      "name": "release_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "fetched_ts: the feed's fetch clock",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= fetched_utc (the feed had the record then; release_utc is the earlier CFTC instant)",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "the CFTC record as stored",
+      "name": "payload_json",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-16T21:50:40.702735+00:00",
+    "start": "2026-07-29T10:49:58.282969+00:00"
+  },
+  "name": "cot_record_receipts",
+  "notes": [
+    "Only the records the production feed fetched (33 rows); the macro lane carries the full CFTC history."
+  ],
+  "rows": 52,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 7748,
+      "fetched_at_utc": "2026-10-23T21:40:51Z",
+      "sha256": "62b91d09fd0cbc3203cfb7c177f75905a311503b258d62d3e01cf6bd53996b36",
+      "url": "feed-db:cot_record_receipts"
+    }
+  ]
+}

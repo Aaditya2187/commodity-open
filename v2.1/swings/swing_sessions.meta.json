@@ -1,0 +1,158 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:58:12.030227+00:00",
+    "command": "python -m swing_dataset.pack build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 5908
+    },
+    "rule": "A session row is available at the settlement publication of the session: that session's close instant from mcx_sessions, the same convention mcx_daily uses. The exchange publishes at or after the close and we did not capture at that instant, so the class is published. The row holds only what is known at that instant: the session's designation, bars, high, low and settlement. It carries nothing derived from the legs of swings.parquet, which are known only once confirmed."
+  },
+  "columns": [
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "Asia/Kolkata civil date of the MCX session",
+      "name": "session_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "designated contract for this session (designations.parquet, horizon 5); null when none qualified",
+      "name": "contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "the designation row's own eligible flag",
+      "name": "designation_eligible",
+      "type": "bool"
+    },
+    {
+      "meaning": "the designation row's reason; null when eligible",
+      "name": "ineligible_reason",
+      "type": "string"
+    },
+    {
+      "meaning": "hourly | daily | none: the bar type this session contributed to the series",
+      "name": "bar",
+      "type": "string"
+    },
+    {
+      "meaning": "bars the session contributed: hours for an hourly session, 1 for a daily one, 0 for none",
+      "name": "bars",
+      "type": "int64"
+    },
+    {
+      "meaning": "quotes behind the hourly bars; 0 for a daily session",
+      "name": "ticks",
+      "type": "int64"
+    },
+    {
+      "meaning": "designated contract's Bhav Copy high, INR; null when it printed no trade",
+      "name": "session_high",
+      "type": "double"
+    },
+    {
+      "meaning": "designated contract's Bhav Copy low, INR; null when it printed no trade",
+      "name": "session_low",
+      "type": "double"
+    },
+    {
+      "meaning": "designated contract's Bhav Copy settlement, INR",
+      "name": "session_settlement",
+      "type": "double"
+    },
+    {
+      "meaning": "08:30 Asia/Kolkata pre-open of this session, in UTC: the earliest instant a signal may carry this session's date",
+      "name": "cutoff_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "true when the session has a designated contract and a priced bar, so a decision record is expected of a model and the session counts in the coverage denominator",
+      "name": "eligible_cutoff",
+      "type": "bool"
+    },
+    {
+      "meaning": "training (before 2026-06-01) | holdout (RULES.md section 5)",
+      "name": "period",
+      "type": "string"
+    },
+    {
+      "meaning": "open | morning_only | evening_only from mcx_sessions",
+      "name": "session_state",
+      "type": "string"
+    },
+    {
+      "meaning": "true when the session is open with no holiday shortening",
+      "name": "full_day",
+      "type": "bool"
+    },
+    {
+      "meaning": "first trading instant of the session",
+      "name": "session_open_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "settlement publication of this session: its close instant",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "published",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "column": "session_date",
+    "end": "2026-10-23",
+    "start": "2021-02-01"
+  },
+  "name": "swing_sessions",
+  "notes": [
+    "One row per (asset, session) over the designated-contract series, from the first designation to the last session with a Bhav Copy.",
+    "eligible_cutoff is the coverage denominator of RULES.md section 5: the session has a designated contract and a priced bar, so a decision record is expected of a model.",
+    "session_high, session_low and session_settlement are the designated contract's own Bhav Copy values, whatever the bar type; on an hourly session they bound the hourly bars but are the exchange's numbers, not ours.",
+    "No column depends on a swing leg. A leg is known only when it is confirmed, which can be sessions after its extreme, and a row stamped at the session close could not be changed when the leg confirmed. To count the turns and extremes of a session, group the legs of swings.parquet by the Asia/Kolkata date of turn_utc and extreme_utc; the point-in-time client returns each leg from its confirm_available_utc.",
+    "Price series: the contract of designations.parquet at horizon 5, session by session. Prices are the contract's own, never spread-adjusted; contract_changed marks a leg whose turn and extreme sit on different contracts, so its move includes the calendar spread.",
+    "Bars: hourly highs and lows of ltp from pack/quotes/mcx_quotes.parquet, bucketed on available_utc floored to the Asia/Kolkata hour so a bar boundary falls on the 09:00 IST open. A quote counts only inside its session's own trading window from mcx_sessions; the 2026-06-22 to 2026-07-14 polling era also wrote rows outside trading hours and on closed days, carrying an already-settled last traded price, and those are not part of any bar.",
+    "Before 2026-06-22 there are no intraday quotes and the bar is the Bhav Copy session high and low, marked daily. The same fallback covers the sessions after 2026-06-22 where the feed had not yet started polling the contract the designation rule had already moved to (for example silver 2026-08-31 to 2026-09-03 on the December contract).",
+    "Within a bar the order of the high and the low is unknown. A bar that both reverses the threshold from the running extreme and makes a new extreme completes the leg: the extreme established in an earlier bar wins."
+  ],
+  "rows": 5908,
+  "sources": [
+    {
+      "bytes": 243804,
+      "fetched_at_utc": null,
+      "sha256": "248d746006ecbac6762e5b3466f82f0687f9c918e66dac312c04a3c2602dad63",
+      "url": "build/labels/designations.parquet"
+    },
+    {
+      "bytes": 4120141,
+      "fetched_at_utc": null,
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "build/mcx/mcx_daily.parquet"
+    },
+    {
+      "bytes": 17048,
+      "fetched_at_utc": null,
+      "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
+      "url": "build/mcx/mcx_sessions.parquet"
+    },
+    {
+      "bytes": 63989284,
+      "fetched_at_utc": null,
+      "sha256": "5a5dedfca5c54f7e9cdff27cfa94db2ec245f409e1e8d23e4eec82b3dbe7ab07",
+      "url": "build/pack/quotes/mcx_quotes.parquet"
+    }
+  ]
+}

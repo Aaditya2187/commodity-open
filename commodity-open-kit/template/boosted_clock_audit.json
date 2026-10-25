@@ -1,0 +1,114 @@
+{
+  "scope": "training-only diagnostic; no model or pack changes",
+  "assets": {
+    "copper": {
+      "pandas_clock_dtype": "datetime64[us, UTC]",
+      "feature_clock_matches_nanoseconds": false,
+      "examples": [
+        {
+          "decision_utc": "2021-05-13T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2021-05-12",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2023-09-15T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2023-09-14",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2026-05-04T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2026-05-01",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        }
+      ]
+    },
+    "crude": {
+      "pandas_clock_dtype": "datetime64[us, UTC]",
+      "feature_clock_matches_nanoseconds": false,
+      "examples": [
+        {
+          "decision_utc": "2021-05-13T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2021-05-12",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2023-09-15T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2023-09-14",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2026-05-04T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2026-05-01",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        }
+      ]
+    },
+    "gold": {
+      "pandas_clock_dtype": "datetime64[us, UTC]",
+      "feature_clock_matches_nanoseconds": false,
+      "examples": [
+        {
+          "decision_utc": "2021-05-13T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2021-05-12",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2023-09-15T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2023-09-14",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2026-05-04T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2026-05-01",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        }
+      ]
+    },
+    "silver": {
+      "pandas_clock_dtype": "datetime64[us, UTC]",
+      "feature_clock_matches_nanoseconds": false,
+      "examples": [
+        {
+          "decision_utc": "2021-05-13T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2021-05-12",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2023-09-15T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2023-09-14",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        },
+        {
+          "decision_utc": "2026-05-04T03:00:00+00:00",
+          "current_selected_session": "2026-05-29",
+          "fixed_selected_session": "2026-05-01",
+          "indices_differ": true,
+          "current_uses_future_source": true
+        }
+      ]
+    }
+  },
+  "timestamp_bug_reproduced": true
+}

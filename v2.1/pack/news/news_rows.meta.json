@@ -1,0 +1,153 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:27.280952+00:00",
+    "command": "python -m swing_dataset.pack build --stage news",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 151775,
+      "published": 21606
+    },
+    "rule": "exact when fetched_at is within 24 h after published_at (the feed polled the source while the item was fresh); otherwise published, with available_utc = fetched_at, the first instant the feed had the item. published_utc is the publisher's label and never an availability clock."
+  },
+  "columns": [
+    {
+      "meaning": "news.raw_news.raw_id",
+      "name": "raw_id",
+      "type": "string"
+    },
+    {
+      "meaning": "feed source label",
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "meaning": "provider item id",
+      "name": "source_item_id",
+      "type": "string"
+    },
+    {
+      "meaning": "dedup identity key",
+      "name": "identity_key",
+      "type": "string"
+    },
+    {
+      "meaning": "sha256 of the normalized content",
+      "name": "content_hash",
+      "type": "string"
+    },
+    {
+      "meaning": "article URL as received",
+      "name": "original_url",
+      "type": "string"
+    },
+    {
+      "meaning": "title as received",
+      "name": "original_title",
+      "type": "string"
+    },
+    {
+      "meaning": "summary as received",
+      "name": "original_summary",
+      "type": "string"
+    },
+    {
+      "meaning": "publisher-stated publication time (published_at)",
+      "name": "published_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "feed fetch time (fetched_at)",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= fetched_utc for every row (the instant we had the item)",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact when fetched_utc - published_utc <= 24 h, else published",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "fetched_utc - published_utc in seconds",
+      "name": "late_seconds",
+      "type": "double"
+    },
+    {
+      "meaning": "trust model version",
+      "name": "trust_version",
+      "type": "string"
+    },
+    {
+      "meaning": "trust tier",
+      "name": "trust_tier",
+      "type": "string"
+    },
+    {
+      "meaning": "trust weight",
+      "name": "trust_weight",
+      "type": "double"
+    },
+    {
+      "meaning": "search query / feed slot that produced the row",
+      "name": "query",
+      "type": "string"
+    },
+    {
+      "meaning": "global | india",
+      "name": "region",
+      "type": "string"
+    },
+    {
+      "meaning": "gold | silver | copper | crude | null",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "publisher domain",
+      "name": "publisher_domain",
+      "type": "string"
+    },
+    {
+      "meaning": "provider sentiment when supplied",
+      "name": "source_sentiment",
+      "type": "double"
+    }
+  ],
+  "date_range": {
+    "column": "fetched_utc",
+    "end": "2026-10-23T21:40:01.760349+00:00",
+    "start": "2026-07-16T02:46:02.747259+00:00"
+  },
+  "late_fetch_distribution": {
+    "<1h": 68243,
+    "<24h": 32954,
+    "<6h": 50578,
+    "<7d": 11476,
+    ">=7d": 10130
+  },
+  "name": "news_rows",
+  "notes": [
+    "All columns of news.raw_news are kept; late_seconds and the clock columns are added."
+  ],
+  "rows": 173381,
+  "skipped_rows": 0,
+  "sources": [
+    {
+      "bytes": 71079395,
+      "fetched_at_utc": "2026-10-23T21:40:22Z",
+      "sha256": "dfc86529029b649871921f0c55705129e39d108c6cafbdaccbc3b392b6a0d720",
+      "url": "feed-db:raw_news"
+    }
+  ]
+}

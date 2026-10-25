@@ -1,0 +1,341 @@
+{
+  "build": {
+    "command": "swing_dataset/macro/__main__.py build",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7",
+    "python": "3.13.15"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 1178
+    },
+    "rule": "Every row is published: available_utc = close_utc, the candle's close; capture happened later."
+  },
+  "columns": [
+    {
+      "meaning": "Hyperliquid coin name on the xyz builder dex",
+      "name": "instrument",
+      "type": "string"
+    },
+    {
+      "meaning": "candle open time (t)",
+      "name": "open_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "candle close time (T, last millisecond of the interval)",
+      "name": "close_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "o, USD",
+      "name": "open",
+      "type": "double"
+    },
+    {
+      "meaning": "h, USD",
+      "name": "high",
+      "type": "double"
+    },
+    {
+      "meaning": "l, USD",
+      "name": "low",
+      "type": "double"
+    },
+    {
+      "meaning": "c, USD",
+      "name": "close",
+      "type": "double"
+    },
+    {
+      "meaning": "v, base units (contracts of the underlying unit as sized by szDecimals)",
+      "name": "volume",
+      "type": "double"
+    },
+    {
+      "meaning": "n",
+      "name": "trade_count",
+      "type": "int64"
+    },
+    {
+      "meaning": "equal to close_utc: a candle is known at its close",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "published: the candle is final at close_utc; capture happened later",
+      "name": "clock_quality",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "open_utc": {
+      "column": "open_utc",
+      "max": "2026-10-22T00:00:00+00:00",
+      "min": "2025-12-22T00:00:00+00:00"
+    }
+  },
+  "gaps": [],
+  "monthly_counts": {
+    "xyz:CL": {
+      "2026-01": 26,
+      "2026-02": 28,
+      "2026-03": 31,
+      "2026-04": 30,
+      "2026-05": 31,
+      "2026-06": 30,
+      "2026-07": 31,
+      "2026-08": 31,
+      "2026-09": 30,
+      "2026-10": 22
+    },
+    "xyz:COPPER": {
+      "2026-01": 18,
+      "2026-02": 28,
+      "2026-03": 31,
+      "2026-04": 30,
+      "2026-05": 31,
+      "2026-06": 30,
+      "2026-07": 31,
+      "2026-08": 31,
+      "2026-09": 30,
+      "2026-10": 22
+    },
+    "xyz:GOLD": {
+      "2025-12": 10,
+      "2026-01": 31,
+      "2026-02": 28,
+      "2026-03": 31,
+      "2026-04": 30,
+      "2026-05": 31,
+      "2026-06": 30,
+      "2026-07": 31,
+      "2026-08": 31,
+      "2026-09": 30,
+      "2026-10": 22
+    },
+    "xyz:SILVER": {
+      "2025-12": 6,
+      "2026-01": 31,
+      "2026-02": 28,
+      "2026-03": 31,
+      "2026-04": 30,
+      "2026-05": 31,
+      "2026-06": 30,
+      "2026-07": 31,
+      "2026-08": 31,
+      "2026-09": 30,
+      "2026-10": 22
+    }
+  },
+  "name": "hl_candles_1d",
+  "notes": [
+    "candleSnapshot on the xyz builder dex. The API serves only the most recent 5000 candles per coin and interval (documented; verified live: explicit earlier windows return nothing), so the earliest stored 1h candle is bounded by the first build date, not by the listing. Every run unions new candles into the stored history.",
+    "Still-open candles (close_utc after the fetch instant) are never stored.",
+    "Continuity: 0 gap(s) between consecutive candles; listed under gaps.",
+    "Prices USD; volume in base units; provider fields t/T/o/h/l/c/v/n mapped 1:1."
+  ],
+  "rows": 1178,
+  "sources": [
+    {
+      "bytes": 37537,
+      "fetched_at_utc": "2026-09-15T11:38:33.726592+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1760000000000-1789472305886-20260915T113833726592Z.json",
+      "sha256": "4a2051141c1340130cb45301b617d6845d915ed92d764f192ccd9e18ac9496a3",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 37538,
+      "fetched_at_utc": "2026-09-15T11:58:41.093997+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1760000000000-1789473517699-20260915T115841093997Z.json",
+      "sha256": "20cb486e491c49f4d2e9a616ac8e511a0e561e17efdb66f8893d5c57f7488480",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 1685,
+      "fetched_at_utc": "2026-09-25T21:45:21.901632+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1789344000000-1790372719319-20260925T214521901632Z.json",
+      "sha256": "757fd43c813fe9b6911cac496b16c4583c94a7a99e84f72c64179460a2a7170c",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 4209,
+      "fetched_at_utc": "2026-10-23T19:56:00.184271+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1790208000000-1792785357922-20261023T195600184271Z.json",
+      "sha256": "83ffdaa990ccfe018a911767a4e3b5c76b290c330e80192ba784d80cccc0e2f6",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T20:40:38.961615+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1792627200000-1792788036698-20261023T204038961615Z.json",
+      "sha256": "6498a4352a10daf78b06202736efec1f042117f55ffec1c2edfb0553e783a58e",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T20:58:24.810609+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1792627200000-1792789102810-20261023T205824810609Z.json",
+      "sha256": "88034b57ef3e2d70046e0dccf4ea8314c39fa922d70ec108635fbfba42da9bd4",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T21:48:39.793824+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_GOLD-1d-1792627200000-1792792117793-20261023T214839793824Z.json",
+      "sha256": "48280b8de370e043116dd075e89d3baea874483a589da075344935b71719216b",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 38627,
+      "fetched_at_utc": "2026-09-15T11:38:50.805962+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1760000000000-1789472305886-20260915T113850805962Z.json",
+      "sha256": "efa78288ff5219c4c6a0ae2f48c7f724f5bf6d3ebb2a9c4f09de60ae97d10fee",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 38628,
+      "fetched_at_utc": "2026-09-15T11:58:58.095263+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1760000000000-1789473517699-20260915T115858095263Z.json",
+      "sha256": "2b3d71d65347183c9cea80d8ad261c06890a2a6604f62293cb35d9a20593e636",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 1778,
+      "fetched_at_utc": "2026-09-25T21:45:24.902859+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1789344000000-1790372719319-20260925T214524902859Z.json",
+      "sha256": "8b1daf22a51d43f786ba5ae4a6981b7a5e40ae00066ed3207fb9e94bbaf6262b",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 4386,
+      "fetched_at_utc": "2026-10-23T19:56:04.184920+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1790208000000-1792785357922-20261023T195604184920Z.json",
+      "sha256": "ce3e912254ae98806bc6f3885a3e8ad476877d56a6597e702c0320730e4ed960",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 303,
+      "fetched_at_utc": "2026-10-23T20:40:41.961927+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1792627200000-1792788036698-20261023T204041961927Z.json",
+      "sha256": "320abda26db9567171c93c1b1b2a244fa2e3f9031aa9b44986701804111daa54",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 303,
+      "fetched_at_utc": "2026-10-23T20:58:27.811133+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1792627200000-1792789102810-20261023T205827811133Z.json",
+      "sha256": "f6673e3d2cf4defc44091933641d6864fe7e7d5af18da986726c31ce23c13f43",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 303,
+      "fetched_at_utc": "2026-10-23T21:48:42.794151+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_SILVER-1d-1792627200000-1792792117793-20261023T214842794151Z.json",
+      "sha256": "9a56e5d76af5ee80f76eff26619c1de77e4368e9bd25a1c3e28b25d6bc1de769",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 35116,
+      "fetched_at_utc": "2026-09-15T11:39:08.175318+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1760000000000-1789472305886-20260915T113908175318Z.json",
+      "sha256": "bdcab1282ed5ead8e5383e3a8c7aaffeb96ff97145ffdbe91e99fd3e26a66dce",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 35116,
+      "fetched_at_utc": "2026-09-15T11:59:15.096545+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1760000000000-1789473517699-20260915T115915096545Z.json",
+      "sha256": "82698b3b62ada2335b13ba5b2b4cb8baf9fbeadc8cb0b2e1196c2a630355c5bd",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 1702,
+      "fetched_at_utc": "2026-09-25T21:45:27.903064+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1789344000000-1790372719319-20260925T214527903064Z.json",
+      "sha256": "ece1cb3a66d4d96b369583efa167373dbfcbb0e2b01227ba4c26be19badbfa71",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 4262,
+      "fetched_at_utc": "2026-10-23T19:56:08.185471+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1790208000000-1792785357922-20261023T195608185471Z.json",
+      "sha256": "c18aa9b4d1e4724be4d8727f1012cbe8d6ff17e3c159038e7a546cc4bc08ba51",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T20:40:44.962109+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1792627200000-1792788036698-20261023T204044962109Z.json",
+      "sha256": "85b253310682d82e5442a2f99da224301168c14097338334a79831caeed88ac8",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T20:58:30.811481+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1792627200000-1792789102810-20261023T205830811481Z.json",
+      "sha256": "f1fa6aa2f65bf9fa91edb0e60636e9b13355b018780f7844d0293453be3577fd",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 283,
+      "fetched_at_utc": "2026-10-23T21:48:45.794617+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_COPPER-1d-1792627200000-1792792117793-20261023T214845794617Z.json",
+      "sha256": "2a233c02be7a79366274a6f6b01738352f18b395293a78d1abec3a0c3031352b",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 36039,
+      "fetched_at_utc": "2026-09-15T11:39:24.176641+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1760000000000-1789472305886-20260915T113924176641Z.json",
+      "sha256": "91030ff4b49417b4e0c6c09c3645a1fc5483c88f62ad9c26d273cf32a01850e5",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 36039,
+      "fetched_at_utc": "2026-09-15T11:59:31.097689+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1760000000000-1789473517699-20260915T115931097689Z.json",
+      "sha256": "a4b66306f5e57b6b0f6002d196aad88539b62f50421ffc58afd15fcd1267d8ed",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 1707,
+      "fetched_at_utc": "2026-09-25T21:45:30.903544+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1789344000000-1790372719319-20260925T214530903544Z.json",
+      "sha256": "ad5ea1ce9b4fdf669a3d806b1becbc4cf8713810c957b766b3a85c301623b44d",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 4281,
+      "fetched_at_utc": "2026-10-23T19:56:12.186063+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1790208000000-1792785357922-20261023T195612186063Z.json",
+      "sha256": "68927476763bd7aecc5eaa9e46b0ef5400d9f25485c00be0e02ac2787fff239b",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 294,
+      "fetched_at_utc": "2026-10-23T20:40:47.962638+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1792627200000-1792788036698-20261023T204047962638Z.json",
+      "sha256": "83c4d8ed50fc8914759b56c03346eec066f4402d759667c0f64bca5aafb94fbf",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 287,
+      "fetched_at_utc": "2026-10-23T20:58:33.811864+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1792627200000-1792789102810-20261023T205833811864Z.json",
+      "sha256": "b38eb97278a04c3902d2933365176ba4379c974e6aff965e9bc4f8a228318402",
+      "url": "https://api.hyperliquid.xyz/info"
+    },
+    {
+      "bytes": 293,
+      "fetched_at_utc": "2026-10-23T21:48:48.795088+00:00",
+      "path": "build:macro/raw/hl/candles-xyz_CL-1d-1792627200000-1792792117793-20261023T214848795088Z.json",
+      "sha256": "f127013b84c62b3f0ba4f3a4f12c56c9784de3a377de7a37e17804089c7e3a73",
+      "url": "https://api.hyperliquid.xyz/info"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "build": {
+    "built_at_utc": "2026-10-23T21:48:18.607704+00:00",
+    "command": "swing_dataset/calendar/__main__.py surprises --root build:calendar",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "available_utc"
+    },
+    "file": "published",
+    "row_column": null,
+    "rows": {
+      "published": 1879
+    },
+    "rule": "row availability is the actual's availability; consensus_quality names the consensus provenance (exact only for consensus captured by our timer before the release, unvintaged otherwise)"
+  },
+  "columns": [
+    {
+      "meaning": "release identifier",
+      "name": "event_type",
+      "type": "string"
+    },
+    {
+      "meaning": "figure of the release (nfp_change, cpi_mom, ism_mfg_pmi, ...)",
+      "name": "measure",
+      "type": "string"
+    },
+    {
+      "meaning": "period the figure covers",
+      "name": "period_ref",
+      "type": "string"
+    },
+    {
+      "meaning": "scheduled release instant (the actual's available_utc when published, else the schedule)",
+      "name": "release_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "value as first published",
+      "name": "actual",
+      "type": "double"
+    },
+    {
+      "meaning": "alfred | fed_statement | investing_history | investing_live | forexfactory_live",
+      "name": "actual_source",
+      "type": "string"
+    },
+    {
+      "meaning": "latest exact consensus captured before release_utc, else latest unvintaged consensus",
+      "name": "consensus",
+      "type": "double"
+    },
+    {
+      "meaning": "exact | unvintaged",
+      "name": "consensus_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "when that consensus row was captured",
+      "name": "consensus_captured_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "prior-period figure shown at the release (same source as the actual when available)",
+      "name": "previous",
+      "type": "double"
+    },
+    {
+      "meaning": "actual - consensus, in unit",
+      "name": "surprise",
+      "type": "double"
+    },
+    {
+      "meaning": "(surprise - median) / (1.4826 * MAD) over the trailing 36 earlier surprises of the same measure; null when fewer than 8 or MAD is 0",
+      "name": "surprise_z",
+      "type": "double"
+    },
+    {
+      "meaning": "number of earlier surprises used for surprise_z",
+      "name": "n_trailing",
+      "type": "int32"
+    },
+    {
+      "meaning": "when the actual became available (from the vintage row); null when only the day is known",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "unit of actual, consensus, previous and surprise",
+      "name": "unit",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "end": "2026-10-22",
+    "start": "2021-01-05"
+  },
+  "name": "release_surprises",
+  "notes": {
+    "consensus_quality_per_event_type": {
+      "china_caixin_pmi": {
+        "exact": 2,
+        "unvintaged": 40
+      },
+      "china_nbs_pmi": {
+        "exact": 2,
+        "unvintaged": 115
+      },
+      "eia_wpsr": {
+        "exact": 6,
+        "unvintaged": 295
+      },
+      "fomc_statement": {
+        "exact": 1,
+        "unvintaged": 45
+      },
+      "us_adp": {
+        "exact": 1,
+        "unvintaged": 67
+      },
+      "us_cpi": {
+        "exact": 4,
+        "unvintaged": 270
+      },
+      "us_gdp": {
+        "unvintaged": 23
+      },
+      "us_ism_mfg": {
+        "exact": 1,
+        "unvintaged": 69
+      },
+      "us_ism_services": {
+        "exact": 1,
+        "unvintaged": 69
+      },
+      "us_jobless_claims": {
+        "exact": 6,
+        "unvintaged": 291
+      },
+      "us_jolts": {
+        "exact": 1,
+        "unvintaged": 67
+      },
+      "us_nfp": {
+        "exact": 3,
+        "unvintaged": 204
+      },
+      "us_pce": {
+        "exact": 4,
+        "unvintaged": 223
+      },
+      "us_ppi": {
+        "exact": 1,
+        "unvintaged": 68
+      }
+    },
+    "derived_from": [
+      "release_vintages.parquet",
+      "release_schedule.parquet"
+    ],
+    "surprise_z": "robust z over the trailing 36 earlier surprises of the same measure, past only, min 8",
+    "units": "actual, consensus, previous and surprise all carry the measure's one registered unit (swing_dataset.calendar.units.MEASURE_UNITS); the build raises rather than differencing unlike quantities"
+  },
+  "rows": 1879,
+  "sources": []
+}

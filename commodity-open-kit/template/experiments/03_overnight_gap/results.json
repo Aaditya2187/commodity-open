@@ -1,0 +1,944 @@
+{
+  "preregistration_sha256": "a666837451f73ef5aec9a97572ef82046457bc10564d9a81525e1109d811abf8",
+  "cutoff_utc": "2026-06-01 03:00:00+00:00",
+  "sessions": 71,
+  "gap_rows": 284,
+  "missing_reasons": {
+    "ok": 280,
+    "no candle before anchor or signal": 4
+  },
+  "zero_gaps": 0,
+  "mapping": {
+    "gold": "xyz:GOLD",
+    "silver": "xyz:SILVER",
+    "copper": "xyz:COPPER",
+    "crude": "xyz:CL"
+  },
+  "horizons": {
+    "h3": {
+      "rows_generated": 280,
+      "rows_scorable_and_null_matched": 275,
+      "pooled": {
+        "gap": {
+          "value": 64.73,
+          "ci90": [
+            59.71,
+            69.71
+          ]
+        },
+        "null": {
+          "value": 45.45,
+          "ci90": [
+            40.0,
+            50.9
+          ]
+        },
+        "gap_minus_null_pp": {
+          "value": 19.27,
+          "ci90": [
+            13.19,
+            25.09
+          ]
+        },
+        "n": 275,
+        "episodes": 94
+      },
+      "agree_with_null_pct": 53.8,
+      "neither_pct": 13.8,
+      "up_signals_pct": 53.8,
+      "per_asset": {
+        "copper": {
+          "gap": {
+            "value": 54.41,
+            "ci90": [
+              43.28,
+              65.22
+            ]
+          },
+          "null": {
+            "value": 39.71,
+            "ci90": [
+              26.85,
+              52.94
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 14.71,
+            "ci90": [
+              2.9,
+              26.87
+            ]
+          },
+          "n": 68,
+          "episodes": 23
+        },
+        "crude": {
+          "gap": {
+            "value": 65.71,
+            "ci90": [
+              56.34,
+              75.0
+            ]
+          },
+          "null": {
+            "value": 48.57,
+            "ci90": [
+              38.57,
+              57.97
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 17.14,
+            "ci90": [
+              5.51,
+              30.0
+            ]
+          },
+          "n": 70,
+          "episodes": 24
+        },
+        "gold": {
+          "gap": {
+            "value": 61.76,
+            "ci90": [
+              51.47,
+              72.46
+            ]
+          },
+          "null": {
+            "value": 45.59,
+            "ci90": [
+              34.78,
+              56.52
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 16.18,
+            "ci90": [
+              4.48,
+              27.54
+            ]
+          },
+          "n": 68,
+          "episodes": 23
+        },
+        "silver": {
+          "gap": {
+            "value": 76.81,
+            "ci90": [
+              70.0,
+              83.82
+            ]
+          },
+          "null": {
+            "value": 47.83,
+            "ci90": [
+              38.03,
+              57.35
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 28.99,
+            "ci90": [
+              19.4,
+              38.58
+            ]
+          },
+          "n": 69,
+          "episodes": 24
+        }
+      },
+      "leave_one_asset_out": {
+        "without_gold": {
+          "gap": {
+            "value": 65.7,
+            "ci90": [
+              60.09,
+              71.29
+            ]
+          },
+          "null": {
+            "value": 45.41,
+            "ci90": [
+              39.05,
+              51.9
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 20.29,
+            "ci90": [
+              13.24,
+              26.92
+            ]
+          },
+          "n": 207,
+          "episodes": 71
+        },
+        "without_silver": {
+          "gap": {
+            "value": 60.68,
+            "ci90": [
+              54.68,
+              66.5
+            ]
+          },
+          "null": {
+            "value": 44.66,
+            "ci90": [
+              38.28,
+              51.22
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 16.02,
+            "ci90": [
+              8.86,
+              23.04
+            ]
+          },
+          "n": 206,
+          "episodes": 70
+        },
+        "without_copper": {
+          "gap": {
+            "value": 68.12,
+            "ci90": [
+              62.8,
+              73.5
+            ]
+          },
+          "null": {
+            "value": 47.34,
+            "ci90": [
+              41.63,
+              53.14
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 20.77,
+            "ci90": [
+              13.94,
+              27.75
+            ]
+          },
+          "n": 207,
+          "episodes": 71
+        },
+        "without_crude": {
+          "gap": {
+            "value": 64.39,
+            "ci90": [
+              58.45,
+              70.25
+            ]
+          },
+          "null": {
+            "value": 44.39,
+            "ci90": [
+              37.8,
+              51.25
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 20.0,
+            "ci90": [
+              13.36,
+              26.34
+            ]
+          },
+          "n": 205,
+          "episodes": 70
+        }
+      },
+      "monthly": {
+        "2026-02": {
+          "n": 24,
+          "gap": 62.5,
+          "null": 45.8
+        },
+        "2026-03": {
+          "n": 88,
+          "gap": 69.3,
+          "null": 51.1
+        },
+        "2026-04": {
+          "n": 84,
+          "gap": 61.9,
+          "null": 42.9
+        },
+        "2026-05": {
+          "n": 79,
+          "gap": 63.3,
+          "null": 41.8
+        }
+      },
+      "weekly": {
+        "2026-W08": {
+          "n": 4,
+          "gap": 75.0,
+          "null": 50.0
+        },
+        "2026-W09": {
+          "n": 20,
+          "gap": 60.0,
+          "null": 45.0
+        },
+        "2026-W10": {
+          "n": 20,
+          "gap": 50.0,
+          "null": 40.0
+        },
+        "2026-W11": {
+          "n": 20,
+          "gap": 80.0,
+          "null": 35.0
+        },
+        "2026-W12": {
+          "n": 20,
+          "gap": 65.0,
+          "null": 70.0
+        },
+        "2026-W13": {
+          "n": 20,
+          "gap": 80.0,
+          "null": 50.0
+        },
+        "2026-W14": {
+          "n": 16,
+          "gap": 75.0,
+          "null": 50.0
+        },
+        "2026-W15": {
+          "n": 20,
+          "gap": 65.0,
+          "null": 55.0
+        },
+        "2026-W16": {
+          "n": 20,
+          "gap": 60.0,
+          "null": 50.0
+        },
+        "2026-W17": {
+          "n": 20,
+          "gap": 60.0,
+          "null": 25.0
+        },
+        "2026-W18": {
+          "n": 20,
+          "gap": 50.0,
+          "null": 45.0
+        },
+        "2026-W19": {
+          "n": 20,
+          "gap": 80.0,
+          "null": 50.0
+        },
+        "2026-W20": {
+          "n": 20,
+          "gap": 90.0,
+          "null": 55.0
+        },
+        "2026-W21": {
+          "n": 20,
+          "gap": 25.0,
+          "null": 25.0
+        },
+        "2026-W22": {
+          "n": 15,
+          "gap": 66.7,
+          "null": 40.0
+        }
+      },
+      "weekend_vs_weekday_anchor": {
+        "False": {
+          "n": 219,
+          "gap": 65.8
+        },
+        "True": {
+          "n": 56,
+          "gap": 60.7
+        }
+      },
+      "terciles_diagnostic": {
+        "copper": {
+          "bottom": {
+            "n": 23,
+            "direction": 52.2
+          },
+          "middle": {
+            "n": 22,
+            "direction": 54.5
+          },
+          "top": {
+            "n": 23,
+            "direction": 56.5
+          },
+          "abs_gap_cut_pct": [
+            0.336,
+            0.911
+          ],
+          "top_beats_bottom": true
+        },
+        "crude": {
+          "bottom": {
+            "n": 24,
+            "direction": 66.7
+          },
+          "middle": {
+            "n": 23,
+            "direction": 56.5
+          },
+          "top": {
+            "n": 23,
+            "direction": 73.9
+          },
+          "abs_gap_cut_pct": [
+            0.829,
+            1.918
+          ],
+          "top_beats_bottom": true
+        },
+        "gold": {
+          "bottom": {
+            "n": 23,
+            "direction": 56.5
+          },
+          "middle": {
+            "n": 22,
+            "direction": 54.5
+          },
+          "top": {
+            "n": 23,
+            "direction": 73.9
+          },
+          "abs_gap_cut_pct": [
+            0.411,
+            0.804
+          ],
+          "top_beats_bottom": true
+        },
+        "silver": {
+          "bottom": {
+            "n": 23,
+            "direction": 82.6
+          },
+          "middle": {
+            "n": 23,
+            "direction": 78.3
+          },
+          "top": {
+            "n": 23,
+            "direction": 69.6
+          },
+          "abs_gap_cut_pct": [
+            0.86,
+            1.9
+          ],
+          "top_beats_bottom": false
+        }
+      },
+      "gap_stats_pct": {
+        "copper": {
+          "median_abs": 0.607,
+          "median_abs_over_threshold": 0.405
+        },
+        "crude": {
+          "median_abs": 1.354,
+          "median_abs_over_threshold": 0.451
+        },
+        "gold": {
+          "median_abs": 0.613,
+          "median_abs_over_threshold": 0.409
+        },
+        "silver": {
+          "median_abs": 1.316,
+          "median_abs_over_threshold": 0.658
+        }
+      },
+      "anchor_lag_min": {
+        "median": 1.6666666666666667e-05,
+        "max": 25.000016666666667
+      },
+      "interval_hours": {
+        "median": 9.0,
+        "max": 81.0
+      },
+      "p0_sources": {
+        "settlement": 275
+      },
+      "signal_utc_range": [
+        "2026-02-20 03:00:00+00:00",
+        "2026-05-29 03:00:00+00:00"
+      ],
+      "screen": {
+        "C1_direction_ge_58": true,
+        "C2_minus_null_ge_8pp": true,
+        "C3_top_tercile_beats_bottom_ge_3_assets": true,
+        "pass": true
+      }
+    },
+    "h5": {
+      "rows_generated": 280,
+      "rows_scorable_and_null_matched": 274,
+      "pooled": {
+        "gap": {
+          "value": 69.34,
+          "ci90": [
+            65.3,
+            73.4
+          ]
+        },
+        "null": {
+          "value": 49.27,
+          "ci90": [
+            44.24,
+            54.55
+          ]
+        },
+        "gap_minus_null_pp": {
+          "value": 20.07,
+          "ci90": [
+            15.0,
+            24.91
+          ]
+        },
+        "n": 274,
+        "episodes": 58
+      },
+      "agree_with_null_pct": 53.6,
+      "neither_pct": 5.8,
+      "up_signals_pct": 53.6,
+      "per_asset": {
+        "copper": {
+          "gap": {
+            "value": 62.69,
+            "ci90": [
+              53.73,
+              71.21
+            ]
+          },
+          "null": {
+            "value": 43.28,
+            "ci90": [
+              30.64,
+              55.88
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 19.4,
+            "ci90": [
+              8.57,
+              31.25
+            ]
+          },
+          "n": 67,
+          "episodes": 14
+        },
+        "crude": {
+          "gap": {
+            "value": 67.14,
+            "ci90": [
+              59.15,
+              74.63
+            ]
+          },
+          "null": {
+            "value": 48.57,
+            "ci90": [
+              39.43,
+              56.76
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 18.57,
+            "ci90": [
+              9.68,
+              27.43
+            ]
+          },
+          "n": 70,
+          "episodes": 15
+        },
+        "gold": {
+          "gap": {
+            "value": 69.12,
+            "ci90": [
+              59.42,
+              78.13
+            ]
+          },
+          "null": {
+            "value": 55.88,
+            "ci90": [
+              47.14,
+              64.18
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 13.24,
+            "ci90": [
+              4.41,
+              22.86
+            ]
+          },
+          "n": 68,
+          "episodes": 14
+        },
+        "silver": {
+          "gap": {
+            "value": 78.26,
+            "ci90": [
+              72.13,
+              84.62
+            ]
+          },
+          "null": {
+            "value": 49.28,
+            "ci90": [
+              40.0,
+              59.09
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 28.99,
+            "ci90": [
+              18.92,
+              38.67
+            ]
+          },
+          "n": 69,
+          "episodes": 15
+        }
+      },
+      "leave_one_asset_out": {
+        "without_gold": {
+          "gap": {
+            "value": 69.42,
+            "ci90": [
+              64.85,
+              74.15
+            ]
+          },
+          "null": {
+            "value": 47.09,
+            "ci90": [
+              41.39,
+              52.97
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 22.33,
+            "ci90": [
+              16.66,
+              28.22
+            ]
+          },
+          "n": 206,
+          "episodes": 44
+        },
+        "without_silver": {
+          "gap": {
+            "value": 66.34,
+            "ci90": [
+              61.43,
+              71.09
+            ]
+          },
+          "null": {
+            "value": 49.27,
+            "ci90": [
+              43.33,
+              55.07
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 17.07,
+            "ci90": [
+              11.54,
+              22.89
+            ]
+          },
+          "n": 205,
+          "episodes": 43
+        },
+        "without_copper": {
+          "gap": {
+            "value": 71.5,
+            "ci90": [
+              66.67,
+              75.86
+            ]
+          },
+          "null": {
+            "value": 51.21,
+            "ci90": [
+              46.23,
+              56.31
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 20.29,
+            "ci90": [
+              14.49,
+              25.94
+            ]
+          },
+          "n": 207,
+          "episodes": 44
+        },
+        "without_crude": {
+          "gap": {
+            "value": 70.1,
+            "ci90": [
+              65.07,
+              74.88
+            ]
+          },
+          "null": {
+            "value": 49.51,
+            "ci90": [
+              43.41,
+              55.35
+            ]
+          },
+          "gap_minus_null_pp": {
+            "value": 20.59,
+            "ci90": [
+              14.43,
+              26.47
+            ]
+          },
+          "n": 204,
+          "episodes": 43
+        }
+      },
+      "monthly": {
+        "2026-02": {
+          "n": 24,
+          "gap": 70.8,
+          "null": 45.8
+        },
+        "2026-03": {
+          "n": 88,
+          "gap": 70.5,
+          "null": 52.3
+        },
+        "2026-04": {
+          "n": 84,
+          "gap": 66.7,
+          "null": 46.4
+        },
+        "2026-05": {
+          "n": 78,
+          "gap": 70.5,
+          "null": 50.0
+        }
+      },
+      "weekly": {
+        "2026-W08": {
+          "n": 4,
+          "gap": 75.0,
+          "null": 50.0
+        },
+        "2026-W09": {
+          "n": 20,
+          "gap": 70.0,
+          "null": 45.0
+        },
+        "2026-W10": {
+          "n": 20,
+          "gap": 50.0,
+          "null": 40.0
+        },
+        "2026-W11": {
+          "n": 20,
+          "gap": 85.0,
+          "null": 40.0
+        },
+        "2026-W12": {
+          "n": 20,
+          "gap": 65.0,
+          "null": 70.0
+        },
+        "2026-W13": {
+          "n": 20,
+          "gap": 80.0,
+          "null": 50.0
+        },
+        "2026-W14": {
+          "n": 16,
+          "gap": 75.0,
+          "null": 50.0
+        },
+        "2026-W15": {
+          "n": 20,
+          "gap": 65.0,
+          "null": 60.0
+        },
+        "2026-W16": {
+          "n": 20,
+          "gap": 65.0,
+          "null": 50.0
+        },
+        "2026-W17": {
+          "n": 20,
+          "gap": 70.0,
+          "null": 35.0
+        },
+        "2026-W18": {
+          "n": 20,
+          "gap": 60.0,
+          "null": 45.0
+        },
+        "2026-W19": {
+          "n": 20,
+          "gap": 85.0,
+          "null": 55.0
+        },
+        "2026-W20": {
+          "n": 20,
+          "gap": 90.0,
+          "null": 55.0
+        },
+        "2026-W21": {
+          "n": 20,
+          "gap": 40.0,
+          "null": 50.0
+        },
+        "2026-W22": {
+          "n": 14,
+          "gap": 71.4,
+          "null": 42.9
+        }
+      },
+      "weekend_vs_weekday_anchor": {
+        "False": {
+          "n": 218,
+          "gap": 70.6
+        },
+        "True": {
+          "n": 56,
+          "gap": 64.3
+        }
+      },
+      "terciles_diagnostic": {
+        "copper": {
+          "bottom": {
+            "n": 23,
+            "direction": 69.6
+          },
+          "middle": {
+            "n": 22,
+            "direction": 59.1
+          },
+          "top": {
+            "n": 22,
+            "direction": 59.1
+          },
+          "abs_gap_cut_pct": [
+            0.332,
+            0.911
+          ],
+          "top_beats_bottom": false
+        },
+        "crude": {
+          "bottom": {
+            "n": 24,
+            "direction": 66.7
+          },
+          "middle": {
+            "n": 23,
+            "direction": 56.5
+          },
+          "top": {
+            "n": 23,
+            "direction": 78.3
+          },
+          "abs_gap_cut_pct": [
+            0.829,
+            1.918
+          ],
+          "top_beats_bottom": true
+        },
+        "gold": {
+          "bottom": {
+            "n": 23,
+            "direction": 69.6
+          },
+          "middle": {
+            "n": 22,
+            "direction": 54.5
+          },
+          "top": {
+            "n": 23,
+            "direction": 82.6
+          },
+          "abs_gap_cut_pct": [
+            0.411,
+            0.804
+          ],
+          "top_beats_bottom": true
+        },
+        "silver": {
+          "bottom": {
+            "n": 23,
+            "direction": 82.6
+          },
+          "middle": {
+            "n": 23,
+            "direction": 82.6
+          },
+          "top": {
+            "n": 23,
+            "direction": 69.6
+          },
+          "abs_gap_cut_pct": [
+            0.86,
+            1.9
+          ],
+          "top_beats_bottom": false
+        }
+      },
+      "gap_stats_pct": {
+        "copper": {
+          "median_abs": 0.613,
+          "median_abs_over_threshold": 0.409
+        },
+        "crude": {
+          "median_abs": 1.354,
+          "median_abs_over_threshold": 0.451
+        },
+        "gold": {
+          "median_abs": 0.613,
+          "median_abs_over_threshold": 0.409
+        },
+        "silver": {
+          "median_abs": 1.316,
+          "median_abs_over_threshold": 0.658
+        }
+      },
+      "anchor_lag_min": {
+        "median": 1.6666666666666667e-05,
+        "max": 25.000016666666667
+      },
+      "interval_hours": {
+        "median": 9.0,
+        "max": 81.0
+      },
+      "p0_sources": {
+        "settlement": 274
+      },
+      "signal_utc_range": [
+        "2026-02-20 03:00:00+00:00",
+        "2026-05-29 03:00:00+00:00"
+      ],
+      "screen": {
+        "C1_direction_ge_58": true,
+        "C2_minus_null_ge_8pp": true,
+        "C3_top_tercile_beats_bottom_ge_3_assets": false,
+        "pass": false
+      }
+    }
+  },
+  "decision": "collect more evidence"
+}

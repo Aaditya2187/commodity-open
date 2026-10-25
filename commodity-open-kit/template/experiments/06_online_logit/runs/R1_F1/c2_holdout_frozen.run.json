@@ -1,0 +1,118 @@
+{
+  "stem": "c2_holdout_frozen",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": true,
+    "out": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/R1_F1",
+    "start": "2026-04-01",
+    "end": "2026-05-22",
+    "train_end": "2026-04-01 03:00:00+00:00",
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "OnlineLogit",
+    "seed": 20261025,
+    "training_data_cutoff": "the train_end passed to fit(); no pretrained weights"
+  },
+  "pack": {
+    "root": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-04-01",
+      "end": "2026-05-22",
+      "train_end_utc": "2026-04-01T03:00:00+00:00"
+    },
+    "frozen": true,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 37,
+    "first_session": "2026-04-01",
+    "last_session": "2026-05-22",
+    "rows": 296,
+    "signals": 296,
+    "no_signals": 0,
+    "updates": 0,
+    "outcomes_delivered": 0,
+    "stopped_at": null,
+    "fit_seconds": 1.701,
+    "loop_seconds": 4.635
+  },
+  "rows": {
+    "rows": 296,
+    "signals": 296,
+    "no_signals": 0,
+    "by_horizon": {
+      "3": 148,
+      "5": 148
+    },
+    "by_asset": {
+      "copper": 74,
+      "crude": 74,
+      "gold": 74,
+      "silver": 74
+    },
+    "by_direction": {
+      "down": 173,
+      "up": 123
+    },
+    "no_signals_by_asset": {}
+  },
+  "fit": {
+    "spec": "ologit-v1",
+    "lambda": 1.0,
+    "update_mask": "gap",
+    "prior_var": 1.0,
+    "features": [
+      "intercept",
+      "gap",
+      "m5",
+      "m20"
+    ],
+    "train_end_utc": "2026-04-01T03:00:00+00:00",
+    "rows": {
+      "3": 91,
+      "5": 97
+    },
+    "w_h3": [
+      -0.214796,
+      1.888991,
+      0.102388,
+      -0.033171
+    ],
+    "first_label_utc_h3": "2026-02-20 03:00:00+00:00",
+    "last_label_signal_utc_h3": "2026-03-31 03:00:00+00:00",
+    "w_h5": [
+      -0.274708,
+      1.867034,
+      0.057951,
+      -0.048617
+    ],
+    "first_label_utc_h5": "2026-02-20 03:00:00+00:00",
+    "last_label_signal_utc_h5": "2026-03-31 03:00:00+00:00",
+    "state_digest": "88ba8e2ef0f9ea6a50d952b0bb54e980a0a9a70878134be288f8e1e69391d533"
+  },
+  "read_log": {
+    "path": "c2_holdout_frozen.readlog.jsonl",
+    "entries": 230
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 6.382,
+  "python": "3.13.7"
+}

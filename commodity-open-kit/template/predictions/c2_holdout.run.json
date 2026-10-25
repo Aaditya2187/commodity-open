@@ -1,0 +1,95 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "pack/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "./template/predictions",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "SwingForecaster",
+    "seed": 20260919,
+    "training_data_cutoff": "the train_end passed to fit(); no pretrained weights"
+  },
+  "pack": {
+    "root": "pack/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 832,
+    "signals": 832,
+    "no_signals": 0,
+    "updates": 101,
+    "outcomes_delivered": 822,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 5.033,
+    "loop_seconds": 164.402
+  },
+  "rows": {
+    "rows": 832,
+    "signals": 832,
+    "no_signals": 0,
+    "by_horizon": {
+      "5": 416,
+      "10": 416
+    },
+    "by_asset": {
+      "copper": 208,
+      "crude": 208,
+      "gold": 208,
+      "silver": 208
+    },
+    "by_direction": {
+      "down": 504,
+      "up": 328
+    },
+    "no_signals_by_asset": {}
+  },
+  "fit": {
+    "model": "SwingForecaster",
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "prior_keys": 16,
+    "assets": [
+      "gold",
+      "silver",
+      "copper",
+      "crude"
+    ]
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 731
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 169.48,
+  "python": "3.13.12"
+}

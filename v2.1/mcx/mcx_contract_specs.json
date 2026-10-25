@@ -1,0 +1,1406 @@
+{
+  "build": {
+    "command": "python -m swing_dataset.mcx build --from 2021-01-01 --refetch-empty-within-days 15",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "evidence": {
+    "mcx-circular-035-2022-crude-jul-2022-launch": {
+      "bytes": 124603,
+      "circular": "MCX/TRD/035/2022",
+      "fetched_at_utc": "2026-09-15T11:36:11.162037+00:00",
+      "issued": "2022-01-19",
+      "sha256": "cab5923191f0e3a44f391cfe5e26dee4dcfb08b3cbe0e4440d3a932f8e2ad177",
+      "title": "Commencement of Futures Trading in Crude Oil July 2022 Contract and LTP Based Spread Trading Facility in Crude Oil Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/january/circular-035-2022gu96cd101e-3576-4e70-963f-2f430665a57e.pdf?sfvrsn=29cc1919_0"
+    },
+    "mcx-circular-037-2021-crude-jul-2021-launch": {
+      "bytes": 224292,
+      "circular": "MCX/TRD/037/2021",
+      "fetched_at_utc": "2026-09-15T11:36:10.161929+00:00",
+      "issued": "2021-01-19",
+      "sha256": "c4bda9a9466e9b2e36edfc542716fc48e295f92625d6d041e766ddea0ece6001",
+      "title": "Commencement of Futures Trading in Crude Oil July 2021 Contract and LTP Based Spread Trading Facility in Crude Oil Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/january/circular-037-2021gu232a1d92-d296-44d7-b904-83be6ef6869f.pdf?sfvrsn=51aa0d03_0"
+    },
+    "mcx-circular-040-2026-gold-feb-2027-launch": {
+      "bytes": 225494,
+      "circular": "MCX/TRD/040/2026",
+      "fetched_at_utc": "2026-09-15T11:35:54.874758+00:00",
+      "issued": "2026-01-27",
+      "sha256": "3b2ad32a1d842b989d2f120b62a066ac1fd5a18c0941556cdbd9de3d90b90ffe",
+      "title": "Commencement of Futures Trading in Gold February 2027 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/january/circular---040---2026.pdf?sfvrsn=2518e4a0_3"
+    },
+    "mcx-circular-079-2022-gold-feb-2023-launch": {
+      "bytes": 270480,
+      "circular": "MCX/TRD/079/2022",
+      "fetched_at_utc": "2026-09-15T11:35:50.874468+00:00",
+      "issued": "2022-02-15",
+      "sha256": "2f5ad11249f8e17caeff36d7c45ddfe1217601ddc2fb0a3cf32f6530fd34c908",
+      "title": "Commencement of Futures Trading in Gold February 2023 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/february/circular-079-2022gu2a35c6ab-d4aa-4800-bf1c-9380ffa952b6.pdf?sfvrsn=f20b43a4_0"
+    },
+    "mcx-circular-086-2025-gold-feb-2026-launch": {
+      "bytes": 129885,
+      "circular": "MCX/TRD/086/2025",
+      "fetched_at_utc": "2026-09-15T11:35:53.874689+00:00",
+      "issued": "2025-02-14",
+      "sha256": "7b0d41126b302195183244260f0bef75e40aaaf770baebe5f95fb4214800adb6",
+      "title": "Commencement of Futures Trading in Gold February 2026 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/february/circular---086--2025gu3dba0482-0ffb-42aa-ad22-a9c6e12d7e6c.pdf?sfvrsn=cd04862e_0"
+    },
+    "mcx-circular-087-2021-gold-feb-2022-launch": {
+      "bytes": 267948,
+      "circular": "MCX/TRD/087/2021",
+      "fetched_at_utc": "2026-09-15T11:35:49.874383+00:00",
+      "issued": "2021-02-15",
+      "sha256": "e059484b1313935c0ea04894b2618d9bbe8d5d3d2eab6f7a034cc98029f7226e",
+      "title": "Commencement of Futures Trading in Gold February 2022 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/february/circular-087-2021gu8d2f6a98-7003-4478-b499-5218e65d60e4.pdf?sfvrsn=bb8018aa_0"
+    },
+    "mcx-circular-090-2026-silver-mar-2027-launch": {
+      "bytes": 298850,
+      "circular": "MCX/TRD/090/2026",
+      "fetched_at_utc": "2026-09-15T11:36:00.875242+00:00",
+      "issued": "2026-02-25",
+      "sha256": "349185afe2d978fc7547b5e5fa8fbbea5068e7527c7a43e19599830a73d554db",
+      "title": "Commencement Of Futures Trading In Silver March 2027 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/february/circular-090-2026gu85781.pdf?sfvrsn=48082b00_0"
+    },
+    "mcx-circular-093-2024-gold-feb-2025-launch": {
+      "bytes": 121034,
+      "circular": "MCX/TRD/093/2024",
+      "fetched_at_utc": "2026-09-15T11:35:52.874616+00:00",
+      "issued": "2024-02-15",
+      "sha256": "a1960fcdf20786a077f2d7e226a7ca504a82f6fd00efc707a865e51d0caf8a91",
+      "title": "Commencement of Futures Trading in Gold February 2025 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/february/circular-093-2024gud47e3f2c-82d8-42de-9fbb-5017620ff7af.pdf?sfvrsn=1c15a24e_0"
+    },
+    "mcx-circular-097-2020-gold-feb-2021-launch": {
+      "bytes": 514647,
+      "circular": "MCX/TRD/097/2020",
+      "fetched_at_utc": "2026-09-15T11:35:42.098141+00:00",
+      "issued": "2020-02-14",
+      "sha256": "8fbfe49001595003ff7e9b0c7aef7f951e6d596537e0ffc6741f0c1e03a50183",
+      "title": "Commencement of Futures Trading in Gold February 2021 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/february/cirular-097-2020guc71f52c1-94ca-4067-bd3a-b79d3262dad1.pdf?sfvrsn=cad5ad39_0"
+    },
+    "mcx-circular-102-2023-gold-feb-2024-launch": {
+      "bytes": 270835,
+      "circular": "MCX/TRD/102/2023",
+      "fetched_at_utc": "2026-09-15T11:35:51.874540+00:00",
+      "issued": "2023-02-15",
+      "sha256": "6a5fd4e41408f4142a57f9168658807763bc00e154f7be38e82939e0312c99ba",
+      "title": "Commencement of Futures Trading in Gold February 2024 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/february/circular---102-2023gu5f0edfb2-9257-4dc2-bb64-ee1c03bddb55.pdf?sfvrsn=956768e0_0"
+    },
+    "mcx-circular-102-2025-modification-aluminium-copper-futures": {
+      "bytes": 647472,
+      "circular": "MCX/TRD/102/2025",
+      "fetched_at_utc": "2026-09-15T11:33:25.141587+00:00",
+      "issued": "2025-02-21",
+      "sha256": "c94976d808c22ba08e78e7f7ee5b4c32e1758f33920c59f6911ec95b9e351011",
+      "title": "Modification in Aluminium, Aluminium Mini and Copper Futures Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/february/circular-102---2025gu82bda2c9-1d52-457a-b980-c3d0aba52545.pdf?sfvrsn=d066160b_0"
+    },
+    "mcx-circular-113-2025-silver-mar-2026-launch": {
+      "bytes": 353096,
+      "circular": "MCX/TRD/113/2025",
+      "fetched_at_utc": "2026-09-15T11:35:59.875162+00:00",
+      "issued": "2025-02-28",
+      "sha256": "8a048039226edba43e1d1f362187eb79e807f572ce5bcf1040cdcf5f2b6f6bbe",
+      "title": "Commencement of Futures Trading in Silver March 2026 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/february/circular---113-2025gu86730caf-4706-4a6e-8b33-7209d445fa48.pdf?sfvrsn=6403980_0"
+    },
+    "mcx-circular-140-2023-silver-launch-calendar-2024": {
+      "bytes": 283819,
+      "circular": "MCX/TRD/140/2023",
+      "fetched_at_utc": "2026-09-15T11:33:29.141882+00:00",
+      "issued": "2023-02-28",
+      "sha256": "18ee58c7da8cc0b330017ad0673dc70b199ec31b44f9d317788f040757e66aef",
+      "title": "Launch calendar for Silver Futures contracts for calendar year 2024",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/february/circular-140-2023guab8f029f-f623-46fc-a46f-9fa742923b28.pdf?sfvrsn=4cf75930_0"
+    },
+    "mcx-circular-149-2024-silver-mar-2025-launch": {
+      "bytes": 120752,
+      "circular": "MCX/TRD/149/2024",
+      "fetched_at_utc": "2026-09-15T11:35:58.875085+00:00",
+      "issued": "2024-03-15",
+      "sha256": "94e800dcd6068aee8ad282855705e939425cc8a1ce50248b7aee0788e1aae15c",
+      "title": "Commencement of Futures Trading in Silver March 2025 Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/march/circular-149-2024guaacea502-a6f7-4f26-b46f-4443b21d5ca8.pdf?sfvrsn=864c3464_0"
+    },
+    "mcx-circular-151-2021-silver-mar-2022-launch": {
+      "bytes": 460632,
+      "circular": "MCX/TRD/151/2021",
+      "fetched_at_utc": "2026-09-15T11:35:56.874903+00:00",
+      "issued": "2021-03-15",
+      "sha256": "c143d7cee07ec22140758930d0c15778fa4ad0b3bbbbd33e82b28eb1b5e63988",
+      "title": "Commencement of Futures Trading in Silver March 2022 contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/march/circular-151-2021gu2a7637c0-b374-4747-b8e1-a0b43e21c3f1.pdf?sfvrsn=39441a44_0"
+    },
+    "mcx-circular-154-2022-silver-mar-2023-launch": {
+      "bytes": 283331,
+      "circular": "MCX/TRD/154/2022",
+      "fetched_at_utc": "2026-09-15T11:35:57.874975+00:00",
+      "issued": "2022-03-15",
+      "sha256": "cd721987561ced5aca2380c56ccd2e036c1b1f1eefb63860d0b757662289450c",
+      "title": "Commencement of Futures Trading in Silver March 2023 contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/march/mcxtrd1542022-silvergu2d7b4270-28da-4067-9b0d-a7c5e9c13b10.pdf?sfvrsn=d6235b36_0"
+    },
+    "mcx-circular-176-2020-silver-mar-2021-launch": {
+      "bytes": 421149,
+      "circular": "MCX/TRD/176/2020",
+      "fetched_at_utc": "2026-09-15T11:35:55.874833+00:00",
+      "issued": "2020-03-13",
+      "sha256": "14a2403f849f5f62b5529f133ee53cfa8ee46b7bc4508172be206ce10dbec954",
+      "title": "Commencement of futures trading in Silver March 2021 contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/march/circular-176-2020gub16499df-a855-4a73-8a6e-d39b8aea7382.pdf?sfvrsn=3f5cdf2c_0"
+    },
+    "mcx-circular-200-2021-base-metals-aug-2021-launch": {
+      "bytes": 635833,
+      "circular": "MCX/TRD/200/2021",
+      "fetched_at_utc": "2026-09-15T11:36:01.875317+00:00",
+      "issued": "2021-03-31",
+      "sha256": "faf69913aa1a4ff87cff08a0f97f749d5063ddaed899a581763e516f4e4ed147",
+      "title": "Commencement of Futures Trading in Aluminium, Copper, Lead, Nickel and Zinc August 2021 Futures contract200",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/march/circular-200-2021guef459e40-0f4a-4f48-8db1-dfad819d986c.pdf?sfvrsn=c4434d4_0"
+    },
+    "mcx-circular-319-2025-crude-jan-2026-launch": {
+      "bytes": 171175,
+      "circular": "MCX/TRD/319/2025",
+      "fetched_at_utc": "2026-09-15T11:36:15.162404+00:00",
+      "issued": "2025-06-27",
+      "sha256": "ddab383c9554d6bd634263c551bae5b30d64d99ff170f989f495f89a3ec46dc3",
+      "title": "Commencement of Futures Trading in Crude Oil January 2026 and Crude Oil Mini January 2026 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/june/circular---319--2025gu1d376842-57a0-4962-8528-040e570293ba.pdf?sfvrsn=36c4fe9f_0"
+    },
+    "mcx-circular-364-2024-staggered-delivery-period": {
+      "bytes": 261550,
+      "circular": "MCX/PMT/364/2024",
+      "fetched_at_utc": "2026-09-15T11:38:22.710746+00:00",
+      "issued": "2024-05-31",
+      "sha256": "0c857432b2214c994e4df1f287146080fde828a8fec3d09d134bb075631a5c7b",
+      "title": "Modification in Staggered Delivery Period in Commodity Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/may/mcxpmt3642024-modification-in-staggered-delivery-periodgu85ab8249-5483-478c-a3de-7e9387426568.pdf?sfvrsn=aae90037_0"
+    },
+    "mcx-circular-370-2026-crude-jan-2027-launch": {
+      "bytes": 155377,
+      "circular": "MCX/TRD/370/2026",
+      "fetched_at_utc": "2026-09-15T11:36:16.162471+00:00",
+      "issued": "2026-06-29",
+      "sha256": "327aa9fdfdd19c25977f73ba6845df090ac9ea3b2d127f4c78f79114e6543568",
+      "title": "Commencement of Futures Trading in Crude Oil and Crude Oil Mini January 2027 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/june/circular---370---2026.pdf?sfvrsn=a2d63419_1"
+    },
+    "mcx-circular-372-2025-modification-copper-futures": {
+      "bytes": 220057,
+      "circular": "MCX/TRD/372/2025",
+      "fetched_at_utc": "2026-09-15T11:33:26.141659+00:00",
+      "issued": "2025-07-30",
+      "sha256": "b0d33431de34ec4d39efb966072dceece56b3b504bc6ecea15dc8113f9b9bb92",
+      "title": "Modification in Copper Futures Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/july/circular---372--2025guc9526803-b46d-43dc-8f9c-3a97beb58efb.pdf?sfvrsn=9746fd07_0"
+    },
+    "mcx-circular-383-2025-staggered-delivery-period": {
+      "bytes": 553796,
+      "circular": "MCX/TRD/383/2025",
+      "fetched_at_utc": "2026-09-15T11:38:29.030599+00:00",
+      "issued": "2025-08-04",
+      "sha256": "390cb699d71b539d2b0862e1808dee367da8e64341483cf601387dda1886f23b",
+      "title": "Modification in Staggered Delivery Period in Commodity Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/august/circular-383---2025gu531d45e0-4f3f-424b-9478-2cb7b542de87.pdf?sfvrsn=b636aaba_0"
+    },
+    "mcx-circular-425-2023-crude-launch-calendar-2024": {
+      "bytes": 146795,
+      "circular": "MCX/TRD/425/2023",
+      "fetched_at_utc": "2026-09-15T11:33:30.141955+00:00",
+      "issued": "2023-06-30",
+      "sha256": "8e76708cfabf118e7d9aae66e4414445c7fc161efcf6476874ecc81d27bb958e",
+      "title": "Launch calendar for Crude Oil Futures Contracts for calendar year 2024 and LTP Based Spread Trading Facility in Crude Oil Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/june/circular-425-2023gudaf05650-158b-45ef-b05d-b0cf66a8bfe8.pdf?sfvrsn=7916ca4e_0"
+    },
+    "mcx-circular-479-2024-crude-jan-2025-launch": {
+      "bytes": 116497,
+      "circular": "MCX/TRD/479/2024",
+      "fetched_at_utc": "2026-09-15T11:36:14.162296+00:00",
+      "issued": "2024-07-19",
+      "sha256": "87bf205364f641ea62a3907ee7bd0a28646a50e7c2a6ec990e7e1ff0a0d90e59",
+      "title": "Commencement of Futures Trading in Crude Oil and Crude Oil Mini January 2025 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/july/circular-479-2024gue2d6b584-5b04-4249-879a-b7bec478a6b2.pdf?sfvrsn=3a2e2c3c_0"
+    },
+    "mcx-circular-479-2026-base-metals-launch-calendar-modification": {
+      "bytes": 688754,
+      "circular": "MCX/TRD/479/2026",
+      "fetched_at_utc": "2026-09-15T11:36:08.161778+00:00",
+      "issued": "2026-08-21",
+      "sha256": "55b07f9effdc4dd653015e9c80eab3bcb54ea5229d498793daded2f284f8fcd0",
+      "title": "Modification in the Contract Launch Calendar of Aluminium Mini, Aluminium, Copper, Zinc Mini and Zinc Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/august/circular-479-2026.pdf?sfvrsn=594fa21e_1"
+    },
+    "mcx-circular-485-2026-crude-launch-calendar-modification": {
+      "bytes": 374765,
+      "circular": "MCX/TRD/485/2026",
+      "fetched_at_utc": "2026-09-15T11:36:17.162553+00:00",
+      "issued": "2026-08-26",
+      "sha256": "4f08681d87bc51e57c33cf5294a9ce1d70d5aedd1ae57a56c91855f8cf901931",
+      "title": "Modification in Contract Launch Calendar of Crude Oil and Crude Oil Mini Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2026/august/circular-485-2026.pdf?sfvrsn=ef669401_1"
+    },
+    "mcx-circular-509-2020-crude-jan-2021-launch": {
+      "bytes": 252010,
+      "circular": "MCX/TRD/509/2020",
+      "fetched_at_utc": "2026-09-15T11:36:09.161849+00:00",
+      "issued": "2020-07-20",
+      "sha256": "ddc5635f9f6a19f356c5dca2471bfb73af6e8e4a4b42884b602a1f3a0d89a11d",
+      "title": "Commencement of Futures Trading in Crude Oil January 2021 Contract and LTP Based Spread Trading Facility in Crude Oil Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/july/circular-509-2020gu1143f8bb-1145-420f-b088-ccb6de425a27.pdf?sfvrsn=eb30b2e1_0"
+    },
+    "mcx-circular-559-2021-copper-jan-2022-launch": {
+      "bytes": 455717,
+      "circular": "MCX/TRD/559/2021",
+      "fetched_at_utc": "2026-09-15T11:33:27.141728+00:00",
+      "issued": "2021-08-31",
+      "sha256": "3ac235ab742c34b6bcc20c8d9cbb1a65014fc27571a41b5af316482fb7893e88",
+      "title": "Commencement of Futures Trading in Copper (2500 Kilograms) January 2022 Contract and LTP Based Spread Trading Facility in Copper Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/august/circular-559-2021gu5e22d32b-a20a-4014-afbb-a9e895d33c9e.pdf?sfvrsn=a3361308_0"
+    },
+    "mcx-circular-599-2022-crude-apr-2023-launch": {
+      "bytes": 148404,
+      "circular": "MCX/TRD/599/2022",
+      "fetched_at_utc": "2026-09-15T11:36:12.162144+00:00",
+      "issued": "2022-10-19",
+      "sha256": "af92bcae472289d4f0ecf99fd796039aa9a9d79f1548bd9f954cdb0ae83b3c19",
+      "title": "Commencement of Futures Trading in Crude Oil April 2023 Contract and LTP Based Spread Trading Facility in Crude Oil Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/october/circular-599-2022gud12231fd-61e6-4b04-bef2-a3a493d8e3e1.pdf?sfvrsn=39118d73_0"
+    },
+    "mcx-circular-608-2024-staggered-delivery-period": {
+      "bytes": 398874,
+      "circular": "MCX/TRD/608/2024",
+      "fetched_at_utc": "2026-09-15T11:38:27.030472+00:00",
+      "issued": "2024-09-17",
+      "sha256": "8ad1cd1830cffcba3943eadd79ba78c8623df1871732feac6701186846ba95c9",
+      "title": "Modification in Staggered Delivery Period in Commodity Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/about-us/mcxtrd6082024-modification-in-staggered-delivery-period-in-commodity-futures-contracts.pdf?sfvrsn=4f0b747d_1"
+    },
+    "mcx-circular-627-2020-copper-jan-2021-launch": {
+      "bytes": 434798,
+      "circular": "MCX/TRD/627/2020",
+      "fetched_at_utc": "2026-09-15T11:33:28.141797+00:00",
+      "issued": "2020-08-31",
+      "sha256": "95d596d0b2472b634f7af0f6a9b7b4d4a316000b5055156885af6ed600b746b1",
+      "title": "Commencement of Futures Trading in Copper (2500 Kilograms) January 2021 Contract and LTP Based Spread Trading Facility in Copper Futures Contracts627",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2020/august/circular-627-2020gu37068986-8028-41e5-b84d-89be6f56882b.pdf?sfvrsn=b898da56_0"
+    },
+    "mcx-circular-646-2024-staggered-delivery-period": {
+      "bytes": 449040,
+      "circular": "MCX/TRD/646/2024",
+      "fetched_at_utc": "2026-09-15T11:38:28.030530+00:00",
+      "issued": "2024-09-27",
+      "sha256": "de1b4d12d5cfa1c63a54bffd576dfca1621d3931ef084fa3ae83aab16c1fec9a",
+      "title": "Modification in Staggered Delivery Period in Commodity Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/september/circular-646-2024gu13a181e9-74b0-45b6-b278-efa22a3547c5.pdf?sfvrsn=d016cbbe_0"
+    },
+    "mcx-circular-655-2025-base-metals-may-2026-launch": {
+      "bytes": 810585,
+      "circular": "MCX/TRD/655/2025",
+      "fetched_at_utc": "2026-09-15T11:36:06.875676+00:00",
+      "issued": "2025-12-23",
+      "sha256": "c9be7aa23e023f94efd0a742892356d6a3519611703fa28b3b67599bbe3529b9",
+      "title": "Commencement Of Futures Trading In Aluminium Mini Aluminium Copper Lead Mini Lead Nickel Zinc Mini And Zinc May 2026 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2025/december/circular-655---2025gu49716.pdf?sfvrsn=9bbe8512_0"
+    },
+    "mcx-circular-679-2023-crude-jan-feb-2024-launch": {
+      "bytes": 120693,
+      "circular": "MCX/TRD/679/2023",
+      "fetched_at_utc": "2026-09-15T11:36:13.162217+00:00",
+      "issued": "2023-10-08",
+      "sha256": "7c074f459aed10022d8be5d0fd4d7cd53079e5f8910e75a3ccbeedeb70c01413",
+      "title": "Commencement of Futures Trading in Crude Oil and Crude Oil Mini January and February 2024 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/october/circular-679-2023gu10951dbb-2583-4417-93f1-c8ef7cafb2df.pdf?sfvrsn=31c8c7cc_0"
+    },
+    "mcx-circular-680-2023-base-metals-jan-feb-2024-launch": {
+      "bytes": 128804,
+      "circular": "MCX/TRD/680/2023",
+      "fetched_at_utc": "2026-09-15T11:36:03.875499+00:00",
+      "issued": "2023-10-09",
+      "sha256": "8b10365da10b4821e7faf7fbcb0bae6c2d51f797dedca51c92511eb7679fe6ed",
+      "title": "Commencement of Futures Trading in Aluminium Mini, Aluminium, Copper, Nickel, Zinc Mini and Zinc January and February 2024 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/october/circular-680-2023guea45a411-0fc1-4cb8-a2a6-a0231df9907e.pdf?sfvrsn=58fca7b1_0"
+    },
+    "mcx-circular-754-2022-base-metals-may-2023-launch": {
+      "bytes": 373152,
+      "circular": "MCX/TRD/754/2022",
+      "fetched_at_utc": "2026-09-15T11:36:02.875425+00:00",
+      "issued": "2022-12-30",
+      "sha256": "3e8b88ac9190015c268e8271eff792d9ff278c931c39b35e12fc70394cde6f72",
+      "title": "Commencement of Futures Trading in Aluminium, Copper and Nickel May 2023 Futures Contracts and LTP Based Spread Trading Facility in Aluminium, Copper and Nickel Futures Contracts754",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2022/december/circular-754-2022gue7001f1a-e9cf-4c49-8d5a-4a9cf302d1b7.pdf?sfvrsn=62cdc7a9_0"
+    },
+    "mcx-circular-756-2023-modifications-gold-futures": {
+      "bytes": 282613,
+      "circular": "MCX/TRD/756/2023",
+      "fetched_at_utc": "2026-09-15T11:33:23.141390+00:00",
+      "issued": "2023-11-02",
+      "sha256": "2297822c244fd3a1e3c10cbee03c05d7795f577ebe014fd4a044bc722255d67e",
+      "title": "Modifications in Gold Futures Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/november/circular-756-2023gu26d95f36-9087-40c0-b2f1-6b84c0b21619.pdf?sfvrsn=fb6afcdb_0"
+    },
+    "mcx-circular-757-2023-modifications-silver-futures": {
+      "bytes": 589821,
+      "circular": "MCX/TRD/757/2023",
+      "fetched_at_utc": "2026-09-15T11:33:24.141507+00:00",
+      "issued": "2023-11-02",
+      "sha256": "96391e567d9cad2eed5aa33ed2c0b0c73b9ed8abfb31589547b10522e5601b68",
+      "title": "Modifications in Silver Futures Contract",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/november/circular-757-2023guee73332f-1a6f-4c98-8d0c-476803073c85.pdf?sfvrsn=fa215879_0"
+    },
+    "mcx-circular-777-2021-expiry-revision-silver-mini-micro-gold": {
+      "bytes": 121057,
+      "circular": "MCX/TRD/777/2021",
+      "fetched_at_utc": "2026-09-15T11:33:06.566180+00:00",
+      "issued": "2021-12-16",
+      "sha256": "a82cf5565168d9786fcc13efe9117e850e332fff263410f77f7e4d6ea497d935",
+      "title": "Revision in Expiry Dates of SILVER MINI, SILVER MICRO and GOLD Futures Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2021/december/circular-777-2021gu218b76cc-6c97-46eb-a243-f970112617c8.pdf?sfvrsn=ed496c1f_0"
+    },
+    "mcx-circular-857-2024-base-metals-may-2025-launch": {
+      "bytes": 415782,
+      "circular": "MCX/TRD/857/2024",
+      "fetched_at_utc": "2026-09-15T11:36:05.875605+00:00",
+      "issued": "2024-12-31",
+      "sha256": "db7b9325710268c8a0dfad687fc9b1ced7b4c62ab65a4c719758bbcd272b41df",
+      "title": "Commencement of Futures Trading in Aluminium Mini, Aluminium, Copper, Lead Mini, Lead, Nickel, Zinc Mini and Zinc May 2025 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2024/december/circular-857-2024gu801e1e8a-9496-4972-b4c0-3f25676d982f.pdf?sfvrsn=3e3d31cc_0"
+    },
+    "mcx-circular-938-2023-base-metals-may-2024-launch": {
+      "bytes": 571407,
+      "circular": "MCX/TRD/938/2023",
+      "fetched_at_utc": "2026-09-15T11:36:04.875537+00:00",
+      "issued": "2023-12-29",
+      "sha256": "c5968ae22dd57e343a52c432f9ffae54467c16138882b9c9a50b2e7d0915233a",
+      "title": "Commencement of Futures Trading in Aluminium Mini, Aluminium, Copper, Lead Mini, Lead, Nickel, Zinc Mini and Zinc May 2024 Contracts",
+      "url": "https://www.mcxindia.com/docs/default-source/circulars/english/2023/december/circular-938-2023gu78072cbb-5d3f-4fbf-baf4-685e137c4614.pdf?sfvrsn=32ffebf7_0"
+    }
+  },
+  "generated_at_utc": "2026-10-23T21:57:52.637902+00:00",
+  "name": "mcx_contract_specs",
+  "notes": [
+    "Specifications apply per contract expiry as the exchange states them; several specification versions trade side by side while old contracts run off. observed_trading_range is computed from mcx_daily.parquet for the contracts each entry governs.",
+    "Margins, daily price limits and position limits are omitted; they are set by MCXCCL circulars and change more often than the contract terms.",
+    "No symbol rename occurred for these four products between 2021-01-01 and 2026-09-15; every Bhav Copy row uses GOLD, SILVER, COPPER, CRUDEOIL."
+  ],
+  "products": {
+    "copper": {
+      "contract_id_pattern": "mcx:COPPER<DD><MON><YY>FUT",
+      "entries": [
+        {
+          "applies_to_contracts": "contracts expiring up to and including December 2024 (the 2.5 MT contract in force throughout 2021)",
+          "changes_from_previous_entry": null,
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "1st day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": null,
+            "delivery_centre": "Ex-warehouse Thane district, Maharashtra",
+            "final_settlement": "Due Date Rate polled from the spot market per the annexure",
+            "logic": "Compulsory delivery",
+            "quality": "Grade A copper cathodes per the annexure",
+            "staggered_tender_period_trading_days": 5,
+            "tender_rule": "Staggered delivery: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "2500 kg (2.5 MT) with tolerance limit of +/- 10%"
+          },
+          "effective_note": null,
+          "evidence_ids": [
+            "mcx-circular-627-2020-copper-jan-2021-launch",
+            "mcx-circular-200-2021-base-metals-aug-2021-launch",
+            "mcx-circular-559-2021-copper-jan-2022-launch",
+            "mcx-circular-754-2022-base-metals-may-2023-launch",
+            "mcx-circular-680-2023-base-metals-jan-feb-2024-launch",
+            "mcx-circular-938-2023-base-metals-may-2024-launch"
+          ],
+          "expiry_rule": "Last calendar day of the contract expiry month; if a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": null,
+            "last_expiry_month": "2024-12"
+          },
+          "listing_lead": "each contract launches on the 1st of the month four months before expiry (Contract Launch Calendar)",
+          "lot_size": {
+            "unit": "kg",
+            "value": 2500
+          },
+          "maximum_order_size": "70,000 kg (70 MT)",
+          "observed_trading_range": {
+            "first_session_date": "2021-01-01",
+            "last_session_date": "2024-12-31",
+            "rows": 4845
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "5 Paisa per kg",
+            "unit": "INR per kg",
+            "value": 0.05
+          },
+          "trading_unit": "2500 kg (2.5 MT)"
+        },
+        {
+          "applies_to_contracts": "January 2025 through June 2025 expiries",
+          "changes_from_previous_entry": "Staggered delivery tender period shortened from 5 to 3 trading days for base metals from the January 2025 expiry (MCX/TRD/646/2024); the annexure of that circular lists NCR, Chennai and Kolkata as additional delivery centres",
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "1st day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "National Capital Region (NCR)",
+              "Chennai district, Tamil Nadu",
+              "Kolkata district, West Bengal"
+            ],
+            "delivery_centre": "Ex-warehouse Thane district, Maharashtra",
+            "final_settlement": "Due Date Rate polled from the spot market per the annexure",
+            "logic": "Compulsory delivery",
+            "quality": "Grade A copper cathodes per the annexure",
+            "staggered_tender_period_trading_days": 3,
+            "tender_rule": "Staggered delivery: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "2500 kg (2.5 MT) with tolerance limit of +/- 10%"
+          },
+          "effective_note": "2024-09-27",
+          "evidence_ids": [
+            "mcx-circular-646-2024-staggered-delivery-period",
+            "mcx-circular-857-2024-base-metals-may-2025-launch"
+          ],
+          "expiry_rule": "Last calendar day of the contract expiry month; if a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2025-01",
+            "last_expiry_month": "2025-06"
+          },
+          "listing_lead": "each contract launches on the 1st of the month four months before expiry (Contract Launch Calendar)",
+          "lot_size": {
+            "unit": "kg",
+            "value": 2500
+          },
+          "maximum_order_size": "70,000 kg (70 MT)",
+          "observed_trading_range": {
+            "first_session_date": "2024-09-02",
+            "last_session_date": "2025-06-30",
+            "rows": 643
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "5 Paisa per kg",
+            "unit": "INR per kg",
+            "value": 0.05
+          },
+          "trading_unit": "2500 kg (2.5 MT)"
+        },
+        {
+          "applies_to_contracts": "July 2025 through November 2025 expiries",
+          "changes_from_previous_entry": "Quality specifications, shape and additional deliverable grade revised for the Ministry of Mines Quality Control Orders, w.e.f. 2025-03-03 for July 2025 and onwards expiries (MCX/TRD/102/2025)",
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "1st day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "National Capital Region (NCR)",
+              "Chennai district, Tamil Nadu",
+              "Kolkata district, West Bengal"
+            ],
+            "delivery_centre": "Ex-warehouse Thane district, Maharashtra",
+            "final_settlement": "Due Date Rate polled from the spot market per the annexure",
+            "logic": "Compulsory delivery",
+            "quality": "Grade A copper cathodes per the annexure",
+            "staggered_tender_period_trading_days": 3,
+            "tender_rule": "Staggered delivery: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "2500 kg (2.5 MT) with tolerance limit of +/- 10%"
+          },
+          "effective_note": "2025-03-03",
+          "evidence_ids": [
+            "mcx-circular-102-2025-modification-aluminium-copper-futures"
+          ],
+          "expiry_rule": "Last calendar day of the contract expiry month; if a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2025-07",
+            "last_expiry_month": "2025-11"
+          },
+          "listing_lead": "each contract launches on the 1st of the month four months before expiry (Contract Launch Calendar)",
+          "lot_size": {
+            "unit": "kg",
+            "value": 2500
+          },
+          "maximum_order_size": "70,000 kg (70 MT)",
+          "observed_trading_range": {
+            "first_session_date": "2025-03-03",
+            "last_session_date": "2025-11-28",
+            "rows": 538
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "5 Paisa per kg",
+            "unit": "INR per kg",
+            "value": 0.05
+          },
+          "trading_unit": "2500 kg (2.5 MT)"
+        },
+        {
+          "applies_to_contracts": "December 2025 expiry and onwards",
+          "changes_from_previous_entry": "Additional delivery centres removed (MCX/TRD/372/2025, w.e.f. 2025-08-11). From 2026-09-01 the launch calendar adds far-dated M6/M9/M12 contracts alongside the M4 monthly listing (MCX/TRD/479/2026)",
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "1st day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": null,
+            "delivery_centre": "Ex-warehouse Thane district, Maharashtra",
+            "final_settlement": "Due Date Rate polled from the spot market per the annexure",
+            "logic": "Compulsory delivery",
+            "quality": "Grade A copper cathodes per the annexure",
+            "staggered_tender_period_trading_days": 3,
+            "tender_rule": "Staggered delivery: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "2500 kg (2.5 MT) with tolerance limit of +/- 10%"
+          },
+          "effective_note": "2025-08-11",
+          "evidence_ids": [
+            "mcx-circular-372-2025-modification-copper-futures",
+            "mcx-circular-655-2025-base-metals-may-2026-launch",
+            "mcx-circular-479-2026-base-metals-launch-calendar-modification"
+          ],
+          "expiry_rule": "Last calendar day of the contract expiry month; if a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2025-12",
+            "last_expiry_month": null
+          },
+          "listing_lead": "each contract launches on the 1st of the month four months before expiry (Contract Launch Calendar)",
+          "lot_size": {
+            "unit": "kg",
+            "value": 2500
+          },
+          "maximum_order_size": "70,000 kg (70 MT)",
+          "observed_trading_range": {
+            "first_session_date": "2025-08-01",
+            "last_session_date": "2026-10-23",
+            "rows": 1423
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "5 Paisa per kg",
+            "unit": "INR per kg",
+            "value": 0.05
+          },
+          "trading_unit": "2500 kg (2.5 MT)"
+        }
+      ],
+      "expiry_exceptions": [],
+      "instrument": "FUTCOM",
+      "symbol": "COPPER",
+      "symbol_renames": []
+    },
+    "crude": {
+      "contract_id_pattern": "mcx:CRUDEOIL<DD><MON><YY>FUT",
+      "entries": [
+        {
+          "applies_to_contracts": "every contract expiring from January 2021 through February 2027; no clause of the specification changed between the January 2021 and January 2027 launch circulars",
+          "changes_from_previous_entry": null,
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "As per the Contract Launch Calendar (about six months before expiry, on the 19th to 22nd)",
+          "delivery": {
+            "additional_delivery_centres": null,
+            "delivery_centre": null,
+            "final_settlement": "Due Date Rate = NYMEX Crude Oil (CL) front-month settlement price on the MCX last trading day converted at the last available RBI USDINR reference rate, rounded to the nearest tick",
+            "logic": "Cash settled",
+            "quality": null,
+            "staggered_tender_period_trading_days": null,
+            "tender_rule": "No delivery; the contract is settled in cash",
+            "unit": null
+          },
+          "effective_note": null,
+          "evidence_ids": [
+            "mcx-circular-509-2020-crude-jan-2021-launch",
+            "mcx-circular-037-2021-crude-jul-2021-launch",
+            "mcx-circular-035-2022-crude-jul-2022-launch",
+            "mcx-circular-599-2022-crude-apr-2023-launch",
+            "mcx-circular-425-2023-crude-launch-calendar-2024",
+            "mcx-circular-679-2023-crude-jan-feb-2024-launch",
+            "mcx-circular-479-2024-crude-jan-2025-launch",
+            "mcx-circular-319-2025-crude-jan-2026-launch",
+            "mcx-circular-370-2026-crude-jan-2027-launch"
+          ],
+          "expiry_rule": "As per the Contract Launch Calendar published with each launch circular. The dated calendars captured here put every expiry between the 16th and the 21st of the contract month, one exchange business day before the NYMEX CL front-month expiry; the realised expiry of every contract is the expiry_date column of mcx_daily.parquet",
+          "expiry_window": {
+            "first_expiry_month": null,
+            "last_expiry_month": "2027-02"
+          },
+          "listing_lead": "six monthly contracts listed at any time (M1 to M6) until 2026-09-10",
+          "lot_size": {
+            "unit": "barrels",
+            "value": 100
+          },
+          "maximum_order_size": "10,000 barrels",
+          "observed_trading_range": {
+            "first_session_date": "2021-01-01",
+            "last_session_date": "2026-10-23",
+            "rows": 8754
+          },
+          "quotation": "INR per barrel",
+          "quotation_base_value": "1 barrel",
+          "tick_size": {
+            "as_printed": "Re. 1",
+            "unit": "INR per barrel",
+            "value": 1.0
+          },
+          "trading_unit": "100 barrels"
+        },
+        {
+          "applies_to_contracts": "launch calendar in force from 2026-09-10: monthly M6 listings plus far-dated M9, M12, M15 and M18 contracts (first far-dated expiries 21 June 2027, 20 September 2027, 17 December 2027, 20 March 2028)",
+          "changes_from_previous_entry": "Contract launch calendar modified to add four far-dated contracts (MCX/TRD/485/2026); trading unit, tick, quotation and cash settlement unchanged",
+          "contract_months": [
+            "every month"
+          ],
+          "contract_start_rule": "As per the Contract Launch Calendar (about six months before expiry, on the 19th to 22nd)",
+          "delivery": {
+            "additional_delivery_centres": null,
+            "delivery_centre": null,
+            "final_settlement": "Due Date Rate = NYMEX Crude Oil (CL) front-month settlement price on the MCX last trading day converted at the last available RBI USDINR reference rate, rounded to the nearest tick",
+            "logic": "Cash settled",
+            "quality": null,
+            "staggered_tender_period_trading_days": null,
+            "tender_rule": "No delivery; the contract is settled in cash",
+            "unit": null
+          },
+          "effective_note": "2026-09-10",
+          "evidence_ids": [
+            "mcx-circular-485-2026-crude-launch-calendar-modification"
+          ],
+          "expiry_rule": "As per the Contract Launch Calendar published with each launch circular. The dated calendars captured here put every expiry between the 16th and the 21st of the contract month, one exchange business day before the NYMEX CL front-month expiry; the realised expiry of every contract is the expiry_date column of mcx_daily.parquet",
+          "expiry_window": {
+            "first_expiry_month": "2027-03",
+            "last_expiry_month": null
+          },
+          "listing_lead": "six monthly contracts listed at any time (M1 to M6) until 2026-09-10",
+          "lot_size": {
+            "unit": "barrels",
+            "value": 100
+          },
+          "maximum_order_size": "10,000 barrels",
+          "observed_trading_range": {
+            "first_session_date": "2026-09-10",
+            "last_session_date": "2026-10-23",
+            "rows": 151
+          },
+          "quotation": "INR per barrel",
+          "quotation_base_value": "1 barrel",
+          "tick_size": {
+            "as_printed": "Re. 1",
+            "unit": "INR per barrel",
+            "value": 1.0
+          },
+          "trading_unit": "100 barrels"
+        }
+      ],
+      "expiry_calendars": {
+        "2021": {
+          "expiries": {
+            "2021-01": "2021-01-19",
+            "2021-02": "2021-02-19",
+            "2021-03": "2021-03-19",
+            "2021-04": "2021-04-19",
+            "2021-05": "2021-05-19",
+            "2021-06": "2021-06-21",
+            "2021-07": "2021-07-19",
+            "2021-08": "2021-08-19",
+            "2021-09": "2021-09-20",
+            "2021-10": "2021-10-19",
+            "2021-11": "2021-11-18",
+            "2021-12": "2021-12-17"
+          },
+          "source": "mcx-circular-509-2020-crude-jan-2021-launch"
+        },
+        "2024": {
+          "expiries": {
+            "2024-01": "2024-01-19",
+            "2024-02": "2024-02-16",
+            "2024-03": "2024-03-19",
+            "2024-04": "2024-04-19",
+            "2024-05": "2024-05-20",
+            "2024-06": "2024-06-18",
+            "2024-07": "2024-07-19",
+            "2024-08": "2024-08-19",
+            "2024-09": "2024-09-19",
+            "2024-10": "2024-10-21"
+          },
+          "source": "mcx-circular-425-2023-crude-launch-calendar-2024"
+        },
+        "2026": {
+          "expiries": {
+            "2026-01": "2026-01-16",
+            "2026-02": "2026-02-19",
+            "2026-03": "2026-03-19",
+            "2026-04": "2026-04-20",
+            "2026-05": "2026-05-18",
+            "2026-06": "2026-06-18",
+            "2026-07": "2026-07-20",
+            "2026-08": "2026-08-19",
+            "2026-09": "2026-09-21",
+            "2026-10": "2026-10-19",
+            "2026-11": "2026-11-19",
+            "2026-12": "2026-12-18"
+          },
+          "source": "mcx-circular-319-2025-crude-jan-2026-launch"
+        }
+      },
+      "expiry_exceptions": [],
+      "instrument": "FUTCOM",
+      "symbol": "CRUDEOIL",
+      "symbol_renames": []
+    },
+    "gold": {
+      "contract_id_pattern": "mcx:GOLD<DD><MON><YY>FUT",
+      "entries": [
+        {
+          "applies_to_contracts": "contracts expiring up to and including February 2024",
+          "changes_from_previous_entry": null,
+          "contract_months": [
+            "Feb",
+            "Apr",
+            "Jun",
+            "Aug",
+            "Oct",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Chennai",
+              "Hyderabad",
+              "Kochi",
+              "Bengaluru",
+              "Kolkata",
+              "Mumbai",
+              "New Delhi"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "995 purity, serially numbered bars from LBMA-approved or MCX-approved suppliers; 999 purity accepted at a proportionate premium",
+            "staggered_tender_period_trading_days": 5,
+            "tender_rule": "Staggered delivery: seller/buyer with open positions may submit delivery intention on any tender day; on expiry all open positions are marked for compulsory delivery; delivery order rate on tender days is the closing price (weighted average of the last half hour), on expiry the Due Date Rate",
+            "unit": "1 kg"
+          },
+          "effective_note": null,
+          "evidence_ids": [
+            "mcx-circular-097-2020-gold-feb-2021-launch",
+            "mcx-circular-087-2021-gold-feb-2022-launch",
+            "mcx-circular-079-2022-gold-feb-2023-launch",
+            "mcx-circular-102-2023-gold-feb-2024-launch"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": null,
+            "last_expiry_month": "2024-02"
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 1
+          },
+          "maximum_order_size": "10 kg",
+          "observed_trading_range": {
+            "first_session_date": "2021-01-01",
+            "last_session_date": "2024-02-05",
+            "rows": 4046
+          },
+          "quotation": "INR per 10 grams",
+          "quotation_base_value": "10 grams",
+          "tick_size": {
+            "as_printed": "Re. 1 per 10 grams",
+            "unit": "INR per 10 grams",
+            "value": 1.0
+          },
+          "trading_unit": "1 kg"
+        },
+        {
+          "applies_to_contracts": "April 2024 through June 2026 expiries",
+          "changes_from_previous_entry": "Additional delivery centres reduced to Mumbai and New Delhi (MCX/TRD/756/2023, applicable w.e.f. 2023-11-13 for April 2024 and onwards expiries; no fresh positions in those contracts 2023-11-03 to 2023-11-10)",
+          "contract_months": [
+            "Feb",
+            "Apr",
+            "Jun",
+            "Aug",
+            "Oct",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Mumbai",
+              "New Delhi"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "995 purity, serially numbered bars from LBMA-approved or MCX-approved suppliers; 999 purity accepted at a proportionate premium",
+            "staggered_tender_period_trading_days": 5,
+            "tender_rule": "Staggered delivery: seller/buyer with open positions may submit delivery intention on any tender day; on expiry all open positions are marked for compulsory delivery; delivery order rate on tender days is the closing price (weighted average of the last half hour), on expiry the Due Date Rate",
+            "unit": "1 kg"
+          },
+          "effective_note": "2023-11-13",
+          "evidence_ids": [
+            "mcx-circular-756-2023-modifications-gold-futures",
+            "mcx-circular-093-2024-gold-feb-2025-launch",
+            "mcx-circular-086-2025-gold-feb-2026-launch"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2024-04",
+            "last_expiry_month": "2026-06"
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 1
+          },
+          "maximum_order_size": "10 kg",
+          "observed_trading_range": {
+            "first_session_date": "2023-04-17",
+            "last_session_date": "2026-06-05",
+            "rows": 3383
+          },
+          "quotation": "INR per 10 grams",
+          "quotation_base_value": "10 grams",
+          "tick_size": {
+            "as_printed": "Re. 1 per 10 grams",
+            "unit": "INR per 10 grams",
+            "value": 1.0
+          },
+          "trading_unit": "1 kg"
+        },
+        {
+          "applies_to_contracts": "August 2026 expiry and onwards",
+          "changes_from_previous_entry": "Staggered delivery tender period shortened from the last 5 to the last 3 trading days including expiry (MCX/TRD/383/2025 under SEBI circular SEBI/HO/MRD/MRD-PoD-1/P/CIR/2024/57)",
+          "contract_months": [
+            "Feb",
+            "Apr",
+            "Jun",
+            "Aug",
+            "Oct",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Mumbai",
+              "New Delhi"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "995 purity, serially numbered bars from LBMA-approved or MCX-approved suppliers; 999 purity accepted at a proportionate premium",
+            "staggered_tender_period_trading_days": 3,
+            "tender_rule": "Staggered delivery: seller/buyer with open positions may submit delivery intention on any tender day; on expiry all open positions are marked for compulsory delivery; delivery order rate on tender days is the closing price (weighted average of the last half hour), on expiry the Due Date Rate",
+            "unit": "1 kg"
+          },
+          "effective_note": "2025-08-04",
+          "evidence_ids": [
+            "mcx-circular-383-2025-staggered-delivery-period",
+            "mcx-circular-040-2026-gold-feb-2027-launch"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2026-08",
+            "last_expiry_month": null
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 1
+          },
+          "maximum_order_size": "10 kg",
+          "observed_trading_range": {
+            "first_session_date": "2025-08-18",
+            "last_session_date": "2026-10-23",
+            "rows": 1183
+          },
+          "quotation": "INR per 10 grams",
+          "quotation_base_value": "10 grams",
+          "tick_size": {
+            "as_printed": "Re. 1 per 10 grams",
+            "unit": "INR per 10 grams",
+            "value": 1.0
+          },
+          "trading_unit": "1 kg"
+        }
+      ],
+      "expiry_exceptions": [
+        {
+          "contract_id": "mcx:GOLD05OCT22FUT",
+          "evidence_ids": [
+            "mcx-circular-777-2021-expiry-revision-silver-mini-micro-gold"
+          ],
+          "printed_expiry": "2022-10-05",
+          "reason": "closure of the physical market; the market-watch expiry stayed 05-Oct-2022 while trading ended on the revised date",
+          "traded_until": "2022-10-04"
+        }
+      ],
+      "instrument": "FUTCOM",
+      "symbol": "GOLD",
+      "symbol_renames": []
+    },
+    "silver": {
+      "contract_id_pattern": "mcx:SILVER<DD><MON><YY>FUT",
+      "entries": [
+        {
+          "applies_to_contracts": "contracts expiring up to and including May 2024",
+          "changes_from_previous_entry": null,
+          "contract_months": [
+            "Mar",
+            "May",
+            "Jul",
+            "Sep",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Delhi",
+              "Chennai",
+              "Mumbai",
+              "Agra",
+              "Salem",
+              "Rajkot",
+              "Jaipur"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "999 purity per the annexure; MCX good delivery norms for BIS-standard silver apply",
+            "staggered_tender_period_trading_days": 5,
+            "tender_rule": "Staggered delivery as for gold: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "30 kg"
+          },
+          "effective_note": null,
+          "evidence_ids": [
+            "mcx-circular-176-2020-silver-mar-2021-launch",
+            "mcx-circular-151-2021-silver-mar-2022-launch",
+            "mcx-circular-154-2022-silver-mar-2023-launch",
+            "mcx-circular-140-2023-silver-launch-calendar-2024"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": null,
+            "last_expiry_month": "2024-05"
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 30
+          },
+          "maximum_order_size": "600 kg",
+          "observed_trading_range": {
+            "first_session_date": "2021-01-01",
+            "last_session_date": "2024-05-03",
+            "rows": 3682
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "Re. 1 per kg",
+            "unit": "INR per kg",
+            "value": 1.0
+          },
+          "trading_unit": "30 kg"
+        },
+        {
+          "applies_to_contracts": "July 2024 through July 2026 expiries",
+          "changes_from_previous_entry": "Additional delivery centres reduced to Mumbai and Delhi (MCX/TRD/757/2023, applicable w.e.f. 2023-11-13 for July 2024 and onwards expiries)",
+          "contract_months": [
+            "Mar",
+            "May",
+            "Jul",
+            "Sep",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Mumbai",
+              "Delhi"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "999 purity per the annexure; MCX good delivery norms for BIS-standard silver apply",
+            "staggered_tender_period_trading_days": 5,
+            "tender_rule": "Staggered delivery as for gold: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "30 kg"
+          },
+          "effective_note": "2023-11-13",
+          "evidence_ids": [
+            "mcx-circular-757-2023-modifications-silver-futures",
+            "mcx-circular-149-2024-silver-mar-2025-launch",
+            "mcx-circular-113-2025-silver-mar-2026-launch"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2024-07",
+            "last_expiry_month": "2026-07"
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 30
+          },
+          "maximum_order_size": "600 kg",
+          "observed_trading_range": {
+            "first_session_date": "2023-07-17",
+            "last_session_date": "2026-07-03",
+            "rows": 2694
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "Re. 1 per kg",
+            "unit": "INR per kg",
+            "value": 1.0
+          },
+          "trading_unit": "30 kg"
+        },
+        {
+          "applies_to_contracts": "September 2026 expiry and onwards",
+          "changes_from_previous_entry": "Staggered delivery tender period shortened from the last 5 to the last 3 trading days including expiry (MCX/TRD/383/2025)",
+          "contract_months": [
+            "Mar",
+            "May",
+            "Jul",
+            "Sep",
+            "Dec"
+          ],
+          "contract_start_rule": "16th day of contract launch month; if a holiday, the following working day",
+          "delivery": {
+            "additional_delivery_centres": [
+              "Mumbai",
+              "Delhi"
+            ],
+            "delivery_centre": "Designated clearinghouse facilities at Ahmedabad",
+            "final_settlement": "Due Date Rate = simple average of the last polled Ahmedabad spot prices on E0, E-1, E-2 (fallbacks as tabulated in the annexure)",
+            "logic": "Compulsory delivery",
+            "quality": "999 purity per the annexure; MCX good delivery norms for BIS-standard silver apply",
+            "staggered_tender_period_trading_days": 3,
+            "tender_rule": "Staggered delivery as for gold: intentions on any tender day, compulsory delivery of open positions on expiry, tender-day rate = closing price (weighted average of the last half hour), expiry rate = Due Date Rate",
+            "unit": "30 kg"
+          },
+          "effective_note": "2025-08-04",
+          "evidence_ids": [
+            "mcx-circular-383-2025-staggered-delivery-period",
+            "mcx-circular-090-2026-silver-mar-2027-launch"
+          ],
+          "expiry_rule": "5th day of the contract expiry month; if the 5th is a holiday, the preceding working day",
+          "expiry_window": {
+            "first_expiry_month": "2026-09",
+            "last_expiry_month": null
+          },
+          "listing_lead": "each contract launches twelve months before expiry, on the 16th of the same-named month",
+          "lot_size": {
+            "unit": "kg",
+            "value": 30
+          },
+          "maximum_order_size": "600 kg",
+          "observed_trading_range": {
+            "first_session_date": "2025-09-16",
+            "last_session_date": "2026-10-23",
+            "rows": 842
+          },
+          "quotation": "INR per kg",
+          "quotation_base_value": "1 kg",
+          "tick_size": {
+            "as_printed": "Re. 1 per kg",
+            "unit": "INR per kg",
+            "value": 1.0
+          },
+          "trading_unit": "30 kg"
+        }
+      ],
+      "expiry_exceptions": [],
+      "instrument": "FUTCOM",
+      "symbol": "SILVER",
+      "symbol_renames": []
+    }
+  },
+  "units_note": "Prices in mcx_daily.parquet are INR per quotation base value: GOLD per 10 grams, SILVER per kg, COPPER per kg, CRUDEOIL per barrel. Lot sizes are in the delivery unit (kg or barrels), the convention the broker scrip master also uses.",
+  "verification_2026": {
+    "all_consistent": true,
+    "contracts": [
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "last calendar day",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "30NOV2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "2500",
+          "name": "COPPER",
+          "symbol": "COPPER30NOV26FUT",
+          "tick_size": "5.000000",
+          "token": "578634"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 2500
+        },
+        "spec_tick_inr": 0.05,
+        "symbol": "COPPER30NOV26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "last calendar day",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "30OCT2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "2500",
+          "name": "COPPER",
+          "symbol": "COPPER30OCT26FUT",
+          "tick_size": "5.000000",
+          "token": "574829"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 2500
+        },
+        "spec_tick_inr": 0.05,
+        "symbol": "COPPER30OCT26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "last calendar day",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "30SEP2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "2500",
+          "name": "COPPER",
+          "symbol": "COPPER30SEP26FUT",
+          "tick_size": "5.000000",
+          "token": "571298"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 2500
+        },
+        "spec_tick_inr": 0.05,
+        "symbol": "COPPER30SEP26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "launch calendar",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "19NOV2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "100",
+          "name": "CRUDEOIL",
+          "symbol": "CRUDEOIL19NOV26FUT",
+          "tick_size": "100.000000",
+          "token": "573422"
+        },
+        "spec_lot_size": {
+          "unit": "barrels",
+          "value": 100
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "CRUDEOIL19NOV26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "launch calendar",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "19OCT2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "100",
+          "name": "CRUDEOIL",
+          "symbol": "CRUDEOIL19OCT26FUT",
+          "tick_size": "100.000000",
+          "token": "569900"
+        },
+        "spec_lot_size": {
+          "unit": "barrels",
+          "value": 100
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "CRUDEOIL19OCT26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "launch calendar",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "21SEP2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "100",
+          "name": "CRUDEOIL",
+          "symbol": "CRUDEOIL21SEP26FUT",
+          "tick_size": "100.000000",
+          "token": "565899"
+        },
+        "spec_lot_size": {
+          "unit": "barrels",
+          "value": 100
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "CRUDEOIL21SEP26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "04DEC2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "1",
+          "name": "GOLD",
+          "symbol": "GOLD04DEC26FUT",
+          "tick_size": "100.000000",
+          "token": "495213"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 1
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "GOLD04DEC26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "05FEB2027",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "1",
+          "name": "GOLD",
+          "symbol": "GOLD05FEB27FUT",
+          "tick_size": "100.000000",
+          "token": "559933"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 1
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "GOLD05FEB27FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "05OCT2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "1",
+          "name": "GOLD",
+          "symbol": "GOLD05OCT26FUT",
+          "tick_size": "100.000000",
+          "token": "483079"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 1
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "GOLD05OCT26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "04DEC2026",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "30",
+          "name": "SILVER",
+          "symbol": "SILVER04DEC26FUT",
+          "tick_size": "100.000000",
+          "token": "495214"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 30
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "SILVER04DEC26FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "05MAR2027",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "30",
+          "name": "SILVER",
+          "symbol": "SILVER05MAR27FUT",
+          "tick_size": "100.000000",
+          "token": "564619"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 30
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "SILVER05MAR27FUT",
+        "tick_size_matches_paise_over_100": true
+      },
+      {
+        "expiry_day_matches_rule": true,
+        "expiry_rule": "5th",
+        "lot_size_matches": true,
+        "scrip_master": {
+          "exch_seg": "MCX",
+          "expiry": "05MAY2027",
+          "instrumenttype": "FUTCOM",
+          "lotsize": "30",
+          "name": "SILVER",
+          "symbol": "SILVER05MAY27FUT",
+          "tick_size": "100.000000",
+          "token": "572772"
+        },
+        "spec_lot_size": {
+          "unit": "kg",
+          "value": 30
+        },
+        "spec_tick_inr": 1.0,
+        "symbol": "SILVER05MAY27FUT",
+        "tick_size_matches_paise_over_100": true
+      }
+    ],
+    "scrip_master_date": "2026-09-14"
+  }
+}

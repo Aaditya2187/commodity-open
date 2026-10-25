@@ -1,0 +1,161 @@
+{
+  "period": {
+    "name": "holdout",
+    "start": "2026-06-01",
+    "end": "2026-12-31",
+    "train_end_utc": "2026-06-01T03:00:00+00:00"
+  },
+  "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+  "swings": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1/swings/swings.parquet",
+  "challenges": {
+    "2": {
+      "report": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/R1_HOLDOUT/report_2_holdout.json",
+      "scores": {
+        "direction": {
+          "value": 56.3855421686747,
+          "ci_lo": 51.931902638424376,
+          "ci_hi": 60.78466638453943,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 100.0,
+          "ci_lo": 100.0,
+          "ci_hi": 100.0,
+          "level": 0.9,
+          "n": 468,
+          "n_episodes": 82,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 2.409638554216831,
+          "ci_lo": 0.0,
+          "ci_hi": 7.281553398058249,
+          "level": 0.9,
+          "n": 830,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 52.93172690763051,
+          "ci_lo": 51.041666666666686,
+          "ci_hi": 55.25111903461101,
+          "level": 0.9,
+          "n": 468,
+          "n_episodes": 84,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 832,
+        "invalid": 0,
+        "unmatured": 2,
+        "scored": 830,
+        "no_price": 0,
+        "ambiguous_bar": 2,
+        "scored_on_incomplete_window": 22,
+        "tick_priced": 524,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 468,
+        "in_band": 468,
+        "invalidation_pct_median": 1.75,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 832,
+        "valid_signal_rows": 832,
+        "invalid_signal_rows": 0,
+        "invalid_reasons": {},
+        "no_signal_rows": 0,
+        "valid_no_signal_rows": 0
+      },
+      "coverage": {
+        "floor": 0.9,
+        "rule": "a valid signal row or a valid no_signal row on at least 90 percent of the asset's sessions in the window",
+        "per_asset": {
+          "copper": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "crude": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "gold": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "silver": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          }
+        },
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "decision_records": 832,
+        "decision_records_outside_a_session": 0,
+        "met": true
+      },
+      "award_conditions": {
+        "period": "holdout",
+        "horizons_scored": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "minimum_success_rate": 70.0,
+        "success_rate": 52.93172690763051,
+        "success_rate_at_least_minimum": false,
+        "coverage_floor_met": true,
+        "minimum_met_this_period": false,
+        "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
+        "hard_conditions": {
+          "learning_beats_frozen": true,
+          "second_half_at_least_first_half": false,
+          "direction_at_least_minimum": false,
+          "frozen_beats_prevailing_null": true,
+          "learning_beats_prevailing_null": true
+        },
+        "hard_conditions_met_this_period": false
+      },
+      "baselines": {}
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "build": {
+    "built_utc": "2026-10-23T21:57:58.679689+00:00",
+    "command": "python -m swing_dataset.pack build --stage state",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "exact": "fetched_utc",
+      "published": "available_utc"
+    },
+    "file": "exact",
+    "row_column": "clock_quality",
+    "rows": {
+      "exact": 5792
+    },
+    "rule": "asof_utc is the availability clock by construction: every input row has its own availability clock strictly before asof_utc."
+  },
+  "columns": [
+    {
+      "meaning": "evaluation instant; every input row has availability clock < asof_utc",
+      "name": "asof_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= asof_utc: the row is knowable at asof_utc by construction",
+      "name": "fetched_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "= asof_utc",
+      "name": "available_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "exact (derived at asof from inputs strictly before it)",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "MCX session (IST civil date) the asof point belongs to",
+      "name": "session_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "asof as HH:MM IST",
+      "name": "asof_ist",
+      "type": "string"
+    },
+    {
+      "meaning": "gold | silver | copper | crude",
+      "name": "asset",
+      "type": "string"
+    },
+    {
+      "meaning": "contract of the last MCX quote before asof (null when none)",
+      "name": "contract_id",
+      "type": "string"
+    },
+    {
+      "meaning": "session_date of the last MCX quote before asof",
+      "name": "last_quote_session_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "feed status of that quote",
+      "name": "last_quote_status",
+      "type": "string"
+    },
+    {
+      "meaning": "ltp of the last MCX quote before asof, INR",
+      "name": "last_ltp",
+      "type": "double"
+    },
+    {
+      "meaning": "asof - exchange trade time of that quote (poll time for 2026-06-22..07-14 rows), seconds",
+      "name": "quote_age_s",
+      "type": "double"
+    },
+    {
+      "meaning": "mean of the last 20 available session settlements before the row's session, INR",
+      "name": "settle_mean_20s",
+      "type": "double"
+    },
+    {
+      "meaning": "sample std of the 19 log returns between those settlements",
+      "name": "settle_rv_20s",
+      "type": "double"
+    },
+    {
+      "meaning": "earliest session in the 20-settlement window",
+      "name": "settle_window_start_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "distinct contracts inside the window (1 = same-contract series)",
+      "name": "settle_contracts_n",
+      "type": "int64"
+    },
+    {
+      "meaning": "(last_ltp / settle_mean_20s - 1) / settle_rv_20s",
+      "name": "stretch_20s",
+      "type": "double"
+    },
+    {
+      "meaning": "open interest on the last MCX quote with OI before asof, lots",
+      "name": "oi_last",
+      "type": "double"
+    },
+    {
+      "meaning": "oi_last / oi at the end of the previous session (same contract) - 1",
+      "name": "oi_1s_change",
+      "type": "double"
+    },
+    {
+      "meaning": "oi_last / oi at the end of the 5th previous session (same contract) - 1",
+      "name": "oi_5s_change",
+      "type": "double"
+    },
+    {
+      "meaning": "liquidation | new_shorts | new_longs | short_covering | flat",
+      "name": "oi_price_class",
+      "type": "string"
+    },
+    {
+      "meaning": "(sum bid_qty_1..5 - sum ask_qty_1..5) / (sum bid + sum ask) on the last quote",
+      "name": "book_imbalance_5",
+      "type": "double"
+    },
+    {
+      "meaning": "(ask_px_1 - bid_px_1) / mid * 1e4 on the last quote",
+      "name": "spread_bp",
+      "type": "double"
+    },
+    {
+      "meaning": "session volume so far / mean of the same-clock-time volume over the previous 5 sessions (same contract)",
+      "name": "volume_pace_ratio",
+      "type": "double"
+    },
+    {
+      "meaning": "reference sessions used by volume_pace_ratio",
+      "name": "volume_pace_n",
+      "type": "int64"
+    },
+    {
+      "meaning": "(day_open - previous_close) / previous_close on the current session's last quote",
+      "name": "open_gap_pct",
+      "type": "double"
+    },
+    {
+      "meaning": "(day_open - last_ltp) / (day_open - previous_close) on the current session's last quote",
+      "name": "gap_absorption",
+      "type": "double"
+    },
+    {
+      "meaning": "ln(last_ltp / ltp one hour earlier), same session and contract",
+      "name": "mcx_ret_1h",
+      "type": "double"
+    },
+    {
+      "meaning": "ln(HL price / HL price one hour earlier)",
+      "name": "hl_ret_1h",
+      "type": "double"
+    },
+    {
+      "meaning": "sign(mcx_ret_1h) * sign(hl_ret_1h): 1 agree, -1 disagree, 0 either flat",
+      "name": "hl_agreement_1h",
+      "type": "double"
+    },
+    {
+      "meaning": "funding on the last HL quote before asof (must be < 15 min old)",
+      "name": "hl_funding",
+      "type": "double"
+    },
+    {
+      "meaning": "ln(comparator price / price one hour earlier)",
+      "name": "comex_ret_1h",
+      "type": "double"
+    },
+    {
+      "meaning": "sign(mcx_ret_1h) * sign(comex_ret_1h)",
+      "name": "comex_agreement_1h",
+      "type": "double"
+    },
+    {
+      "meaning": "comparator used: moneyplant:<symbol> or te:<symbol>",
+      "name": "comex_leg",
+      "type": "string"
+    },
+    {
+      "meaning": "true when last_ltp is null (not computable from data before asof)",
+      "name": "mask_last_ltp",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when stretch_20s is null (not computable from data before asof)",
+      "name": "mask_stretch_20s",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when oi_1s_change is null (not computable from data before asof)",
+      "name": "mask_oi_1s_change",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when oi_5s_change is null (not computable from data before asof)",
+      "name": "mask_oi_5s_change",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when oi_price_class is null (not computable from data before asof)",
+      "name": "mask_oi_price_class",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when book_imbalance_5 is null (not computable from data before asof)",
+      "name": "mask_book_imbalance_5",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when spread_bp is null (not computable from data before asof)",
+      "name": "mask_spread_bp",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when quote_age_s is null (not computable from data before asof)",
+      "name": "mask_quote_age_s",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when volume_pace_ratio is null (not computable from data before asof)",
+      "name": "mask_volume_pace_ratio",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when gap_absorption is null (not computable from data before asof)",
+      "name": "mask_gap_absorption",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when hl_agreement_1h is null (not computable from data before asof)",
+      "name": "mask_hl_agreement_1h",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when hl_funding is null (not computable from data before asof)",
+      "name": "mask_hl_funding",
+      "type": "bool"
+    },
+    {
+      "meaning": "true when comex_agreement_1h is null (not computable from data before asof)",
+      "name": "mask_comex_agreement_1h",
+      "type": "bool"
+    }
+  ],
+  "date_range": {
+    "column": "asof_utc",
+    "end": "2026-10-23T17:30:00+00:00",
+    "start": "2026-06-17T03:00:00+00:00"
+  },
+  "grid_points": 1448,
+  "mask_counts": {
+    "book_imbalance_5": 1924,
+    "comex_agreement_1h": 1492,
+    "gap_absorption": 1038,
+    "hl_agreement_1h": 1406,
+    "hl_funding": 272,
+    "last_ltp": 232,
+    "oi_1s_change": 574,
+    "oi_5s_change": 1527,
+    "oi_price_class": 574,
+    "quote_age_s": 232,
+    "spread_bp": 1924,
+    "stretch_20s": 232,
+    "volume_pace_ratio": 1780
+  },
+  "name": "mcx_hourly_state",
+  "notes": [
+    "grid: 2026-06-17 to 2026-10-23, asof points 08:30 IST plus hour boundaries inside the published session, truncated at the capture end 2026-10-23T17:59:59+00:00",
+    "sessions: mcx lane: build:mcx/mcx_sessions.parquet",
+    "settlements: {'settlements': 'mcx_daily', 'path': 'build:mcx/mcx_daily.parquet', 'sha256': '284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405', 'clock_column': 'available_utc', 'value_column': 'settlement', 'rows': 32184}",
+    "definitions.md beside this file states every formula, window, and mask rule"
+  ],
+  "rows": 5792,
+  "session_source": "mcx lane: build:mcx/mcx_sessions.parquet",
+  "settlement_source": {
+    "clock_column": "available_utc",
+    "path": "build:mcx/mcx_daily.parquet",
+    "rows": 32184,
+    "settlements": "mcx_daily",
+    "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+    "value_column": "settlement"
+  },
+  "sources": [
+    {
+      "bytes": 63989284,
+      "fetched_at_utc": "2026-10-23T21:54:11.583542+00:00",
+      "sha256": "5a5dedfca5c54f7e9cdff27cfa94db2ec245f409e1e8d23e4eec82b3dbe7ab07",
+      "url": "build:pack/quotes/mcx_quotes.parquet"
+    },
+    {
+      "bytes": 228159672,
+      "fetched_at_utc": "2026-10-23T21:54:52.747276+00:00",
+      "sha256": "4e4bf1f6acd5891788294a660bf2a06ea112a69574ecfe2137d3f6fbe2a05de0",
+      "url": "build:pack/quotes/hl_quotes.parquet"
+    },
+    {
+      "bytes": 88214910,
+      "fetched_at_utc": "2026-10-23T21:56:45.582353+00:00",
+      "sha256": "eb13f0557ad6ef5670e223b157f5430a2740c33eb517dbe3418c1de646cf16f9",
+      "url": "build:pack/quotes/moneyplant_quotes.parquet"
+    },
+    {
+      "bytes": 43469938,
+      "fetched_at_utc": "2026-10-23T21:57:22.602130+00:00",
+      "sha256": "8273604fb50a56dca1577a89e5f79382b00f62c7e56488a0587c548f4285801f",
+      "url": "build:pack/quotes/te_quotes.parquet"
+    },
+    {
+      "bytes": null,
+      "fetched_at_utc": null,
+      "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
+      "url": "mcx_daily.parquet"
+    }
+  ]
+}

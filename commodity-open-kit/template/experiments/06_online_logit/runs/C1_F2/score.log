@@ -1,0 +1,11 @@
+wrote /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/C1_F2/report_2_holdout.json
+Task 2, holdout window 2026-03-16 to 2026-05-22, horizons [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  direction 64.8 [59.3, 70.5]  depth 100.0 [100.0, 100.0]  improvement 23.0 [0.0, 59.0]
+  success rate 62.6 [53.9, 74.8] (minimum 70)
+  signals 392, invalid 0, unmatured 0, scored 392, no_signal 0
+  coverage (floor 0.90): copper=1.000 crude=1.000 gold=1.000 silver=1.000 -> met
+  hard conditions: learning_beats_frozen yes, second_half_at_least_first_half no, direction_at_least_minimum yes, frozen_beats_prevailing_null yes, learning_beats_prevailing_null yes
+  prevailing-direction null at the same instants: 49.7
+  minimum on the holdout period: NOT met (both periods and the section 4a gate decide the prize)
+
+summary: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/C1_F2/holdout_scores.json

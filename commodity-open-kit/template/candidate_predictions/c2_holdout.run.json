@@ -1,0 +1,93 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "candidate_predictions",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "SwingForecaster",
+    "seed": 20261024,
+    "training_data_cutoff": "train_end supplied to fit; no pretrained weights"
+  },
+  "pack": {
+    "root": "/Users/_navyagoyal_/Desktop/CommodityOpenLatest/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 416,
+    "signals": 7,
+    "no_signals": 409,
+    "updates": 6,
+    "outcomes_delivered": 6,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 2.914,
+    "loop_seconds": 15.706
+  },
+  "rows": {
+    "rows": 416,
+    "signals": 7,
+    "no_signals": 409,
+    "by_horizon": {
+      "5": 7
+    },
+    "by_asset": {
+      "silver": 4,
+      "crude": 1,
+      "gold": 1,
+      "copper": 1
+    },
+    "by_direction": {
+      "up": 7
+    },
+    "no_signals_by_asset": {
+      "copper": 103,
+      "crude": 103,
+      "gold": 103,
+      "silver": 100
+    }
+  },
+  "fit": {
+    "model": "two incremental logistic success heads",
+    "training_rows": 5552,
+    "train_end": "2026-06-01T03:00:00+00:00",
+    "horizon": 5,
+    "signal_cutoff": 0.6
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 464
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 18.693,
+  "python": "3.13.7"
+}

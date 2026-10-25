@@ -1,0 +1,247 @@
+{
+  "config": "C2",
+  "fold": "F1",
+  "label": "development (reused Feb\u2013May period)",
+  "window": {
+    "period": "holdout",
+    "start_utc": "2026-04-01T03:00:00+00:00",
+    "end_utc": "2026-05-22T18:29:59+00:00",
+    "horizons_scored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "episode_horizon": 5
+  },
+  "direction": {
+    "value": 59.45945945945946,
+    "ci_lo": 52.41379310344828,
+    "ci_hi": 66.2420382165605,
+    "level": 0.9,
+    "n": 296,
+    "n_episodes": 32,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "depth": {
+    "value": 100.0,
+    "ci_lo": 100.0,
+    "ci_hi": 100.0,
+    "level": 0.9,
+    "n": 176,
+    "n_episodes": 31,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "improvement": {
+    "value": 0.0,
+    "ci_lo": 0.0,
+    "ci_hi": 0.0,
+    "level": 0.9,
+    "n": 296,
+    "n_episodes": 32,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "success_rate": {
+    "value": 53.15315315315315,
+    "ci_lo": 50.804597701149426,
+    "ci_hi": 55.73951434878587,
+    "level": 0.9,
+    "n": 176,
+    "n_episodes": 32,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "paired": {
+    "n": 296,
+    "learning": 59.45945945945946,
+    "frozen": 63.51351351351351
+  },
+  "paired_gain_pp": -4.054,
+  "frozen_direction_all": 63.51351351351351,
+  "null": 45.608108108108105,
+  "halves": {
+    "first_half_direction": 64.58333333333334,
+    "second_half_direction": 54.60526315789473,
+    "first_half_sessions": 18,
+    "second_half_sessions": 19
+  },
+  "hard_conditions": {
+    "learning_beats_frozen": false,
+    "second_half_at_least_first_half": false,
+    "direction_at_least_minimum": false,
+    "frozen_beats_prevailing_null": true,
+    "learning_beats_prevailing_null": true
+  },
+  "coverage": {
+    "copper": 1.0,
+    "crude": 1.0,
+    "gold": 1.0,
+    "silver": 1.0
+  },
+  "award_conditions": {
+    "period": "holdout",
+    "horizons_scored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "minimum_success_rate": 70.0,
+    "success_rate": 53.15315315315315,
+    "success_rate_at_least_minimum": false,
+    "coverage_floor_met": true,
+    "minimum_met_this_period": false,
+    "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
+    "hard_conditions": {
+      "learning_beats_frozen": false,
+      "second_half_at_least_first_half": false,
+      "direction_at_least_minimum": false,
+      "frozen_beats_prevailing_null": true,
+      "learning_beats_prevailing_null": true
+    },
+    "hard_conditions_met_this_period": false
+  },
+  "disagreements": {
+    "paired": 296,
+    "direction_differs": 56,
+    "learning_right_frozen_wrong": 14,
+    "frozen_right_learning_wrong": 26,
+    "both_wrong_when_differ": 16,
+    "learning_direction": 59.459,
+    "frozen_direction": 63.514,
+    "per_asset": {
+      "copper": {
+        "n": 74,
+        "learning": 47.3,
+        "frozen": 52.7,
+        "differs": 17
+      },
+      "crude": {
+        "n": 74,
+        "learning": 63.5,
+        "frozen": 63.5,
+        "differs": 10
+      },
+      "gold": {
+        "n": 74,
+        "learning": 47.3,
+        "frozen": 58.1,
+        "differs": 21
+      },
+      "silver": {
+        "n": 74,
+        "learning": 79.7,
+        "frozen": 79.7,
+        "differs": 8
+      }
+    },
+    "per_horizon": {
+      "3": {
+        "n": 148,
+        "learning": 59.5,
+        "frozen": 60.8,
+        "differs": 25
+      },
+      "5": {
+        "n": 148,
+        "learning": 59.5,
+        "frozen": 66.2,
+        "differs": 31
+      }
+    }
+  },
+  "read_logs": {
+    "c2_holdout": {
+      "ok": true,
+      "entries": 338,
+      "violations": 0
+    },
+    "c2_holdout_frozen": {
+      "ok": true,
+      "entries": 230,
+      "violations": 0
+    }
+  },
+  "updates": {
+    "calls": 35,
+    "labels_used": 245,
+    "labels_skipped": 31
+  },
+  "fit": {
+    "spec": "ologit-v1",
+    "lambda": 0.95,
+    "prior_var": 1.0,
+    "features": [
+      "intercept",
+      "gap",
+      "m5",
+      "m20"
+    ],
+    "train_end_utc": "2026-04-01T03:00:00+00:00",
+    "rows": {
+      "3": 91,
+      "5": 97
+    },
+    "w_h3": [
+      -0.214796,
+      1.888991,
+      0.102388,
+      -0.033171
+    ],
+    "first_label_utc_h3": "2026-02-20 03:00:00+00:00",
+    "last_label_signal_utc_h3": "2026-03-31 03:00:00+00:00",
+    "w_h5": [
+      -0.274708,
+      1.867034,
+      0.057951,
+      -0.048617
+    ],
+    "first_label_utc_h5": "2026-02-20 03:00:00+00:00",
+    "last_label_signal_utc_h5": "2026-03-31 03:00:00+00:00",
+    "state_digest": "88ba8e2ef0f9ea6a50d952b0bb54e980a0a9a70878134be288f8e1e69391d533"
+  },
+  "seconds": {
+    "learning": 10.5,
+    "frozen": 6.7,
+    "score": 3.3
+  }
+}

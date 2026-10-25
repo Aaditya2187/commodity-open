@@ -1,0 +1,111 @@
+{
+  "compared": [
+    "asset",
+    "direction",
+    "turn_price",
+    "extreme_price",
+    "move_pct",
+    "sessions_spanned",
+    "contract_id",
+    "contract_changed",
+    "bar",
+    "threshold_pct",
+    "clock_quality",
+    "turn_utc",
+    "extreme_utc",
+    "available_utc",
+    "confirm_utc",
+    "confirm_available_utc"
+  ],
+  "fields_compared": 16,
+  "invariants": {
+    "availability_at_or_after_extreme": {
+      "ok": true,
+      "rows": 0
+    },
+    "clock_quality_published": {
+      "ok": true
+    },
+    "confirm_availability_at_or_after_confirmation": {
+      "ok": true,
+      "rows": 0,
+      "rows_available_before_extreme_availability": 0
+    },
+    "confirmation_at_or_after_extreme": {
+      "null_rows": 0,
+      "ok": true,
+      "rows": 0
+    },
+    "cutoff_is_0830_ist": {
+      "ok": true
+    },
+    "direction_matches_sign": {
+      "ok": true
+    },
+    "extreme_after_turn": {
+      "ok": true,
+      "rows": 0
+    },
+    "legs_alternate_and_chain": {
+      "assets": {
+        "copper": {
+          "alternating": true,
+          "chained": true
+        },
+        "crude": {
+          "alternating": true,
+          "chained": true
+        },
+        "gold": {
+          "alternating": true,
+          "chained": true
+        },
+        "silver": {
+          "alternating": true,
+          "chained": true
+        }
+      },
+      "ok": true
+    },
+    "one_session_row_per_asset_day": {
+      "ok": true,
+      "rows": 5908
+    },
+    "published_clock_is_the_latest_instant": {
+      "ok": true,
+      "tables": {
+        "swing_sessions": {
+          "clock": "available_utc",
+          "file_class": "published",
+          "ok": true,
+          "rows_with_a_later_instant": 0
+        },
+        "swings": {
+          "clock": "confirm_available_utc",
+          "file_class": "published",
+          "ok": true,
+          "rows_with_a_later_instant": 0
+        }
+      }
+    },
+    "rolled_legs_flagged": {
+      "ok": true,
+      "rolled_legs": 200,
+      "wrong": []
+    },
+    "session_rows_carry_the_sessions_own_window": {
+      "first": [],
+      "ok": true,
+      "rows": 0
+    },
+    "threshold_respected": {
+      "min_abs_move_over_threshold": 0.0008481451434472209,
+      "ok": true,
+      "rows": 0
+    }
+  },
+  "mismatches": [],
+  "name": "swings_check",
+  "ok": true,
+  "recomputed": 2150
+}

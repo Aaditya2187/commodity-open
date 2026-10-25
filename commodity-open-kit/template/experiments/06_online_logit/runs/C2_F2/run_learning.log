@@ -1,0 +1,15 @@
+49 trading days from 2026-03-16 to 2026-05-22; fit at 2026-03-16T03:00:00+00:00
+fit done in 1.6s
+20/49 sessions, 160 rows, 146 outcomes delivered
+40/49 sessions, 320 rows, 306 outcomes delivered
+49/49 sessions, 392 rows, 372 outcomes delivered
+signal file: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/C2_F2/c2_holdout.parquet
+challenge: 2
+rows: 392  signals: 392 (392 valid, 0 invalid)  no_signal: 0 (0 valid)
+horizons: h3=196 h5=196
+assets: copper=98 crude=98 gold=98 silver=98
+errors: 0  warnings: 0
+result: VALID
+signals: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/C2_F2/c2_holdout.parquet
+read log: /Users/_navyagoyal_/Desktop/CommodityOpenLatest/commodity-open-kit/template/experiments/06_online_logit/runs/C2_F2/c2_holdout.readlog.jsonl (446 entries)
+sessions: 49, updates: 47, outcomes delivered: 372, 12.997s

@@ -1,0 +1,1613 @@
+{
+  "build": {
+    "built_at_utc": "2026-10-23T21:47:03.481905+00:00",
+    "command": "swing_dataset/calendar/__main__.py schedule --root build:calendar --fetch",
+    "commit": "103e51076f54ba35f5f80527095f90432cf2fdc7"
+  },
+  "clock_quality": {
+    "clocks": {
+      "published": "release_utc"
+    },
+    "file": "mixed",
+    "row_column": "clock_quality",
+    "rows": {
+      "published": 3078,
+      "unvintaged": 554
+    },
+    "rule": "published rows carry the authority's stated release instant in release_utc (converted from local_tz); unvintaged rows (holidays, OPEC meetings, one EIA slip, and the central-bank and Indian releases whose authority states no clock) carry only a civil date in release_date with release_utc null and are excluded from point-in-time reads; rows built from a standing rule for future weeks say so in notes"
+  },
+  "columns": [
+    {
+      "meaning": "release identifier (us_nfp, us_cpi, ..., us_holiday, uk_holiday)",
+      "name": "event_type",
+      "type": "string"
+    },
+    {
+      "meaning": "coarse grouping: labor, inflation, growth, fed, central_bank, rates, energy, positioning, china, activity, holiday",
+      "name": "event_family",
+      "type": "string"
+    },
+    {
+      "meaning": "civil date of the release in local_tz",
+      "name": "release_date",
+      "type": "date32[day]"
+    },
+    {
+      "meaning": "scheduled release instant in UTC; null when the authority states no clock",
+      "name": "release_utc",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "meaning": "the same instant as a naive wall-clock time in local_tz",
+      "name": "release_local",
+      "type": "timestamp[us]"
+    },
+    {
+      "meaning": "IANA zone of the authority (America/New_York, Asia/Shanghai, Asia/Tokyo, Asia/Kolkata, Europe/London, Europe/Berlin, Europe/Vienna)",
+      "name": "local_tz",
+      "type": "string"
+    },
+    {
+      "meaning": "who states the schedule; 'secondary' marks rows taken from a calendar provider instead",
+      "name": "authority",
+      "type": "string"
+    },
+    {
+      "meaning": "period the release covers: YYYY-MM, YYYY-Qn, a week-ending date, an FOMC meeting label",
+      "name": "period_ref",
+      "type": "string"
+    },
+    {
+      "meaning": "page or file the row was parsed from (Wayback URLs for archived years)",
+      "name": "source_url",
+      "type": "string"
+    },
+    {
+      "meaning": "raw capture of that source under build/calendar/, listed in raw/INDEX.csv",
+      "name": "capture_path",
+      "type": "string"
+    },
+    {
+      "meaning": "published: release_utc is the source's stated instant; unvintaged: civil date only, release_utc null",
+      "name": "clock_quality",
+      "type": "string"
+    },
+    {
+      "meaning": "how the date and clock were established, plus any caveat",
+      "name": "notes",
+      "type": "string"
+    }
+  ],
+  "date_range": {
+    "end": "2027-12-31",
+    "start": "2021-01-01"
+  },
+  "name": "release_schedule",
+  "notes": {
+    "conventions": [
+      "release_utc is the authority's stated instant converted from local_tz; rows built from a standing rule (future weeks) say so in notes",
+      "holidays are civil days with release_utc null",
+      "FOMC press conferences use the Fed's standing 2:30 p.m. ET slot; statements and minutes carry the clock stated on the meeting page where available"
+    ],
+    "coverage_per_event_type_per_year": {
+      "boe_decision": {
+        "2021": 8,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 8,
+        "2026": 7,
+        "2027": 7
+      },
+      "boj_decision": {
+        "2021": 8,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 8,
+        "2026": 8,
+        "2027": 8
+      },
+      "cftc_cot": {
+        "2021": 52,
+        "2022": 53,
+        "2023": 52,
+        "2024": 52,
+        "2025": 52,
+        "2026": 52,
+        "2027": 53
+      },
+      "china_caixin_pmi": {
+        "2025": 22,
+        "2026": 18
+      },
+      "china_nbs_pmi": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 12
+      },
+      "ecb_decision": {
+        "2021": 8,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 8,
+        "2026": 6
+      },
+      "eia_wpsr": {
+        "2021": 52,
+        "2022": 51,
+        "2023": 51,
+        "2024": 52,
+        "2025": 53,
+        "2026": 52,
+        "2027": 52
+      },
+      "fed_speech": {
+        "2021": 91,
+        "2022": 71,
+        "2023": 95,
+        "2024": 105,
+        "2025": 150,
+        "2026": 105
+      },
+      "fomc_minutes": {
+        "2021": 7,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 9,
+        "2026": 8,
+        "2027": 8
+      },
+      "fomc_presser": {
+        "2021": 8,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 8,
+        "2026": 8,
+        "2027": 8
+      },
+      "fomc_statement": {
+        "2021": 8,
+        "2022": 8,
+        "2023": 8,
+        "2024": 8,
+        "2025": 8,
+        "2026": 8,
+        "2027": 8
+      },
+      "india_cpi": {
+        "2026": 10,
+        "2027": 3
+      },
+      "nyfed_sce": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 12
+      },
+      "opec_meeting": {
+        "2021": 16,
+        "2022": 14,
+        "2023": 7,
+        "2024": 11,
+        "2025": 16,
+        "2026": 13
+      },
+      "rbi_decision": {
+        "2021": 5,
+        "2022": 6,
+        "2023": 5,
+        "2024": 5,
+        "2025": 5,
+        "2026": 4
+      },
+      "uk_holiday": {
+        "2021": 8,
+        "2022": 10,
+        "2023": 9,
+        "2024": 8,
+        "2025": 8,
+        "2026": 8,
+        "2027": 8
+      },
+      "umich_sentiment_final": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 12,
+        "2027": 12
+      },
+      "umich_sentiment_prelim": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 12,
+        "2027": 12
+      },
+      "us_adp": {
+        "2021": 12,
+        "2022": 10,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 12
+      },
+      "us_cpi": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 11,
+        "2026": 12
+      },
+      "us_gdp": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 11,
+        "2026": 13
+      },
+      "us_holiday": {
+        "2021": 22,
+        "2022": 18,
+        "2023": 20,
+        "2024": 21,
+        "2025": 22,
+        "2026": 21,
+        "2027": 22
+      },
+      "us_ism_mfg": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 10
+      },
+      "us_ism_services": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 10
+      },
+      "us_jobless_claims": {
+        "2021": 52,
+        "2022": 52,
+        "2023": 52,
+        "2024": 52,
+        "2025": 46,
+        "2026": 52,
+        "2027": 52
+      },
+      "us_jolts": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 11,
+        "2026": 12
+      },
+      "us_nfp": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 11,
+        "2026": 12
+      },
+      "us_pce": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 10,
+        "2026": 13
+      },
+      "us_ppi": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 10,
+        "2026": 13
+      },
+      "us_retail_sales": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 11,
+        "2026": 13,
+        "2027": 12
+      },
+      "us_treasury_10y": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 9
+      },
+      "us_treasury_2y": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 8
+      },
+      "us_treasury_30y": {
+        "2021": 12,
+        "2022": 12,
+        "2023": 12,
+        "2024": 12,
+        "2025": 12,
+        "2026": 9
+      }
+    },
+    "secondary_authorities": [
+      "Investing.com economic calendar (secondary; ISM's site is gated by reCAPTCHA/SSO with no archived schedule)",
+      "Investing.com economic calendar (secondary; S&P Global's release page lists only upcoming months)"
+    ]
+  },
+  "rows": 3632,
+  "sources": [
+    {
+      "bytes": 2888,
+      "fetched_at_utc": "2026-10-23T21:42:50.493885+00:00",
+      "sha256": "7548b708fd8e7255686350679a26c4f1238d1b92f30cb7f421e8d5c7a6aa2e18",
+      "url": "https://api.stlouisfed.org/fred/release/dates?release_id=194&include_release_dates_with_no_data=true&api_key=REDACTED"
+    },
+    {
+      "bytes": 126123,
+      "fetched_at_utc": "2026-10-23T21:42:25.296414+00:00",
+      "sha256": "880ba475e3da6dbc3f0fadf53065b608e5c0b8664a8c316b39fcc0b3c5bfc89c",
+      "url": "https://www.bea.gov/news/schedule/full"
+    },
+    {
+      "bytes": 120596,
+      "fetched_at_utc": "2026-10-23T21:42:26.752585+00:00",
+      "sha256": "d9ee4740e45c1b659e0d71f70c37c880f91904884344b389ad79035411eea8ff",
+      "url": "https://www.bea.gov/news/schedule/full-2025"
+    },
+    {
+      "bytes": 91125,
+      "fetched_at_utc": "2026-10-23T21:42:30.729952+00:00",
+      "sha256": "f579a2723e5b95cf503920ba80daf76bd3e07b0d70f54f58f0fd346a5700654c",
+      "url": "https://web.archive.org/web/20211201225354id_/https://www.bea.gov/news/schedule/full"
+    },
+    {
+      "bytes": 91888,
+      "fetched_at_utc": "2026-10-23T21:42:32.215469+00:00",
+      "sha256": "2ff5bc634daafe018576fb0fea4dc6619622745fe8f4f99293b5eabafde32f4f",
+      "url": "https://web.archive.org/web/20221102011045id_/https://www.bea.gov/news/schedule/full"
+    },
+    {
+      "bytes": 112481,
+      "fetched_at_utc": "2026-10-23T21:42:33.643264+00:00",
+      "sha256": "8426b309b92a1fb661cc1a90ba286a5c1e8164ccfc05922faff29ef5d0d93ef2",
+      "url": "https://web.archive.org/web/20231204003352id_/https://www.bea.gov/news/schedule/full"
+    },
+    {
+      "bytes": 142337,
+      "fetched_at_utc": "2026-10-23T21:42:35.059734+00:00",
+      "sha256": "77f2f978eb3fbdfc9b71eedf6d547ee3a57aa874634a3a27e15f153dc2b28bf0",
+      "url": "https://web.archive.org/web/20241202151543id_/https://www.bea.gov/news/schedule/full"
+    },
+    {
+      "bytes": 98369,
+      "fetched_at_utc": "2026-09-15T11:29:39.567546+00:00",
+      "sha256": "f1c527292a25d8f8989abbe476fcf4f89a2cce1a1d8d4dcb17a172da5e547b0c",
+      "url": "https://www.bls.gov/schedule/2021/home.htm"
+    },
+    {
+      "bytes": 100703,
+      "fetched_at_utc": "2026-09-15T11:29:40.042454+00:00",
+      "sha256": "8a65fcdee01b1c42db14a2413b6b60a3d1f4e389159cbcbba68d5743d94358c1",
+      "url": "https://www.bls.gov/schedule/2022/home.htm"
+    },
+    {
+      "bytes": 100158,
+      "fetched_at_utc": "2026-09-15T11:29:42.029189+00:00",
+      "sha256": "dde426274a3f593a352e7b2b9d978799307ace879e032caf0b1e3dd184259412",
+      "url": "https://www.bls.gov/schedule/2023/home.htm"
+    },
+    {
+      "bytes": 101431,
+      "fetched_at_utc": "2026-09-15T11:29:44.000095+00:00",
+      "sha256": "989023c355a3a4d179e2a250da476468f3a63ad3e310b6a029b6814a6307f878",
+      "url": "https://www.bls.gov/schedule/2024/home.htm"
+    },
+    {
+      "bytes": 96700,
+      "fetched_at_utc": "2026-09-15T11:29:46.024191+00:00",
+      "sha256": "3ef4c8dee4db6a88a1ccc9a7f67715adac973a46ff6288483367e46895aa9607",
+      "url": "https://www.bls.gov/schedule/2025/home.htm"
+    },
+    {
+      "bytes": 100849,
+      "fetched_at_utc": "2026-09-15T11:29:47.982954+00:00",
+      "sha256": "a20196cb3a45088e38f1fc12c0e459a40f2bb6568018429b1a1f589176702504",
+      "url": "https://www.bls.gov/schedule/2026/home.htm"
+    },
+    {
+      "bytes": 79167,
+      "fetched_at_utc": "2026-10-23T21:46:32.230744+00:00",
+      "sha256": "ea6c0e4364c115a18be5fa84a21d35b326303bac4a2058ca2c02ad72a952593c",
+      "url": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+    },
+    {
+      "bytes": 53172,
+      "fetched_at_utc": "2026-10-23T21:46:33.952507+00:00",
+      "sha256": "592098d26fa785a5a91b1308086207f702aefdb4745051e0b1cbbf7e6a645669",
+      "url": "https://web.archive.org/web/20210301232653id_/https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+    },
+    {
+      "bytes": 91292,
+      "fetched_at_utc": "2026-10-23T21:46:35.699129+00:00",
+      "sha256": "502fc1702b241bb4dcd5fe4104b94acea15928d42a1e6e63ede35d6579dfae64",
+      "url": "https://web.archive.org/web/20220321052340id_/https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+    },
+    {
+      "bytes": 90893,
+      "fetched_at_utc": "2026-10-23T21:46:38.532847+00:00",
+      "sha256": "ed030e13ab0ee11af816498953a674cc414981a91b49d0b2847119821cd9aa1a",
+      "url": "https://web.archive.org/web/20230307132820id_/https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+    },
+    {
+      "bytes": 74994,
+      "fetched_at_utc": "2026-10-23T21:46:41.134767+00:00",
+      "sha256": "ce05b036d74e1b5d8f8ab0a208a45a468c2d8f3364259c09fe1feaf0bd5bcf9e",
+      "url": "https://web.archive.org/web/20240306090024id_/https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+    },
+    {
+      "bytes": 42169,
+      "fetched_at_utc": "2026-10-23T21:46:44.086112+00:00",
+      "sha256": "a6a7958a71b2cbd2a7bb3bf3e2cf4a80e3f687f25ba64bfd45f160aa1a9cf5dd",
+      "url": "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm"
+    },
+    {
+      "bytes": 113716,
+      "fetched_at_utc": "2026-10-23T21:46:44.905899+00:00",
+      "sha256": "495f791ad6cfec64bb1ed606fcb161794c5ab597133bc82a3407962df88b77a8",
+      "url": "https://www.boj.or.jp/en/mopo/mpmsche_minu/past.htm"
+    },
+    {
+      "bytes": 84747,
+      "fetched_at_utc": "2026-10-23T21:45:10.108648+00:00",
+      "sha256": "efbf540fe4f3966610c04a5d433a24ed4909cd4b37da9a7815f07593b4c271a7",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview.html"
+    },
+    {
+      "bytes": 85248,
+      "fetched_at_utc": "2026-10-23T21:45:11.549580+00:00",
+      "sha256": "27abc9f51defc24af3cf1e0703a7e9faf41b5c348b5d4cdd0532ff4b051da955",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2021.html"
+    },
+    {
+      "bytes": 82043,
+      "fetched_at_utc": "2026-10-23T21:45:12.857957+00:00",
+      "sha256": "ab6532c494ac2bea07a8d884b1caf77622b89917565bab968aa7aa326e8c15aa",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2022.html"
+    },
+    {
+      "bytes": 82448,
+      "fetched_at_utc": "2026-10-23T21:45:14.200893+00:00",
+      "sha256": "9b876773c03fe612d4296904b2e63097ca9ce4356d6336cb6ef6468eef10f086",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2023.html"
+    },
+    {
+      "bytes": 81050,
+      "fetched_at_utc": "2026-10-23T21:45:15.785035+00:00",
+      "sha256": "eb01d4adb8b85b19c585356d7f38cbb4957a06032f10c8420c7f1e4faa0f3d78",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2024.html"
+    },
+    {
+      "bytes": 77297,
+      "fetched_at_utc": "2026-10-23T21:45:17.342770+00:00",
+      "sha256": "5656748e441f4a240f487e66ca864ddf03e1d6819403a49145778f7e981a4be0",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2025.html"
+    },
+    {
+      "bytes": 89130,
+      "fetched_at_utc": "2026-10-23T21:45:18.220753+00:00",
+      "sha256": "cd79a4b128d92ebd6211a8ad6d638f7be632f119a9c16c3d87d0064460b4b007",
+      "url": "https://www.census.gov/economic-indicators/calendar-listview-2026.html"
+    },
+    {
+      "bytes": 47849,
+      "fetched_at_utc": "2026-10-23T21:42:04.520308+00:00",
+      "sha256": "c8c6512c9ad984c04aa1f77c2b39e595289da26092371baf5e033fcf1572b1ad",
+      "url": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 124933,
+      "fetched_at_utc": "2026-10-23T21:42:05.336788+00:00",
+      "sha256": "83b2ebb33d1714dc1569ae3b080b9707e72fa5a6dcbe6b20794415138d16a12e",
+      "url": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm"
+    },
+    {
+      "bytes": 49175,
+      "fetched_at_utc": "2026-10-23T21:42:06.798487+00:00",
+      "sha256": "11dfdde23e072bce013e558e4691e92780d233e9458186170715b46c3d229221",
+      "url": "https://web.archive.org/web/20210119172806id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 50545,
+      "fetched_at_utc": "2026-10-23T21:42:09.072370+00:00",
+      "sha256": "436300d9e5b402a06960234a26cb98675bf34d036f5d1302a7bad7beb1790be8",
+      "url": "https://web.archive.org/web/20220110070736id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 80805,
+      "fetched_at_utc": "2026-10-23T21:42:19.108234+00:00",
+      "sha256": "a50ee28f9598255daf909e3d8b2dd14062a232266de41f2ffa9d055dd279f8cc",
+      "url": "https://web.archive.org/web/20230208000213id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 49096,
+      "fetched_at_utc": "2026-10-23T21:42:20.728996+00:00",
+      "sha256": "3a6208ab3de5e56e6d7d4a2358e80734b1b1aa01bf6ddcb3020b67072610d5db",
+      "url": "https://web.archive.org/web/20240222133806id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 53114,
+      "fetched_at_utc": "2026-10-23T21:42:22.486256+00:00",
+      "sha256": "267f1b4f442600d45881b0f0366d3a8e3dbdd1f59dc6e875e26fb8f2b0020310",
+      "url": "https://web.archive.org/web/20250113190352id_/https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm"
+    },
+    {
+      "bytes": 193901,
+      "fetched_at_utc": "2026-09-15T12:01:19.060884+00:00",
+      "sha256": "45a4555aeb7d3ce2796c4a82b5983d791ff28bbf9374b2cd02ff493fed8d7bc5",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202512/t20251226_1962154.html"
+    },
+    {
+      "bytes": 244102,
+      "fetched_at_utc": "2026-09-15T12:01:29.925797+00:00",
+      "sha256": "98e29163e7ddb40a818cceb8449c2f14787066c74a69546ce36581d2a71b7fec",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202412/t20241231_1958129.html"
+    },
+    {
+      "bytes": 165323,
+      "fetched_at_utc": "2026-09-15T12:01:38.136199+00:00",
+      "sha256": "938dd71fcbde01e7573d99e047ab10cadf277522aece4638df7d776488164c49",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202401/t20240104_1946223.html"
+    },
+    {
+      "bytes": 219826,
+      "fetched_at_utc": "2026-09-15T12:01:46.875950+00:00",
+      "sha256": "8b509359d65ec930e784a658220ea9a0c6b700e228ea88f6218055afb0bdc9b4",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202301/t20230106_1891505.html"
+    },
+    {
+      "bytes": 207479,
+      "fetched_at_utc": "2026-09-15T12:01:56.067270+00:00",
+      "sha256": "e791db46ffd8bc55d102b38365ec55ee53568d408252aa8d522326b3b19a2a87",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202210/t20221024_1889499.html"
+    },
+    {
+      "bytes": 328891,
+      "fetched_at_utc": "2026-09-15T12:02:08.191315+00:00",
+      "sha256": "9dbab6f3f1d2b2b44898f55d90598016523253588dbdd364198836b3a638da99",
+      "url": "https://www.stats.gov.cn/english/PressRelease/ReleaseCalendar/202201/t20220105_1825898.html"
+    },
+    {
+      "bytes": 548860,
+      "fetched_at_utc": "2026-10-23T21:42:43.208369+00:00",
+      "sha256": "6bc739a9ccf4035720b6f09b6108c9800bb3d35bedb358938eaefa009ab974f8",
+      "url": "https://www.dol.gov/ui/data.pdf"
+    },
+    {
+      "bytes": 12093,
+      "fetched_at_utc": "2026-10-23T21:42:43.814324+00:00",
+      "sha256": "2af8e246410ab48379f42b1869a90030e89575502eb4b10d9a94ca550146dbb4",
+      "url": "https://api.stlouisfed.org/fred/release/dates?release_id=180&include_release_dates_with_no_data=true&api_key=REDACTED"
+    },
+    {
+      "bytes": 34871,
+      "fetched_at_utc": "2026-10-23T21:46:25.405439+00:00",
+      "sha256": "a30dd6312dcdab1983a4764c29627313ab1a1ab11b1bead538afc17614faaa5e",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2021/html/index_include.en.html"
+    },
+    {
+      "bytes": 44253,
+      "fetched_at_utc": "2026-10-23T21:46:26.167076+00:00",
+      "sha256": "9b7a3064ad5a824bfff58f35089f37b8499c07b88a8acc464a8eb14b72a1e794",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2022/html/index_include.en.html"
+    },
+    {
+      "bytes": 60154,
+      "fetched_at_utc": "2026-10-23T21:46:27.148959+00:00",
+      "sha256": "a7d5c3f7d479052c91ca1dc409c3dee90dfc8c8bb99b5cb0a7f606b243c47635",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2023/html/index_include.en.html"
+    },
+    {
+      "bytes": 87137,
+      "fetched_at_utc": "2026-10-23T21:46:28.149233+00:00",
+      "sha256": "4c957ea8240d8ff04f32faa71a80d3078b7f2b6c1e4a3255616814a4b47d3e2d",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2024/html/index_include.en.html"
+    },
+    {
+      "bytes": 53467,
+      "fetched_at_utc": "2026-10-23T21:46:29.527415+00:00",
+      "sha256": "d7a568db1045be795f4269039c8228670ce2bf88de276a40f715f49fc502f5ed",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2025/html/index_include.en.html"
+    },
+    {
+      "bytes": 31286,
+      "fetched_at_utc": "2026-10-23T21:46:30.579793+00:00",
+      "sha256": "80911e8acec80c811d274431628402df63daa4c944a243deea0b7855e65f2631",
+      "url": "https://www.ecb.europa.eu/press/govcdec/mopo/2026/html/index_include.en.html"
+    },
+    {
+      "bytes": 175007,
+      "fetched_at_utc": "2026-10-23T21:41:53.210806+00:00",
+      "sha256": "93943190c4fe16f17707d57c32b9156226e9ab8b572784e18d424b5d59cd4c74",
+      "url": "https://www.eia.gov/petroleum/supply/weekly/archive/"
+    },
+    {
+      "bytes": 52121,
+      "fetched_at_utc": "2026-10-23T21:41:53.737528+00:00",
+      "sha256": "9089e924ed233d8bc5c6a95345f7396b3ee695344cd39a0b643650103c2bc849",
+      "url": "https://www.eia.gov/petroleum/supply/weekly/schedule.php"
+    },
+    {
+      "bytes": 57843,
+      "fetched_at_utc": "2026-10-23T21:41:58.114784+00:00",
+      "sha256": "b793465af0f7790371193ade1b2f429120662021494cefaf2f8f22be229e99d8",
+      "url": "https://web.archive.org/web/20220114004832id_/https://www.eia.gov/petroleum/supply/weekly/schedule.php"
+    },
+    {
+      "bytes": 68565,
+      "fetched_at_utc": "2026-10-23T21:42:00.460123+00:00",
+      "sha256": "9e4e055456ca371262a14cdf90346705cbbc7cd31b19326bf29a72c2ece9b921",
+      "url": "https://web.archive.org/web/20230113222513id_/https://www.eia.gov/petroleum/supply/weekly/schedule.php"
+    },
+    {
+      "bytes": 68650,
+      "fetched_at_utc": "2026-10-23T21:42:01.890230+00:00",
+      "sha256": "1606e2f5d9454fa1c2cb9e5af1f975d000655a35d63058ccf972c99fe17ee4af",
+      "url": "https://web.archive.org/web/20240118235307id_/https://www.eia.gov/petroleum/supply/weekly/schedule.php"
+    },
+    {
+      "bytes": 67290,
+      "fetched_at_utc": "2026-10-23T21:42:04.292381+00:00",
+      "sha256": "4d8a64bc9c22bcb0ed8d5380f0543bdb643c7b88380dd4a4db2214a05df0f20e",
+      "url": "https://web.archive.org/web/20241216220036id_/https://www.eia.gov/petroleum/supply/weekly/schedule.php"
+    },
+    {
+      "bytes": 165751,
+      "fetched_at_utc": "2026-10-23T21:41:00.047756+00:00",
+      "sha256": "92e7cd43082dd1c0e0e6e0be82f09c71f929a2f975dc5bb42503e5910f10a8e5",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "bytes": 82864,
+      "fetched_at_utc": "2026-10-23T21:41:01.181713+00:00",
+      "sha256": "205fdfd32997beba255fbe82ca1cbd428f6ffcc111cb71428a6b949f8fa999b1",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpressconf20260128.htm"
+    },
+    {
+      "bytes": 82925,
+      "fetched_at_utc": "2026-10-23T21:41:02.155397+00:00",
+      "sha256": "b9b113f23101771a157176d122f41834500d51ca22ef46c0492b4948a383acc8",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260318.htm"
+    },
+    {
+      "bytes": 82646,
+      "fetched_at_utc": "2026-10-23T21:41:03.314038+00:00",
+      "sha256": "824332ace52d88098941d32a006ac7c2fd13811dca44d045d6e82247dfd9aab2",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260429.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:04.189183+00:00",
+      "sha256": "1c8feff936a5dd7b6222a2798a77d48bd2d43a4adcbe34fe5decdc5dc7226cd0",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260617.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:05.200910+00:00",
+      "sha256": "546689cd85344d774cf53a067b6e99387f6401c7f88750d6c72452a83acff586",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260729.htm"
+    },
+    {
+      "bytes": 82903,
+      "fetched_at_utc": "2026-10-23T21:41:06.160979+00:00",
+      "sha256": "c555f5d0523aae5b45a6379f8e014152b8473f2b043f409c3f68fb62632f2021",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm"
+    },
+    {
+      "bytes": 81571,
+      "fetched_at_utc": "2026-10-23T21:41:07.183400+00:00",
+      "sha256": "b0a12d21c4fafc0af80b23d8134ef8322d366f0173acb77c330a04fac9bbf80d",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250129.htm"
+    },
+    {
+      "bytes": 82925,
+      "fetched_at_utc": "2026-10-23T21:41:08.167209+00:00",
+      "sha256": "de5a639660a0c21c4b6681af548fc4944a04ab74cfd84a397e291b4eafcc81cc",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250319.htm"
+    },
+    {
+      "bytes": 82624,
+      "fetched_at_utc": "2026-10-23T21:41:09.164211+00:00",
+      "sha256": "7d7781c1b9f4e44d4dca12de8a9621891cb8e6e1b84e650ddb8759615c1ef831",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250507.htm"
+    },
+    {
+      "bytes": 82916,
+      "fetched_at_utc": "2026-10-23T21:41:10.171815+00:00",
+      "sha256": "1d73caf08d062878ef5c602e831a6f57b4afc87544715b2229e59d46b0c5d6ef",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250618.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:11.172025+00:00",
+      "sha256": "94afd02d8a87e8eb4924821a50100c746deb224714257eb2bd3f5be40a183e29",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250730.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:13.161719+00:00",
+      "sha256": "ac59366144e5b628de8cc1d20ad78307b41dba6eb8d79462a44679db6c398def",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250917.htm"
+    },
+    {
+      "bytes": 82665,
+      "fetched_at_utc": "2026-10-23T21:41:14.429021+00:00",
+      "sha256": "b39c8dcb69409785595d1863e303428dd5bb60aa985705beb88ca4fafdec6149",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251029.htm"
+    },
+    {
+      "bytes": 82948,
+      "fetched_at_utc": "2026-10-23T21:41:15.216547+00:00",
+      "sha256": "a5b45e45279329fd15b19d7d91800105b959e13aff24b3ea0f8c3283f49d68e8",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251210.htm"
+    },
+    {
+      "bytes": 82863,
+      "fetched_at_utc": "2026-10-23T21:41:16.167651+00:00",
+      "sha256": "aa0a48c557dc83843180d90d91c58881eba812862a6b9ad3f3b7a10320b77700",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240131.htm"
+    },
+    {
+      "bytes": 82925,
+      "fetched_at_utc": "2026-10-23T21:41:17.166999+00:00",
+      "sha256": "b0540eac5ac2badb21928c7c496c89dd5296ef8eeba087458ff4581d72032bdb",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240320.htm"
+    },
+    {
+      "bytes": 82652,
+      "fetched_at_utc": "2026-10-23T21:41:18.182022+00:00",
+      "sha256": "cc7c32ff4379c69214b4b3bc28b0d67766627bf7210667e986b417579ab36cb0",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240501.htm"
+    },
+    {
+      "bytes": 82916,
+      "fetched_at_utc": "2026-10-23T21:41:19.194187+00:00",
+      "sha256": "8d84b06abc260611c3c1c64b8338d48f7e797811ff1721b3d2c9a97eab6ddff6",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240612.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:20.169761+00:00",
+      "sha256": "9f720a196d40726e11ab386161c636d8dc81bb25844f9701788ed18ab236a1fe",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240731.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:21.184817+00:00",
+      "sha256": "41c89ccf7dc9b1ae503a4ab0c557ddf96706c12c95d84e2a5da293927b57ae52",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20240918.htm"
+    },
+    {
+      "bytes": 82452,
+      "fetched_at_utc": "2026-10-23T21:41:22.210923+00:00",
+      "sha256": "f62fc214ece5c488e082e9555cd5e0788ec38f392440b7fb75b97b6d304c46e3",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20241107.htm"
+    },
+    {
+      "bytes": 82951,
+      "fetched_at_utc": "2026-10-23T21:41:23.170471+00:00",
+      "sha256": "cd9f64963dec67e676c7f25303e68f7c4e33187dd06643e19ca7b871dd17f618",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20241218.htm"
+    },
+    {
+      "bytes": 82899,
+      "fetched_at_utc": "2026-10-23T21:41:24.161222+00:00",
+      "sha256": "320df55105d247c4bc4976ce8260ac16a85ace33cd7e76767106e8811a2b18a2",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230201.htm"
+    },
+    {
+      "bytes": 82925,
+      "fetched_at_utc": "2026-10-23T21:41:25.178018+00:00",
+      "sha256": "fd0f1073007dd95a2367553b43ed3440a56816ac92d4c09966514443a4434325",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230322.htm"
+    },
+    {
+      "bytes": 82624,
+      "fetched_at_utc": "2026-10-23T21:41:26.177055+00:00",
+      "sha256": "617564acc9bf6a3065099a7e4b2c745da047c914514411145f0e1bde6b5b4358",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230503.htm"
+    },
+    {
+      "bytes": 82916,
+      "fetched_at_utc": "2026-10-23T21:41:27.259190+00:00",
+      "sha256": "bfa45fb2ac20288195762f9f3d5055a1e242f064db0681d0cba4e57bf4369d9f",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230614.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:28.178571+00:00",
+      "sha256": "febdc0caad79dbee1f04558420e4b2abb2e68a95c79dc3c7db3b0a3381c7a6f6",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230726.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:29.177300+00:00",
+      "sha256": "30a03816054fb4939ad78936756d9f7e8b5a3af25a57cb3737129e91d6493a24",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20230920.htm"
+    },
+    {
+      "bytes": 82700,
+      "fetched_at_utc": "2026-10-23T21:41:30.175337+00:00",
+      "sha256": "91575c1e55f994e641dd1bf0a58330f844631e3f8ae4f62e8a0dcbcc57944c19",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20231101.htm"
+    },
+    {
+      "bytes": 82994,
+      "fetched_at_utc": "2026-10-23T21:41:31.702151+00:00",
+      "sha256": "31760e3d9552debfde7ee518d0381c67483ff430d4f99a240307c27684e5ad03",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20231213.htm"
+    },
+    {
+      "bytes": 83078,
+      "fetched_at_utc": "2026-10-23T21:41:32.207420+00:00",
+      "sha256": "18d5261211a27da15f1045dd7907f7e08c60ca8bd12a70615862e291cc550565",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220126.htm"
+    },
+    {
+      "bytes": 82927,
+      "fetched_at_utc": "2026-10-23T21:41:33.173658+00:00",
+      "sha256": "74bb7b345599be1ead50cd04f7f1ed4f3bd4382e1fa0774313ef1035b09e6227",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220316.htm"
+    },
+    {
+      "bytes": 82830,
+      "fetched_at_utc": "2026-10-23T21:41:34.191940+00:00",
+      "sha256": "ce46b260e6178b602708a059739f6e84565b6baabab4f1c286796d500422607b",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220504.htm"
+    },
+    {
+      "bytes": 82916,
+      "fetched_at_utc": "2026-10-23T21:41:35.165118+00:00",
+      "sha256": "9cfc35a69599ac37d4b44b5f5653eeb39c2290560b9d54a4335a667b8a072f15",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220615.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:36.162262+00:00",
+      "sha256": "9ef3b06afdcd940e9ca8ef1940ba26cbe06b20df11e39ed4d91ae5b5c2af5a1b",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220727.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:37.168782+00:00",
+      "sha256": "ab22ea74b3c22bd0e61082d031a75d0007cc17d5d58f7ed302dba4e32cc9d34f",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20220921.htm"
+    },
+    {
+      "bytes": 82707,
+      "fetched_at_utc": "2026-10-23T21:41:38.167605+00:00",
+      "sha256": "0850848dd0965c737e748b122ffd7320bec90df0f546a59712bb755528a8f925",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20221102.htm"
+    },
+    {
+      "bytes": 82951,
+      "fetched_at_utc": "2026-10-23T21:41:39.167883+00:00",
+      "sha256": "03460673116f52fa073e34ff6bcccefdbafe7ef592ad6b639bc48acb74915776",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20221214.htm"
+    },
+    {
+      "bytes": 82864,
+      "fetched_at_utc": "2026-10-23T21:41:40.180982+00:00",
+      "sha256": "7c04681209eb70e9e51a168941e5668ee4313390d9fc60a6adaab8d52fc47cac",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210127.htm"
+    },
+    {
+      "bytes": 82925,
+      "fetched_at_utc": "2026-10-23T21:41:41.431645+00:00",
+      "sha256": "0410ed70f019133039d56b61062bf0ba85ac4ec99957d8f1023eead4e86165c4",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210317.htm"
+    },
+    {
+      "bytes": 82646,
+      "fetched_at_utc": "2026-10-23T21:41:42.167491+00:00",
+      "sha256": "d0ebba2ea4daf5009abd06cea2fade428df940abbe7d3c0b1022a792f50462e9",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210428.htm"
+    },
+    {
+      "bytes": 82916,
+      "fetched_at_utc": "2026-10-23T21:41:43.182372+00:00",
+      "sha256": "6a97558a84a89c5a138b21dbfff3746a2e732fa9937f69fdba3ab49b0cbd7772",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210616.htm"
+    },
+    {
+      "bytes": 82642,
+      "fetched_at_utc": "2026-10-23T21:41:44.189070+00:00",
+      "sha256": "ebb61217d50cc433ff136a561fd786c1acb706a16f68d533a992257dfbb1d890",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210728.htm"
+    },
+    {
+      "bytes": 82959,
+      "fetched_at_utc": "2026-10-23T21:41:45.191036+00:00",
+      "sha256": "c16aad410ff171fcc7a36c358f9e5fac5be1aa1c7281a4cdf62cb9357c31b3cb",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20210922.htm"
+    },
+    {
+      "bytes": 82664,
+      "fetched_at_utc": "2026-10-23T21:41:46.186140+00:00",
+      "sha256": "4525b694e6e62e73f32525a219096f96b5bd10933cf0d542c8fcc8b508ba39b0",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20211103.htm"
+    },
+    {
+      "bytes": 82951,
+      "fetched_at_utc": "2026-10-23T21:41:47.192907+00:00",
+      "sha256": "75fe279f7c3969110d2e790388ae2458d5cd58020cc3e13f4f2e23dcd1f50b00",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20211215.htm"
+    },
+    {
+      "bytes": 446313,
+      "fetched_at_utc": "2026-10-23T21:44:09.555305+00:00",
+      "sha256": "01c18468356088e5b211fd34a6cd689f172f44b78142f4c22d4f54e066cbf5c1",
+      "url": "https://www.federalreserve.gov/json/ne-speeches.json"
+    },
+    {
+      "bytes": 545367,
+      "fetched_at_utc": "2026-10-23T21:44:10.519933+00:00",
+      "sha256": "de23ee88a2faa571b1f4daaf2514eb147e05c864c73380b8687ac0d53d906d7b",
+      "url": "https://www.federalreserve.gov/json/calendar.json"
+    },
+    {
+      "bytes": 109215,
+      "fetched_at_utc": "2026-09-15T11:49:40.127058+00:00",
+      "sha256": "99ecda73f0ee58826a946a7020330e85a2f9a6caa513ccbb449872a5518eec74",
+      "url": "https://www.nyse.com/trade/hours-calendars"
+    },
+    {
+      "bytes": 93944,
+      "fetched_at_utc": "2026-09-15T11:50:27.441218+00:00",
+      "sha256": "536e090a640dbf762c890fb9d68025fe5605c5ae3a547c833c3ff1671c2769a5",
+      "url": "https://web.archive.org/web/20210304140048id_/https://www.nyse.com/markets/hours-calendars"
+    },
+    {
+      "bytes": 127218,
+      "fetched_at_utc": "2026-09-15T11:50:29.399121+00:00",
+      "sha256": "7e27b25e79fa60bc6697f2280046b80d984fbdc2987313e373e22211f092555a",
+      "url": "https://web.archive.org/web/20240304223823id_/https://www.nyse.com/markets/hours-calendars#holidays"
+    },
+    {
+      "bytes": 22207,
+      "fetched_at_utc": "2026-10-23T21:42:35.646599+00:00",
+      "sha256": "538b3482c28b85ecd2db606a0d5ae6ad17248900b6498700ce0a48d26a3ecde6",
+      "url": "https://www.gov.uk/bank-holidays.json"
+    },
+    {
+      "bytes": 44322,
+      "fetched_at_utc": "2026-10-23T21:42:35.447627+00:00",
+      "sha256": "f077410f05ee6f3b87a9c4157b5e67fe3523405188d963b7d636a9cf15f4e4dc",
+      "url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/holidays.ics"
+    },
+    {
+      "bytes": 339689,
+      "fetched_at_utc": "2026-09-15T12:00:12.454360+00:00",
+      "sha256": "8194dc1c13b66105198f476ccdfcc2fd58fe2367c17175439add6ade7fa53f10",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 331617,
+      "fetched_at_utc": "2026-09-15T12:00:14.176426+00:00",
+      "sha256": "8853536d9bae0389feb774da56496f3ac04326a013ccff67b83a40730305cea6",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-02-28T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 352959,
+      "fetched_at_utc": "2026-09-15T12:00:15.921241+00:00",
+      "sha256": "f0cd22badabf5dc454156f3e0772fa0c8f1b2ac3535f81c1de084f6730643050",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 345895,
+      "fetched_at_utc": "2026-09-15T12:00:17.736798+00:00",
+      "sha256": "57b42f5173654211b8c2b8365821c53e9c4c5910dc7c65113582578a18fef33b",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 331934,
+      "fetched_at_utc": "2026-09-15T12:00:19.346196+00:00",
+      "sha256": "8e2a79a7e48c1512bb00ce7f28ab9e4e722f7d4928d7c6c6e98b3512ce56b1fb",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 342370,
+      "fetched_at_utc": "2026-09-15T12:00:21.111990+00:00",
+      "sha256": "a30385cea5b5cfe7800ccd8aaecc94162934115fbccb5fb89523a360c0c35ba9",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 330050,
+      "fetched_at_utc": "2026-09-15T12:00:22.854410+00:00",
+      "sha256": "cb056417fd5b966d257f6db0508e8348a94a00bb469239b688ba1b835841c7fb",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 328780,
+      "fetched_at_utc": "2026-09-15T12:00:24.623449+00:00",
+      "sha256": "c3cd73a700230a92dd88c6a0386f3ee96b40992f765cb7fe6a7a5a875badc9c7",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 328482,
+      "fetched_at_utc": "2026-09-15T12:00:26.196186+00:00",
+      "sha256": "38d2f7ca9d21dac02052af287177e4c790eaddb6845618d748b942712bd74922",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 337660,
+      "fetched_at_utc": "2026-09-15T12:00:27.929895+00:00",
+      "sha256": "a5ad17861ef8cade32c9ad47a737e3a16ff094978e4a3ff0cc39f511ed61835b",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 340664,
+      "fetched_at_utc": "2026-09-15T12:00:29.545024+00:00",
+      "sha256": "28fdccc1b3e759402a935d3f1d9408184c71492f75b86759a39805109940d101",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-11-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-11-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 335003,
+      "fetched_at_utc": "2026-09-15T12:00:31.245870+00:00",
+      "sha256": "2240b50dcc0380cb99a1fd48463377a0bf781fe70995a9f5721ee5b8783c9eb9",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2021-12-01T00%3A00%3A00.000%2B00%3A00&end_date=2021-12-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 332656,
+      "fetched_at_utc": "2026-09-15T12:00:32.940942+00:00",
+      "sha256": "20f16610b072ffb0f728461a721e2c51c5b6841ab6d3e8baade8d8cc41fc9604",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 311690,
+      "fetched_at_utc": "2026-09-15T12:00:34.513413+00:00",
+      "sha256": "8f934315f7443ce56d2a373af46ef9462941bb454249415767478b2e8418fae0",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-02-28T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 346416,
+      "fetched_at_utc": "2026-09-15T12:00:35.940017+00:00",
+      "sha256": "d054d393206723db8cd1cc67ace53e8ddfab26e25a2ad9327397bcdfd2f2be98",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 330578,
+      "fetched_at_utc": "2026-09-15T12:00:37.590849+00:00",
+      "sha256": "55b7762f217af9226a55627714d8d8a4fe338bfb45705288c2e5f99eba7a643c",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 329173,
+      "fetched_at_utc": "2026-09-15T12:00:39.270792+00:00",
+      "sha256": "dec8daea5394bcf8177def00ce682655bb813d1f35959addf0af87eb0d1d0b1d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 343653,
+      "fetched_at_utc": "2026-09-15T12:00:40.963391+00:00",
+      "sha256": "a87fd1d3699aed56791db61be0869a8429acd2ad2f4cfe0e0d146c790c9e9cf3",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 328744,
+      "fetched_at_utc": "2026-09-15T12:00:42.751309+00:00",
+      "sha256": "be93df5a60e8567504b4a8813e8dad35e18cab68bb5145c1739a033e248a33a0",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 334345,
+      "fetched_at_utc": "2026-09-15T12:00:44.192845+00:00",
+      "sha256": "57566a12787cf30855366d28a7b29d7f149c08636251a50a37358976c1cf5bcd",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 337266,
+      "fetched_at_utc": "2026-09-15T12:00:45.259330+00:00",
+      "sha256": "79d2925269c940c28b2db6746ae64f79ae982b8ce238653789152b473a80cd2c",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 333879,
+      "fetched_at_utc": "2026-09-15T12:00:46.630376+00:00",
+      "sha256": "62c8a564a4fb6fddad07455f2ecd23cd75273bf5d214d72618ed6c40794760fb",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 335000,
+      "fetched_at_utc": "2026-09-15T12:00:48.343265+00:00",
+      "sha256": "dfb4cba09567bca19039b3baeb04e8670c7a058d170139f11c434a4d53becb5e",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-11-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-11-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 329187,
+      "fetched_at_utc": "2026-09-15T12:00:50.078695+00:00",
+      "sha256": "4a9982b068dae8d72060f13e0f317c86389ea4a2fce238aa2810d720ba495068",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2022-12-01T00%3A00%3A00.000%2B00%3A00&end_date=2022-12-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 331032,
+      "fetched_at_utc": "2026-09-15T12:00:51.724324+00:00",
+      "sha256": "c379f1ce864c55355edaf8b262ef9c636f52b0865b964ff1377bde4b17b45076",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 311113,
+      "fetched_at_utc": "2026-09-15T12:00:52.790234+00:00",
+      "sha256": "384b6601537f800932dd1e40f2220ee3df9493c0abd1914ab2dd6fbe90d4ffec",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-02-28T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 350051,
+      "fetched_at_utc": "2026-09-15T12:00:53.628431+00:00",
+      "sha256": "ac5950776b0b2f979502152d84f211a47d3cfe449d37a6037c8d2dd57a557905",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 322306,
+      "fetched_at_utc": "2026-09-15T12:00:55.501350+00:00",
+      "sha256": "c0cb3d4cafc2ea83b4bd7bb203d3ee369bc6e45e7a53687305634d2cb019728d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 346820,
+      "fetched_at_utc": "2026-09-15T12:00:57.277070+00:00",
+      "sha256": "d1551e38d4a3e1d5ab49b67690de0cad7718a1457f4510eb8309e00dde134f84",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 346786,
+      "fetched_at_utc": "2026-09-15T12:00:59.036952+00:00",
+      "sha256": "a404eecd4ba4d5747a5f553a35145a43c92cd1f34db26cde669aafa7d1f253b0",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 329794,
+      "fetched_at_utc": "2026-09-15T12:01:00.685912+00:00",
+      "sha256": "bc8ed4f456b3c91b96d4bdf43fcf99643602b0dea916dddfa4c6e7480dc60dfd",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 340022,
+      "fetched_at_utc": "2026-09-15T12:01:01.744871+00:00",
+      "sha256": "00ea59608889de71aa36e8822d5084f30fcbd3419dabbb51c218d9628ac34d32",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 337952,
+      "fetched_at_utc": "2026-09-15T12:01:03.449445+00:00",
+      "sha256": "491a6258d23f6807a783e76436875eea068d0556951bdc96741cc25b52bd439e",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 346719,
+      "fetched_at_utc": "2026-09-15T12:01:05.104361+00:00",
+      "sha256": "e1d7431757b57aebf431f3b6e42985f9aa9aded7ea07cba189e6dfd3293c18ee",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 354036,
+      "fetched_at_utc": "2026-09-15T12:01:06.125932+00:00",
+      "sha256": "c85c9e6c2d1a033130373f28309bf87e5fbb949d452ea126b47bdac22b2a25ee",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-11-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-11-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 338016,
+      "fetched_at_utc": "2026-09-15T12:01:06.699145+00:00",
+      "sha256": "5ca0310927a7ed3d1a3e5797f668cdc9fa13f9f620ce9702e8b8a6f8e3b82d21",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2023-12-01T00%3A00%3A00.000%2B00%3A00&end_date=2023-12-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 342167,
+      "fetched_at_utc": "2026-09-15T12:01:08.926752+00:00",
+      "sha256": "08c9592e5b209c0510310c4090c888620bfc029d8c7fabc92a46bfa221dfbe63",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 323975,
+      "fetched_at_utc": "2026-09-15T12:01:10.419502+00:00",
+      "sha256": "efad48935176c76671e532e866e469eb3a9cad4d5637f74acd321524a5a9881f",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-02-29T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 350209,
+      "fetched_at_utc": "2026-09-15T12:01:12.184929+00:00",
+      "sha256": "a09b305e838db159b6e28d7afdc282a45b0bac6810e4c4e3a476d7b1eaad89f7",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 346671,
+      "fetched_at_utc": "2026-09-15T12:01:13.921949+00:00",
+      "sha256": "1253468e9d97897866beb03c9314370b677c7a2ad59ebff28b0817d95bac88d7",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 358721,
+      "fetched_at_utc": "2026-09-15T12:01:14.921911+00:00",
+      "sha256": "df8c8c18d5af6884ff769bb87599989b8905aad2902a54476abd97b8886a0b65",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 344382,
+      "fetched_at_utc": "2026-09-15T12:01:16.745239+00:00",
+      "sha256": "73267ae2b917c3094f60bf9d5628a725c228b8d2bd0dfe0a53be08aef43ea31a",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 339296,
+      "fetched_at_utc": "2026-09-15T12:01:18.517960+00:00",
+      "sha256": "4e56dc98cb4b1e81b994a3688887c7b1342dfaf5bda157a1b76cc6460d57372d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 336587,
+      "fetched_at_utc": "2026-09-15T12:01:19.916938+00:00",
+      "sha256": "d2f906dc7dcd220ee83f9c90fbafbdd564f02ce3d8d081b6f9dc1fba727c71e9",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 342947,
+      "fetched_at_utc": "2026-09-15T12:01:21.734125+00:00",
+      "sha256": "f9df1c87da12c76be0ca87ccd492ead51c99326759d5d3ac963a490d34b43667",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 353827,
+      "fetched_at_utc": "2026-09-15T12:01:23.460275+00:00",
+      "sha256": "6ea72a6f3f054534db6531e1b93835fc3f49523c12b5e448f3565635ae08096c",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 335337,
+      "fetched_at_utc": "2026-09-15T12:01:25.194587+00:00",
+      "sha256": "aef6a76b0bc176227c063bcf1eec103d0bd06ad18c7116af2073523bcf45565e",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-11-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-11-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 332067,
+      "fetched_at_utc": "2026-09-15T12:01:26.929870+00:00",
+      "sha256": "35c351b94f924c717cf81de8c18952f71a6f7f8ac4f3e5608926a9efbeb66a3d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2024-12-01T00%3A00%3A00.000%2B00%3A00&end_date=2024-12-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 347554,
+      "fetched_at_utc": "2026-09-15T12:01:28.720050+00:00",
+      "sha256": "3ac3290087e5a89bb3c79f0fb3776ca5f8fbe85707dbe514ef400348ab6d3eca",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 330495,
+      "fetched_at_utc": "2026-09-15T12:01:29.295132+00:00",
+      "sha256": "c30a92bdd2956412a3f5235c2eced3c5a7b73e0459a8f78a3432790b315236e8",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-02-28T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 348457,
+      "fetched_at_utc": "2026-09-15T12:01:31.517400+00:00",
+      "sha256": "e29aa19b548dd6ae5ce5ca6c61e98e640509cc400a7b444bdc1e78d1914aa3be",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 356628,
+      "fetched_at_utc": "2026-09-15T12:01:33.315389+00:00",
+      "sha256": "179a5fb31ec275ed7ab7c23a7519b405891f79370460edbe3d3d5c178e29b6d3",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 353821,
+      "fetched_at_utc": "2026-09-15T12:01:34.968173+00:00",
+      "sha256": "1256a26f86c23b3ebe5addbdcafa0b848b140fba53390b68dfddeee110cdb3a5",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 357081,
+      "fetched_at_utc": "2026-09-15T12:01:35.844528+00:00",
+      "sha256": "de10b33a43319c045fdb05ff0b96984fec6dcc72c33dc5ca10c5a076ed4c9656",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 353441,
+      "fetched_at_utc": "2026-09-15T12:01:37.738908+00:00",
+      "sha256": "db8b460dbef1f574a089d102f93b634fc808110acbb21a556d1ffd96c300d7b8",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 342900,
+      "fetched_at_utc": "2026-09-15T12:01:39.488008+00:00",
+      "sha256": "523c096f091984092eea1c0de342ab345ecae2a24eeb3756bcf606841bb5b76d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 356057,
+      "fetched_at_utc": "2026-09-15T12:01:41.330038+00:00",
+      "sha256": "20b7f450cd6212b254760e659f810d3eba8ff8a1b658c3fdf27b25731737c4ef",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 238847,
+      "fetched_at_utc": "2026-09-15T12:01:42.668722+00:00",
+      "sha256": "4537ade124ffa83396894fdc76a80c8d6ee5de6b36648c0d99dcabb949256fe2",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 295325,
+      "fetched_at_utc": "2026-09-15T12:01:44.410113+00:00",
+      "sha256": "500f5d3bb8f828b8cc992167ae2769cd476144f8f4d4c748ebea2ce5f975343b",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-11-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-11-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 342558,
+      "fetched_at_utc": "2026-09-15T12:01:46.162408+00:00",
+      "sha256": "c4be7bb76f82eff5388b080dc610c4fe354751e25eabcb78ca50de4e2c1b763a",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2025-12-01T00%3A00%3A00.000%2B00%3A00&end_date=2025-12-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 355236,
+      "fetched_at_utc": "2026-09-15T12:01:47.826524+00:00",
+      "sha256": "917381a3b94097c332229e2e12978b9950b608a6e46312b99d850aa87d4ca11a",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-01-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-01-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 326719,
+      "fetched_at_utc": "2026-09-15T12:01:49.462224+00:00",
+      "sha256": "77e43eabde6ce9718df5d2c3ac43b166e03f6b154c032916c93853c20936f38d",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-02-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-02-28T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 358389,
+      "fetched_at_utc": "2026-09-15T12:01:51.232126+00:00",
+      "sha256": "f5337251a027880edc95ee9a664c9ce8ac6ff501ad4b828f94cdd4a77d2f578e",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-03-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-03-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 351182,
+      "fetched_at_utc": "2026-09-15T12:01:53.021446+00:00",
+      "sha256": "353b734bf9a2b011083f50d0113b708e8f90539b6edce3dd53aaf2a728f7a4ca",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-04-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-04-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 352473,
+      "fetched_at_utc": "2026-09-15T12:01:54.787090+00:00",
+      "sha256": "0d6cc8bc6d2a566a491b2fead4c12b8c83e2ab1ac9ef71aa009bc646d8b00cb4",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-05-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-05-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 351850,
+      "fetched_at_utc": "2026-09-15T12:01:56.616287+00:00",
+      "sha256": "ef7ce93b312a348098109c0021a5404378ebf8de48e185316b4fd43a774db8ef",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-06-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-06-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 356564,
+      "fetched_at_utc": "2026-09-15T12:01:58.375059+00:00",
+      "sha256": "e2caabab26cb2ce6c9f02a85debf4e100641a7175c2cafa594b442033da94e34",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-07-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-07-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 340355,
+      "fetched_at_utc": "2026-09-15T12:02:00.143314+00:00",
+      "sha256": "409752d823af640d28a5ecb07f597438fff26f68f5049fa3b44f38fbc397b2b2",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-08-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-08-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 335523,
+      "fetched_at_utc": "2026-09-15T12:02:01.481954+00:00",
+      "sha256": "6e630189fba640bd15f209624543a28557af346a8f4b935fc36e79e5ba2b1b85",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-09-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-09-30T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 49161,
+      "fetched_at_utc": "2026-09-15T12:02:02.235177+00:00",
+      "sha256": "57a0d69a57e2986a437bb915f67167da5464bae161c91d6d005693988f8737ec",
+      "url": "https://endpoints.investing.com/pd-instruments/v1/calendars/economic/events/occurrences?domain_id=1&limit=1000&start_date=2026-10-01T00%3A00%3A00.000%2B00%3A00&end_date=2026-10-31T23%3A59%3A59.999%2B00%3A00&country_ids=5%2C37"
+    },
+    {
+      "bytes": 645660,
+      "fetched_at_utc": "2026-09-25T21:50:19.430049+00:00",
+      "sha256": "33156099f6e9c4767d71f948112a23c5ed56b59af8a24c49e8c67ab419ed8172",
+      "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1788266096813-ARC%202026-27%20updated%20till%20August%202026.pdf"
+    },
+    {
+      "bytes": 647565,
+      "fetched_at_utc": "2026-10-23T21:46:46.066002+00:00",
+      "sha256": "3f053ae4692e07b7725679784dbddaa6beacd305e787d1e23141a899a84e0e99",
+      "url": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1791356248513-ARC_2026_27_Sept_2026.pdf"
+    },
+    {
+      "bytes": 16936,
+      "fetched_at_utc": "2026-10-23T21:45:19.946241+00:00",
+      "sha256": "db6ab6607cb77ba7be677844da56f61c8b4aaed61b3b968f423c2fccb564d2c7",
+      "url": "https://www.newyorkfed.org/medialibrary/research/interactives/data/cmdCalendar/cmdCalendar.csv"
+    },
+    {
+      "bytes": 291145,
+      "fetched_at_utc": "2026-09-15T12:04:40.781504+00:00",
+      "sha256": "2462be4ff2f5e468cf550dc5b8d367d46a9fba8230719dd1a2c7982e6de82dd9",
+      "url": "https://www.opec.org/press-releases.html"
+    },
+    {
+      "bytes": 345843,
+      "fetched_at_utc": "2026-09-15T12:05:25.400172+00:00",
+      "sha256": "8d4c35487a32ce6cb040328b2c34e650ba952e517fbbb1969adea78ae53dc183",
+      "url": "https://www.opec.org/press-releases-2021.html"
+    },
+    {
+      "bytes": 328744,
+      "fetched_at_utc": "2026-09-15T12:05:28.450277+00:00",
+      "sha256": "ae24379a0a844c66d8b7a7ef9c649b231c21ed1c9ac6cc213ebd746025a1008f",
+      "url": "https://www.opec.org/press-releases-2022.html"
+    },
+    {
+      "bytes": 318621,
+      "fetched_at_utc": "2026-09-15T12:05:31.488065+00:00",
+      "sha256": "ffbc902f2002626f91b7b3e4a9aefe7c48b1417d370390d88844c5d72c09500b",
+      "url": "https://www.opec.org/press-releases-2023.html"
+    },
+    {
+      "bytes": 323250,
+      "fetched_at_utc": "2026-09-15T12:05:34.520036+00:00",
+      "sha256": "f95164797b0c6054e3fd9957dcb9434a3b78a121bc922277d1e47676e5c98c25",
+      "url": "https://www.opec.org/press-releases-2024.html"
+    },
+    {
+      "bytes": 311376,
+      "fetched_at_utc": "2026-09-15T12:05:37.651333+00:00",
+      "sha256": "35d454327e4dcc042fbdcb8af35494a450bd228438b057bccf2fadd3cbf5cba2",
+      "url": "https://www.opec.org/press-releases-2025.html"
+    },
+    {
+      "bytes": 77628,
+      "fetched_at_utc": "2026-10-23T21:46:46.860141+00:00",
+      "sha256": "810eb027768dfde642a59cc072de1b7607dacf34b9dc4bba05227f1aa757232d",
+      "url": "https://www.rbi.org.in/Scripts/AnnualPolicy.aspx"
+    },
+    {
+      "bytes": 57511,
+      "fetched_at_utc": "2026-10-23T21:46:50.836889+00:00",
+      "sha256": "e4fa06510d2caa9c4ea1a180b656ea326b5b060cb1bc8bbc196227b8924e8f63",
+      "url": "https://web.archive.org/web/20220104001940id_/https://rbi.org.in/scripts/Annualpolicy.aspx"
+    },
+    {
+      "bytes": 61771,
+      "fetched_at_utc": "2026-10-23T21:46:53.080640+00:00",
+      "sha256": "f6f0b6270e0f76d82fe5a5ff7c9ac7677409713c1a2c5b22c9255db9144a8202",
+      "url": "https://web.archive.org/web/20221230080940id_/https://rbi.org.in/scripts/Annualpolicy.aspx"
+    },
+    {
+      "bytes": 64598,
+      "fetched_at_utc": "2026-10-23T21:46:55.460124+00:00",
+      "sha256": "f75231a06ed3e97e7267bc987b45918604e47db9886c54712b72c5d15ce629e6",
+      "url": "https://web.archive.org/web/20240104231820id_/https://www.rbi.org.in/scripts/Annualpolicy.aspx"
+    },
+    {
+      "bytes": 63247,
+      "fetched_at_utc": "2026-10-23T21:46:57.864887+00:00",
+      "sha256": "19144f4319fda7a6d7b52634cd1f225125fc1ed5101b716eb76157dd12a51737",
+      "url": "https://web.archive.org/web/20241226113950id_/https://www.rbi.org.in/scripts/Annualpolicy.aspx"
+    },
+    {
+      "bytes": 80660,
+      "fetched_at_utc": "2026-10-23T21:46:59.729401+00:00",
+      "sha256": "0f1e8ea8408454f5555f9fa63c6df8392d3439d9c3984e236ec0de23f11cc9c9",
+      "url": "https://web.archive.org/web/20260101194355id_/https://rbi.org.in/scripts/Annualpolicy.aspx"
+    },
+    {
+      "bytes": 24978,
+      "fetched_at_utc": "2026-09-15T12:03:21.080843+00:00",
+      "sha256": "c0f2a26507528066dc2bcbb3b4671d0a66ec75bc5613cdd6ce034c5bae90c2d3",
+      "url": "https://www.pmi.spglobal.com/Public/Release/ReleaseDates"
+    },
+    {
+      "bytes": 1567861,
+      "fetched_at_utc": "2026-09-25T21:49:20.323387+00:00",
+      "sha256": "b3f6e21970fa1df3d1e109288918c72dc111db5445032e4551699d4dce7d13e2",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2021-01-01&endDate=2021-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 1356488,
+      "fetched_at_utc": "2026-09-25T21:49:23.066444+00:00",
+      "sha256": "3e4b66fc7c21bc5c9ab858e1cfd01967819bc613b6db45676255574cafa0660f",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2022-01-01&endDate=2022-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 1510673,
+      "fetched_at_utc": "2026-09-25T21:49:26.280311+00:00",
+      "sha256": "1a5ac6ca6da8e78848471a2997c3544ec60ecae3c404e472607a89104f712e5f",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2023-01-01&endDate=2023-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 1553208,
+      "fetched_at_utc": "2026-09-25T21:49:28.778343+00:00",
+      "sha256": "ce836bc0a8b9b3a3f27dd9d5c8f73c3736aa17f69e1c5416dccb4e29a6fc802d",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2024-01-01&endDate=2024-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 1570357,
+      "fetched_at_utc": "2026-09-25T21:49:31.168939+00:00",
+      "sha256": "d67fa794d1297c12f66b8d50b11de674a70e271b35e32a4e7dd9e3a1f831756a",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2025-01-01&endDate=2025-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 1143409,
+      "fetched_at_utc": "2026-09-25T21:49:33.264320+00:00",
+      "sha256": "f7eadf65349ec78c0c2a91a1be954e3db88797bba77928bd0165b0f09fe514b3",
+      "url": "https://www.treasurydirect.gov/TA_WS/securities/search?format=json&startDate=2026-01-01&endDate=2026-12-31&dateFieldName=auctionDate"
+    },
+    {
+      "bytes": 97292,
+      "fetched_at_utc": "2026-10-23T20:54:26.232171+00:00",
+      "sha256": "0dc010864f20427c22dbf7d105eafc6b15d3f67b99cb2c35006cfcb33e2da19e",
+      "url": "https://web.archive.org/web/20230629111127id_/https://data.sca.isr.umich.edu/fetchdoc.php?docid=70659"
+    },
+    {
+      "bytes": 78522,
+      "fetched_at_utc": "2026-10-23T20:54:30.223052+00:00",
+      "sha256": "f658f57506fac530631501fedb675ea26a2c17f1102a17e7eb75df8a7dc9ad41",
+      "url": "https://web.archive.org/web/20240329234401id_/https://data.sca.isr.umich.edu/fetchdoc.php?docid=73945"
+    },
+    {
+      "bytes": 74460,
+      "fetched_at_utc": "2026-10-23T20:54:33.897918+00:00",
+      "sha256": "7121219463161feb751b4663202b66ed7b31c48683696bb5ecb3dbd4f8f79e13",
+      "url": "https://web.archive.org/web/20250429141907id_/https://data.sca.isr.umich.edu/fetchdoc.php?docid=76841"
+    },
+    {
+      "bytes": 132710,
+      "fetched_at_utc": "2026-10-23T21:44:26.673332+00:00",
+      "sha256": "e182338606db89a6a6bd999a15e6dd9f65946f86ed7646cf05c20cc108cdfae1",
+      "url": "https://data.sca.isr.umich.edu/fetchdoc.php?docid=79628"
+    },
+    {
+      "bytes": 143328,
+      "fetched_at_utc": "2026-10-23T21:44:28.310699+00:00",
+      "sha256": "abc30043f4144c9ad971f418355a7cea7ca01a8f67209f1113f739701f579620",
+      "url": "https://data.sca.isr.umich.edu/fetchdoc.php?docid=81621"
+    },
+    {
+      "bytes": 41427,
+      "fetched_at_utc": "2026-10-23T21:44:35.145583+00:00",
+      "sha256": "17d1e1226838373a24117243b8f7c396872938fa35b3edd30cf3755d26a936e2",
+      "url": "https://web.archive.org/web/20211009142944id_/https://data.sca.isr.umich.edu/fetchdoc.php?docid=65450"
+    },
+    {
+      "bytes": 97012,
+      "fetched_at_utc": "2026-10-23T21:44:47.981225+00:00",
+      "sha256": "06a11fdb3d3de586da36f57ac011505f80c67a7d114053769f9c0a9a47759e95",
+      "url": "https://web.archive.org/web/20220810053413id_/https://data.sca.isr.umich.edu/fetchdoc.php?docid=68030"
+    }
+  ]
+}
