@@ -80,10 +80,10 @@ By horizon: h3 goes from 72.3 to 85.5 (35% of slots); h5 from 76.9 to 77.3 (65%)
 Plan doc: *Task 2 Implementation Plan* (claude.ai artifact).
 
 ## 5. Status and next steps
-- [ ] Finish the pyarrow 25.0.1 source build (Arrow C++ is compiling).
-- [ ] `autoeval.py`: full holdout run, learning + frozen; validate; official scorer; read-log check; `PROGRESS.md`.
-- [ ] Log the run in `HOLDOUT_EXPOSURE.md` (a confirmatory look; no tuning on it).
-- [ ] Learning-gain problem: still no mechanism with evidence.
+- [x] pyarrow 25.0.1 is installed (Python 3.13 venv). The pack's parquet files were Git LFS pointers; the real `v2.1` archive was extracted before the run.
+- [x] Full holdout run, learning + frozen; validate; official scorer; read-log check. Success 56.36, direction 69.09, depth 100, improvement 0. Minimum not met. Scores are in `task2-repo/predictions/holdout_scores.json`.
+- [x] Logged in `HOLDOUT_EXPOSURE.md` before the run. The result was recorded after scoring. No tuning on it.
+- [ ] Learning-gain problem: still no mechanism with evidence. The shipped guard never fired, so the two files are byte-identical.
 - [ ] Repository packaging: pin `lightgbm==4.6.0`, run `reproduce.py`, write the memo, `submit.py`.
 - [ ] Optional: send CO-0039 (the forward-run arguments question) to the organizers.
 

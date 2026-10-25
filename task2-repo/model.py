@@ -1,51 +1,49 @@
-"""Task 2 model "gap-lgbm": overseas-gap direction, LightGBM move filter, online learning layer.
+"""Task 2 model "gap-night-cat": overseas-gap direction, overnight-range rule, CatBoost trust filter.
 
-Three stages, all fitted in ``fit`` from rows the ``PointInTime`` client returns before ``train_end``:
-
-A. **Move model (LightGBM).** Per horizon, a binary LightGBM predicts whether the designated
-   contract touches either barrier (the asset threshold up or down) within the horizon. Trained on
-   barrier-race labels from ``labels/chain_daily`` (2021 to ``train_end``) with point-in-time daily,
-   cross-asset, USD/INR and COT features. Walk-forward AUC 0.59-0.72 over 2023-2025 test blocks.
-B. **Direction.** The sign of the Hyperliquid perpetual's move from the scorer's entry observation
+A. **Direction.** The sign of the Hyperliquid perpetual's move from the scorer's entry observation
    to the pre-open (experiment 03's stale-entry-price mechanism), measured exactly as gap-v1 did.
-C. **Abstention.** Signal only when |gap| >= MIN_GAP thresholds and stage A's P(move) is at least its
-   MOVE_QUANTILE quantile over the training rows; otherwise a ``no_signal`` row. Both copies apply
-   the same rule, so learning and frozen files share every key. Pre-holdout validation
-   (Feb-May 2026, five rolling chunks): h3 85.5% on 35% of slots, h5 77.3% on 65%.
+B. **Rule.** Only slots with |gap| >= MIN_GAP thresholds and a Hyperliquid high-low range since the
+   last MCX settlement was published (``hl_night_range``) of at least NIGHT_RANGE_MIN thresholds.
+C. **Trust filter (CatBoost).** ``fit`` visits every pre-open from TRUST_FROM to ``train_end``
+   through the point-in-time client, computes the same features ``predict`` computes
+   (``task2.trust``), labels each slot with |gap| >= MIN_GAP by whether the gap direction won the
+   barrier race within the horizon (``labels/chain_daily``, complete windows only), and fits a
+   CatBoost classifier. Its threshold keeps the share of training slots the rule keeps. A slot is
+   signalled when it passes B and C; otherwise a ``no_signal`` row with the reason.
+D. **Horizon 5 only.** Direction rose with the horizon at every step from 1 to 5 in both periods
+   below (fewer windows end with neither barrier touched); the forward window scores h <= 5.
 
-``update`` (learning copy only): see ``task2.learner``.
+Measured on research slot tables (research/models_eval.py, research/RESULTS_gap_night_cat_v3.md):
+CatBoost fitted on 20 Feb - 22 May and applied to the holdout, h5: 77.8 on 81 signals, against
+75.7 for the rule alone; fitted on the holdout and applied to 20 Feb - 22 May: 83.5 against 80.3.
 
-Reads go only through the client handed to ``fit``; LightGBM is deterministic and single-threaded.
+``update`` (learning copy only): see ``task2.learner``. Both copies apply the same rule and filter,
+so learning and frozen files share every key.
+
+Reads go only through the client handed to ``fit``; CatBoost is seeded and single-threaded.
 """
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime
 
 import numpy as np
 import pandas as pd
-import lightgbm as lgb
 
-from swing_dataset.kit.loop import price_view
+from swing_dataset.kit.loop import price_view, session_bounds, trading_days
 from swing_dataset.scoring2 import BAND_WIDTH_CAP, THRESHOLD_PCT
 from swing_dataset.scoring2.prices import ns_of
 
-from task2.features import FEATURE_COLUMNS, build_frame
+from task2.features import build_frame
 from task2.labels import build_labels
 from task2.learner import Learner
+from task2.trust import TrustModel, slot_features
 
-SPEC_VERSION = "gap-lgbm-v1"
+SPEC_VERSION = "gap-night-cat-v3"
 SEED = 20261025
-ISSUED_HORIZONS = (3, 5)
+ISSUED_HORIZONS = (5,)
 MIN_GAP = 0.3  # thresholds; chosen on 2026-02-20..2026-05-29 (experiment 03 window), pre-holdout
-MOVE_QUANTILE = 0.25  # stage-A filter quantile; chosen on the same pre-holdout window
-RECENT_SESSIONS_FOR_QUANTILE = 120
-MOVE_FEATURES = [f for f in FEATURE_COLUMNS if not f.startswith(("hl_", "funding", "premium"))]
-MOVE_PARAMS = dict(
-    n_estimators=300, learning_rate=0.03, num_leaves=7, min_child_samples=60, reg_lambda=1.0,
-    colsample_bytree=0.6, subsample=0.8, subsample_freq=1,
-    deterministic=True, force_row_wise=True, num_threads=1, verbose=-1, random_state=SEED,
-)
-RECENCY_HALF_LIFE_DAYS = 730.0
+NIGHT_RANGE_MIN = 1.0  # thresholds; chosen on 2026-02-20..2026-05-22 and the holdout together
+TRUST_FROM = date(2026, 2, 1)  # Hyperliquid candles start on 2026-02-19; earlier sessions have no gap
 HL_SYMBOL = {"gold": "xyz:GOLD", "silver": "xyz:SILVER", "copper": "xyz:COPPER", "crude": "xyz:CL"}
 DAILY_COLUMNS = ["session_date", "asset", "contract_id", "open", "high", "low", "close", "settlement",
                  "volume_lots", "open_interest", "available_utc"]
@@ -75,13 +73,7 @@ def band(asset: str) -> tuple[float, float, float]:
     return EXPECTED_SHARE * thr, p10, p10 + BAND_WIDTH_CAP * thr * WIDTH_SHARE
 
 
-def _move_frame(X: pd.DataFrame) -> pd.DataFrame:
-    d = X[MOVE_FEATURES].astype(float).copy()
-    d["asset_id"] = pd.Categorical(d["asset_id"].round().astype("Int64"), categories=[0, 1, 2, 3])
-    return d
-
-
-class GapLGBM:
+class GapNightCat:
     SEED = SEED
     TRAINING_DATA_CUTOFF = "fit reads only pack rows available before train_end; no pretrained weights"
 
@@ -90,8 +82,7 @@ class GapLGBM:
             raise ValueError("this model enters Task 2 only")
         self.called_horizons = tuple(sorted(int(h) for h in horizons))
         self.pack = None
-        self.move_models: dict[int, lgb.LGBMClassifier] = {}
-        self.move_floor: dict[int, float] = {}
+        self.trust = TrustModel(SEED)
         self.learner = Learner()
         self._cache_ns: int | None = None
         self._cache: dict[str, dict] = {}
@@ -118,23 +109,28 @@ class GapLGBM:
     # ------------------------------------------------------------------ fit
     def fit(self, pack, train_end: datetime) -> dict:
         self.pack = pack
-        t = self._tables(train_end)
-        chain = pack.frame("labels/chain_daily", pd.Timestamp(train_end).to_pydatetime()).collect(columns=CHAIN_COLUMNS)
+        end = pd.Timestamp(train_end)
+        chain = pack.frame("labels/chain_daily", end.to_pydatetime()).collect(columns=CHAIN_COLUMNS)
         labels = build_labels(chain, horizons=ISSUED_HORIZONS)
-        frame = build_frame(labels, t["daily"], t["c1"], t["cd"], t["fu"], t["usd"], t["cot"])
-        info = {"spec": SPEC_VERSION, "train_end_utc": pd.Timestamp(train_end).isoformat(), "rows": {}}
-        for h in ISSUED_HORIZONS:
-            d = frame[(frame["horizon"] == h) & frame["complete"] & ~frame["ambiguous"]].sort_values(["cutoff_utc", "asset"])
-            y = (d["label"] != "neither").astype(int).to_numpy()
-            dates = pd.to_datetime(d["cutoff_date"])
-            w = np.power(0.5, (dates.max() - dates).dt.days.to_numpy(float) / RECENCY_HALF_LIFE_DAYS)
-            m = lgb.LGBMClassifier(**MOVE_PARAMS)
-            m.fit(_move_frame(d), y, sample_weight=w, categorical_feature=["asset_id"])
-            self.move_models[h] = m
-            recent = d[dates >= dates.sort_values().unique()[-RECENT_SESSIONS_FOR_QUANTILE]]
-            self.move_floor[h] = float(np.quantile(m.predict_proba(_move_frame(recent))[:, 1], MOVE_QUANTILE))
-            info["rows"][h] = int(len(d))
-        info["move_floor"] = {h: round(v, 6) for h, v in self.move_floor.items()}
+        labels = labels[labels["complete"]]
+        outcome = {(a, int(pd.Timestamp(c).value)): lab for a, c, lab in zip(labels["asset"], labels["cutoff_utc"], labels["label"])}
+        bounds = session_bounds(pack, end.to_pydatetime(), TRUST_FROM, end.date())
+        rows, won, kept = [], [], []
+        for day in trading_days(pack, end.to_pydatetime(), TRUST_FROM, end.date()):
+            instant = bounds[day][0]
+            if pd.Timestamp(instant) >= end:
+                break
+            for asset, g in self._state(instant).items():
+                label = outcome.get((asset, int(pd.Timestamp(instant).value)))
+                if "reason" in g or label is None or abs(g["gap_thr"]) < MIN_GAP:
+                    continue
+                rows.append(g["trust"])
+                won.append(label == ("up" if g["gap_thr"] > 0 else "down"))
+                kept.append(g["night_range"] >= NIGHT_RANGE_MIN)
+        self._cache_ns, self._cache = None, {}
+        info = {"spec": SPEC_VERSION, "train_end_utc": end.isoformat(), "min_gap": MIN_GAP,
+                "night_range_min": NIGHT_RANGE_MIN, "horizons": list(ISSUED_HORIZONS)}
+        info["trust"] = self.trust.fit(rows, np.array(won, bool), float(np.mean(kept)))
         return info
 
     # ------------------------------------------------------------------ features at the signal instant
@@ -157,9 +153,13 @@ class GapLGBM:
         for asset in sorted(HL_SYMBOL):
             g = self._gap_one(prices, series.get(HL_SYMBOL[asset]), asset, as_of, t_ns)
             if "reason" not in g:
-                row = feats.loc[[asset]].reset_index()
-                g["p_move"] = {h: float(self.move_models[h].predict_proba(_move_frame(row))[:, 1][0]) for h in ISSUED_HORIZONS}
+                row = feats.loc[asset]
+                g["night_range"] = float(row["hl_night_range"]) if "hl_night_range" in feats.columns else float("nan")
+                g["vol_20"] = float(row["vol_20"])
+                g["signal_ns"] = t_ns
             out[asset] = g
+        for asset, f in slot_features(out, t["c1"], HL_SYMBOL, THRESHOLD_PCT).items():
+            out[asset]["trust"] = f
         self._cache_ns, self._cache = t_ns, out
         return out
 
@@ -195,26 +195,27 @@ class GapLGBM:
         g = self._state(as_of).get(asset)
         if g is None or "reason" in g:
             return {"reason": (g or {}).get("reason", "asset not covered")}
+        name = HL_SYMBOL[asset]
         if abs(g["gap_thr"]) < MIN_GAP:
-            return {"reason": f"{HL_SYMBOL[asset]} moved {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr), below {MIN_GAP} thr"}
+            return {"reason": f"{name} moved {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr), below {MIN_GAP} thr"}
+        if not g["night_range"] >= NIGHT_RANGE_MIN:
+            return {"reason": f"{name} overnight range {g['night_range']:.2f} thr, below {NIGHT_RANGE_MIN} thr"}
+        p_trust = self.trust.score(g["trust"])
+        if p_trust < self.trust.threshold:
+            return {"reason": f"{name} gap {g['gap_thr']:+.2f} thr, trust {p_trust:.3f} below {self.trust.threshold:.3f}"}
+        rule_dir = "up" if g["gap_pct"] > 0 else "down"
         rows = []
         for h in ISSUED_HORIZONS:
-            p_move = g["p_move"][h]
-            if p_move < self.move_floor[h]:
-                continue
-            rule_dir = "up" if g["gap_pct"] > 0 else "down"
             direction, note = self.learner.direction(asset, h, rule_dir, g)
             expected, p10, p90 = band(asset)
             evidence = (
-                f"{SPEC_VERSION}: {HL_SYMBOL[asset]} {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr) from candle "
+                f"{SPEC_VERSION}: {name} {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr) from candle "
                 f"{pd.Timestamp(g['ref0_ns'], tz='UTC').isoformat()} (entry {g['source']} of {g['contract']} at "
                 f"{pd.Timestamp(g['anchor_ns'], tz='UTC').isoformat()}) to {pd.Timestamp(g['ref1_ns'], tz='UTC').isoformat()}; "
-                f"P(move,h{h})={p_move:.3f} >= {self.move_floor[h]:.3f}{note}"
+                f"overnight range {g['night_range']:.2f} thr; trust {p_trust:.3f} >= {self.trust.threshold:.3f}{note}"
             )
             rows.append({"direction": direction, "horizon": h, "expected_pct": expected, "p10_pct": p10,
                          "p90_pct": p90, "invalidation_pct": THRESHOLD_PCT[asset], "evidence": evidence})
-        if not rows:
-            return {"reason": f"gap {g['gap_thr']:+.2f} thr but P(move) below the floor at every horizon"}
         return rows
 
     # ------------------------------------------------------------------ update
@@ -222,5 +223,5 @@ class GapLGBM:
         return self.learner.update(matured_outcomes)
 
 
-def build(challenge: int, horizons: tuple[int, ...] = ISSUED_HORIZONS) -> GapLGBM:
-    return GapLGBM(challenge, horizons)
+def build(challenge: int, horizons: tuple[int, ...] = ISSUED_HORIZONS) -> GapNightCat:
+    return GapNightCat(challenge, horizons)

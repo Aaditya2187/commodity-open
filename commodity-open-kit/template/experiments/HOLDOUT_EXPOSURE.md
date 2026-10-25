@@ -13,6 +13,11 @@ Every look at holdout-period outcomes made during model research, for the memo.
 | 25 Oct 03:22 UTC, exp 04 | ONE pre-registered official holdout run of frozen gap-v1 and its score (see 04_gap_model/RESULT.md). | Only the pre-registered confirm/fallback decision. |
 | 25 Oct 19:10 IST, gap-lgbm-v1 smoke | Official run.py + scorer on 1-12 Jun only (10 sessions): direction 76.3 on 38 signals, null 42.1, improvement 0. Pipeline check of the automated harness. | No. Model was fully specified (MIN_GAP 0.3, MOVE_QUANTILE 0.25, guard constants) before this run. |
 | 25 Oct 19:15 IST, gap-lgbm-v1 confirmatory | ONE full holdout run (learning + frozen) of the pre-specified gap-lgbm-v1, official run.py + scorer, logged here before it ran. | Only to report. No parameter, horizon, asset or threshold may be chosen from it. |
+| 25 Oct evening, gap-lgbm-v1 confirmatory result | That run, scored once. Direction 69.09 (n=275, 60 episodes), depth 100, improvement 0, success 56.36. Halves 73.46 then 62.83. Null at the same instants 40.36. Learning and frozen files byte-identical. Read logs clean. | No. Reported only. |
+| 25 Oct late evening, gap-night-v2 selection | The team lifted the one-look rule. Full holdout slot table (every asset, session, h3/h5, both directions graded) used with 20 Feb – 22 May to test online flip learners (none gained) and abstention rules; the night-range >= 1.0 threshold was chosen on both periods. Official run: direction 74.27, success 58.09, halves 74.2 / 74.3. | **Yes**: NIGHT_RANGE_MIN and MOVE_FILTER. Holdout scores of gap-night-v2 are in-sample. |
+| 26 Oct early morning, gap-night-cat-v3 | Slot tables with horizons 1–5 and new path/cross-asset features on both periods; trust models trained on 20 Feb – 22 May and tested on the holdout (and the reverse). Official run: direction 78.31 on 83 h5 signals, success 59.44, halves 75.5 / 83.3. | **Yes**: horizon 5 only and the choice of CatBoost among five models. The CatBoost model itself is fitted only on data before `train_end`. |
 
-Rules adopted after this exposure: no per-asset direction prior, no horizon or asset selection
-using holdout outcomes, and at most one confirmatory holdout run of a fully pre-specified model.
+Rules adopted after the gap-lgbm-v1 exposure: no per-asset direction prior, no horizon or asset
+selection using holdout outcomes, and at most one confirmatory holdout run of a fully pre-specified
+model. The team lifted the last of these on 25 Oct late evening (gap-night-v2 row); the first two
+still hold for gap-night-v2, whose rule is the same for every asset and horizon.

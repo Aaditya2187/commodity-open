@@ -1,0 +1,102 @@
+{
+  "stem": "c2_holdout_frozen",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "D:\\CommodityOpenLatest-main\\v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": true,
+    "out": "D:\\CommodityOpenLatest-main\\task2-repo\\research\\knn_replay\\run",
+    "start": "2026-02-20",
+    "end": "2026-05-22",
+    "train_end": "2026-02-20 03:00:00+00:00",
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "GapLGBM",
+    "seed": 20261025,
+    "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
+  },
+  "pack": {
+    "root": "D:\\CommodityOpenLatest-main\\v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-02-20",
+      "end": "2026-05-22",
+      "train_end_utc": "2026-02-20T03:00:00+00:00"
+    },
+    "frozen": true,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 65,
+    "first_session": "2026-02-20",
+    "last_session": "2026-05-22",
+    "rows": 431,
+    "signals": 343,
+    "no_signals": 88,
+    "updates": 0,
+    "outcomes_delivered": 0,
+    "stopped_at": null,
+    "fit_seconds": 162.351,
+    "loop_seconds": 165.28
+  },
+  "rows": {
+    "rows": 431,
+    "signals": 343,
+    "no_signals": 88,
+    "by_horizon": {
+      "3": 172,
+      "5": 171
+    },
+    "by_asset": {
+      "silver": 104,
+      "copper": 84,
+      "crude": 82,
+      "gold": 73
+    },
+    "by_direction": {
+      "up": 188,
+      "down": 155
+    },
+    "no_signals_by_asset": {
+      "gold": 28,
+      "crude": 24,
+      "copper": 23,
+      "silver": 13
+    }
+  },
+  "fit": {
+    "spec": "gap-lgbm-knn-v1",
+    "train_end_utc": "2026-02-20T03:00:00+00:00",
+    "rows": {
+      "3": 5153,
+      "5": 5144
+    },
+    "move_floor": {
+      "3": 0.58341,
+      "5": 0.820429
+    },
+    "analog_library": {}
+  },
+  "read_log": {
+    "path": "c2_holdout_frozen.readlog.jsonl",
+    "entries": 724
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 327.868,
+  "python": "3.13.15"
+}

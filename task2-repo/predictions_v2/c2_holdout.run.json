@@ -1,0 +1,96 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "D:\\CommodityOpenLatest-main\\v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "predictions_v2",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "GapLGBM",
+    "seed": 20261025,
+    "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
+  },
+  "pack": {
+    "root": "D:\\CommodityOpenLatest-main\\v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 519,
+    "signals": 206,
+    "no_signals": 313,
+    "updates": 62,
+    "outcomes_delivered": 204,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 0.0,
+    "loop_seconds": 383.29
+  },
+  "rows": {
+    "rows": 519,
+    "signals": 206,
+    "no_signals": 313,
+    "by_horizon": {
+      "3": 103,
+      "5": 103
+    },
+    "by_asset": {
+      "silver": 86,
+      "copper": 42,
+      "gold": 40,
+      "crude": 38
+    },
+    "by_direction": {
+      "down": 114,
+      "up": 92
+    },
+    "no_signals_by_asset": {
+      "crude": 85,
+      "gold": 84,
+      "copper": 83,
+      "silver": 61
+    }
+  },
+  "fit": {
+    "spec": "gap-night-v2",
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "min_gap": 0.3,
+    "night_range_min": 1.0,
+    "move_filter": false
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 1381
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 383.5,
+  "python": "3.13.15"
+}

@@ -1,6 +1,6 @@
 # Task 2 implementation plan: what we followed and how far we got
 
-Status as of Sun 25 Oct 2026, 19:00 IST. The submission window closes Mon 26 Oct, 17:00 IST.
+Status as of Sun 25 Oct 2026, evening IST. The submission window closes Mon 26 Oct, 17:00 IST.
 The full plan is in the claude.ai doc *Task 2 Implementation Plan*; this file tracks progress against it.
 
 ## The plan
@@ -21,8 +21,8 @@ Build a tree-first learning system inside the kit's `fit` / `predict` / `update`
 | 2 | LightGBM core | Beats the gap rule in the Feb–May 2026 block | ❌ Failed, design pivoted (below) |
 | 2b | Gap-centred hybrid (the pivot) | Beats the gap rule pre-holdout | ✅ Passed (80.2% vs 74.6% at matched coverage) |
 | 3 | Online learning loop in `update` | Paired gain > 0 in session replay | ❌ Not met: +0.00 pp best |
-| — | Official holdout run (learning + frozen), automated | Run, validate, score, read-log check | 🔄 In progress: building pyarrow from source |
-| 4 | Add-ons: CatBoost, GRU, kNN, depth and news features | Each must improve the blend | ⏸ Not started |
+| — | Official holdout run (learning + frozen), automated | Run, validate, score, read-log check | ✅ Done: success 56.4, direction 69.1, improvement 0. Minimum not met |
+| 4 | Add-ons: CatBoost, GRU, kNN, depth and news features | Each must improve the blend | ❌ kNN learner replayed: 0.00 pp gain, reverted. CatBoost and GRU not built (fitted once, they cannot separate learning from frozen) |
 | 5 | Freeze and package: memo, `reproduce.py`, `submit.py` | Byte-identical reproduction | ⏸ Not started |
 
 ## Phase by phase
@@ -73,13 +73,50 @@ Packaged as `model.py` (`gap-lgbm-v1`) on the kit's interface and smoke-tested a
 
 This agrees with experiments 02, 03 and 06. Qualifying needs about +4 to +5 pp on both periods, so this is the blocking gate.
 
-### Official holdout run 🔄
-- `autoeval.py`: runs the template `run.py` (learning + frozen), `validate_submission.py`, `score_holdout.py`, the read-log check, and appends to `PROGRESS.md`.
-- Blocker: the kit needs pyarrow, which can't be installed here. pyarrow 25.0.1 is being built from Apache's GitHub tag; its dependencies are built and Arrow C++ is compiling.
-- Before the run, it must be logged in `HOLDOUT_EXPOSURE.md` as a confirmatory look, with no tuning on its result.
+### Official holdout run ✅
+One confirmatory run of the pre-specified `gap-lgbm-v1`, logged in `HOLDOUT_EXPOSURE.md` before it ran. Official `run.py` (learning and frozen), `validate_submission.py`, `score_holdout.py`, and `repro.check_read_log`. Outputs are in `task2-repo/predictions/`. Nothing was changed after the scores.
+
+| Score | Value | 90% CI |
+|---|---|---|
+| direction | 69.09 (n=275, 60 episodes) | 62.86–75.00 |
+| depth | 100.0 (n=190) | 100–100 |
+| improvement | 0.0 | 0–0 |
+| success rate | 56.36 (minimum 70) | 54.29–58.33 |
+| prevailing-direction null, same instants | 40.36 | |
+| baselines' success rate | prevailing 42.3, rv_band 39.5, range_break_vol 39.8 | |
+
+Signals 275 (h3 149, h5 126), invalid 0, unmatured 0, no_signal 263. Learning and frozen files are byte-identical. Coverage 1.000 on all assets. First half 73.46, second half 62.83 (52 + 52 sessions).
+
+| Hard condition | Result |
+|---|---|
+| success ≥ 70 | FAIL (56.36) |
+| learning beats frozen | FAIL (69.09 vs 69.09) |
+| second half ≥ first half | FAIL (62.83 vs 73.46) |
+| direction ≥ 60 | PASS (69.09) |
+| frozen beats null | PASS (69.09 vs 40.36) |
+| learning beats null | PASS |
+| coverage ≥ 90% per asset | PASS (1.000) |
+| read log | PASS (0 violations, 0 unvintaged reads; 1436 learning entries, 1154 frozen) |
+
+**Holdout minimum: NOT met.** Direction is about 10 points above gap-v1's holdout 58.92, on about a third of the slots. Success is still the average of 69.09, 100 and 0.
+
+### Phase 4: online kNN learner ❌
+`task2.learner.AnalogLearner`: per asset and horizon, a library of past gaps (`hl_gap`, `vol_20`, `ret_5`) and whether each gap's direction won; `update` appends the run's own outcomes; the gap direction is reversed when at least 65% of the 21 nearest gaps missed. Pre-declared in `research/knn_replay/PREDECLARED.md`, replayed once through the official `run.py` and scorer on 20 Feb – 22 May 2026, fit at 20 Feb.
+
+| | Learning | Frozen |
+|---|---|---|
+| paired direction (n = 343) | 72.59 | 72.59 |
+| keys that differ | 0 | |
+
+`update` appended 330 outcomes, but no neighbourhood reached the vote (highest miss share 0.62, copper h3; crude and silver at most 0.33). Reverted to `BetaGuard` as declared. Details in `research/knn_replay/RESULT.md`. The holdout was not opened.
+
+### gap-night-v2: overnight-range abstention ✅ (holdout used for selection)
+Signal only when Hyperliquid's overnight high-low range is at least 1.0 thresholds; LightGBM P(move) gate off. Official holdout: direction **74.27** (n=206), depth 100, improvement 0, success **58.09**; second half >= first now passes (74.2 / 74.3). 20 Feb – 22 May: 79.1 on 254 signals. Online flip learners over every holdout slot never gained (best +0.5 pp), so improvement stays 0. Details: `research/RESULTS_gap_night_v2.md`; files in `predictions_v2/`.
+
+### gap-night-cat-v3: CatBoost trust filter, horizon 5 ✅ (current model)
+Plan models compared as abstention filters, trained Feb–May and tested on the holdout (and the reverse): CatBoost best in both directions (77.8 / 83.5 vs rule 75.7 / 80.3), LightGBM next, logistic, kNN and GRU on the hourly path no better than the rule. Direction rises with the horizon 1 → 5 in both periods, so only h5 is issued. Official holdout: direction **78.31** (83 signals), success **59.44**, halves 75.5 / 83.3; improvement 0. Research code now reads the pack only through `PointInTime`; direct-read code moved out of the repo. Details: `research/RESULTS_gap_night_cat_v3.md`; files in `predictions_v3/`.
 
 ## What's left, in order
-1. Finish the pyarrow build, then the automated full holdout run with scores and gates.
-2. Decide on the learning gate, the only route to success ≥ 70. Nothing tested so far gives a gain.
-3. Clean and package the repository: pin `lightgbm==4.6.0`, remove the stale files, write the memo, run `reproduce.py`, then `submit.py`.
-4. Phase 4 add-ons (depth and news features into stage A or C, kNN, GRU), after the deadline or if time allows.
+1. Decide on the learning gate. Qualifying still needs about +4 pp paired gain on top of this direction. Nothing tested before the holdout gave a gain, and this run was not used to invent one.
+2. Clean and package the repository: pin `lightgbm==4.6.0`, remove the stale files, write the memo, run `reproduce.py`, then `submit.py`.
+3. Phase 4 add-ons (depth and news features into stage A or C, kNN, GRU), only on pre-holdout data.

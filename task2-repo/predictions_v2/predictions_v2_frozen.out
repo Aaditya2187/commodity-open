@@ -1,0 +1,10 @@
+signal file: predictions_v2\c2_holdout_frozen.parquet
+challenge: 2
+rows: 519  signals: 206 (206 valid, 0 invalid)  no_signal: 313 (313 valid)
+horizons: h3=103 h5=103
+assets: copper=42 crude=38 gold=40 silver=86
+errors: 0  warnings: 0
+result: VALID
+signals: predictions_v2\c2_holdout_frozen.parquet
+read log: predictions_v2\c2_holdout_frozen.readlog.jsonl (1147 entries)
+sessions: 104, updates: 0, outcomes delivered: 0, 331.442s

@@ -1,0 +1,101 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "D:\\CommodityOpenLatest-main\\v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "D:\\CommodityOpenLatest-main\\task2-repo\\predictions",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5,10"
+  },
+  "submission_commit": null,
+  "model": {
+    "class": "GapLGBM",
+    "seed": 20261025,
+    "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
+  },
+  "pack": {
+    "root": "D:\\CommodityOpenLatest-main\\v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 538,
+    "signals": 275,
+    "no_signals": 263,
+    "updates": 83,
+    "outcomes_delivered": 272,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 137.684,
+    "loop_seconds": 381.901
+  },
+  "rows": {
+    "rows": 538,
+    "signals": 275,
+    "no_signals": 263,
+    "by_horizon": {
+      "3": 149,
+      "5": 126
+    },
+    "by_asset": {
+      "silver": 109,
+      "crude": 101,
+      "gold": 41,
+      "copper": 24
+    },
+    "by_direction": {
+      "down": 164,
+      "up": 111
+    },
+    "no_signals_by_asset": {
+      "copper": 89,
+      "gold": 80,
+      "crude": 50,
+      "silver": 44
+    }
+  },
+  "fit": {
+    "spec": "gap-lgbm-v1",
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "rows": {
+      "3": 5422,
+      "5": 5413
+    },
+    "move_floor": {
+      "3": 0.765084,
+      "5": 0.925134
+    }
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 1436
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 520.626,
+  "python": "3.13.15"
+}

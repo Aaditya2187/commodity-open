@@ -1,0 +1,170 @@
+{
+  "window": {
+    "period": "holdout",
+    "start_utc": "2026-02-20T03:00:00+00:00",
+    "end_utc": "2026-05-22T18:29:59+00:00",
+    "horizons_scored": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "episode_horizon": 5
+  },
+  "direction": {
+    "value": 72.59475218658892,
+    "ci_lo": 66.2788992702721,
+    "ci_hi": 78.99245412450695,
+    "level": 0.9,
+    "n": 343,
+    "n_episodes": 50,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "depth": {
+    "value": 98.39357429718876,
+    "ci_lo": 95.3307392996109,
+    "ci_hi": 100.0,
+    "level": 0.9,
+    "n": 249,
+    "n_episodes": 48,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "improvement": {
+    "value": 0.0,
+    "ci_lo": 0.0,
+    "ci_hi": 0.0,
+    "level": 0.9,
+    "n": 343,
+    "n_episodes": 50,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "success_rate": {
+    "value": 56.996108827925895,
+    "ci_lo": 54.649789206409295,
+    "ci_hi": 59.287191138324395,
+    "level": 0.9,
+    "n": 249,
+    "n_episodes": 50,
+    "n_boot": 2000,
+    "seed": 0,
+    "resamples_used": 2000
+  },
+  "paired": {
+    "n": 343,
+    "learning": 72.59475218658892,
+    "frozen": 72.59475218658892
+  },
+  "paired_gain_pp": 0.0,
+  "frozen_direction_all": 72.59475218658892,
+  "null": 50.14577259475219,
+  "halves": {
+    "first_half_direction": 74.15730337078652,
+    "second_half_direction": 70.9090909090909,
+    "first_half_sessions": 32,
+    "second_half_sessions": 33
+  },
+  "hard_conditions": {
+    "learning_beats_frozen": false,
+    "second_half_at_least_first_half": false,
+    "direction_at_least_minimum": true,
+    "frozen_beats_prevailing_null": true,
+    "learning_beats_prevailing_null": true
+  },
+  "flips": {
+    "paired": 343,
+    "direction_differs": 0,
+    "learning_right_frozen_wrong": 0,
+    "frozen_right_learning_wrong": 0,
+    "both_wrong_when_differ": 0,
+    "learning_direction": 72.595,
+    "frozen_direction": 72.595,
+    "per_asset": {
+      "copper": {
+        "n": 84,
+        "learning": 55.95,
+        "frozen": 55.95,
+        "differs": 0
+      },
+      "crude": {
+        "n": 82,
+        "learning": 78.05,
+        "frozen": 78.05,
+        "differs": 0
+      },
+      "gold": {
+        "n": 73,
+        "learning": 69.86,
+        "frozen": 69.86,
+        "differs": 0
+      },
+      "silver": {
+        "n": 104,
+        "learning": 83.65,
+        "frozen": 83.65,
+        "differs": 0
+      }
+    },
+    "per_horizon": {
+      "3": {
+        "n": 172,
+        "learning": 70.35,
+        "frozen": 70.35,
+        "differs": 0
+      },
+      "5": {
+        "n": 171,
+        "learning": 74.85,
+        "frozen": 74.85,
+        "differs": 0
+      }
+    }
+  },
+  "read_logs": {
+    "c2_holdout": {
+      "ok": true,
+      "entries": 916,
+      "violations": 0
+    },
+    "c2_holdout_frozen": {
+      "ok": true,
+      "entries": 724,
+      "violations": 0
+    }
+  },
+  "fit": {
+    "spec": "gap-lgbm-knn-v1",
+    "train_end_utc": "2026-02-20T03:00:00+00:00",
+    "rows": {
+      "3": 5153,
+      "5": 5144
+    },
+    "move_floor": {
+      "3": 0.58341,
+      "5": 0.820429
+    },
+    "analog_library": {}
+  },
+  "decision": "REVERT to BetaGuard"
+}

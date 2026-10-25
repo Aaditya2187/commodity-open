@@ -1,0 +1,16 @@
+65 trading days from 2026-02-20 to 2026-05-22; fit at 2026-02-20T03:00:00+00:00
+fit done in 165.1s
+20/65 sessions, 133 rows, 98 outcomes delivered
+40/65 sessions, 272 rows, 212 outcomes delivered
+60/65 sessions, 398 rows, 307 outcomes delivered
+65/65 sessions, 431 rows, 330 outcomes delivered
+signal file: D:\CommodityOpenLatest-main\task2-repo\research\knn_replay\run\c2_holdout.parquet
+challenge: 2
+rows: 431  signals: 343 (343 valid, 0 invalid)  no_signal: 88 (88 valid)
+horizons: h3=172 h5=171
+assets: copper=84 crude=82 gold=73 silver=104
+errors: 0  warnings: 0
+result: VALID
+signals: D:\CommodityOpenLatest-main\task2-repo\research\knn_replay\run\c2_holdout.parquet
+read log: D:\CommodityOpenLatest-main\task2-repo\research\knn_replay\run\c2_holdout.readlog.jsonl (916 entries)
+sessions: 65, updates: 59, outcomes delivered: 330, 384.377s
