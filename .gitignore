@@ -5,3 +5,4 @@ __pycache__/
 build/
 catboost_info/
 _tmp/
+.DS_Store

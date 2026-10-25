@@ -116,7 +116,13 @@ Signal only when Hyperliquid's overnight high-low range is at least 1.0 threshol
 ### gap-night-cat-v3: CatBoost trust filter, horizon 5 ✅ (current model)
 Plan models compared as abstention filters, trained Feb–May and tested on the holdout (and the reverse): CatBoost best in both directions (77.8 / 83.5 vs rule 75.7 / 80.3), LightGBM next, logistic, kNN and GRU on the hourly path no better than the rule. Direction rises with the horizon 1 → 5 in both periods, so only h5 is issued. Official holdout: direction **78.31** (83 signals), success **59.44**, halves 75.5 / 83.3; improvement 0. Research code now reads the pack only through `PointInTime`; direct-read code moved out of the repo. Details: `task2-repo/research/RESULTS_gap_night_cat_v3.md`; files in `task2-repo/predictions_v3/`.
 
+### Learning gate research (26 Oct morning IST) ❌ then ship-or-stop
+- L1 drift / L2 hedge: previously failed (see `research/sweep_L1.txt`, `sweep_L2.txt`).
+- L3 CatBoost periodic refit: best `kind=cat, every=5, aux=coreh:1,2,3,4` — F2 +11.1, F1 +7.2, HO +0.96 (success 60.6). Still short of 70.
+- L4 news sentiment: **FAILED** (`research/RESULTS_L4.md`). Lexicon score anti-predictive vs gap; no HO gain over L3.
+- Aux-mix selection on F2∩F1, confirm HO: no config clears success≥70 on HO (`research/RESULTS_aux_mix_ship.md`).
+- **Ship-or-stop: keep gap-night-cat-v3.** Packaging started (requirements, swing_dataset copy, memo, predictions ← v3).
+
 ## What's left, in order
-1. Decide on the learning gate. Qualifying still needs about +4 pp paired gain on top of this direction. Nothing tested before the holdout gave a gain, and this run was not used to invent one.
-2. Clean and package the repository: pin `lightgbm==4.6.0`, remove the stale files, write the memo, run `reproduce.py`, then `submit.py`.
-3. Phase 4 add-ons (depth and news features into stage A or C, kNN, GRU), only on pre-holdout data.
+1. Finish packaging: full holdout regenerate + `tools/reproduce.py`, then `tools/submit.py --ticket CO-00XX --tasks 2` (ticket from registration email).
+2. Optional: send CO-0039 draft if forward-run args still unclear.

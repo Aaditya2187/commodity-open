@@ -31,12 +31,12 @@
   },
   "scores": {
     "direction": {
-      "value": 69.0909090909091,
-      "ci_lo": 62.856578204404286,
-      "ci_hi": 75.0,
+      "value": 78.3132530120482,
+      "ci_lo": 71.95121951219512,
+      "ci_hi": 84.70588235294117,
       "level": 0.9,
-      "n": 275,
-      "n_episodes": 60,
+      "n": 83,
+      "n_episodes": 54,
       "n_boot": 2000,
       "seed": 0,
       "resamples_used": 2000
@@ -46,8 +46,8 @@
       "ci_lo": 100.0,
       "ci_hi": 100.0,
       "level": 0.9,
-      "n": 190,
-      "n_episodes": 52,
+      "n": 65,
+      "n_episodes": 48,
       "n_boot": 2000,
       "seed": 0,
       "resamples_used": 2000
@@ -57,44 +57,44 @@
       "ci_lo": 0.0,
       "ci_hi": 0.0,
       "level": 0.9,
-      "n": 275,
-      "n_episodes": 60,
+      "n": 83,
+      "n_episodes": 54,
       "n_boot": 2000,
       "seed": 0,
       "resamples_used": 2000
     },
     "success_rate": {
-      "value": 56.36363636363637,
-      "ci_lo": 54.285526068134764,
-      "ci_hi": 58.333333333333336,
+      "value": 59.437751004016064,
+      "ci_lo": 57.3170731707317,
+      "ci_hi": 61.56862745098039,
       "level": 0.9,
-      "n": 190,
-      "n_episodes": 60,
+      "n": 65,
+      "n_episodes": 54,
       "n_boot": 2000,
       "seed": 0,
       "resamples_used": 2000
     }
   },
   "counts": {
-    "signals_in_window": 275,
+    "signals_in_window": 83,
     "invalid": 0,
     "unmatured": 0,
-    "scored": 275,
+    "scored": 83,
     "no_price": 0,
-    "ambiguous_bar": 2,
-    "scored_on_incomplete_window": 7,
-    "tick_priced": 160,
+    "ambiguous_bar": 1,
+    "scored_on_incomplete_window": 2,
+    "tick_priced": 44,
     "recorded_not_scored_other_horizon": 0,
-    "directionally_realized": 190,
-    "in_band": 190,
+    "directionally_realized": 65,
+    "in_band": 65,
     "invalidation_pct_median": 2.0,
     "invalidation_pct_max": 3.0,
-    "signal_rows": 275,
-    "valid_signal_rows": 275,
+    "signal_rows": 83,
+    "valid_signal_rows": 83,
     "invalid_signal_rows": 0,
     "invalid_reasons": {},
-    "no_signal_rows": 263,
-    "valid_no_signal_rows": 263
+    "no_signal_rows": 333,
+    "valid_no_signal_rows": 333
   },
   "coverage": {
     "floor": 0.9,
@@ -131,38 +131,38 @@
       "share": 1.0,
       "met": true
     },
-    "decision_records": 538,
+    "decision_records": 416,
     "decision_records_outside_a_session": 0,
     "met": true
   },
   "hard_conditions": {
     "learning_beats_frozen": false,
-    "second_half_at_least_first_half": false,
+    "second_half_at_least_first_half": true,
     "direction_at_least_minimum": true,
     "frozen_beats_prevailing_null": true,
     "learning_beats_prevailing_null": true
   },
   "paired_direction": {
-    "n": 275,
-    "learning": 69.0909090909091,
-    "frozen": 69.0909090909091
+    "n": 83,
+    "learning": 78.3132530120482,
+    "frozen": 78.3132530120482
   },
   "halves": {
-    "first_half_direction": 73.4567901234568,
-    "second_half_direction": 62.83185840707964,
+    "first_half_direction": 75.47169811320755,
+    "second_half_direction": 83.33333333333334,
     "first_half_sessions": 52,
     "second_half_sessions": 52
   },
   "prevailing_direction_null": {
     "rule": "the sign of the last five completed sessions' move, issued at the entry's instants with the entry's horizon, expected and invalidation at the asset threshold",
-    "direction_at_entry_instants": 40.36363636363636,
-    "direction_at_frozen_instants": 40.36363636363636,
-    "n": 275
+    "direction_at_entry_instants": 42.168674698795186,
+    "direction_at_frozen_instants": 42.168674698795186,
+    "n": 83
   },
   "frozen": {
-    "direction": 69.0909090909091,
-    "signals_in_window": 275,
-    "scored": 275
+    "direction": 78.3132530120482,
+    "signals_in_window": 83,
+    "scored": 83
   },
   "baselines": {
     "prevailing_direction": {
@@ -458,14 +458,14 @@
       20
     ],
     "minimum_success_rate": 70.0,
-    "success_rate": 56.36363636363637,
+    "success_rate": 59.437751004016064,
     "success_rate_at_least_minimum": false,
     "coverage_floor_met": true,
     "minimum_met_this_period": false,
     "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
     "hard_conditions": {
       "learning_beats_frozen": false,
-      "second_half_at_least_first_half": false,
+      "second_half_at_least_first_half": true,
       "direction_at_least_minimum": true,
       "frozen_beats_prevailing_null": true,
       "learning_beats_prevailing_null": true
@@ -474,17 +474,17 @@
   },
   "inputs": {
     "signals": {
-      "path": "predictions\\c2_holdout.parquet",
-      "sha256": "80a02a84a3368bf34c9e253e2a6d26be0f5b98e2c09c57b89302b4cad337b950",
-      "bytes": 17996,
-      "rows": 538
+      "path": "predictions_v3\\c2_holdout.parquet",
+      "sha256": "b73f185ecb83664b2dbb87b0595378b5cd042a82c1cbbcd957749e4e19a9c6c4",
+      "bytes": 15774,
+      "rows": 416
     },
     "no_signals": null,
     "frozen": {
-      "path": "predictions\\c2_holdout_frozen.parquet",
-      "sha256": "80a02a84a3368bf34c9e253e2a6d26be0f5b98e2c09c57b89302b4cad337b950",
-      "bytes": 17996,
-      "rows": 538
+      "path": "predictions_v3\\c2_holdout_frozen.parquet",
+      "sha256": "b73f185ecb83664b2dbb87b0595378b5cd042a82c1cbbcd957749e4e19a9c6c4",
+      "bytes": 15774,
+      "rows": 416
     },
     "swings": {
       "path": "D:\\CommodityOpenLatest-main\\v2.1\\swings\\swings.parquet",
@@ -520,7 +520,7 @@
   "build": {
     "branch": "unknown",
     "commit": "unknown",
-    "command": "D:\\CommodityOpenLatest-main\\commodity-open-kit\\tools\\score_holdout.py --pack D:\\CommodityOpenLatest-main\\v2.1 --predictions predictions --challenge 2"
+    "command": "D:\\CommodityOpenLatest-main\\commodity-open-kit\\tools\\score_holdout.py --pack D:\\CommodityOpenLatest-main\\v2.1 --predictions predictions_v3 --challenge 2"
   },
   "definitions": {
     "price_series": "the contract designated for the signal's session in labels/designations.parquet at horizon 5, held for the whole window so a roll never enters as a calendar spread",

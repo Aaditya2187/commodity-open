@@ -6,7 +6,7 @@
     "challenge": 2,
     "period": "holdout",
     "frozen": false,
-    "out": "D:\\CommodityOpenLatest-main\\task2-repo\\predictions",
+    "out": "predictions_v3",
     "start": null,
     "end": null,
     "train_end": null,
@@ -14,7 +14,7 @@
   },
   "submission_commit": null,
   "model": {
-    "class": "GapLGBM",
+    "class": "GapNightCat",
     "seed": 20261025,
     "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
   },
@@ -41,61 +41,63 @@
     "sessions": 104,
     "first_session": "2026-06-01",
     "last_session": "2026-10-23",
-    "rows": 538,
-    "signals": 275,
-    "no_signals": 263,
-    "updates": 83,
-    "outcomes_delivered": 272,
+    "rows": 416,
+    "signals": 83,
+    "no_signals": 333,
+    "updates": 51,
+    "outcomes_delivered": 82,
     "stopped_at": "2026-10-26",
-    "fit_seconds": 137.684,
-    "loop_seconds": 381.901
+    "fit_seconds": 207.196,
+    "loop_seconds": 409.036
   },
   "rows": {
-    "rows": 538,
-    "signals": 275,
-    "no_signals": 263,
+    "rows": 416,
+    "signals": 83,
+    "no_signals": 333,
     "by_horizon": {
-      "3": 149,
-      "5": 126
+      "5": 83
     },
     "by_asset": {
-      "silver": 109,
-      "crude": 101,
-      "gold": 41,
-      "copper": 24
+      "silver": 36,
+      "copper": 18,
+      "gold": 16,
+      "crude": 13
     },
     "by_direction": {
-      "down": 164,
-      "up": 111
+      "down": 47,
+      "up": 36
     },
     "no_signals_by_asset": {
-      "copper": 89,
-      "gold": 80,
-      "crude": 50,
-      "silver": 44
+      "crude": 91,
+      "gold": 88,
+      "copper": 86,
+      "silver": 68
     }
   },
   "fit": {
-    "spec": "gap-lgbm-v1",
+    "spec": "gap-night-cat-v3",
     "train_end_utc": "2026-06-01T03:00:00+00:00",
-    "rows": {
-      "3": 5422,
-      "5": 5413
-    },
-    "move_floor": {
-      "3": 0.765084,
-      "5": 0.925134
+    "min_gap": 0.3,
+    "night_range_min": 1.0,
+    "horizons": [
+      5
+    ],
+    "trust": {
+      "rows": 175,
+      "won_share": 0.742857,
+      "keep_share": 0.742857,
+      "threshold": 0.640601
     }
   },
   "read_log": {
     "path": "c2_holdout.readlog.jsonl",
-    "entries": 1436
+    "entries": 2216
   },
   "validation": {
     "ok": true,
     "errors": [],
     "warnings": []
   },
-  "seconds": 520.626,
+  "seconds": 616.475,
   "python": "3.13.15"
 }

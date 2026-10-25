@@ -21,3 +21,5 @@ Rules adopted after the gap-lgbm-v1 exposure: no per-asset direction prior, no h
 selection using holdout outcomes, and at most one confirmatory holdout run of a fully pre-specified
 model. The team lifted the last of these on 25 Oct late evening (gap-night-v2 row); the first two
 still hold for gap-night-v2, whose rule is the same for every asset and horizon.
+| 26 Oct ~01:20 IST, L4 news | Univariate news-dir rates on holdout + L3/L4 learner replay on HO only (news features zero before June). | **No** for shipping. News is anti-predictive vs gap; L4 gain identical to L3 (+0.96) or worse. |
+| 26 Oct ~01:30 IST, aux-mix | L3 cat every∈{3,5,10} × aux universes; select on F2&F1 all gates, confirm HO. apply_core diagnostic. | **Yes (selection):** best aux remains coreh:1,2,3,4 every=5. HO success 60.6 still fails ≥70. Ship-or-stop → keep v3. |
