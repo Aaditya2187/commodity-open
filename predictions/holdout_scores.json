@@ -5,11 +5,11 @@
     "end": "2026-12-31",
     "train_end_utc": "2026-06-01T03:00:00+00:00"
   },
-  "pack": "D:\\CommodityOpenLatest-main\\v2.1",
-  "swings": "D:\\CommodityOpenLatest-main\\v2.1\\swings\\swings.parquet",
+  "pack": "v2.1",
+  "swings": "v2.1/swings/swings.parquet",
   "challenges": {
     "2": {
-      "report": "predictions_v3\\report_2_holdout.json",
+      "report": "predictions/report_2_holdout.json",
       "scores": {
         "direction": {
           "value": 78.3132530120482,

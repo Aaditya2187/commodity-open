@@ -2,24 +2,24 @@
   "stem": "c2_holdout",
   "rules_version": "2.6",
   "arguments": {
-    "pack": "D:\\CommodityOpenLatest-main\\v2.1",
+    "pack": "v2.1",
     "challenge": 2,
     "period": "holdout",
     "frozen": false,
-    "out": "predictions_v3",
+    "out": "predictions",
     "start": null,
     "end": null,
     "train_end": null,
     "horizons": "5,10"
   },
-  "submission_commit": null,
+  "submission_commit": "6bdf6fd7493c660354d0521b4f57073b096a4587",
   "model": {
     "class": "GapNightCat",
     "seed": 20261025,
     "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
   },
   "pack": {
-    "root": "D:\\CommodityOpenLatest-main\\v2.1",
+    "root": "v2.1",
     "version": "v2.1",
     "built_utc": "2026-10-23T22:00:45.911941+00:00",
     "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
@@ -47,8 +47,8 @@
     "updates": 51,
     "outcomes_delivered": 82,
     "stopped_at": "2026-10-26",
-    "fit_seconds": 207.196,
-    "loop_seconds": 409.036
+    "fit_seconds": 56.725,
+    "loop_seconds": 115.544
   },
   "rows": {
     "rows": 416,
@@ -98,6 +98,6 @@
     "errors": [],
     "warnings": []
   },
-  "seconds": 616.475,
-  "python": "3.13.15"
+  "seconds": 172.33,
+  "python": "3.13.17"
 }

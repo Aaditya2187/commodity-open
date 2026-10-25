@@ -474,53 +474,53 @@
   },
   "inputs": {
     "signals": {
-      "path": "predictions_v3\\c2_holdout.parquet",
+      "path": "predictions/c2_holdout.parquet",
       "sha256": "b73f185ecb83664b2dbb87b0595378b5cd042a82c1cbbcd957749e4e19a9c6c4",
       "bytes": 15774,
       "rows": 416
     },
     "no_signals": null,
     "frozen": {
-      "path": "predictions_v3\\c2_holdout_frozen.parquet",
+      "path": "predictions/c2_holdout_frozen.parquet",
       "sha256": "b73f185ecb83664b2dbb87b0595378b5cd042a82c1cbbcd957749e4e19a9c6c4",
       "bytes": 15774,
       "rows": 416
     },
     "swings": {
-      "path": "D:\\CommodityOpenLatest-main\\v2.1\\swings\\swings.parquet",
+      "path": "v2.1/swings/swings.parquet",
       "sha256": "2db9866d45deba3d8149a78792a9494765c1d206196f69b9467b8bcf4ab4cbee",
       "bytes": 70692,
       "rows": 2150
     },
     "mcx_daily": {
-      "path": "D:\\CommodityOpenLatest-main\\v2.1\\mcx\\mcx_daily.parquet",
+      "path": "v2.1/mcx/mcx_daily.parquet",
       "sha256": "284057f8d01ec1c5f4b5f2dce2557c406c8f054393a991bfcb22267374fcc405",
       "bytes": 4120141,
       "rows": 159529
     },
     "designations": {
-      "path": "D:\\CommodityOpenLatest-main\\v2.1\\labels\\designations.parquet",
+      "path": "v2.1/labels/designations.parquet",
       "sha256": "3d2d2d54a2382e5db98db4c02a36637323159c8a40dc6b30d8a3e55d53db4811",
       "bytes": 243835,
       "rows": 17724
     },
     "mcx_sessions": {
-      "path": "D:\\CommodityOpenLatest-main\\v2.1\\mcx\\mcx_sessions.parquet",
+      "path": "v2.1/mcx/mcx_sessions.parquet",
       "sha256": "be2316b018137e61d8607f3b95b4fea1660ecfffeee6b93f5c0edd472207c2eb",
       "bytes": 17048,
       "rows": 2191
     },
     "quotes": {
-      "path": "D:\\CommodityOpenLatest-main\\v2.1\\pack\\quotes\\mcx_quotes.parquet",
+      "path": "v2.1/pack/quotes/mcx_quotes.parquet",
       "sha256": "5a5dedfca5c54f7e9cdff27cfa94db2ec245f409e1e8d23e4eec82b3dbe7ab07",
       "bytes": 63989284,
       "rows": 1532825
     }
   },
   "build": {
-    "branch": "unknown",
-    "commit": "unknown",
-    "command": "D:\\CommodityOpenLatest-main\\commodity-open-kit\\tools\\score_holdout.py --pack D:\\CommodityOpenLatest-main\\v2.1 --predictions predictions_v3 --challenge 2"
+    "branch": "main",
+    "commit": "6bdf6fd7493c660354d0521b4f57073b096a4587",
+    "command": "commodity-open-kit/tools/score_holdout.py --pack ./v2.1 --predictions predictions/ --challenge 2 --out predictions"
   },
   "definitions": {
     "price_series": "the contract designated for the signal's session in labels/designations.parquet at horizon 5, held for the whole window so a roll never enters as a calendar spread",
