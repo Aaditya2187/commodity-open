@@ -1,0 +1,2 @@
+design,learner,params,aux,fold,n,core,aux_n,D,F,gain,I,success,null,aux_D,aux_F,h1,h2,LwFl,FwLl,gates
+refit_e5,refit,"{""every"": 5, ""news"": false}","coreh:1,2,3,4",F1,290,58,232,75.86,68.62,7.24,72.4,82.76,43.79,74.1,65.1,75.3,76.4,24,3,YYYYY

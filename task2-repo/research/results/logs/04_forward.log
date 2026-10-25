@@ -1,0 +1,43 @@
+2026-03-02 n= 42 D= 52.4 gain=+0.00 S= 50.8 [.Y.Y.]
+2026-03-09 n= 39 D= 61.5 gain=+0.00 S= 53.9 [YY.Y.]
+2026-03-16 n= 45 D= 64.4 gain=+17.78 S= 88.2 [Y.YYY]
+2026-03-23 n= 51 D= 82.3 gain=+3.92 S= 73.9 [YYY.Y]
+2026-03-30 n= 30 D= 83.3 gain=+0.00 S= 61.1 [YY.Y.]
+2026-04-07 n= 36 D= 61.1 gain=+0.00 S= 53.7 [YY...]
+2026-04-14 n= 21 D= 81.0 gain=+0.00 S= 60.3 [YY.Y.]
+2026-04-21 n= 24 D= 62.5 gain=+0.00 S= 54.2 [YY.Y.]
+2026-04-28 n=  6 D=100.0 gain=+0.00 S= 66.7 [YY.Y.]
+2026-05-05 n= 21 D= 81.0 gain=+0.00 S= 60.3 [YY...]
+2026-05-12 n= 36 D= 66.7 gain=+0.00 S= 55.6 [YY...]
+2026-06-02 n= 15 D=100.0 gain=+0.00 S= 66.7 [YY.Y.]
+2026-06-09 n= 33 D= 60.6 gain=+0.00 S= 53.5 [YY.Y.]
+2026-06-16 n= 24 D= 79.2 gain=+0.00 S= 59.7 [YY...]
+2026-06-23 n= 12 D= 50.0 gain=+0.00 S= 50.0 [.....]
+2026-06-30 n= 21 D= 33.3 gain=+0.00 S= 44.4 [.Y.Y.]
+2026-07-07 n=  0 D=  0.0 gain=+0.00 S= 33.3 [...Y.]
+2026-07-14 n=  6 D= 83.3 gain=+0.00 S= 61.1 [YY...]
+2026-07-21 n= 12 D= 75.0 gain=+0.00 S= 58.3 [YY...]
+2026-07-28 n= 18 D= 77.8 gain=+0.00 S= 59.3 [YY...]
+2026-08-04 n=  9 D=100.0 gain=+0.00 S= 66.7 [YY.Y.]
+2026-08-11 n=  9 D= 22.2 gain=+0.00 S= 40.7 [.....]
+2026-08-18 n=  9 D= 88.9 gain=+0.00 S= 63.0 [YY...]
+2026-08-25 n= 15 D= 53.3 gain=+0.00 S= 51.1 [.Y.Y.]
+2026-09-01 n=  0 D=  0.0 gain=+0.00 S= 33.3 [...Y.]
+2026-09-08 n=  9 D=100.0 gain=+0.00 S= 66.7 [YY.Y.]
+2026-09-15 n= 12 D= 66.7 gain=+0.00 S= 55.6 [YY.Y.]
+2026-09-22 n= 12 D= 83.3 gain=+0.00 S= 61.1 [YY.Y.]
+/workspace/task2-repo/research/learn_sim.py:392: RuntimeWarning: Mean of empty slice
+  "h1": round(100 * hit_l[half].mean(), 1), "h2": round(100 * hit_l[~half].mean(), 1),
+/workspace/.venv/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+2026-09-29 n=  6 D= 66.7 gain=+0.00 S= 55.6 [Y....]
+2026-10-07 n=  9 D= 66.7 gain=+0.00 S= 55.6 [YY.Y.]
+# Forward check
+
+Design `refit_e5` learner `refit` params `{"every": 5, "news": false}` aux `coreh:1,2`.
+Windows: 30 (5 sessions, stride 5, 2 Mar 2026 through 16 Oct 2026, none crossing 1 June).
+
+- share with gain > 0: 6.7%
+- mean gain: +0.72 pp
+- share with direction >= 60 and success >= 70: 6.7%
+

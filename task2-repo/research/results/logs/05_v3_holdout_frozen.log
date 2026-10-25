@@ -1,0 +1,18 @@
+153 trading days from 2026-06-01 to 2026-12-31; fit at 2026-06-01T03:00:00+00:00
+fit done in 53.3s
+20/153 sessions, 80 rows, 0 outcomes delivered
+40/153 sessions, 160 rows, 0 outcomes delivered
+60/153 sessions, 240 rows, 0 outcomes delivered
+80/153 sessions, 320 rows, 0 outcomes delivered
+100/153 sessions, 400 rows, 0 outcomes delivered
+2026-10-26: the pack has no designation for this session; stopping
+signal file: /workspace/task2-repo/research/results/official/v3/holdout/c2_holdout_frozen.parquet
+challenge: 2
+rows: 416  signals: 83 (83 valid, 0 invalid)  no_signal: 333 (333 valid)
+horizons: h5=83
+assets: copper=18 crude=13 gold=16 silver=36
+errors: 0  warnings: 0
+result: VALID
+signals: /workspace/task2-repo/research/results/official/v3/holdout/c2_holdout_frozen.parquet
+read log: /workspace/task2-repo/research/results/official/v3/holdout/c2_holdout_frozen.readlog.jsonl (2000 entries)
+sessions: 104, updates: 0, outcomes delivered: 0, 149.235s

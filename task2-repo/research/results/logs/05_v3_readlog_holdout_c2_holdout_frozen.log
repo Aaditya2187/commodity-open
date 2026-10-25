@@ -1,0 +1,2 @@
+{"entries": 2000, "files": {"mcx/mcx_sessions": 193, "labels/chain_daily": 1, "mcx/mcx_daily": 378, "macro/hl_candles_1h": 189, "macro/hl_candles_1d": 189, "macro/hl_funding": 189, "macro/usdinr": 189, "macro/cot": 189, "labels/designations": 294, "pack/quotes/mcx_quotes": 189}, "latest_asof_utc": "2026-10-23T03:00:00+00:00", "last_row_instant_utc": "2026-10-23T03:00:00+00:00", "last_call_instant_utc": "2026-10-23T03:00:00+00:00", "unvintaged_reads": 0, "clocks_rederived": 0, "ok": true}
+read log ok (2000 entries)

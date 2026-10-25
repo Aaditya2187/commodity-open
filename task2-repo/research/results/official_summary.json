@@ -1,0 +1,64 @@
+{
+  "v3": {
+    "holdout_dir": "/workspace/task2-repo/research/results/official/v3/holdout",
+    "rerun_identical": true,
+    "sha256": "b73f185ecb83664b2dbb87b0595378b5cd042a82c1cbbcd957749e4e19a9c6c4"
+  },
+  "ship": {
+    "holdout_dir": "/workspace/task2-repo/research/results/official/ship/holdout",
+    "rerun_identical": true,
+    "sha256": "aa5a4d6f64a79c28423ac85e1763c730d53b56f2aa29f71c438dc1bdd7e9e6be",
+    "learner": "refit",
+    "params": {
+      "every": 5,
+      "news": false
+    },
+    "aux": "coreh:1,2,3,4"
+  },
+  "ship_block": {
+    "design": "refit_e5",
+    "learner": "refit",
+    "params": {
+      "every": 5,
+      "news": false
+    },
+    "aux": "coreh:1,2,3,4",
+    "folds": {
+      "F2": {
+        "n": 470,
+        "D": 75.96,
+        "F": 64.89,
+        "gain": 11.06,
+        "success": 91.99,
+        "null": 48.94,
+        "h1": 74.8,
+        "h2": 77.5,
+        "gates": "YYYYY"
+      },
+      "F1": {
+        "n": 290,
+        "D": 75.86,
+        "F": 68.62,
+        "gain": 7.24,
+        "success": 82.76,
+        "null": 43.79,
+        "h1": 75.3,
+        "h2": 76.4,
+        "gates": "YYYYY"
+      },
+      "HO": {
+        "n": 415,
+        "D": 72.05,
+        "F": 71.08,
+        "gain": 0.96,
+        "success": 60.56,
+        "null": 38.07,
+        "h1": 69.1,
+        "h2": 75.7,
+        "gates": "YYYY."
+      }
+    },
+    "dev_min_success": 82.76,
+    "dev_mean_success": 87.375
+  }
+}

@@ -1,0 +1,14 @@
+37 trading days from 2026-04-01 to 2026-05-22; fit at 2026-04-01T03:00:00+00:00
+fit done in 29.9s
+20/37 sessions, 216 rows, 170 outcomes delivered
+37/37 sessions, 380 rows, 286 outcomes delivered
+signal file: /workspace/task2-repo/research/results/official/ship/pre_apr/c2_holdout.parquet
+challenge: 2
+rows: 380  signals: 290 (290 valid, 0 invalid)  no_signal: 90 (90 valid)
+horizons: h1=58 h2=58 h3=58 h4=58 h5=58
+assets: copper=70 crude=60 gold=40 silver=120
+errors: 0  warnings: 0
+result: VALID
+signals: /workspace/task2-repo/research/results/official/ship/pre_apr/c2_holdout.parquet
+read log: /workspace/task2-repo/research/results/official/ship/pre_apr/c2_holdout.readlog.jsonl (932 entries)
+sessions: 37, updates: 30, outcomes delivered: 286, 62.076s

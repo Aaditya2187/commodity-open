@@ -1,0 +1,115 @@
+{
+  "stem": "c2_holdout",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "/workspace/v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": false,
+    "out": "/workspace/task2-repo/research/results/official/ship/pre_apr",
+    "start": "2026-04-01",
+    "end": "2026-05-22",
+    "train_end": "2026-04-01 03:00:00+00:00",
+    "horizons": "5,10"
+  },
+  "submission_commit": "708441700a82c0351bb82524e7356710caf5e8f6",
+  "model": {
+    "class": "GapNightCat",
+    "seed": 20261025,
+    "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
+  },
+  "pack": {
+    "root": "/workspace/v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-04-01",
+      "end": "2026-05-22",
+      "train_end_utc": "2026-04-01T03:00:00+00:00"
+    },
+    "frozen": false,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 37,
+    "first_session": "2026-04-01",
+    "last_session": "2026-05-22",
+    "rows": 380,
+    "signals": 290,
+    "no_signals": 90,
+    "updates": 30,
+    "outcomes_delivered": 286,
+    "stopped_at": null,
+    "fit_seconds": 29.903,
+    "loop_seconds": 32.138
+  },
+  "rows": {
+    "rows": 380,
+    "signals": 290,
+    "no_signals": 90,
+    "by_horizon": {
+      "1": 58,
+      "2": 58,
+      "3": 58,
+      "4": 58,
+      "5": 58
+    },
+    "by_asset": {
+      "silver": 120,
+      "copper": 70,
+      "crude": 60,
+      "gold": 40
+    },
+    "by_direction": {
+      "down": 153,
+      "up": 137
+    },
+    "no_signals_by_asset": {
+      "gold": 29,
+      "crude": 25,
+      "copper": 23,
+      "silver": 13
+    }
+  },
+  "fit": {
+    "spec": "gap-night-learn-v4-refit",
+    "train_end_utc": "2026-04-01T03:00:00+00:00",
+    "min_gap": 0.3,
+    "night_range_min": 1.0,
+    "horizons": [
+      5
+    ],
+    "trust": {
+      "rows": 68,
+      "won_share": 0.720588,
+      "keep_share": 0.867647,
+      "threshold": 0.112654
+    },
+    "online": {
+      "learner": "refit",
+      "train_rows": 520,
+      "params": {
+        "every": 5,
+        "news": false
+      }
+    }
+  },
+  "read_log": {
+    "path": "c2_holdout.readlog.jsonl",
+    "entries": 932
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 62.076,
+  "python": "3.13.17"
+}

@@ -1,0 +1,11 @@
+wrote /workspace/task2-repo/research/results/official/v3/holdout/report_2_holdout.json
+Task 2, holdout window 2026-06-01 to 2026-10-23, horizons [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  direction 78.3 [72.0, 84.7]  depth 100.0 [100.0, 100.0]  improvement 0.0 [0.0, 0.0]
+  success rate 59.4 [57.3, 61.6] (minimum 70)
+  signals 83, invalid 0, unmatured 0, scored 83, no_signal 333
+  coverage (floor 0.90): copper=1.000 crude=1.000 gold=1.000 silver=1.000 -> met
+  hard conditions: learning_beats_frozen no, second_half_at_least_first_half yes, direction_at_least_minimum yes, frozen_beats_prevailing_null yes, learning_beats_prevailing_null yes
+  prevailing-direction null at the same instants: 42.2
+  minimum on the holdout period: NOT met (both periods and the section 4a gate decide the prize)
+
+summary: /workspace/task2-repo/research/results/official/v3/holdout/holdout_scores.json

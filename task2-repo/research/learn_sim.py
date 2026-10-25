@@ -18,13 +18,25 @@ success = (direction + 100 + improvement) / 3 (depth is 100 for these bands), th
 from __future__ import annotations
 
 import copy
+import gc
+import json
+import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 R = "research/"
 FOLDS = {"F2": ("pre", "2026-03-16"), "F1": ("pre", "2026-04-01"), "HO": ("holdout", "2026-06-01")}
+PATH_COLS = [f"path_{i}" for i in range(12)]
+NEWS_COLS = ["news_night", "news_day"]
+CSV_COLUMNS = ["design", "learner", "params", "aux", "fold", "n", "core", "aux_n", "D", "F", "gain", "I",
+               "success", "null", "aux_D", "aux_F", "h1", "h2", "LwFl", "FwLl", "gates"]
 
 
 # ----------------------------------------------------------------------------- data
@@ -45,10 +57,15 @@ def _keys(table: str) -> pd.DataFrame:
     s = s[s["gap_thr"].notna()].copy()
     s["session_date"] = pd.to_datetime(s["session_date"]).dt.normalize()
     s["gidx"] = s["session_date"].map(CAL)
+    keep = ["asset", "gidx", "session_date", "signal_utc", "gap_thr", "night_range", "f_ret_5", "f_ret_20", "f_vol_20",
+            "f_hl_night_pos", "f_dist_ma_20"]
+    keep += [c for c in PATH_COLS if c in s.columns]
     rows = []
     for h in (1, 2, 3, 4, 5):
-        k = s[["asset", "gidx", "session_date", "signal_utc", "gap_thr", "night_range", "f_ret_5", "f_ret_20", "f_vol_20",
-               "f_hl_night_pos", "f_dist_ma_20"]].copy()
+        k = s[keep].copy()
+        for c in PATH_COLS:
+            if c not in k.columns:
+                k[c] = 0.0
         k["h"] = h
         k["up"] = s[f"real_up_h{h}"].astype(bool).to_numpy()
         k["dn"] = s[f"real_down_h{h}"].astype(bool).to_numpy()
@@ -63,28 +80,75 @@ def _keys(table: str) -> pd.DataFrame:
     return k.sort_values(["gidx", "asset", "h"]).reset_index(drop=True)
 
 
-KEYS = {"pre": _keys("pre"), "holdout": _keys("holdout")}
+def _join_news(keys: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
+    path = Path(R) / "news_holdout.parquet"
+    news = None
+    if path.exists():
+        news = pd.read_parquet(path)
+        news["session_date"] = pd.to_datetime(news["session_date"]).dt.normalize()
+        news = news.groupby(["asset", "session_date"], as_index=False)[NEWS_COLS].mean()
+    out = {}
+    for name, frame in keys.items():
+        k = frame
+        if news is not None and name == "holdout":
+            k = k.drop(columns=[c for c in NEWS_COLS if c in k.columns]).merge(news, on=["asset", "session_date"], how="left")
+        for c in NEWS_COLS:
+            if c not in k.columns:
+                k[c] = 0.0
+            k[c] = k[c].fillna(0.0)
+        out[name] = k
+    return out
+
+
+KEYS = _join_news({"pre": _keys("pre"), "holdout": _keys("holdout")})
 V3 = pd.read_parquet("predictions_v3/c2_holdout.parquet")
 V3 = V3[V3["signal_utc"].notna()]
 V3_KEYS = set(zip(V3["asset"], pd.to_datetime(V3["signal_utc"], utc=True), V3["horizon"].astype(int)))
 
 
+def _on_or_after(ts) -> tuple[int, pd.Timestamp]:
+    ts = pd.Timestamp(ts).normalize()
+    for day in sorted(CAL):
+        if day >= ts:
+            return CAL[day], day
+    raise KeyError(ts)
+
+
 def core_mask(fold: str, k: pd.DataFrame) -> np.ndarray:
-    if fold == "HO":
+    holdout_window = fold == "HO" or (
+        fold == "W" and len(k) > 0 and pd.to_datetime(k["session_date"]).min() >= pd.Timestamp("2026-06-01")
+    )
+    if holdout_window:
         return np.array([(a, pd.Timestamp(t), h) in V3_KEYS for a, t, h in zip(k["asset"], pd.to_datetime(k["signal_utc"], utc=True), k["h"])])
     return ((k["gap_thr"].abs() >= 0.3) & (k["night_range"] >= 1.0) & (k["h"] == 5)).to_numpy()
 
 
-def fold_data(fold: str):
-    table, start = FOLDS[fold]
-    cut = CAL[pd.Timestamp(start)]
-    k = KEYS[table]
-    test = k[k["gidx"] >= cut].reset_index(drop=True)
-    if table == "pre":
-        test = test[test["session_date"] <= pd.Timestamp("2026-05-22")].reset_index(drop=True)
-    train_slots = pd.concat([KEYS["pre"]], ignore_index=True)
-    train_slots = train_slots[(train_slots["gidx"] < cut) & (train_slots["deliver_g"] <= cut)].reset_index(drop=True)
-    hist = LABELS[(LABELS["gidx"] < cut) & (LABELS["deliver_g"] <= cut) & LABELS["complete"]].reset_index(drop=True)
+def fold_data(fold: str, start=None, end=None, max_sessions=None):
+    if fold == "W":
+        if start is None:
+            raise ValueError("fold W needs start")
+        cut, day = _on_or_after(start)
+        table = "holdout" if day >= pd.Timestamp("2026-06-01") else "pre"
+        test = KEYS[table]
+        test = test[test["gidx"] >= cut].reset_index(drop=True)
+        if end is not None:
+            test = test[test["session_date"] <= pd.Timestamp(end).normalize()].reset_index(drop=True)
+        pool = pd.concat([KEYS["pre"], KEYS["holdout"]], ignore_index=True)
+        train_slots = pool[(pool["gidx"] < cut) & (pool["deliver_g"] <= cut)].reset_index(drop=True)
+        hist = LABELS[(LABELS["gidx"] < cut) & (LABELS["deliver_g"] <= cut) & LABELS["complete"]].reset_index(drop=True)
+    else:
+        table, start_day = FOLDS[fold]
+        cut = CAL[pd.Timestamp(start_day)]
+        k = KEYS[table]
+        test = k[k["gidx"] >= cut].reset_index(drop=True)
+        if table == "pre":
+            test = test[test["session_date"] <= pd.Timestamp("2026-05-22")].reset_index(drop=True)
+        train_slots = pd.concat([KEYS["pre"]], ignore_index=True)
+        train_slots = train_slots[(train_slots["gidx"] < cut) & (train_slots["deliver_g"] <= cut)].reset_index(drop=True)
+        hist = LABELS[(LABELS["gidx"] < cut) & (LABELS["deliver_g"] <= cut) & LABELS["complete"]].reset_index(drop=True)
+    if max_sessions is not None and len(test):
+        keep = set(sorted(test["gidx"].unique())[: int(max_sessions)])
+        test = test[test["gidx"].isin(keep)].reset_index(drop=True)
     return test, train_slots, hist, cut
 
 
@@ -282,46 +346,109 @@ class Refit(Learner):
 
 
 # ----------------------------------------------------------------------------- replay
-def replay(fold: str, learner: Learner, aux: str, apply_core: bool = False) -> dict:
-    test, train_slots, hist, cut = fold_data(fold)
+def _empty_replay(fold: str) -> dict:
+    return {"fold": fold, "n": 0, "core": 0, "aux": 0, "aux_n": 0, "D": 0.0, "F": 0.0, "gain": 0.0, "I": 0.0,
+            "success": 33.33, "null": 0.0, "aux_D": None, "aux_F": None, "h1": 0.0, "h2": 0.0, "LwFl": 0, "FwLl": 0}
+
+
+def replay(fold: str, learner: Learner, aux: str, apply_core: bool = False, max_sessions=None, start=None, end=None) -> dict:
+    test, train_slots, hist, cut = fold_data(fold, start=start, end=end, max_sessions=max_sessions)
     core = core_mask(fold, test)
     auxm = aux_mask(aux, test, core) if aux else np.zeros(len(test), bool)
     keys = test[core | auxm].reset_index(drop=True)
+    if len(keys) == 0:
+        return _empty_replay(fold)
     is_core = (core[core | auxm])
-    learner.fit(train_slots, hist, cut)
-    frozen, learning = copy.deepcopy(learner), copy.deepcopy(learner)
-    dl, df = np.zeros(len(keys), int), np.zeros(len(keys), int)
-    for g in sorted(keys["gidx"].unique()):
-        due = keys[(keys["deliver_g"] == g) & (keys["gidx"] < g)]
-        if len(due):
-            learning.update(due, g)
-        idx = np.where(keys["gidx"].to_numpy() == g)[0]
-        for i in idx:
-            r = keys.iloc[i]
-            if is_core[i] and not apply_core:
-                dl[i] = df[i] = int(r.gap_sign) or 1
-            else:
-                rr = next(keys.iloc[[i]].itertuples())
-                dl[i], df[i] = learning.predict(rr), frozen.predict(rr)
-    y = keys["y"].to_numpy()
-    hit_l, hit_f, hit_n = dl == y, df == y, keys["null"].to_numpy() == y
-    n = len(keys)
-    D, F, N = 100 * hit_l.mean(), 100 * hit_f.mean(), 100 * hit_n.mean()
-    gain = D - F
-    I = min(100.0, max(0.0, 10 * gain))
-    sess = sorted(keys["gidx"].unique())
-    half = keys["gidx"].isin(sess[: len(sess) // 2]).to_numpy()
-    return {"fold": fold, "n": n, "core": int(is_core.sum()), "aux": int((~is_core).sum()), "D": round(D, 2), "F": round(F, 2),
-            "gain": round(gain, 2), "I": round(I, 1), "success": round((D + 100 + I) / 3, 2), "null": round(N, 2),
-            "aux_D": round(100 * hit_l[~is_core].mean(), 1) if (~is_core).any() else None,
-            "aux_F": round(100 * hit_f[~is_core].mean(), 1) if (~is_core).any() else None,
-            "h1": round(100 * hit_l[half].mean(), 1), "h2": round(100 * hit_l[~half].mean(), 1),
-            "LwFl": int(((dl != df) & hit_l & ~hit_f).sum()), "FwLl": int(((dl != df) & ~hit_l & hit_f).sum())}
+    frozen = learning = None
+    try:
+        learner.fit(train_slots, hist, cut)
+        frozen, learning = copy.deepcopy(learner), copy.deepcopy(learner)
+        dl, df = np.zeros(len(keys), int), np.zeros(len(keys), int)
+        for g in sorted(keys["gidx"].unique()):
+            due = keys[(keys["deliver_g"] == g) & (keys["gidx"] < g)]
+            if len(due):
+                learning.update(due, g)
+            idx = np.where(keys["gidx"].to_numpy() == g)[0]
+            for i in idx:
+                r = keys.iloc[i]
+                if is_core[i] and not apply_core:
+                    dl[i] = df[i] = int(r.gap_sign) or 1
+                else:
+                    rr = next(keys.iloc[[i]].itertuples())
+                    dl[i], df[i] = learning.predict(rr), frozen.predict(rr)
+        y = keys["y"].to_numpy()
+        hit_l, hit_f, hit_n = dl == y, df == y, keys["null"].to_numpy() == y
+        n = len(keys)
+        D, F, N = 100 * hit_l.mean(), 100 * hit_f.mean(), 100 * hit_n.mean()
+        gain = D - F
+        I = min(100.0, max(0.0, 10 * gain))
+        sess = sorted(keys["gidx"].unique())
+        half = keys["gidx"].isin(sess[: len(sess) // 2]).to_numpy()
+        return {"fold": fold, "n": n, "core": int(is_core.sum()), "aux": int((~is_core).sum()),
+                "aux_n": int((~is_core).sum()), "D": round(D, 2), "F": round(F, 2),
+                "gain": round(gain, 2), "I": round(I, 1), "success": round((D + 100 + I) / 3, 2), "null": round(N, 2),
+                "aux_D": round(100 * hit_l[~is_core].mean(), 1) if (~is_core).any() else None,
+                "aux_F": round(100 * hit_f[~is_core].mean(), 1) if (~is_core).any() else None,
+                "h1": round(100 * hit_l[half].mean(), 1), "h2": round(100 * hit_l[~half].mean(), 1),
+                "LwFl": int(((dl != df) & hit_l & ~hit_f).sum()), "FwLl": int(((dl != df) & ~hit_l & hit_f).sum())}
+    finally:
+        del frozen, learning, learner
+        gc.collect()
 
 
 def gates(r: dict) -> str:
     ok = [r["D"] >= 60, r["F"] > r["null"], r["gain"] > 0, r["h2"] >= r["h1"], r["success"] >= 70]
     return "".join("Y" if x else "." for x in ok)  # dir>=60, frozen>null, learn>frozen, halves, success>=70
+
+
+class Online(Learner):
+    """Adapter: ``fit`` / ``predict`` / ``update`` delegate to ``task2.online.make``."""
+
+    def __init__(self, name: str, **params) -> None:
+        from task2.online import make
+
+        self.name = name
+        self.params = dict(params)
+        self.impl = make(name, **params)
+
+    def fit(self, train_slots, hist=None, cut=None):
+        self.impl.fit(train_slots)
+
+    def predict(self, r) -> int:
+        return int(self.impl.predict(r))
+
+    def update(self, rows, g):
+        self.impl.update(rows, g)
+
+
+def run_design(design: str, learner: str, params: dict, aux: str, folds=("F2", "F1", "HO"),
+               csv_path: str | Path = "research/results/sweep.csv", max_sessions=None, start=None, end=None) -> list[dict]:
+    """Append one CSV row per fold. Skip a fold already stored for this (design, aux)."""
+    path = Path(csv_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    have: set[str] = set()
+    if path.exists() and path.stat().st_size:
+        prev = pd.read_csv(path)
+        if {"design", "aux", "fold"} <= set(prev.columns):
+            have = set(prev.loc[(prev["design"] == design) & (prev["aux"] == aux), "fold"].astype(str))
+    pending = [f for f in folds if f not in have]
+    if not pending:
+        print(f"skip {design} {aux} ({','.join(folds)} already stored)", flush=True)
+        return []
+    out = []
+    params_text = json.dumps(params, sort_keys=True, default=str)
+    for f in pending:
+        r = replay(f, Online(learner, **params), aux, max_sessions=max_sessions, start=start, end=end)
+        r["gates"] = gates(r)
+        row = {c: r.get(c) for c in CSV_COLUMNS}
+        row.update({"design": design, "learner": learner, "params": params_text, "aux": aux, "fold": f,
+                    "aux_n": r.get("aux_n", r.get("aux"))})
+        pd.DataFrame([row], columns=CSV_COLUMNS).to_csv(path, mode="a", header=not path.exists() or path.stat().st_size == 0, index=False)
+        out.append(r)
+        print(f"{design:28s} {aux:16s} {f}: n={r['n']:4d} D={r['D']:5.1f} F={r['F']:5.1f} gain={r['gain']:+5.2f} "
+              f"S={r['success']:5.1f} [{r['gates']}]", flush=True)
+        gc.collect()
+    return out
 
 
 def show(name: str, learner_factory, aux: str, apply_core: bool = False, folds=("F2", "F1", "HO")) -> list[dict]:

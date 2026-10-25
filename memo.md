@@ -52,14 +52,16 @@ pre-open in kit 2.6.3; CO-0039 draft asks organizers to confirm). Nothing is fit
 | gap-lgbm-v1 | 69.09 (275) | 100 | 0 | 56.36 |
 | gap-night-v2 | 74.27 (206) | 100 | 0 | 58.09 |
 | **gap-night-cat-v3** | **78.31 (83)** | **100** | **0** | **59.44** |
+| refit every 5, aux h1–h4 (official, dropped) | 70.84 (415) | 100 | 4.82 | 58.55 |
 | prevailing-direction null at v3 instants | 42.2 | — | — | — |
 
 Hard conditions on v3: direction≥60, halves, frozen>null, learning>null, coverage all pass;
 learning beats frozen fails (files identical); success≥70 fails.
 
 Learning-loop research (L1 drift, L2 hedge, L3 CatBoost periodic refit on auxiliary horizons,
-L4 news sentiment) is summarised in `task2-repo/research/RESULTS_*.md`. Best L3 holdout success
-was 60.6 with +0.96 pp paired gain — still below 70. Ship-or-stop kept v3.
+L4 news sentiment, then the refit/neural/append/blend grid) is in `task2-repo/research/`.
+The grid's development winner was CatBoost refit every 5 sessions on auxiliary horizons 1–4.
+Its official holdout success is 58.55, below v3, so it was not shipped. `LEARNER` stays `v3`.
 
 ## 7. Failure modes
 
