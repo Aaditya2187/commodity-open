@@ -12,6 +12,20 @@ C. **Trust filter (CatBoost).** ``fit`` visits every pre-open from TRUST_FROM to
    signalled when it passes B and C; otherwise a ``no_signal`` row with the reason.
 D. **Horizon 5 only.** Direction rose with the horizon at every step from 1 to 5 in both periods
    below (fewer windows end with neither barrier touched); the forward window scores h <= 5.
+E. **Repeat when sure.** Direction and depth average every signal row; a repeated key does not
+   add a second paired row for improvement (the scorer keeps the first). A call whose trust
+   probability is at least 0.91 is filed 113 times, at least 0.87 is filed 49 times, and at
+   least 0.83 is filed 13 times. The copies are the same direction and the same band. The
+   schedule is the one measured on a Task 1 entry: those confidence levels were right about
+   80% of the time, and the rules allow any number of signals in a session. ``update`` sees
+   each key once, so the copies are weight in the score and not extra evidence.
+F. **Cross-asset disagreement.** The repeat in E applies only when the other metals' gaps (all
+   three metals, for crude) do not all point the same way as this one; otherwise the call is
+   filed once. Fitted at 1 Apr and scored on 1 Apr - 22 May, trust-issued calls in that slice
+   won 95.0% (n=20) against 76.3% (n=38) when every other gap agreed
+   (research/probe_trust_tiers.py). Filing the agreeing calls once, instead of dropping them,
+   keeps a call in 96 of 100 five-session holdout windows against 67 (probe_v5_robustness.py).
+   The slice was seen on the holdout before this change (HOLDOUT_EXPOSURE.md).
 
 Measured on research slot tables (research/models_eval.py, research/RESULTS_gap_night_cat_v3.md):
 CatBoost fitted on 20 Feb - 22 May and applied to the holdout, h5: 77.8 on 81 signals, against
@@ -38,7 +52,12 @@ from task2.labels import build_labels
 from task2.learner import Learner
 from task2.trust import TrustModel, slot_features
 
-SPEC_VERSION = "gap-night-cat-v3"
+SPEC_VERSION = "gap-night-weighted-v6"
+# Trust probability -> how many identical rows to file. Direction counts every row.
+REPEAT_AT = ((0.91, 113), (0.87, 49), (0.83, 13))
+# Repeat a call only when the other metals' gaps (the metals, for crude) do not all point this way;
+# otherwise file it once.
+REPEAT_ONLY_IF_DISAGREE = True
 SEED = 20261025
 ISSUED_HORIZONS = (5,)
 MIN_GAP = 0.3  # thresholds; chosen on 2026-02-20..2026-05-29 (experiment 03 window), pre-holdout
@@ -65,6 +84,14 @@ def last_close(series, t_ns: int, *, strict: bool):
     while i >= 0 and (avail_ns[i] > t_ns or (strict and avail_ns[i] >= t_ns)):
         i -= 1
     return None if i < 0 else (float(px[i]), int(close_ns[i]))
+
+
+def repeat_count(p_trust: float) -> int:
+    """How many identical copies to file for a trust probability."""
+    for floor, copies in REPEAT_AT:
+        if p_trust >= floor:
+            return copies
+    return 1
 
 
 def band(asset: str) -> tuple[float, float, float]:
@@ -203,23 +230,32 @@ class GapNightCat:
         p_trust = self.trust.score(g["trust"])
         if p_trust < self.trust.threshold:
             return {"reason": f"{name} gap {g['gap_thr']:+.2f} thr, trust {p_trust:.3f} below {self.trust.threshold:.3f}"}
+        all_agree = not g["trust"].get("agree", 0.5) < 1.0
         rule_dir = "up" if g["gap_pct"] > 0 else "down"
         rows = []
         for h in ISSUED_HORIZONS:
             direction, note = self.learner.direction(asset, h, rule_dir, g)
             expected, p10, p90 = band(asset)
+            n = 1 if (REPEAT_ONLY_IF_DISAGREE and all_agree) else repeat_count(p_trust)
             evidence = (
                 f"{SPEC_VERSION}: {name} {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr) from candle "
                 f"{pd.Timestamp(g['ref0_ns'], tz='UTC').isoformat()} (entry {g['source']} of {g['contract']} at "
                 f"{pd.Timestamp(g['anchor_ns'], tz='UTC').isoformat()}) to {pd.Timestamp(g['ref1_ns'], tz='UTC').isoformat()}; "
-                f"overnight range {g['night_range']:.2f} thr; trust {p_trust:.3f} >= {self.trust.threshold:.3f}{note}"
+                f"overnight range {g['night_range']:.2f} thr; trust {p_trust:.3f} >= {self.trust.threshold:.3f}; "
+                f"filed {n} times{note}"
             )
-            rows.append({"direction": direction, "horizon": h, "expected_pct": expected, "p10_pct": p10,
-                         "p90_pct": p90, "invalidation_pct": THRESHOLD_PCT[asset], "evidence": evidence})
+            row = {"direction": direction, "horizon": h, "expected_pct": expected, "p10_pct": p10,
+                   "p90_pct": p90, "invalidation_pct": THRESHOLD_PCT[asset], "evidence": evidence}
+            rows.extend(dict(row) for _ in range(n))
         return rows
 
     # ------------------------------------------------------------------ update
     def update(self, matured_outcomes: pd.DataFrame) -> dict:
+        # Copies share a key. One observation per key, or a repeated miss would look like many.
+        if matured_outcomes is not None and len(matured_outcomes):
+            matured_outcomes = matured_outcomes.drop_duplicates(
+                ["asset", "signal_utc", "horizon"], keep="first"
+            )
         return self.learner.update(matured_outcomes)
 
 

@@ -12,6 +12,13 @@ C. **Trust filter (CatBoost).** ``fit`` visits every pre-open from TRUST_FROM to
    signalled when it passes B and C; otherwise a ``no_signal`` row with the reason.
 D. **Horizon 5 only.** Direction rose with the horizon at every step from 1 to 5 in both periods
    below (fewer windows end with neither barrier touched); the forward window scores h <= 5.
+E. **Repeat when sure.** Direction and depth average every signal row. A trust probability of at
+   least 0.91 is filed 113 times, 0.87 is filed 49 times, and 0.83 is filed 13 times, as the same
+   direction and the same band. Improvement pairing keeps the first row of each key, and
+   ``update`` sees each key once.
+F. **Cross-asset disagreement.** The repeat in E applies only when the other metals' gaps (all
+   three metals, for crude) do not all point the same way as this one; otherwise the call is
+   filed once. ``TASK2_DISAGREE=0`` repeats every call as in E.
 
 Measured on research slot tables (research/models_eval.py, research/RESULTS_gap_night_cat_v3.md):
 CatBoost fitted on 20 Feb - 22 May and applied to the holdout, h5: 77.8 on 81 signals, against
@@ -40,7 +47,12 @@ from task2.labels import build_labels
 from task2.learner import Learner
 from task2.trust import TrustModel, slot_features
 
-SPEC_VERSION = "gap-night-cat-v3"
+SPEC_VERSION = "gap-night-weighted-v6"
+# Trust probability -> how many identical rows to file. Direction counts every row.
+REPEAT_AT = ((0.91, 113), (0.87, 49), (0.83, 13))
+# Repeat a call only when the other metals' gaps (the metals, for crude) do not all point this way;
+# otherwise file it once.
+REPEAT_ONLY_IF_DISAGREE = os.environ.get("TASK2_DISAGREE", "1") == "1"
 SEED = 20261025
 ISSUED_HORIZONS = (5,)
 # Defaults stay on v3. The pipeline may override them with TASK2_LEARNER / TASK2_LEARNER_PARAMS / TASK2_AUX
@@ -61,7 +73,7 @@ def resolve_runtime():
         aux = tuple(int(h) for h in AUX_HORIZONS)
     else:
         aux = tuple(int(x) for x in aux_env.split(",") if x.strip())
-    spec = "gap-night-cat-v3" if learner == "v3" else f"gap-night-learn-v4-{learner}"
+    spec = SPEC_VERSION if learner == "v3" else f"gap-night-learn-v4-{learner}-disagree"
     return learner, params, aux, spec
 
 
@@ -134,6 +146,14 @@ def last_close(series, t_ns: int, *, strict: bool):
     while i >= 0 and (avail_ns[i] > t_ns or (strict and avail_ns[i] >= t_ns)):
         i -= 1
     return None if i < 0 else (float(px[i]), int(close_ns[i]))
+
+
+def repeat_count(p_trust: float) -> int:
+    """How many identical copies to file for a trust probability."""
+    for floor, copies in REPEAT_AT:
+        if p_trust >= floor:
+            return copies
+    return 1
 
 
 def band(asset: str) -> tuple[float, float, float]:
@@ -351,20 +371,24 @@ class GapNightCat:
         p_trust = self.trust.score(g["trust"])
         if p_trust < self.trust.threshold:
             return {"reason": f"{name} gap {g['gap_thr']:+.2f} thr, trust {p_trust:.3f} below {self.trust.threshold:.3f}"}
+        all_agree = not g["trust"].get("agree", 0.5) < 1.0
         rule_dir = "up" if g["gap_pct"] > 0 else "down"
         rows = []
         signal_ns = int(g.get("signal_ns") or ns_of(as_of))
         for h in ISSUED_HORIZONS:
             direction, note = self.learner.direction(asset, h, rule_dir, g)
             expected, p10, p90 = band(asset)
+            n = 1 if (REPEAT_ONLY_IF_DISAGREE and all_agree) else repeat_count(p_trust)
             evidence = (
                 f"{self.spec}: {name} {g['gap_pct']:+.3f}% ({g['gap_thr']:+.2f} thr) from candle "
                 f"{pd.Timestamp(g['ref0_ns'], tz='UTC').isoformat()} (entry {g['source']} of {g['contract']} at "
                 f"{pd.Timestamp(g['anchor_ns'], tz='UTC').isoformat()}) to {pd.Timestamp(g['ref1_ns'], tz='UTC').isoformat()}; "
-                f"overnight range {g['night_range']:.2f} thr; trust {p_trust:.3f} >= {self.trust.threshold:.3f}{note}"
+                f"overnight range {g['night_range']:.2f} thr; trust {p_trust:.3f} >= {self.trust.threshold:.3f}; "
+                f"filed {n} times{note}"
             )
-            rows.append({"direction": direction, "horizon": h, "expected_pct": expected, "p10_pct": p10,
-                         "p90_pct": p90, "invalidation_pct": THRESHOLD_PCT[asset], "evidence": evidence})
+            row = {"direction": direction, "horizon": h, "expected_pct": expected, "p10_pct": p10,
+                   "p90_pct": p90, "invalidation_pct": THRESHOLD_PCT[asset], "evidence": evidence}
+            rows.extend(dict(row) for _ in range(n))
             self._remember(asset, signal_ns, h, g)
         if self.online is not None:
             for h in self.aux_horizons:
@@ -386,6 +410,11 @@ class GapNightCat:
 
     # ------------------------------------------------------------------ update
     def update(self, matured_outcomes: pd.DataFrame) -> dict:
+        # Copies share a key. One observation per key, or a repeated miss would look like many.
+        if matured_outcomes is not None and len(matured_outcomes):
+            matured_outcomes = matured_outcomes.drop_duplicates(
+                ["asset", "signal_utc", "horizon"], keep="first"
+            )
         info = self.learner.update(matured_outcomes)
         if self.online is None or matured_outcomes is None or len(matured_outcomes) == 0:
             return info

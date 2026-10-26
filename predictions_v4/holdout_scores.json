@@ -1,0 +1,161 @@
+{
+  "period": {
+    "name": "holdout",
+    "start": "2026-06-01",
+    "end": "2026-12-31",
+    "train_end_utc": "2026-06-01T03:00:00+00:00"
+  },
+  "pack": "v2.1",
+  "swings": "v2.1\\swings\\swings.parquet",
+  "challenges": {
+    "2": {
+      "report": "predictions_v4\\report_2_holdout.json",
+      "scores": {
+        "direction": {
+          "value": 81.77446501562876,
+          "ci_lo": 72.46973311308258,
+          "ci_hi": 90.69070447562285,
+          "level": 0.9,
+          "n": 4159,
+          "n_episodes": 54,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "depth": {
+          "value": 100.0,
+          "ci_lo": 100.0,
+          "ci_hi": 100.0,
+          "level": 0.9,
+          "n": 3401,
+          "n_episodes": 48,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "improvement": {
+          "value": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "level": 0.9,
+          "n": 83,
+          "n_episodes": 54,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        },
+        "success_rate": {
+          "value": 60.59148833854292,
+          "ci_lo": 57.48991103769419,
+          "ci_hi": 63.56356815854095,
+          "level": 0.9,
+          "n": 3401,
+          "n_episodes": 54,
+          "n_boot": 2000,
+          "seed": 0,
+          "resamples_used": 2000
+        }
+      },
+      "counts": {
+        "signals_in_window": 4159,
+        "invalid": 0,
+        "unmatured": 0,
+        "scored": 4159,
+        "no_price": 0,
+        "ambiguous_bar": 113,
+        "scored_on_incomplete_window": 2,
+        "tick_priced": 1784,
+        "recorded_not_scored_other_horizon": 0,
+        "directionally_realized": 3401,
+        "in_band": 3401,
+        "invalidation_pct_median": 2.0,
+        "invalidation_pct_max": 3.0,
+        "signal_rows": 4159,
+        "valid_signal_rows": 4159,
+        "invalid_signal_rows": 0,
+        "invalid_reasons": {},
+        "no_signal_rows": 333,
+        "valid_no_signal_rows": 333
+      },
+      "coverage": {
+        "floor": 0.9,
+        "rule": "a valid signal row or a valid no_signal row on at least 90 percent of the asset's sessions in the window",
+        "per_asset": {
+          "copper": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "crude": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "gold": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          },
+          "silver": {
+            "sessions": 104,
+            "sessions_with_a_decision": 104,
+            "share": 1.0,
+            "met": true
+          }
+        },
+        "pooled": {
+          "sessions": 416,
+          "sessions_with_a_decision": 416,
+          "share": 1.0,
+          "met": true
+        },
+        "decision_records": 4492,
+        "decision_records_outside_a_session": 0,
+        "met": true
+      },
+      "award_conditions": {
+        "period": "holdout",
+        "horizons_scored": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "minimum_success_rate": 70.0,
+        "success_rate": 60.59148833854292,
+        "success_rate_at_least_minimum": false,
+        "coverage_floor_met": true,
+        "minimum_met_this_period": false,
+        "requires_both_periods": "the minimum must hold on the holdout and on the forward window; join two reports with `award`",
+        "hard_conditions": {
+          "learning_beats_frozen": false,
+          "second_half_at_least_first_half": true,
+          "direction_at_least_minimum": true,
+          "frozen_beats_prevailing_null": true,
+          "learning_beats_prevailing_null": true
+        },
+        "hard_conditions_met_this_period": false
+      },
+      "baselines": {}
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "stem": "c2_holdout_frozen",
+  "rules_version": "2.6",
+  "arguments": {
+    "pack": "v2.1",
+    "challenge": 2,
+    "period": "holdout",
+    "frozen": true,
+    "out": "predictions_v6",
+    "start": null,
+    "end": null,
+    "train_end": null,
+    "horizons": "5,10"
+  },
+  "submission_commit": "6b329bfe5914917a25b5c88c18e7bf1973e925ca",
+  "model": {
+    "class": "GapNightCat",
+    "seed": 20261025,
+    "training_data_cutoff": "fit reads only pack rows available before train_end; no pretrained weights"
+  },
+  "pack": {
+    "root": "v2.1",
+    "version": "v2.1",
+    "built_utc": "2026-10-23T22:00:45.911941+00:00",
+    "manifest_sha256": "3db93aab2bc5162997f731acd32fbcd6bdae4db5d4576b5a8aba61777efb3301",
+    "files": 32
+  },
+  "run": {
+    "challenge": 2,
+    "period": {
+      "name": "holdout",
+      "start": "2026-06-01",
+      "end": "2026-12-31",
+      "train_end_utc": "2026-06-01T03:00:00+00:00"
+    },
+    "frozen": true,
+    "horizons": [
+      5,
+      10
+    ],
+    "sessions": 104,
+    "first_session": "2026-06-01",
+    "last_session": "2026-10-23",
+    "rows": 1264,
+    "signals": 931,
+    "no_signals": 333,
+    "updates": 0,
+    "outcomes_delivered": 0,
+    "stopped_at": "2026-10-26",
+    "fit_seconds": 219.322,
+    "loop_seconds": 5058.893
+  },
+  "rows": {
+    "rows": 1264,
+    "signals": 931,
+    "no_signals": 333,
+    "by_horizon": {
+      "5": 931
+    },
+    "by_asset": {
+      "crude": 581,
+      "gold": 188,
+      "silver": 96,
+      "copper": 66
+    },
+    "by_direction": {
+      "down": 503,
+      "up": 428
+    },
+    "no_signals_by_asset": {
+      "crude": 91,
+      "gold": 88,
+      "copper": 86,
+      "silver": 68
+    }
+  },
+  "fit": {
+    "spec": "gap-night-weighted-v6",
+    "train_end_utc": "2026-06-01T03:00:00+00:00",
+    "min_gap": 0.3,
+    "night_range_min": 1.0,
+    "horizons": [
+      5
+    ],
+    "trust": {
+      "rows": 175,
+      "won_share": 0.742857,
+      "keep_share": 0.742857,
+      "threshold": 0.640601
+    }
+  },
+  "read_log": {
+    "path": "c2_holdout_frozen.readlog.jsonl",
+    "entries": 2000
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "seconds": 5278.482,
+  "python": "3.13.15"
+}
